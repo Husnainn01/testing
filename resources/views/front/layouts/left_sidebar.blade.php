@@ -6,7 +6,7 @@ $location= \App\Models\ListingLocation::all();
 
  @endphp
 
- <h6 class="my-3 fw-bold">Search By Brand</h6>
+ <h6 class="my-3 custom fw-bold">Search By Brand</h6>
  <div class="brands-list mob-hide">
     <div class="row mx-2 brands-box">
  <ul class="list-unstyled  brand-responsive">
@@ -28,7 +28,7 @@ $location= \App\Models\ListingLocation::all();
         </ul>
 
 
- <h6 class="my-3">Search By Type</h6>
+ <h6 class="my-3 custom">Search By Type</h6>
  <ul class="list-unstyled">
 
 <li class="mt-3"><a class="text-decoration-none" href="{{route('Find-type',['slug'=>'suv'])}}"><small>SUV</small></li>
@@ -39,7 +39,7 @@ $location= \App\Models\ListingLocation::all();
 {{-- <li class="mt-3"><a class="text-decoration-none"><small>C</small></li> --}}
  </ul>
 
- <h6 class="my-3 mob-hide">Search By Steering</h6>
+ <h6 class="my-3 custom mob-hide">Search By Steering</h6>
  <ul class="list-unstyled mob-hide">
  <a href="{{route('steering',['type'=>'right_steering'])}}" class="text-dark" style="text-decoration:none;"><li class=" py-2 "><i class="fas fa-car"></i><small> Right Hand</small></li></a>
  <a href="{{route('steering',['type'=>'left_steering'])}}" class="text-dark" style="text-decoration:none;"><li class=" py-2 "><i class="fas fa-car"></i><small> Left Hand</small></li></a>
@@ -58,7 +58,7 @@ $location= \App\Models\ListingLocation::all();
      <a href="filtertemplate.html" class="text-dark" style="text-decoration:none;"><li class=" py-2 "><i class="fas fa-car"></i><small> Isuzu(177)</small></li></a>
 
  </ul> --}}
- <h6 class="my-3 mob-hide">Search By Price</h6>
+ <h6 class="my-3 custom mob-hide">Search By Price</h6>
  <ul class="list-unstyled mob-hide">
      <a href="{{ route('pricing', ['price1' => 0, 'price2' => 500]) }}" class="text-dark" style="text-decoration:none;">
          <li class="py-2">
@@ -105,7 +105,7 @@ $location= \App\Models\ListingLocation::all();
  </ul>
 
 
-<h6 class="my-3">Category</h6>
+<h6 class="my-3 custom">Category</h6>
  <ul class="list-unstyled">
 @foreach ($category as $item)
 <li class="mt-3"><a class="text-decoration-none" href="{{route('category',['slug'=>$item->category_slug])}}"><small><img src="{{asset('uploads/categories_images/'.$item->category_image)}}"  class="small-logo" alt=""/> {{ $item->category_name }}</small>
@@ -119,7 +119,7 @@ $location= \App\Models\ListingLocation::all();
 
 
 
- <h6 class="my-3">Inventory Location</h6>
+ <h6 class="my-3 custom">Inventory Location</h6>
  <ul class="list-unstyled">
      @foreach ($location as $locationitems)
 <li class="mt-3"><a class="text-decoration-none" href="{{route('location_find',['slug'=>$locationitems->listing_location_slug])}}"><small><img class="mr-2" src="{{asset('uploads/listing_location_photos/'.$locationitems->listing_location_photo)}}" height="25" width="40">{{$locationitems->listing_location_name}}</small></a></li>

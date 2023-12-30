@@ -169,10 +169,10 @@ document.getElementById('submitForm').addEventListener('click', function () {
                 title: 'Validation Error',
                 text: 'Please fill in all mandatory fields.',
             });
-            return; 
+            return;
         }
         if (formData.consignee_tab === 'default-tab') {
-            formData.consignee_id = parseInt({{ Auth::user()->id }});
+            {{--formData.consignee_id = parseInt({{ Auth::user()->id }});--}}
             formData.default_name = document.querySelector('input[name="default_name"]').value;
             formData.default_company_name = document.querySelector('input[name="default_company_name"]').value;
             formData.default_email = document.querySelector('input[name="default_email"]').value;
@@ -180,7 +180,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
             formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
             formData.default_address = document.querySelector('input[name="default_address"]').value;
         } else {
-            formData.consignee_id = parseInt({{ Auth::user()->id }});
+            {{--formData.consignee_id = parseInt({{ Auth::user()->id }});--}}
             formData.default_name = document.querySelector('input[name="consignee_name"]').value;
             formData.default_company_name = document.querySelector('input[name="consignee_company_name"]').value;
             formData.default_email = document.querySelector('input[name="consignee_email"]').value;
@@ -188,9 +188,9 @@ document.getElementById('submitForm').addEventListener('click', function () {
             formData.default_phone_2 = document.querySelector('input[name="phone_number_2"]').value;
             formData.default_address = document.querySelector('input[name="address"]').value;
         }
-        
+
         if (formData.receiver_tab === 'receiver_default-tab') { // Use 'receiver_default' instead of 'receiver_default-tab'
-            formData.receiver_id = parseInt({{ Auth::user()->id }});
+            {{--formData.receiver_id = parseInt({{ Auth::user()->id }});--}}
             formData.receiver_default_name = document.querySelector('input[name="receiver_default_name"]').value;
             formData.receiver_default_company_name = document.querySelector('input[name="receiver_default_company_name"]').value;
             formData.receiver_default_email = document.querySelector('input[name="receiver_default_email"]').value;
@@ -198,7 +198,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
             formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]').value;
             formData.receiver_default_address = document.querySelector('input[name="receiver_default_address"]').value;
         } else {
-            formData.receiver_id = parseInt({{ Auth::user()->id }});
+{{--            formData.receiver_id = parseInt({{ Auth::user()->id }});--}}
             formData.receiver_default_name = document.querySelector('input[name="receiver_add_name"]').value;
             formData.receiver_default_company_name = document.querySelector('input[name="receiver_add_company_name"]').value;
             formData.receiver_default_email = document.querySelector('input[name="receiver_add_email"]').value;

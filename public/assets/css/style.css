@@ -38,7 +38,7 @@ body{
 
     #dialog-box p {
       margin-bottom: 10px;
-    
+
     }
 
     #dialog-box button {
@@ -110,7 +110,7 @@ color: #8B7575;
   border-radius: 5px;
   }
 p{
- 
+
   font-size: 14px;
 }
 header a{
@@ -241,7 +241,7 @@ font-size: 45px;
   margin-top: 10px;
   border:1px solid #731718;
   text-align: center;
- 
+
 
 }
 /* light box */
@@ -333,7 +333,7 @@ font-size: 45px;
 	width: auto;
 	max-height: 520px;
 }
- 
+
 
 /*  */
 .btn-link{
@@ -345,7 +345,7 @@ font-size: 45px;
   content: ">";
   color: red;
   font-weight: bold;
-  display: inline-block; 
+  display: inline-block;
   width: 1em;
   margin-left: -1em;
   font-size: 19px;
@@ -376,7 +376,7 @@ font-size: 45px;
   content: "\2022";
   color: red;
   font-weight: bold;
-  display: inline-block; 
+  display: inline-block;
   width: 1em;
   margin-left: -1em;
   font-size: 19px;
@@ -489,7 +489,7 @@ font-weight: 500;
   padding: 10px;
 }
 .carousel-control-prev-icon {
- 
+
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
   z-index: 999;
   background-color: #731718;
@@ -504,7 +504,7 @@ font-weight: 500;
 }
 .carousel-control-next-icon {
 
- 
+
   z-index: 999;
   background-color: greu;
 
@@ -594,11 +594,11 @@ header small{
   height: 300px;
   overflow-y: scroll;
 }
-.login-dropdown .dropdown-menu{ 
+.login-dropdown .dropdown-menu{
   min-width: 13em!important;
   padding: 20px 10px;
 }
-.support-dropdown .dropdown-menu{ 
+.support-dropdown .dropdown-menu{
   min-width: 25em!important;
   padding: 20px 10px;
 }
@@ -619,14 +619,14 @@ header small{
 }
 .mainfaqs .nav-item{
   background-color:white!important;
- 
+
   color:#731718!important;
   width: 21%;
   text-align: center;
   border:2px solid #731718!important;
   margin:15px 8px;
   border-radius: 10px;
-  
+
 }
 .mainfaqs .nav-item a{
   color:black;
@@ -780,7 +780,7 @@ body.mobile-nav-open {
   border-radius: 5px;
   background: #00358a!important;
     color: white!important;
- 
+
     text-align: center;
     padding: 10px;
 }
@@ -815,7 +815,7 @@ body.mobile-nav-open {
 .stock-dropdown .dropdown-menu{
     min-width: 60em!important;
     padding: 20px 10px;
-  
+
 }
 
 .brand-list li:hover{

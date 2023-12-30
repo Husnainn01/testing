@@ -262,12 +262,12 @@
                                             <!-- The image of the car -->
                                             <img
                                                 src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
-                                                class="w-100" height="130" alt="car">
+                                                class="w-100" height="130" alt="car" style="object-fit: cover;">
                                             <!-- Car details -->
                                             <div class="content">
                                                 <h2>{{ $carsitems->listing_name }}</h2>
                                                 <p class="location">Islamabad</p> <!-- Dynamic location if available -->
-                                                <div class="details">
+                                                <div class="details" style="padding-bottom: 36px !important;">
                                                     <span>{{ $carsitems->listing_model_year }}</span>
                                                     <span>{{ $carsitems->listing_year }}</span>
                                                     <span>{{ $carsitems->listing_mileage }} km</span>
@@ -276,7 +276,7 @@
                                                     <span>{{ $carsitems->listing_transmission }}</span>
                                                 </div>
                                                 <div class="price">
-                                                    <span>PKR {{ $carsitems->listing_price }}</span>
+                                                    <span>{{session()->get('currency_symbol')}} {{ $carsitems->listing_price }}</span>
                                                     <span
                                                         class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                 </div>
@@ -286,7 +286,8 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <div class="favorite-button" onclick="addToFavorites()">
+                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                    <div class="favorite-button" id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                     </div>
                                 </div>
@@ -485,13 +486,13 @@
                                                 <!-- The image of the car -->
                                                 <img
                                                     src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
-                                                    class="w-100" height="130" alt="car">
+                                                    class="w-100" height="130" alt="car" style="object-fit: cover;">
                                                 <!-- Car details -->
                                                 <div class="content">
                                                     <h2>{{ $carsitems->listing_name }}</h2>
                                                     <p class="location">Islamabad</p>
                                                     <!-- Dynamic location if available -->
-                                                    <div class="details">
+                                                    <div class="details" style="padding-bottom: 36px !important;">
                                                         <span>{{ $carsitems->listing_model_year }}</span>
                                                         <span>{{ $carsitems->listing_year }}</span>
                                                         <span>{{ $carsitems->listing_mileage }} km</span>
@@ -500,11 +501,12 @@
                                                         <span>{{ $carsitems->listing_transmission }}</span>
                                                     </div>
                                                     <div class="price">
-                                                        <span>PKR {{ $carsitems->listing_price }}</span>
+                                                        <span>{{session()->get('currency_symbol')}} {{ $carsitems->listing_price }}</span>
                                                         <span
                                                             class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                     </div>
-                                                    <div class="favorite-button" onclick="addToFavorites()">
+                                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                    <div class="favorite-button" id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
                                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                                     </div>
                                                     <button>GET A PRICE QUOTE NOW</button>
@@ -1378,6 +1380,36 @@
 
 
 @endsection
+<script>
+    function addToFavorites() {
+        console.log('here');
+        const listingId = document.getElementById('addToFavoritesBtn').getAttribute('data-listing-id');
+
+        // Make an AJAX request using fetch
+        fetch('/add-to-favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                // Make sure to include the CSRF token if your application requires CSRF protection
+            },
+            body: JSON.stringify({ listingId })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Listing added to favorites successfully');
+                // Update the UI as needed (e.g., change the button color)
+            })
+            .catch(error => {
+                console.error('Error adding listing to favorites', error);
+            });
+    }
+</script>
 <style>
     .row {
         margin: 0 -15px;
@@ -1421,7 +1453,7 @@
     .mob-hide .box-content .content h2 {
         font-size: 0.8rem !important;
         color: #3f70c9 !important; /* Update with the actual color */
-        margin: 4px 6px !important;
+        margin: 15px 6px !important;
         font-weight: bold !important;
         text-overflow: ellipsis !important;
         overflow: hidden !important;
@@ -1431,7 +1463,7 @@
     .mob-hide .box-content .content .location {
         color: grey !important;
         font-size: 0.9rem !important;
-        margin: 4px 3px !important;
+        margin: 15px 3px !important;
     }
 
     .mob-hide .box-content .content .details {
@@ -1442,7 +1474,6 @@
         line-height: 1.2em !important; /* Adjust line height as needed */
         height: calc(2.4em + 1px) !important; /* Adjust height based on line height, this accounts for two lines */
         font-size: 0.7rem !important;
-        justify-content: center !important;
         display: flex !important;
         align-items: center !important;
         font-size: 0.7rem !important;
@@ -1535,7 +1566,7 @@
 
     .favorite-button {
         position: absolute;
-        top: 340px; /* Adjust as needed */
+        top: 335px; /* Adjust as needed */
         right: 10px; /* Adjust as needed */
         font-size: 1.5rem; /* Adjust as needed */
         color: #808080; /* Adjust as needed */
@@ -1620,5 +1651,16 @@
             font-size: 1.5rem; /* Smaller icon size on smaller screens */
         }
     }
-
+    .my-3.custom {
+        background-color: #731718; /* Dark red background */
+        height: 50px; /* Increased height */
+        text-align: center; /* Center text horizontally */
+        margin-left: -20px; /* Adjust as needed */
+        width: inherit; /* Width */
+        color: white; /* Set the text color to white */
+        line-height: 50px; /* Center text vertically by setting line height equal to height */
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Align items vertically */
+        justify-content: center; /* Align content horizontally */
+    }
 </style>
