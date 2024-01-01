@@ -74,8 +74,11 @@
                                 <a href="{{ route('admin_listing_delete',$row->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('{{ ARE_YOU_SURE }}');"><i class="fas fa-trash-alt"></i></a>
 
                                 <a href="{{ route('admin_listing_edit',$row->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                <button class="btn btn-warning btn-sm openReviewModal" data-id="{{ $row->id }}" data-toggle="modal" data-target="#reviewModal">Review</button>
                             </td>
                         </tr>
+
+                        <!--Reviw modal-->
 
 <!-- Modal -->
 <div class="modal fade modal_listing_detail" id="detail_info{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -258,7 +261,7 @@
                         <div class="col-md-9">{{ $row->listing_model_year }}</div>
                     </div>
                     @endif
-                    
+
                 </div>
 
 
@@ -443,16 +446,62 @@
     </div>
 </div>
 <!-- // Modal -->
-
-
                         @endforeach
                     </tbody>
                 </table>
+                <div class="mob-hide d-block w-100 px-3 pagination" style="padding-left: 15px;">
+                    {{ $listing->links() }}
+                </div>
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Add Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('admin_listing_add_review') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="listing_id" id="modalListingId">
+                        <div class="form-group">
+                            <label for="reviewDescription">Description</label>
+                            <textarea class="form-control" id="reviewDescription" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Rating</label>
+                            <select class="form-control" id="reviewRating" name="rating" required>
+                                <option value="">Select a rating</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.openReviewModal').on('click', function() {
+                var listingId = $(this).data('id');
+                console.log(listingId);
+                $('#modalListingId').val(listingId);
+            });
+        });
         function listingStatus(id){
             $.ajax({
                 type:"get",
@@ -466,4 +515,46 @@
             })
         }
     </script>
-@endsection
+
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 50%; /* Full width */
+        height: 50%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .star-rating .checked {
+        color: #ffc107; /* Or any color you want for the filled stars */
+    }
+</style>

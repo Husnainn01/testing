@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $total_pending_customers = User::where('status', 'Pending')->count();
         $total_active_listings = Listing::where('listing_status', 'Active')->count();
         $total_pending_listings = Listing::where('listing_status', 'Pending')->count();
-        
+
         return view('admin.home', compact('total_active_customers','total_pending_customers','total_active_listings','total_pending_listings'));
     }
 }

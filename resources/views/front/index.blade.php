@@ -697,7 +697,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <i class="fas fa-car"></i>
+                                            <img src="{{asset('images/SUV.png')}}" alt="Car" class="custom-icon">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -719,7 +719,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <i class="fas fa-car fs-1"></i>
+                                            <img src="{{asset('images/van.png')}}" alt="Car" class="custom-icon">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -741,7 +741,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <i class="fas fa-car fs-1"></i>
+                                            <img src="{{asset('images/sedan.png')}}" alt="Car" class="custom-icon" style="height:5em;">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -1662,5 +1662,10 @@
         display: flex; /* Use flexbox to align items */
         align-items: center; /* Align items vertically */
         justify-content: center; /* Align content horizontally */
+    }
+    .custom-icon {
+        width: 6em;  /* Same size as the icon */
+        height: 2em; /* Maintain aspect ratio */
+        object-fit: contain; /* Keep the image from being distorted */
     }
 </style>

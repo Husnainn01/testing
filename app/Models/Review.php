@@ -14,12 +14,12 @@ class Review extends Model
         'review'
     ];
 
-    
- 
+
+
     public function agent() {
-        return $this->belongsTo( User::class, 'agent_id' );
+        return $this->belongsTo( Admin::class, 'agent_id' );
     }
-     
+
     public function listing() {
         return $this->belongsTo( Listing::class, 'listing_id' );
     }

@@ -10,6 +10,7 @@ use App\Models\ListingBrand;
 use App\Models\ListingLocation;
 use App\Models\ListingAmenity;
 use App\Models\Amenity;
+use App\Models\Review;
 use App\Models\Transmission;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -26,10 +27,10 @@ class ListingController extends Controller
     }
 
     public function index() {
-        $listing = Listing::with('rListingBrand','rListingLocation')->get();
+        $listing = Listing::with('rListingBrand','rListingLocation')->paginate(10);
         return view('admin.listing_view', compact('listing'));
     }
-    
+
     public function create() {
         $listing = Listing::get();
         $listing_brand = ListingBrand::orderBy('id','asc')->get();
@@ -49,10 +50,10 @@ class ListingController extends Controller
         $request->validate([
             // 'listing_name' => 'required|unique:listings',
             'listing_name' => 'required',
-            'listing_transmission' =>'required', 
-            'listing_body' =>'required', 
+            'listing_transmission' =>'required',
+            'listing_body' =>'required',
 
-            // 'listing_stock_id' => 'required', 
+            // 'listing_stock_id' => 'required',
             'listing_slug' => 'unique:listings',
             'listing_featured_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'listing_price' => 'required|numeric',
@@ -220,12 +221,12 @@ class ListingController extends Controller
         return view('admin.listing_edit', compact('listing','transmissions','listing_brand','listing_location','amenity','listing_photos','listing_videos','listing_additional_features','listing_social_items','listing_amenities','existing_amenities_array','categories'));
     }
 
-    public function update_photo_order(Request $request) 
+    public function update_photo_order(Request $request)
     {
         // $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
         $order = $request->input('order');
         $listingId = $request->input('listing_id');
-    
+
         foreach ($order as $index => $photoId) {
             // Find the photo by its ID and update the order
             $photo = ListingPhoto::find($photoId);
@@ -234,7 +235,7 @@ class ListingController extends Controller
         return response()->json(['message' => 'Photo order updated successfully']);
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         // dd($request->all());
         $obj = Listing::findOrFail($id);
@@ -267,8 +268,8 @@ class ListingController extends Controller
             'listing_name'   =>  [
                 'required'
             ],
-            'listing_transmission' =>'required', 
-            'listing_body' =>'required', 
+            'listing_transmission' =>'required',
+            'listing_body' =>'required',
             'listing_price' => 'required|numeric'
         ],[
             'listing_name.required' => ERR_NAME_REQUIRED,
@@ -432,7 +433,7 @@ class ListingController extends Controller
         }
 
         $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
-        
+
         // $listing_photos = ListingPhoto::where('listing_id',$id)->orderBy('id','asc')->get();
         $listing_videos = ListingVideo::where('listing_id',$id)->orderBy('id','asc')->get();
         $listing_additional_features = ListingAdditionalFeature::where('listing_id',$id)->orderBy('id','asc')->get();
@@ -482,7 +483,7 @@ class ListingController extends Controller
     }
 
     public function delete_video($id) {
-        
+
         $listing_video = ListingVideo::findOrFail($id);
         $listing_video->delete();
         return Redirect()->back()->with('success', SUCCESS_ACTION);
@@ -515,19 +516,19 @@ class ListingController extends Controller
         }
         return response()->json($message);
     }
-    // 
+    //
     public function listing_transmission_index()
     {
         $transmissions = Transmission::all();
-    
+
         return view('transmission.index', compact('transmissions'));
     }
-    
+
     public function listing_transmission_create()
     {
         return view('transmission.create');
     }
-    
+
     // Store the transmission
     public function listing_transmission_store(Request $request)
     {
@@ -535,20 +536,20 @@ class ListingController extends Controller
             'description' => 'required|max:255',
             // Add more validation rules as needed
         ]);
-    
+
         Transmission::create($request->all());
-    
+
         return redirect()->route('admin_listing_transmissions_index')
             ->with('success', 'Transmission added successfully.');
     }
-    
+
     // Edit transmission
     public function listing_transmission_edit($transmissionId)
     {
         $transmission = Transmission::findOrFail($transmissionId);
         return view('transmission.edit', compact('transmission'));
     }
-    
+
     // Update transmission
     public function listing_transmission_update(Request $request, $transmissionId)
     {
@@ -556,23 +557,39 @@ class ListingController extends Controller
             'description' => 'required|max:255',
             // Add more validation rules as needed
         ]);
-    
+
         $transmission = Transmission::findOrFail($transmissionId);
         $transmission->update($request->all());
-    
+
         return redirect()->route('admin_listing_transmissions_index')
             ->with('success', 'Transmission updated successfully.');
     }
-    
+
     // Delete transmission
     public function listing_transmission_destroy($transmissionId)
     {
         $transmission = Transmission::findOrFail($transmissionId);
         $transmission->delete();
-    
+
         return redirect()->route('admin_listing_transmissions_index')
             ->with('success', 'Transmission deleted successfully.');
     }
-    
+
+
+    public function add_review(Request $request)
+    {
+        $admin_data=Auth::user();
+        $data=[
+            'listing_id'=>$request->listing_id,
+            'agent_id'=>$admin_data->id,
+            'agent_type'=>'Customer',
+            'rating'=>$request->rating,
+            'review'=>$request->description,
+        ];
+        Review::updateOrCreate(
+            ['listing_id' => $request->listing_id],
+            $data
+        );        return redirect()->back()->with('success', 'Review added successfully!');
+    }
 
 }

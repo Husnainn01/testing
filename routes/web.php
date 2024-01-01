@@ -215,7 +215,7 @@ Route::get('customer/download_shipment_document/{id}', [CustomerControllerForFro
     ->name('customer_download.shipping_documents');
 Route::get('customer/download_shipment_tt_document/{id}', [CustomerControllerForFront::class,'download_shipment_tt_document'])
     ->name('customer_download.tt_doc');
-    
+
 // customer_shipping_documents.store
 // place order shipping place_order_shipping
 Route::post('customer/place_order_shipping', [CustomerControllerForFront::class,'place_order_shipping'])
@@ -715,7 +715,7 @@ Route::get('admin/listing-option_service/edit/{id}', [ListingLocationControllerF
 Route::post('admin/listing-option_service/update/{id}', [ListingLocationControllerForAdmin::class,'option_service_update'])
     ->name('admin_listing_option_service_update');
 Route::post('admin_modify_shipping_status', [ListingBrandControllerForAdmin::class,'admin_modify_shipping_status'])->name('admin_modify_shipping_status');
-// services 
+// services
 // Display the form to create a new service
 Route::get('admin/services/create', [ListingBrandControllerForAdmin::class, 'serviceCreate'])->name('services.create');
 
@@ -756,6 +756,8 @@ Route::get('admin/listing/edit/{id}', [ListingControllerForAdmin::class,'edit'])
 
 Route::post('admin/listing/update/{id}', [ListingControllerForAdmin::class,'update'])
     ->name('admin_listing_update');
+Route::post('admin/listing/add_review', [ListingControllerForAdmin::class,'add_review'])
+    ->name('admin_listing_add_review');
 
 Route::post('admin/listing/update_photo_order', [ListingControllerForAdmin::class,'update_photo_order'])
     ->name('admin_update_photo_order');

@@ -16,6 +16,7 @@ use App\Models\Inspection;
 use App\Models\Slide;
 use App\Models\Category;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
