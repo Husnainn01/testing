@@ -100,7 +100,7 @@ class HomeController extends Controller
         $location=ListingLocation::all();
         $locations=ListingLocation::all();
         $carsdata=Listing::latest()->paginate(4);
-        $clientreviews = Review::with('agent','listing')->get();
+        $clientreviews = Review::with('agent','listing')->take(2)->get();
         $most_popular_cars = Listing::where('is_featured','Yes')->orderBy('created_at','desc')->paginate(8);
         $new_arrivals = Listing::where('is_new_arrival',1)->orderBy('created_at','desc')->paginate(8);
         $faqs=Faq::all();

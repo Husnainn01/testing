@@ -4,8 +4,8 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
 <style>
 
     .card-features {
-        width: 254px;
-        height: 291px;
+        width: 220px;
+        height: 305px;
         margin: 0 auto;
         border-left: 3px solid maroon;
         border-right: 3px solid maroon;
@@ -15,6 +15,13 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
         text-align: center;
         margin-right: 20px;
     }
+    .one-third {
+        width: calc(33.333% - 10px); /* Adjust width to account for 3 in a row, minus gap */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0; /* Space between the two rows */
+    }
     .card-features p {
         color: grey;
         font-size: 12px;
@@ -22,25 +29,28 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     .create-account {
         display: flex;
         gap: 10px;
-        margin-left: 50px;
+        margin-left: 35px;
         padding-top: 10px;
         color: maroon;
     }
     .features {
         display: flex;
         flex-wrap: wrap;
-        gap: 5px;
+        justify-content: space-around; /* This will distribute space evenly around the items */
+
     }
     .feature {
         width: 40px;
         height: 40px;
-        margin-left: 20px;
         font-size: 14px;
-        margin-bottom: 10px;
         border-radius: 50%;
         text-align: center;
         display: flex;
         flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
     }
     .feature i {
         margin-top: 15px;
@@ -88,50 +98,50 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
 </style>
 
-<div class="card-features">
+<div class="card-features my-3">
 
     <div class="create-account">
-        <i class="fa-solid fa-user"  style="font-weight: 100; font-size:18px;"></i>
+        <i class="fa-solid fa-user"  style="font-weight: 100; font-size:18px;margin-bottom: 10px;"></i>
         <h6 style="font-weight: 700;">Create Account</h6>
     </div>
     <p>Sign up & enjoy these features</p>
     <div class="features">
 
-        <div class="one">
+        <div class="one-third">
             <div class="feature" style="background-color: maroon;">
-                <i class="fa-solid fa-l" style="color:white;"></i>
+                <i class="fa-solid fa-l" style="color:white;margin-bottom: 10px;"></i>
 
             </div>
             <p>Learn more</p>
         </div>
-       <div class="one">
+       <div class="one-third">
         <div class="feature" style="border: 1px solid red;">
-            <i class="fa-solid fa-heart" style="font-weight: 100; color:red;"></i>
+            <i class="fa-solid fa-heart" style="font-weight: 100; color:red;margin-bottom: 10px;"></i>
         </div>
         <p>Favourites</p>
        </div>
-       <div class="one">
+       <div class="one-third">
         <div class="feature" style="border: 1px solid blue;">
-            <i class="fa-solid fa-bell" style="font-weight: 100; color:blue;"></i>
+            <i class="fa-solid fa-bell" style="font-weight: 100; color:blue;margin-bottom: 10px;"></i>
         </div>
         <p>Notify me</p>
        </div>
-        <div class="one">
+        <div class="one-third">
             <div class="feature" style="border:2px solid purple;">
-                <i class="fa-solid fa-bell" style="font-weight: 100; color:purple;"></i>
+                <i class="fa-solid fa-bell" style="font-weight: 100; color:purple;margin-bottom: 10px;"></i>
             </div>
             <p>Save search</p>
         </div>
-        <div class="one">
+        <div class="one-third">
             <div class="feature" style="border:2px solid orange;">
-                <i class="fa-solid fa-envelope" style="color: orange;"></i>
+                <i class="fa-solid fa-envelope" style="color: orange;margin-bottom: 10px;"></i>
 
             </div>
             <p>Easy enquiry</p>
         </div>
-        <div class="one">
+        <div class="one-third">
             <div class="feature" style="border:2px solid gold;">
-                <i class="fa-solid fa-cart-shopping" style="color: gold;"></i>
+                <i class="fa-solid fa-cart-shopping" style="color: gold;margin-bottom: 10px;"></i>
             </div>
             <p>Buy Now</p>
         </div>
