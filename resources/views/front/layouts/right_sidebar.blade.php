@@ -6,7 +6,6 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     .card-features {
         width: 220px;
         height: 305px;
-        margin: 0 auto;
         border-left: 3px solid maroon;
         border-right: 3px solid maroon;
         border-top: 1px solid maroon;
@@ -14,6 +13,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
         border-radius: 15px;
         text-align: center;
         margin-right: 20px;
+        margin-left: initial;
     }
     .one-third {
         width: calc(33.333% - 10px); /* Adjust width to account for 3 in a row, minus gap */
@@ -98,7 +98,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
 </style>
 
-<div class="card-features my-3">
+<div class="my-3 card-features">
 
     <div class="create-account">
         <i class="fa-solid fa-user"  style="font-weight: 100; font-size:18px;margin-bottom: 10px;"></i>

@@ -96,19 +96,18 @@ $userdata=Auth::user();
 
             <!-- Middle Column -->
 
-            <div class="col-md-10 order-1 order-sm-12 order-lg-2 order-md-2 pl-md-5 pl-lg-5 px-sm-5">
+            <div class="col-md-8 order-1 order-sm-12 order-lg-2 order-md-2 pl-md-5 pl-lg-5 px-sm-5">
                 <form action="{{route('mainfilter')}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-11">
                             <div class="row header-search-box header-search-box_main"
                                 style="margin-top:-72px;">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-3"></div>
-                                <div class="col-md-5 p-3 text-center primary text-light"
-                                    style="border-top-left-radius:100px;">
-                                    <h5>{{$listing_stock}} Total Cars <i id="main_filter_icon"
-                                            class=" mx-2 fas fa-caret-down float-end dropdownicon text-white"></i></h5>
+                                <div class="col-md-5 p-3">
+{{--                                    <h5>{{$listing_stock}} Total Cars <i id="main_filter_icon"--}}
+{{--                                            class=" mx-2 fas fa-caret-down float-end dropdownicon text-white"></i></h5>--}}
                                 </div>
 
                             </div>
@@ -629,7 +628,7 @@ $userdata=Auth::user();
     <!-- Right Column -->
 
 
-        <div class="col-md-3 order-3 order-md-3 order-lg-3 order-sm-3 text-dark ">
+        <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark ">
             @include('front.layouts.right_sidebar')
         </div>
 

@@ -139,9 +139,12 @@
                                     <div
                                         class="row p-md-3 p-lg-3 p-sm-1 p-1 search-box shadow rounded-bottom-2 bg-white"
                                         style="border-top:5px solid #731718;">
-
+                                        <di class="col-md-12">
+                                            <h4 style="color:white;"><i class="fa fa-search" aria-hidden="true"></i> Search for cars</h4>
+                                        </di>
                                         @csrf
-                                        <div class="col-md-4 col-6 col-sm-6">
+                                        <!--make-->
+                                        <div class="col-md-3 col-6 col-sm-6">
                                             <label for="" class="mb-2 font-weight-bold">Make</label>
                                             <select name="brand" id="" class="w-100 form-select"
                                                     onchange="brandChange()">
@@ -155,7 +158,8 @@
 
                                             </select>
                                         </div>
-                                        <div class="col-md-4 col-6 col-sm-6">
+                                        <!--modal-->
+                                        <div class="col-md-3 col-6 col-sm-6">
                                             <label for="" class="mb-2 font-weight-bold">Model</label>
 
                                             <select name="model" class="w-100 form-select" id="car-models">
@@ -184,58 +188,119 @@
                                                 <option value="2002">2002</option>
                                                 <option value="2001">2001</option>
                                                 <option value="2000">2000</option>
-
-
                                             </select>
                                         </div>
-                                        <div class="col-md-4 col-sm-6 col-6">
-                                            <label for="" class="mb-2 font-weight-bold">Body Type</label>
-                                            <select name="bodytype" id="" class="w-100 form-select">
-                                                <option value="">Select Car Type</option>
-                                                <option value="New Car">New Car</option>
-                                                <option value="Used Car">Used Car</option>
-
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6 col-6 my-md-4 my-sm-0 my-lg-4 my-0">
-                                            <label for="" class="mb-2 font-weight-bold">Location</label>
-                                            <select name="location" id="" class="w-100 form-select">
-                                                <option value="">Select Location</option>
-                                                @foreach ($location as $locationitems)
-                                                    <option value="{{ $locationitems->id }}">
-                                                        {{ $locationitems->listing_location_name }}</option>
-                                                @endforeach
-
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-6 col-6 col-lg-4 my-md-4 my-lg-4 my-sm-0 my-0 ">
-                                            <label for="" class="mb-2 font-weight-bold">Price From & Price
-                                                To</label>
-                                            <div class="row manufacturer-row">
-                                                <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
-                                                    <input class="form-select" type="number" name="pricefrom"
-                                                           id="pricefrom" min="0" placeholder="Price From">
-
+                                            <!--Year-->
+                                        <div class="col-md-3 col-sm-6 col-6">
+                                                <label for="" class="mb-2 font-weight-bold">
+                                                    Year
+                                                </label>
+                                                <div class="row manufacturer-row">
+                                                    <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
+                                                        <select name="year_from" class="w-100 form-select" id="car-models">
+                                                            <option value="">Select From</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2021">2021</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
+                                                        <select name="year_to" class="w-100 form-select" id="car-models">
+                                                            <option value="">Select To</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2021">2021</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2000">2000</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1"><input
-                                                        class="form-select" id="priceto" type="number" name="priceto"
-                                                        placeholder="Price To" min="0">
-                                                </div>
+                                        </div>
+                                        <!--button-->
+                                        <div class="col-md-3">
+                                                <input type="submit" value="Search"
+                                                       class="btn btn-primary my-4 w-100 py-2" style="background-color: #808080 !important;border-radius: 0 !important;margin-top: 30px !important;">
                                             </div>
-
-
+                                         <!--steering-->
+                                        <div class="col-md-3 col-6 col-sm-6">
+                                            <label for="steering" class="mb-2 font-weight-bold">Steering</label>
+                                            <select name="steering" id="steering" class="w-100 form-select">
+                                                <option value="">Select Steering</option>
+                                                <option value="left_steering">Left Steering</option>
+                                                <option value="right_steering">Right Steering</option>
+                                            </select>
                                         </div>
+                                            <!--body type-->
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label for="" class="mb-2 font-weight-bold">Type</label>
+                                                <select name="bodytype" id="" class="w-100 form-select">
+                                                    <option value="">Select Car Type</option>
+                                                    <option value="New Car">New Car</option>
+                                                    <option value="Used Car">Used Car</option>
 
-                                        <div class="col-md-4 col-sm-6 col-6 col-lg-4 my-md-4 my-lg-4 my-sm-0 my-0 py-1">
-                                            <a href="#">
-                                                <button
-                                                    class="btn btn-primary my-4 w-100 py-2">Search
-                                                </button>
-                                            </a>
+                                                </select>
+                                            </div>
+                                        <!--Type-->
+{{--                                        <div class="col-md-4 col-sm-6 col-6">--}}
+{{--                                            <label for="" class="mb-2 font-weight-bold">Location</label>--}}
+{{--                                            <select name="location" id="" class="w-100 form-select">--}}
+{{--                                                <option value="">Select Location</option>--}}
+{{--                                                @foreach ($location as $locationitems)--}}
+{{--                                                    <option value="{{ $locationitems->id }}">--}}
+{{--                                                        {{ $locationitems->listing_location_name }}</option>--}}
+{{--                                                @endforeach--}}
 
+{{--                                            </select>--}}
+{{--                                        </div>--}}
+                                        <!--price-->
+                                            <div class="col-md-3 col-6 col-sm-6">
+                                                <label for="steering" class="mb-2 font-weight-bold">Price</label>
+                                                <input class="form-select" type="number" name="price" id="pricefrom" min="0" placeholder="Price" style="border-radius: 0;">
+                                            </div>
+                                        <!--count-->
+                                        <div class="col-md-3 col-6 col-sm-6" style="margin-bottom:20px;">
+                                            <span style="color: #FFFFFF;float: right;padding-top: 35px;">{{$countcars}} &nbsp;&nbsp;items match</span>
                                         </div>
-
                                     </div>
                                 </div>
                             </form>
@@ -281,16 +346,14 @@
                                                     <span
                                                         class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                 </div>
-
-
+                                                <div class="favorite-button" id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                </div>
                                                 <button>GET A PRICE QUOTE NOW</button>
                                             </div>
                                         </div>
                                     </a>
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                                    <div class="favorite-button" id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    </div>
                                 </div>
                             @endforeach
 
@@ -1554,7 +1617,7 @@
     .mob-hide .box-content {
         border-radius: 10px !important;
         background: #FFF !important;
-        width: 255px !important;
+        width: 260px !important;
         height: 416px !important;
         flex-shrink: 0 !important;
         border: none !important; /* Assuming you don't need a border, or update if you have a border style */

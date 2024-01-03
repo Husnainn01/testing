@@ -35,38 +35,85 @@ class ListingController extends Controller
 
     public function carfilter(Request $request)
     {
+        // dd($request->all()); // Debugging line, can be removed later
 
         $listings = Listing::query();
 
-        if ($request->has('brand') && $request->input('brand') !== null) {
-            $listings->where('listing_brand_id', $request->input('brand'));
-        }
-        if ($request->has('model') && $request->input('model') !== null) {
-            $listings->where('listing_model_year', $request->input('model'));
-        }
-        if ($request->has('bodytype') && $request->input('bodytype') !== null) {
-            $listings->where('listing_type', $request->input('bodytype'));
-        }
-        if ($request->has('location') && $request->input('location') !== null) {
-            $listings->where('listing_location_id', $request->input('location'));
+        // Filter by brand
+        if ($request->filled('brand')) {
+            $listings->where('listing_brand_id', $request->brand);
         }
 
-        if($request->has('pricefrom') && $request->input('pricefrom' && $request->has('priceto') && $request->input('priceto') !== null)){
-       if ($request->has('pricefrom') && $request->has('priceto')) {
-    $listings->whereBetween('listing_price', [$request->input('pricefrom'), $request->input('priceto')]);
-} elseif ($request->has('pricefrom')) {
-    $listings->where('listing_price', '>=', $request->input('pricefrom'));
-} elseif ($request->has('priceto')) {
-    $listings->where('listing_price', '<=', $request->input('priceto'));
-}
+        // Filter by model year
+        if ($request->filled('model')) {
+            $listings->where('listing_model_year', $request->model);
+        }
+
+        // Filter by year range
+        if ($request->filled('year_from') && $request->filled('year_to')) {
+            // Assuming you have a 'year' field in your listings table
+            $listings->whereBetween('listing_model_year', [$request->year_from, $request->year_to]);
+        }
+
+        // Filter by steering
+        if ($request->filled('steering')) {
+            // Assuming you have a 'steering' field in your listings table
+            $listings->where('steering', $request->steering);
+        }
+
+        // Filter by body type
+        if ($request->filled('bodytype')) {
+            $listings->where('listing_type', $request->bodytype);
+        }
+
+        // Filter by price
+        if ($request->filled('price')) {
+            $listings->where('listing_price', '<=', $request->price);
+        }
+
+        // Filter by location
+        // Code for location filter if needed
+
+        // Retrieve the listings
+        $data = $listings->orderBy('created_at', 'desc')->get();
+
+        // Return the view with the filtered data
+        return view('front.listing_result', compact('data'));
     }
 
-        $data = $listings->orderBy('created_at','desc')->get();
-
-        // Process or return the $listings as needed
-        return view('front.listing_result',compact('data'));
-
-    }
+//    public function carfilter(Request $request)
+//    {
+//        dd($request->all());
+//
+//        $listings = Listing::query();
+//
+//        if ($request->has('brand') && $request->input('brand') !== null) {
+//            $listings->where('listing_brand_id', $request->input('brand'));
+//        }
+//        if ($request->has('model') && $request->input('model') !== null) {
+//            $listings->where('listing_model_year', $request->input('model'));
+//        }
+//        if ($request->has('bodytype') && $request->input('bodytype') !== null) {
+//            $listings->where('listing_type', $request->input('bodytype'));
+//        }
+//        if ($request->has('location') && $request->input('location') !== null) {
+//            $listings->where('listing_location_id', $request->input('location'));
+//        }
+//
+//        if ($request->has('pricefrom') && $request->input('pricefrom' && $request->has('priceto') && $request->input('priceto') !== null)) {
+//            if ($request->has('pricefrom') && $request->has('priceto')) {
+//                $listings->whereBetween('listing_price', [$request->input('pricefrom'), $request->input('priceto')]);
+//            } elseif ($request->has('pricefrom')) {
+//                $listings->where('listing_price', '>=', $request->input('pricefrom'));
+//            } elseif ($request->has('priceto')) {
+//                $listings->where('listing_price', '<=', $request->input('priceto'));
+//            }
+//        }
+//
+//        $data = $listings->orderBy('created_at', 'desc')->get();
+//        // Process or return the $listings as needed
+//        return view('front.listing_result', compact('data'));
+//    }
 
     public function mainfilter(Request $request)
 
