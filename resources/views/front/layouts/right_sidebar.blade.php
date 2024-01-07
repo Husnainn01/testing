@@ -3,17 +3,26 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
 @endphp
 <style>
 
+    /* Base styles for .card-features */
     .card-features {
-        width: 220px;
-        height: 305px;
-        border-left: 3px solid maroon;
-        border-right: 3px solid maroon;
-        border-top: 1px solid maroon;
-        border-bottom: 1px solid maroon;
+        width: 260px;
+        height: 330px;
+        border: 1px solid maroon;
+        border-left-width: 3px;
+        border-right-width: 3px;
         border-radius: 15px;
         text-align: center;
-        margin-right: 20px;
-        margin-left: initial;
+        margin: auto; /* Center in the flex container */
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 768px) {
+        .card-features {
+            width: 90%;
+            height: auto;
+            border-width: 2px;
+        }
+        /* Add any additional responsive styles needed */
     }
     .one-third {
         width: calc(33.333% - 10px); /* Adjust width to account for 3 in a row, minus gap */
@@ -28,8 +37,8 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
     .create-account {
         display: flex;
-        gap: 10px;
-        margin-left: 35px;
+        gap: 0px;
+        margin-left: 20px;
         padding-top: 10px;
         color: maroon;
     }
@@ -67,7 +76,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
     .button a {
         height: 40px;
-        width: 70%;
+        width: 85%;
         margin: 0 auto;
         background-color: maroon;
         color: white;
@@ -97,6 +106,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
         }
     }
 </style>
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
 
 <div class="my-3 card-features">
 
@@ -185,4 +195,5 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     >
         <img style="object-fit: cover;" src="{{ asset('uploads/advertisements/'.$advertisements->above_location_1) }}" height="250px" width="210px" class="shadow rounded-2  m-lg-auto m-md-auto d-block" alt="img">
     </a>
+</div>
 </div>

@@ -264,7 +264,12 @@ header a {
     border-radius: 0 0 34px 34px;
     margin-top: 55px;
 }
-
+@media (min-width: 1920px) {
+    .search-box {
+        /* You can adjust the max-width or margins if needed for larger screens */
+        margin-top: 100px;
+    }
+}
 .search-box label {
     color: #fff !important;
 }

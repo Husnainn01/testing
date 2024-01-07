@@ -274,28 +274,28 @@ $userdata=Auth::user();
 
         </table>
     </div>
-    <div class="row my-3">
-        <div class=" mb-3 w-100">
-            <h3>Features</h3>
-        </div>
-        <div class=" d-flex flex-wrap">
-            @foreach($listing_amenities as $row)
-            @php
-            $res = DB::table('amenities')->where('id',$row->amenity_id)->first();
-            @endphp
-            <div class="w-auto py-2 px-2 border mx-1 my-1" style="background:#F7FFF0">
-                <small>{{$res->amenity_name}}</small></div>
-            @endforeach
+{{--    <div class="row my-3">--}}
+{{--        <div class=" mb-3 w-100">--}}
+{{--            <h3>Features</h3>--}}
+{{--        </div>--}}
+{{--        <div class=" d-flex flex-wrap">--}}
+{{--            @foreach($listing_amenities as $row)--}}
+{{--            @php--}}
+{{--            $res = DB::table('amenities')->where('id',$row->amenity_id)->first();--}}
+{{--            @endphp--}}
+{{--            <div class="w-auto py-2 px-2 border mx-1 my-1" style="background:#F7FFF0">--}}
+{{--                <small>{{$res->amenity_name}}</small></div>--}}
+{{--            @endforeach--}}
 
-        </div>
-<img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}" style="opacity: 0.5" class="mt-4 hide" width="100" alt="">
+{{--        </div>--}}
+{{--<img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}" style="opacity: 0.5" class="mt-4 hide" width="100" alt="">--}}
 
-    </div>
+{{--    </div>--}}
 </div>
 <div class="col-md-6 col-lg-6 col-sm-12 col-12  print_rit_50">
     <div class="row p-3 border-md-bottom border-lg-bottom ">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <h3 class="font-weight-bold">Stock-id:{{$detail->listing_stock_id}}</h3>        
+        <h3 class="font-weight-bold">Stock-id:{{$detail->listing_stock_id}}</h3>
         <button class="btn btn-primary float-right" id="addToFavoritesBtn" data-listing-id="{{ $detail->id }}" onclick="addToFavorites()">❤️ Add to Favorites</button>
         <h5 class="py-2 w-100">
            {{$detail->listing_name}}</h5>
@@ -516,11 +516,21 @@ $userdata=Auth::user();
             </div>
         </div>
 
-    </div>
-
 </div>
+        <h2> {{ FEATURES }}</h2>
+        <div class="features-grid">
+            @foreach($listing_amenities as $row)
+                @php
+                    $res = DB::table('amenities')->where('id', $row->amenity_id)->first();
+                    $highlight = in_array($res->amenity_name, ['Alloy Wheels', 'Power Steering','Power Window','A/C','ABS','Airbag','Radio','Jack','Back Camera', 'Keyless Entry', 'Navigation','Fog Lights','Tv','DVD']); // Define your highlighted features
+                @endphp
+                <div class="feature-box {{ $highlight ? 'highlight' : '' }}">
+                    {{ $res->amenity_name }}
+                </div>
+            @endforeach
+        </div>
 
-
+    </div>
 
     <!--</form>-->
 </div>
@@ -1547,4 +1557,48 @@ function addToFavorites() {
 }
 
 </script>
+    <style>
+        /* Features Styles */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Creates four columns */
+            gap: 0.5rem; /* Adjust the gap between boxes */
+            padding: 1rem;
+            background-color: #fff;
+        }
+
+        .feature-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px; /* Adjust height as needed */
+            background-color: #F7FFF0; /* Background color for the boxes */
+            font-size: 0.875rem;
+            color: #333;
+            border-radius: 0;
+            border: 1px solid #dcdcdc;
+        }
+
+        .feature-box.highlight {
+            background-color: #f38989; /* Highlight color */
+            font-weight: bold;
+            color: black;
+        }
+
+        /* Responsive behavior for smaller screens */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+            }
+            .feature-box {
+                height: 80px; /* Adjust height for smaller screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .features-grid {
+                grid-template-columns: 1fr; /* One column for extra small screens */
+            }
+        }
+    </style>
 @endsection

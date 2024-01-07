@@ -11,7 +11,9 @@ class Review extends Model
         'agent_id',
         'agent_type',
         'rating',
-        'review'
+        'review',
+        'location_id',
+        'name'
     ];
 
 
@@ -22,6 +24,9 @@ class Review extends Model
 
     public function listing() {
         return $this->belongsTo( Listing::class, 'listing_id' );
+    }
+    public function location() {
+        return $this->belongsTo( ListingLocation::class, 'location_id' );
     }
 
 }

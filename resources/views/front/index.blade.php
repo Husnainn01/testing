@@ -140,10 +140,11 @@
                                         class="row p-md-3 p-lg-3 p-sm-1 p-1 search-box shadow rounded-bottom-2 bg-white"
                                         style="border-top:5px solid #731718;">
                                         <di class="col-md-12">
-                                            <h4 style="color:white;"><i class="fa fa-search" aria-hidden="true"></i> Search for cars</h4>
+                                            <h4 style="color:white;"><i class="fa fa-search" aria-hidden="true"></i>
+                                                Search for cars</h4>
                                         </di>
-                                        @csrf
-                                        <!--make-->
+                                    @csrf
+                                    <!--make-->
                                         <div class="col-md-3 col-6 col-sm-6">
                                             <label for="" class="mb-2 font-weight-bold">Make</label>
                                             <select name="brand" id="" class="w-100 form-select"
@@ -190,78 +191,79 @@
                                                 <option value="2000">2000</option>
                                             </select>
                                         </div>
-                                            <!--Year-->
+                                        <!--Year-->
                                         <div class="col-md-3 col-sm-6 col-6">
-                                                <label for="" class="mb-2 font-weight-bold">
-                                                    Year
-                                                </label>
-                                                <div class="row manufacturer-row">
-                                                    <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
-                                                        <select name="year_from" class="w-100 form-select" id="car-models">
-                                                            <option value="">Select From</option>
-                                                            <option value="2023">2023</option>
-                                                            <option value="2022">2022</option>
-                                                            <option value="2021">2021</option>
-                                                            <option value="2020">2020</option>
-                                                            <option value="2019">2019</option>
-                                                            <option value="2018">2018</option>
-                                                            <option value="2017">2017</option>
-                                                            <option value="2016">2016</option>
-                                                            <option value="2015">2015</option>
-                                                            <option value="2014">2014</option>
-                                                            <option value="2013">2013</option>
-                                                            <option value="2012">2012</option>
-                                                            <option value="2011">2011</option>
-                                                            <option value="2010">2010</option>
-                                                            <option value="2009">2009</option>
-                                                            <option value="2008">2008</option>
-                                                            <option value="2007">2007</option>
-                                                            <option value="2006">2006</option>
-                                                            <option value="2005">2005</option>
-                                                            <option value="2004">2004</option>
-                                                            <option value="2003">2003</option>
-                                                            <option value="2002">2002</option>
-                                                            <option value="2001">2001</option>
-                                                            <option value="2000">2000</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
-                                                        <select name="year_to" class="w-100 form-select" id="car-models">
-                                                            <option value="">Select To</option>
-                                                            <option value="2023">2023</option>
-                                                            <option value="2022">2022</option>
-                                                            <option value="2021">2021</option>
-                                                            <option value="2020">2020</option>
-                                                            <option value="2019">2019</option>
-                                                            <option value="2018">2018</option>
-                                                            <option value="2017">2017</option>
-                                                            <option value="2016">2016</option>
-                                                            <option value="2015">2015</option>
-                                                            <option value="2014">2014</option>
-                                                            <option value="2013">2013</option>
-                                                            <option value="2012">2012</option>
-                                                            <option value="2011">2011</option>
-                                                            <option value="2010">2010</option>
-                                                            <option value="2009">2009</option>
-                                                            <option value="2008">2008</option>
-                                                            <option value="2007">2007</option>
-                                                            <option value="2006">2006</option>
-                                                            <option value="2005">2005</option>
-                                                            <option value="2004">2004</option>
-                                                            <option value="2003">2003</option>
-                                                            <option value="2002">2002</option>
-                                                            <option value="2001">2001</option>
-                                                            <option value="2000">2000</option>
-                                                        </select>
-                                                    </div>
+                                            <label for="" class="mb-2 font-weight-bold">
+                                                Year
+                                            </label>
+                                            <div class="row manufacturer-row">
+                                                <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
+                                                    <select name="year_from" class="w-100 form-select" id="car-models">
+                                                        <option value="">Select From</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2011">2011</option>
+                                                        <option value="2010">2010</option>
+                                                        <option value="2009">2009</option>
+                                                        <option value="2008">2008</option>
+                                                        <option value="2007">2007</option>
+                                                        <option value="2006">2006</option>
+                                                        <option value="2005">2005</option>
+                                                        <option value="2004">2004</option>
+                                                        <option value="2003">2003</option>
+                                                        <option value="2002">2002</option>
+                                                        <option value="2001">2001</option>
+                                                        <option value="2000">2000</option>
+                                                    </select>
                                                 </div>
+                                                <div class="col-md-6 col-sm-6 col-6 col-lg-6 px-1">
+                                                    <select name="year_to" class="w-100 form-select" id="car-models">
+                                                        <option value="">Select To</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2011">2011</option>
+                                                        <option value="2010">2010</option>
+                                                        <option value="2009">2009</option>
+                                                        <option value="2008">2008</option>
+                                                        <option value="2007">2007</option>
+                                                        <option value="2006">2006</option>
+                                                        <option value="2005">2005</option>
+                                                        <option value="2004">2004</option>
+                                                        <option value="2003">2003</option>
+                                                        <option value="2002">2002</option>
+                                                        <option value="2001">2001</option>
+                                                        <option value="2000">2000</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!--button-->
                                         <div class="col-md-3">
-                                                <input type="submit" value="Search"
-                                                       class="btn btn-primary my-4 w-100 py-2" style="background-color: #808080 !important;border-radius: 0 !important;margin-top: 30px !important;">
-                                            </div>
-                                         <!--steering-->
+                                            <input type="submit" value="Search"
+                                                   class="btn btn-primary my-4 w-100 py-2"
+                                                   style="background-color: #808080 !important;border-radius: 0 !important;margin-top: 30px !important;">
+                                        </div>
+                                        <!--steering-->
                                         <div class="col-md-3 col-6 col-sm-6">
                                             <label for="steering" class="mb-2 font-weight-bold">Steering</label>
                                             <select name="steering" id="steering" class="w-100 form-select">
@@ -270,33 +272,34 @@
                                                 <option value="right_steering">Right Steering</option>
                                             </select>
                                         </div>
-                                            <!--body type-->
-                                            <div class="col-md-3 col-sm-6 col-6">
-                                                <label for="" class="mb-2 font-weight-bold">Type</label>
-                                                <select name="bodytype" id="" class="w-100 form-select">
-                                                    <option value="">Select Car Type</option>
-                                                    <option value="New Car">New Car</option>
-                                                    <option value="Used Car">Used Car</option>
+                                        <!--body type-->
+                                        <div class="col-md-3 col-sm-6 col-6">
+                                            <label for="" class="mb-2 font-weight-bold">Type</label>
+                                            <select name="bodytype" id="" class="w-100 form-select">
+                                                <option value="">Select Car Type</option>
+                                                <option value="New Car">New Car</option>
+                                                <option value="Used Car">Used Car</option>
 
-                                                </select>
-                                            </div>
+                                            </select>
+                                        </div>
                                         <!--Type-->
-{{--                                        <div class="col-md-4 col-sm-6 col-6">--}}
-{{--                                            <label for="" class="mb-2 font-weight-bold">Location</label>--}}
-{{--                                            <select name="location" id="" class="w-100 form-select">--}}
-{{--                                                <option value="">Select Location</option>--}}
-{{--                                                @foreach ($location as $locationitems)--}}
-{{--                                                    <option value="{{ $locationitems->id }}">--}}
-{{--                                                        {{ $locationitems->listing_location_name }}</option>--}}
-{{--                                                @endforeach--}}
+                                    {{--                                        <div class="col-md-4 col-sm-6 col-6">--}}
+                                    {{--                                            <label for="" class="mb-2 font-weight-bold">Location</label>--}}
+                                    {{--                                            <select name="location" id="" class="w-100 form-select">--}}
+                                    {{--                                                <option value="">Select Location</option>--}}
+                                    {{--                                                @foreach ($location as $locationitems)--}}
+                                    {{--                                                    <option value="{{ $locationitems->id }}">--}}
+                                    {{--                                                        {{ $locationitems->listing_location_name }}</option>--}}
+                                    {{--                                                @endforeach--}}
 
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-                                        <!--price-->
-                                            <div class="col-md-3 col-6 col-sm-6">
-                                                <label for="steering" class="mb-2 font-weight-bold">Price</label>
-                                                <input class="form-select" type="number" name="price" id="pricefrom" min="0" placeholder="Price" style="border-radius: 0;">
-                                            </div>
+                                    {{--                                            </select>--}}
+                                    {{--                                        </div>--}}
+                                    <!--price-->
+                                        <div class="col-md-3 col-6 col-sm-6">
+                                            <label for="steering" class="mb-2 font-weight-bold">Price</label>
+                                            <input class="form-select" type="number" name="price" id="pricefrom" min="0"
+                                                   placeholder="Price" style="border-radius: 0;">
+                                        </div>
                                         <!--count-->
                                         <div class="col-md-3 col-6 col-sm-6" style="margin-bottom:20px;">
                                             <span style="color: #FFFFFF;float: right;padding-top: 35px;">{{$countcars}} &nbsp;&nbsp;items match</span>
@@ -346,7 +349,8 @@
                                                     <span
                                                         class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                 </div>
-                                                <div class="favorite-button" id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
+                                                <div class="favorite-button" id="addToFavoritesBtn"
+                                                     data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
                                                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                                                 </div>
                                                 <button>GET A PRICE QUOTE NOW</button>
@@ -570,7 +574,9 @@
                                                             class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                     </div>
                                                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                                                    <div class="favorite-button" id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
+                                                    <div class="favorite-button" id="addToFavoritesBtn"
+                                                         data-listing-id="{{ $carsitems->id }}"
+                                                         onclick="addToFavorites()">
                                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                                     </div>
                                                     <button>GET A PRICE QUOTE NOW</button>
@@ -753,10 +759,9 @@
                                 </div>
                             </div>
 
-
-                                <div class="col-md-12 col-lg-12 col-sm-12">
-                                    <h2 class="fw-bold">Best Seller By Types</h2>
-                                </div>
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                <h2 class="fw-bold">Best Seller By Types</h2>
+                            </div>
                             <div class="row my-5 border-bottom border-1 best-seller">
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
@@ -805,7 +810,8 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <img src="{{asset('images/sedan.png')}}" alt="Car" class="custom-icon" style="height:5em;">
+                                            <img src="{{asset('images/sedan.png')}}" alt="Car" class="custom-icon"
+                                                 style="height:5em;">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -827,7 +833,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <i class="fas fa-car fs-1"></i>
+                                            <img src="{{asset('images/truck.png')}}" alt="Car" class="custom-icon">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -849,7 +855,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <i class="fas fa-car fs-1"></i>
+                                            <img src="{{asset('images/truck.png')}}" alt="Car" class="custom-icon">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -871,7 +877,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <i class="fas fa-car fs-1"></i>
+                                            <img src="{{asset('images/truck.png')}}" alt="Car" class="custom-icon">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -892,10 +898,10 @@
                                 </div>
 
                             </div>
-                                <span class="w-50 mob-100 float-left">
+                            <span class="w-50 mob-100 float-left">
                                     <h2>Client Reviews</h2>
                                 </span>
-                                <span class="w-50">
+                            <span class="w-50">
                                     <a href="{{route('allreviews')}}">
                                         <button class="btn btn-primary float-right px-4 py-2">View All</button>
                                     </a>
@@ -903,597 +909,616 @@
                                         <button class="btn btn-primary float-right px-4 py-2">Add Review</button>
                                     </a>
                                 </span>
-                                <input class="hidden" id="appurl" value="{{ env('APP_URL') }}"/>
-                                <div class="reviews-container">
-                                    @foreach ($clientreviews as $reviews)
-                                        @if ($reviews->listing)
-                                            <div class="review-item">
-                                                <img src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}" alt="Car"
-                                                     class="review-car-image">
-                                                <div class="review-content">
-                                                    <div class="review-stars">
-                                                    @php
-                                                        $reviewValue = $reviews->rating; // Your review value from the backend
-                                                        $maxStars = 5; // Maximum number of stars
+                            <input class="hidden" id="appurl" value="{{ env('APP_URL') }}"/>
+                            <div class="reviews-container">
+                                @foreach ($clientreviews as $reviews)
+                                    @if ($reviews->listing)
+                                        <div class="review-item">
+                                            <img
+                                                src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}"
+                                                alt="Car"
+                                                class="review-car-image">
+                                            <div class="review-content">
+                                                <h6 style="color:#020a0a;">{{ $reviews->name }}</h6>
+                                                <img style="float:right;padding-right:2em;"
+                                                     src="{{asset('uploads/listing_location_photos/'.$reviews->location->listing_location_photo)}}"
+                                                     height="20" width="60">
+                                                <div class="review-stars">
+                                                @php
+                                                    $reviewValue = $reviews->rating; // Your review value from the backend
+                                                    $maxStars = 5; // Maximum number of stars
 
-                                                        // Calculate the number of filled and empty stars
-                                                        $filledStars = min($reviewValue, $maxStars);
-                                                        $emptyStars = $maxStars - $filledStars;
-                                                    @endphp
+                                                    // Calculate the number of filled and empty stars
+                                                    $filledStars = min($reviewValue, $maxStars);
+                                                    $emptyStars = $maxStars - $filledStars;
+                                                @endphp
 
-                                                    <!-- Display filled stars -->
-                                                        @for ($i = 0; $i < $filledStars; $i++)
-                                                            <i class="fas fa-star" style="color:#F9C303;"></i>
-                                                        @endfor
+                                                <!-- Display filled stars -->
+                                                    @for ($i = 0; $i < $filledStars; $i++)
+                                                        <i class="fas fa-star" style="color:#F9C303;"></i>
+                                                    @endfor
 
-                                                    <!-- Display empty stars -->
-                                                        @for ($i = 0; $i < $emptyStars; $i++)
-                                                            <i class="far fa-star" style="color: #F9C303;"></i>
-                                                        @endfor
-                                                        <h6 class="fw-bold" style="color:#731718;">
-                                                            {{ $reviews->agent->name }}</h6>
-                                                        <small class="d-block">{{ $reviews->review }}</small>                                                    </div>
-                                                    <div class="review-text">
-{{--                                                        <p class="review-title">{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}</p>--}}
-{{--                                                        <p class="review-details">{{ $reviews->review ? $reviews->review : 'null' }}</p>--}}
-                                                        <p class="review-meta">{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}</p>
-                                                    </div>
-                                                    <div class="review-actions">
-                                                        <!-- Insert action buttons here -->
-                                                    </div>
+                                                <!-- Display empty stars -->
+                                                    @for ($i = 0; $i < $emptyStars; $i++)
+                                                        <i class="far fa-star" style="color: #F9C303;"></i>
+                                                    @endfor
+                                                    <br>
+                                                    <p><small class="fw-bold">
+                                                        by {{ $reviews->name }}
+                                                        ({{$reviews->location->listing_location_name}})
+                                                        on {{$reviews->created_at->format('d / M / Y')}}</small>
+                                                    </p>
+                                                    <strong style="color:#951111; float:right;padding-right: 100px;">Verified Buyer</strong>
+                                                    <small class="d-block">{{ $reviews->review }}</small>
+                                                </div>
+                                                {{--                                                        <p class="review-title">{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}</p>--}}
+                                                {{--                                                        <p class="review-details">{{ $reviews->review ? $reviews->review : 'null' }}</p>--}}
+                                                <p class="review-meta">Review on <strong
+                                                        style="color:#0b0be7;">{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}</strong>
+                                                </p>
+                                                <p style="float: right; padding-right:2em;">
+                                                    Like &nbsp;&nbsp;<a class="like_button"
+                                                                        data-reviewid="{{ $reviews->id }}"
+                                                                        href="javascript:void(0)"><i
+                                                            class="fa fa-thumbs-up" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                                    (<span class="likeCount">5</span>)
+                                                </p>
+                                                <div class="review-actions">
+                                                    <!-- Insert action buttons here -->
                                                 </div>
                                             </div>
-                                            <hr>
-                                            @endif
-                                            @endforeach
-                                            {{--                                            <div class="review-text">--}}
-                                            {{--                                                <p class="review-title">Happy with belta</p>--}}
-                                            {{--                                                <p class="review-details">I like the car and the mileage is good.</p>--}}
-                                            {{--                                                <p class="review-meta">Review on TOYOTA Belta (DBA-KSP92)</p>--}}
-                                            {{--                                            </div>--}}
-                                            {{--                                            <div class="review-actions">--}}
-                                            {{--                                                <!-- Insert action buttons here -->--}}
-                                            {{--                                            </div>--}}
-                                            {{--                                        </div>--}}
-                                            {{--                                    </div>--}}
-                                            <!-- Repeat for the second review -->
+                                        </div>
+                                        <hr>
+                                @endif
+                            @endforeach
+                            {{--                                            <div class="review-text">--}}
+                            {{--                                                <p class="review-title">Happy with belta</p>--}}
+                            {{--                                                <p class="review-details">I like the car and the mileage is good.</p>--}}
+                            {{--                                                <p class="review-meta">Review on TOYOTA Belta (DBA-KSP92)</p>--}}
+                            {{--                                            </div>--}}
+                            {{--                                            <div class="review-actions">--}}
+                            {{--                                                <!-- Insert action buttons here -->--}}
+                            {{--                                            </div>--}}
+                            {{--                                        </div>--}}
+                            {{--                                    </div>--}}
+                            <!-- Repeat for the second review -->
+                            </div>
+
+                            {{--                                <div class="row my-5 mob-hide">--}}
+                            {{--                                <div class="col-md-12">--}}
+
+
+
+                            {{--                                    @foreach ($clientreviews as $reviews)--}}
+                            {{--                                        @if ($reviews->listing)--}}
+                            {{--                                            <div--}}
+                            {{--                                                data-name="{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}"--}}
+                            {{--                                                data-img="{{ $reviews->listing->listing_featured_photo ? $reviews->listing->listing_featured_photo : 'null' }}"--}}
+                            {{--                                                data-review="{{ $reviews->review ? $reviews->review : 'null' }}"--}}
+                            {{--                                                data-car_name="{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}"--}}
+                            {{--                                                data-time="{{ $reviews->created_at ? $reviews->created_at : 'null' }}">--}}
+                            {{--                                                <a type="button" class="bg-transparent border-0 m-0 p-0 w-100"--}}
+                            {{--                                                   style="cursor:pointer" data-bs-toggle="modal"--}}
+                            {{--                                                   data-bs-target="#exampleModal1">--}}
+
+
+                            {{--                                                    <div class="row mt-4 client-box2 py-1">--}}
+
+                            {{--                                                        <div class="col-md-3 col-lg-3 col-sm-12"--}}
+                            {{--                                                             style="background:url('{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}');background-size:cover;padding:7% 0px;"--}}
+                            {{--                                                             alt="{{ $reviews->listing->listing_name }}')">--}}
+
+
+                            {{--                                                        </div>--}}
+                            {{--                                                        <div class="col-md-9 col-sm-12 col-lg-9"--}}
+                            {{--                                                             style="text-align:left;">--}}
+
+
+                            {{--                                                        @php--}}
+                            {{--                                                            $reviewValue = $reviews->rating; // Your review value from the backend--}}
+                            {{--                                                            $maxStars = 5; // Maximum number of stars--}}
+
+                            {{--                                                            // Calculate the number of filled and empty stars--}}
+                            {{--                                                            $filledStars = min($reviewValue, $maxStars);--}}
+                            {{--                                                            $emptyStars = $maxStars - $filledStars;--}}
+                            {{--                                                        @endphp--}}
+
+                            {{--                                                        <!-- Display filled stars -->--}}
+                            {{--                                                            @for ($i = 0; $i < $filledStars; $i++)--}}
+                            {{--                                                                <i class="fas fa-star" style="color:#F9C303;"></i>--}}
+                            {{--                                                            @endfor--}}
+
+                            {{--                                                        <!-- Display empty stars -->--}}
+                            {{--                                                            @for ($i = 0; $i < $emptyStars; $i++)--}}
+                            {{--                                                                <i class="far fa-star" style="color: #F9C303;"></i>--}}
+                            {{--                                                            @endfor--}}
+                            {{--                                                            <h6 class="fw-bold" style="color:#731718;">--}}
+                            {{--                                                                {{ $reviews->agent->name }}</h6>--}}
+                            {{--                                                            <small class="d-block">{{ $reviews->review }}</small>--}}
+                            {{--                                                        </div>--}}
+
+
+                            {{--                                                    </div>--}}
+
+                            {{--                                                </a>--}}
+                            {{--                                            </div>--}}
+                            {{--                                        @endif--}}
+                            {{--                                    @endforeach--}}
+
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
+
+
+                            {{--                            <div class="row my-5 desktop-hide">--}}
+                            {{--                                <div class="col-md-12">--}}
+                            {{--                                    <h2>Client Reviews</h2>--}}
+                            {{--                                    <a href="{{ route('allreviews') }}" class="d-block my-4">--}}
+                            {{--                                        <button--}}
+                            {{--                                            class="btn btn-primary  py-2">View All--}}
+                            {{--                                        </button>--}}
+                            {{--                                    </a>--}}
+
+
+                            {{--                                    <div class="owl-carousel owl-theme">--}}
+                            {{--                                        @foreach ($clientreviews as $reviews)--}}
+                            {{--                                            @if ($reviews->listing)--}}
+                            {{--                                                <div class="items">--}}
+                            {{--                                                    <div data-name="{{ $reviews->agent->name }}"--}}
+                            {{--                                                         data-img="{{ $reviews->listing->listing_featured_photo }}"--}}
+                            {{--                                                         data-review="{{ $reviews->review }}"--}}
+                            {{--                                                         data-car_name="{{ $reviews->listing->listing_name }}"--}}
+                            {{--                                                         data-time="{{ $reviews->created_at }}">--}}
+                            {{--                                                        <a type="button" class="bg-transparent border-0 m-0 p-0 "--}}
+                            {{--                                                           style="cursor:pointer" data-bs-toggle="modal"--}}
+                            {{--                                                           data-bs-target="#exampleModal1">--}}
+
+
+                            {{--                                                            <div class="row mt-4 client-box2 py-1">--}}
+
+                            {{--                                                                <div class="col-md-3 col-lg-3 col-sm-12 px-1">--}}
+                            {{--                                                                    <img--}}
+                            {{--                                                                        src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}"--}}
+                            {{--                                                                        class="w-100"--}}
+                            {{--                                                                        style="    height: 160px;--}}
+                            {{--					object-fit: cover;">--}}
+
+                            {{--                                                                </div>--}}
+                            {{--                                                                <div class="col-md-9 col-sm-12 col-lg-9"--}}
+                            {{--                                                                     style="text-align:left;">--}}
+
+
+                            {{--                                                                @php--}}
+                            {{--                                                                    $reviewValue = $reviews->rating; // Your review value from the backend--}}
+                            {{--                                                                    $maxStars = 5; // Maximum number of stars--}}
+
+                            {{--                                                                    // Calculate the number of filled and empty stars--}}
+                            {{--                                                                    $filledStars = min($reviewValue, $maxStars);--}}
+                            {{--                                                                    $emptyStars = $maxStars - $filledStars;--}}
+                            {{--                                                                @endphp--}}
+
+                            {{--                                                                <!-- Display filled stars -->--}}
+                            {{--                                                                    @for ($i = 0; $i < $filledStars; $i++)--}}
+                            {{--                                                                        <i class="fas fa-star"--}}
+                            {{--                                                                           style="color:#F9C303;"></i>--}}
+                            {{--                                                                    @endfor--}}
+
+                            {{--                                                                <!-- Display empty stars -->--}}
+                            {{--                                                                    @for ($i = 0; $i < $emptyStars; $i++)--}}
+                            {{--                                                                        <i class="far fa-star"--}}
+                            {{--                                                                           style="color: #F9C303;"></i>--}}
+                            {{--                                                                    @endfor--}}
+                            {{--                                                                    <h6 class="fw-bold" style="color:#731718;">--}}
+                            {{--                                                                        {{ $reviews->agent->name }}</h6>--}}
+                            {{--                                                                    <small--}}
+                            {{--                                                                        class="d-block">{{ $reviews->review }}</small>--}}
+                            {{--                                                                </div>--}}
+
+
+                            {{--                                                            </div>--}}
+
+                            {{--                                                        </a>--}}
+                            {{--                                                    </div>--}}
+                            {{--                                                </div>--}}
+                            {{--                                            @endif--}}
+                            {{--                                        @endforeach--}}
+
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
+
+                            <div class="row my-5">
+                                <div class="col-md-12">
+                                    <h2>FAQS</h2>
+                                    <div class="mainfaqs">
+
+                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" id="pills-home-tab"
+                                                   data-toggle="pill"
+                                                   href="#pills-home" role="tab"
+                                                   aria-controls="pills-home"
+                                                   aria-selected="true">All Questions Related To all
+                                                    Problems</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="pills-profile-tab"
+                                                   data-toggle="pill"
+                                                   href="#pills-profile" role="tab"
+                                                   aria-controls="pills-profile"
+                                                   aria-selected="false">QUESTIONS REGARDING AUCTION</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="pills-contact-tab"
+                                                   data-toggle="pill"
+                                                   href="#pills-contact" role="tab"
+                                                   aria-controls="pills-lhd"
+                                                   aria-selected="false">QUESTIONS REGARDING PAYMENT</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="pills-others-tab"
+                                                   data-toggle="pill"
+                                                   href="#pills-others" role="tab"
+                                                   aria-controls="pills-others"
+                                                   aria-selected="false">QUESTIONS REGARDING
+                                                    SHIPMENT</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="pills-howtopay-tab"
+                                                   data-toggle="pill"
+                                                   href="#pills-howtopay" role="tab"
+                                                   aria-controls="pills-howtopay"
+                                                   aria-selected="false">MISCELLANEOUS QUESTIONS</a>
+                                            </li>
+
+                                        </ul>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-home"
+                                                 role="tabpanel"
+                                                 aria-labelledby="pills-home-tab">
+                                                <div class="row  px-4">
+
+                                                    <div class="accordion w-100" id="accordionExample">
+
+
+                                                        <div class="card row ">
+                                                            <div class="card-header" id="heading1">
+                                                                <h2 class="mb-0">
+                                                                    <a class="accordo-text btn-link btn-block text-left collapsed font-weight-bold"
+                                                                       type="button"
+                                                                       data-toggle="collapse"
+                                                                       data-target="#collapse1"
+                                                                       aria-expanded="true"
+                                                                       aria-controls="collapse1">
+                                                                        Q1. How do I buy a
+                                                                        vehicle/machinery from SS
+                                                                        Japan
+                                                                        Limited?
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapse1" class="collapse"
+                                                                 aria-labelledby="heading1"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    Once you have provided us with the
+                                                                    necessary
+                                                                    information
+                                                                    regarding the vehicle you want, and
+                                                                    have made the
+                                                                    initial
+                                                                    auction deposit, we can start
+                                                                    searching and send you
+                                                                    possible matches daily. Once you
+                                                                    give us a go ahead
+                                                                    to
+                                                                    purchase, we will source your car.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="card row ">
+                                                            <div class="card-header" id="heading2">
+                                                                <h2 class="mb-0">
+                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                                       type="button"
+                                                                       data-toggle="collapse"
+                                                                       data-target="#collapse2"
+                                                                       aria-expanded="true"
+                                                                       aria-controls="collapse2">
+                                                                        Q2. Who takes care of getting my
+                                                                        car ready for
+                                                                        export
+                                                                        and shipping it?
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapse2" class="collapse"
+                                                                 aria-labelledby="heading2"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    We will prepare your vehicle for
+                                                                    export to any port
+                                                                    of your
+                                                                    choosing and will handle all the
+                                                                    booking and
+                                                                    shipping
+                                                                    process from Japan. Depending on
+                                                                    your country and
+                                                                    method of
+                                                                    shipping, costs for transport will
+                                                                    be confirmed.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="card row ">
+                                                            <div class="card-header" id="heading3">
+                                                                <h2 class="mb-0">
+                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                                       type="button"
+                                                                       data-toggle="collapse"
+                                                                       data-target="#collapse3"
+                                                                       aria-expanded="true"
+                                                                       aria-controls="collapse3">
+                                                                        Q3. What is the Auction Grading
+                                                                        System?
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapse3" class="collapse"
+                                                                 aria-labelledby="heading3"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    All vehicles sold at auction are
+                                                                    given an overall
+                                                                    grade by
+                                                                    the independent auction engineers
+                                                                    that inspect them.
+                                                                    Grades
+                                                                    can range from 0 to 9 but most
+                                                                    auctions only use 0
+                                                                    to 5.
+                                                                    This number is shown in either the
+                                                                    top left or top
+                                                                    right of
+                                                                    the auction sheet.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="card row ">
+                                                            <div class="card-header" id="heading4">
+                                                                <h2 class="mb-0">
+                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                                       type="button"
+                                                                       data-toggle="collapse"
+                                                                       data-target="#collapse4"
+                                                                       aria-expanded="true"
+                                                                       aria-controls="collapse4">
+                                                                        Q4. How can I confirm about the
+                                                                        quality of the
+                                                                        car?
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapse4" class="collapse"
+                                                                 aria-labelledby="heading4"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    We thoroughly inspect every vehicle
+                                                                    to ensure
+                                                                    highest
+                                                                    quality possible, and provide only
+                                                                    the most recent
+                                                                    pictures
+                                                                    of the vehicles to our customers for
+                                                                    their
+                                                                    satisfaction.
+                                                                    Furthermore, our agents guide you
+                                                                    extensively about
+                                                                    the
+                                                                    vehicle’s condition before and after
+                                                                    you buy them.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="card row ">
+                                                            <div class="card-header" id="heading5">
+                                                                <h2 class="mb-0">
+                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                                       type="button"
+                                                                       data-toggle="collapse"
+                                                                       data-target="#collapse5"
+                                                                       aria-expanded="true"
+                                                                       aria-controls="collapse5">
+                                                                        Q5. Does your buying team
+                                                                        inspect the cars
+                                                                        before
+                                                                        bidding?
+                                                                    </a>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapse5" class="collapse"
+                                                                 aria-labelledby="heading5"
+                                                                 data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    Yes, we examine the car completely
+                                                                    and once
+                                                                    satisfied, we
+                                                                    bid on your selected vehicles.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
                                             </div>
-
-                                            {{--                                <div class="row my-5 mob-hide">--}}
-                                            {{--                                <div class="col-md-12">--}}
-
-
-
-                                            {{--                                    @foreach ($clientreviews as $reviews)--}}
-                                            {{--                                        @if ($reviews->listing)--}}
-                                            {{--                                            <div--}}
-                                            {{--                                                data-name="{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}"--}}
-                                            {{--                                                data-img="{{ $reviews->listing->listing_featured_photo ? $reviews->listing->listing_featured_photo : 'null' }}"--}}
-                                            {{--                                                data-review="{{ $reviews->review ? $reviews->review : 'null' }}"--}}
-                                            {{--                                                data-car_name="{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}"--}}
-                                            {{--                                                data-time="{{ $reviews->created_at ? $reviews->created_at : 'null' }}">--}}
-                                            {{--                                                <a type="button" class="bg-transparent border-0 m-0 p-0 w-100"--}}
-                                            {{--                                                   style="cursor:pointer" data-bs-toggle="modal"--}}
-                                            {{--                                                   data-bs-target="#exampleModal1">--}}
-
-
-                                            {{--                                                    <div class="row mt-4 client-box2 py-1">--}}
-
-                                            {{--                                                        <div class="col-md-3 col-lg-3 col-sm-12"--}}
-                                            {{--                                                             style="background:url('{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}');background-size:cover;padding:7% 0px;"--}}
-                                            {{--                                                             alt="{{ $reviews->listing->listing_name }}')">--}}
-
-
-                                            {{--                                                        </div>--}}
-                                            {{--                                                        <div class="col-md-9 col-sm-12 col-lg-9"--}}
-                                            {{--                                                             style="text-align:left;">--}}
-
-
-                                            {{--                                                        @php--}}
-                                            {{--                                                            $reviewValue = $reviews->rating; // Your review value from the backend--}}
-                                            {{--                                                            $maxStars = 5; // Maximum number of stars--}}
-
-                                            {{--                                                            // Calculate the number of filled and empty stars--}}
-                                            {{--                                                            $filledStars = min($reviewValue, $maxStars);--}}
-                                            {{--                                                            $emptyStars = $maxStars - $filledStars;--}}
-                                            {{--                                                        @endphp--}}
-
-                                            {{--                                                        <!-- Display filled stars -->--}}
-                                            {{--                                                            @for ($i = 0; $i < $filledStars; $i++)--}}
-                                            {{--                                                                <i class="fas fa-star" style="color:#F9C303;"></i>--}}
-                                            {{--                                                            @endfor--}}
-
-                                            {{--                                                        <!-- Display empty stars -->--}}
-                                            {{--                                                            @for ($i = 0; $i < $emptyStars; $i++)--}}
-                                            {{--                                                                <i class="far fa-star" style="color: #F9C303;"></i>--}}
-                                            {{--                                                            @endfor--}}
-                                            {{--                                                            <h6 class="fw-bold" style="color:#731718;">--}}
-                                            {{--                                                                {{ $reviews->agent->name }}</h6>--}}
-                                            {{--                                                            <small class="d-block">{{ $reviews->review }}</small>--}}
-                                            {{--                                                        </div>--}}
-
-
-                                            {{--                                                    </div>--}}
-
-                                            {{--                                                </a>--}}
-                                            {{--                                            </div>--}}
-                                            {{--                                        @endif--}}
-                                            {{--                                    @endforeach--}}
-
-                                            {{--                                </div>--}}
-                                            {{--                            </div>--}}
-
-
-                                            {{--                            <div class="row my-5 desktop-hide">--}}
-                                            {{--                                <div class="col-md-12">--}}
-                                            {{--                                    <h2>Client Reviews</h2>--}}
-                                            {{--                                    <a href="{{ route('allreviews') }}" class="d-block my-4">--}}
-                                            {{--                                        <button--}}
-                                            {{--                                            class="btn btn-primary  py-2">View All--}}
-                                            {{--                                        </button>--}}
-                                            {{--                                    </a>--}}
-
-
-                                            {{--                                    <div class="owl-carousel owl-theme">--}}
-                                            {{--                                        @foreach ($clientreviews as $reviews)--}}
-                                            {{--                                            @if ($reviews->listing)--}}
-                                            {{--                                                <div class="items">--}}
-                                            {{--                                                    <div data-name="{{ $reviews->agent->name }}"--}}
-                                            {{--                                                         data-img="{{ $reviews->listing->listing_featured_photo }}"--}}
-                                            {{--                                                         data-review="{{ $reviews->review }}"--}}
-                                            {{--                                                         data-car_name="{{ $reviews->listing->listing_name }}"--}}
-                                            {{--                                                         data-time="{{ $reviews->created_at }}">--}}
-                                            {{--                                                        <a type="button" class="bg-transparent border-0 m-0 p-0 "--}}
-                                            {{--                                                           style="cursor:pointer" data-bs-toggle="modal"--}}
-                                            {{--                                                           data-bs-target="#exampleModal1">--}}
-
-
-                                            {{--                                                            <div class="row mt-4 client-box2 py-1">--}}
-
-                                            {{--                                                                <div class="col-md-3 col-lg-3 col-sm-12 px-1">--}}
-                                            {{--                                                                    <img--}}
-                                            {{--                                                                        src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}"--}}
-                                            {{--                                                                        class="w-100"--}}
-                                            {{--                                                                        style="    height: 160px;--}}
-                                            {{--					object-fit: cover;">--}}
-
-                                            {{--                                                                </div>--}}
-                                            {{--                                                                <div class="col-md-9 col-sm-12 col-lg-9"--}}
-                                            {{--                                                                     style="text-align:left;">--}}
-
-
-                                            {{--                                                                @php--}}
-                                            {{--                                                                    $reviewValue = $reviews->rating; // Your review value from the backend--}}
-                                            {{--                                                                    $maxStars = 5; // Maximum number of stars--}}
-
-                                            {{--                                                                    // Calculate the number of filled and empty stars--}}
-                                            {{--                                                                    $filledStars = min($reviewValue, $maxStars);--}}
-                                            {{--                                                                    $emptyStars = $maxStars - $filledStars;--}}
-                                            {{--                                                                @endphp--}}
-
-                                            {{--                                                                <!-- Display filled stars -->--}}
-                                            {{--                                                                    @for ($i = 0; $i < $filledStars; $i++)--}}
-                                            {{--                                                                        <i class="fas fa-star"--}}
-                                            {{--                                                                           style="color:#F9C303;"></i>--}}
-                                            {{--                                                                    @endfor--}}
-
-                                            {{--                                                                <!-- Display empty stars -->--}}
-                                            {{--                                                                    @for ($i = 0; $i < $emptyStars; $i++)--}}
-                                            {{--                                                                        <i class="far fa-star"--}}
-                                            {{--                                                                           style="color: #F9C303;"></i>--}}
-                                            {{--                                                                    @endfor--}}
-                                            {{--                                                                    <h6 class="fw-bold" style="color:#731718;">--}}
-                                            {{--                                                                        {{ $reviews->agent->name }}</h6>--}}
-                                            {{--                                                                    <small--}}
-                                            {{--                                                                        class="d-block">{{ $reviews->review }}</small>--}}
-                                            {{--                                                                </div>--}}
-
-
-                                            {{--                                                            </div>--}}
-
-                                            {{--                                                        </a>--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                </div>--}}
-                                            {{--                                            @endif--}}
-                                            {{--                                        @endforeach--}}
-
-                                            {{--                                    </div>--}}
-                                            {{--                                </div>--}}
-                                            {{--                            </div>--}}
-
-                                            <div class="row my-5">
-                                                <div class="col-md-12">
-                                                    <h2>FAQS</h2>
-                                                    <div class="mainfaqs">
-
-                                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                                            <li class="nav-item" role="presentation">
-                                                                <a class="nav-link active" id="pills-home-tab"
-                                                                   data-toggle="pill"
-                                                                   href="#pills-home" role="tab"
-                                                                   aria-controls="pills-home"
-                                                                   aria-selected="true">All Questions Related To all
-                                                                    Problems</a>
-                                                            </li>
-                                                            <li class="nav-item" role="presentation">
-                                                                <a class="nav-link" id="pills-profile-tab"
-                                                                   data-toggle="pill"
-                                                                   href="#pills-profile" role="tab"
-                                                                   aria-controls="pills-profile"
-                                                                   aria-selected="false">QUESTIONS REGARDING AUCTION</a>
-                                                            </li>
-                                                            <li class="nav-item" role="presentation">
-                                                                <a class="nav-link" id="pills-contact-tab"
-                                                                   data-toggle="pill"
-                                                                   href="#pills-contact" role="tab"
-                                                                   aria-controls="pills-lhd"
-                                                                   aria-selected="false">QUESTIONS REGARDING PAYMENT</a>
-                                                            </li>
-                                                            <li class="nav-item" role="presentation">
-                                                                <a class="nav-link" id="pills-others-tab"
-                                                                   data-toggle="pill"
-                                                                   href="#pills-others" role="tab"
-                                                                   aria-controls="pills-others"
-                                                                   aria-selected="false">QUESTIONS REGARDING
-                                                                    SHIPMENT</a>
-                                                            </li>
-                                                            <li class="nav-item" role="presentation">
-                                                                <a class="nav-link" id="pills-howtopay-tab"
-                                                                   data-toggle="pill"
-                                                                   href="#pills-howtopay" role="tab"
-                                                                   aria-controls="pills-howtopay"
-                                                                   aria-selected="false">MISCELLANEOUS QUESTIONS</a>
-                                                            </li>
-
-                                                        </ul>
-                                                        <div class="tab-content" id="pills-tabContent">
-                                                            <div class="tab-pane fade show active" id="pills-home"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="pills-home-tab">
-                                                                <div class="row  px-4">
-
-                                                                    <div class="accordion w-100" id="accordionExample">
-
-
-                                                                        <div class="card row ">
-                                                                            <div class="card-header" id="heading1">
-                                                                                <h2 class="mb-0">
-                                                                                    <a class="accordo-text btn-link btn-block text-left collapsed font-weight-bold"
-                                                                                       type="button"
-                                                                                       data-toggle="collapse"
-                                                                                       data-target="#collapse1"
-                                                                                       aria-expanded="true"
-                                                                                       aria-controls="collapse1">
-                                                                                        Q1. How do I buy a
-                                                                                        vehicle/machinery from SS
-                                                                                        Japan
-                                                                                        Limited?
-                                                                                    </a>
-                                                                                </h2>
-                                                                            </div>
-
-                                                                            <div id="collapse1" class="collapse"
-                                                                                 aria-labelledby="heading1"
-                                                                                 data-parent="#accordionExample">
-                                                                                <div class="card-body">
-                                                                                    Once you have provided us with the
-                                                                                    necessary
-                                                                                    information
-                                                                                    regarding the vehicle you want, and
-                                                                                    have made the
-                                                                                    initial
-                                                                                    auction deposit, we can start
-                                                                                    searching and send you
-                                                                                    possible matches daily. Once you
-                                                                                    give us a go ahead
-                                                                                    to
-                                                                                    purchase, we will source your car.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="card row ">
-                                                                            <div class="card-header" id="heading2">
-                                                                                <h2 class="mb-0">
-                                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                                       type="button"
-                                                                                       data-toggle="collapse"
-                                                                                       data-target="#collapse2"
-                                                                                       aria-expanded="true"
-                                                                                       aria-controls="collapse2">
-                                                                                        Q2. Who takes care of getting my
-                                                                                        car ready for
-                                                                                        export
-                                                                                        and shipping it?
-                                                                                    </a>
-                                                                                </h2>
-                                                                            </div>
-
-                                                                            <div id="collapse2" class="collapse"
-                                                                                 aria-labelledby="heading2"
-                                                                                 data-parent="#accordionExample">
-                                                                                <div class="card-body">
-                                                                                    We will prepare your vehicle for
-                                                                                    export to any port
-                                                                                    of your
-                                                                                    choosing and will handle all the
-                                                                                    booking and
-                                                                                    shipping
-                                                                                    process from Japan. Depending on
-                                                                                    your country and
-                                                                                    method of
-                                                                                    shipping, costs for transport will
-                                                                                    be confirmed.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <div class="card row ">
-                                                                            <div class="card-header" id="heading3">
-                                                                                <h2 class="mb-0">
-                                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                                       type="button"
-                                                                                       data-toggle="collapse"
-                                                                                       data-target="#collapse3"
-                                                                                       aria-expanded="true"
-                                                                                       aria-controls="collapse3">
-                                                                                        Q3. What is the Auction Grading
-                                                                                        System?
-                                                                                    </a>
-                                                                                </h2>
-                                                                            </div>
-
-                                                                            <div id="collapse3" class="collapse"
-                                                                                 aria-labelledby="heading3"
-                                                                                 data-parent="#accordionExample">
-                                                                                <div class="card-body">
-                                                                                    All vehicles sold at auction are
-                                                                                    given an overall
-                                                                                    grade by
-                                                                                    the independent auction engineers
-                                                                                    that inspect them.
-                                                                                    Grades
-                                                                                    can range from 0 to 9 but most
-                                                                                    auctions only use 0
-                                                                                    to 5.
-                                                                                    This number is shown in either the
-                                                                                    top left or top
-                                                                                    right of
-                                                                                    the auction sheet.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="card row ">
-                                                                            <div class="card-header" id="heading4">
-                                                                                <h2 class="mb-0">
-                                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                                       type="button"
-                                                                                       data-toggle="collapse"
-                                                                                       data-target="#collapse4"
-                                                                                       aria-expanded="true"
-                                                                                       aria-controls="collapse4">
-                                                                                        Q4. How can I confirm about the
-                                                                                        quality of the
-                                                                                        car?
-                                                                                    </a>
-                                                                                </h2>
-                                                                            </div>
-
-                                                                            <div id="collapse4" class="collapse"
-                                                                                 aria-labelledby="heading4"
-                                                                                 data-parent="#accordionExample">
-                                                                                <div class="card-body">
-                                                                                    We thoroughly inspect every vehicle
-                                                                                    to ensure
-                                                                                    highest
-                                                                                    quality possible, and provide only
-                                                                                    the most recent
-                                                                                    pictures
-                                                                                    of the vehicles to our customers for
-                                                                                    their
-                                                                                    satisfaction.
-                                                                                    Furthermore, our agents guide you
-                                                                                    extensively about
-                                                                                    the
-                                                                                    vehicle’s condition before and after
-                                                                                    you buy them.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="card row ">
-                                                                            <div class="card-header" id="heading5">
-                                                                                <h2 class="mb-0">
-                                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                                       type="button"
-                                                                                       data-toggle="collapse"
-                                                                                       data-target="#collapse5"
-                                                                                       aria-expanded="true"
-                                                                                       aria-controls="collapse5">
-                                                                                        Q5. Does your buying team
-                                                                                        inspect the cars
-                                                                                        before
-                                                                                        bidding?
-                                                                                    </a>
-                                                                                </h2>
-                                                                            </div>
-
-                                                                            <div id="collapse5" class="collapse"
-                                                                                 aria-labelledby="heading5"
-                                                                                 data-parent="#accordionExample">
-                                                                                <div class="card-body">
-                                                                                    Yes, we examine the car completely
-                                                                                    and once
-                                                                                    satisfied, we
-                                                                                    bid on your selected vehicles.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="pills-profile"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="pills-profile-tab">
-
-
-                                                                <div class="card row ">
-                                                                    <div class="card-header" id="heading1">
-                                                                        <h2 class="mb-0">
-                                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                               type="button" data-toggle="collapse"
-                                                                               data-target="#collapse1"
-                                                                               aria-expanded="true"
-                                                                               aria-controls="collapse1">
-                                                                                Q1. When do I have to make the complete
-                                                                                payment?
-                                                                            </a>
-                                                                        </h2>
-                                                                    </div>
-
-                                                                    <div id="collapse1" class="collapse"
-                                                                         aria-labelledby="heading1"
-                                                                         data-parent="#accordionExample">
-                                                                        <div class="card-body">
-                                                                            You are required to make the complete
-                                                                            payment after the bid
-                                                                            is
-                                                                            YEN(¥) or USD ($) , to avoid any delay in
-                                                                            the shipment.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <div class="tab-pane fade" id="pills-contact"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="pills-contact-tab">
-
-
-                                                                <div class="card row ">
-                                                                    <div class="card-header" id="heading2">
-                                                                        <h2 class="mb-0">
-                                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                               type="button" data-toggle="collapse"
-                                                                               data-target="#collapse2"
-                                                                               aria-expanded="true"
-                                                                               aria-controls="collapse2">
-                                                                                Q1. When will the car be shipped?
-                                                                            </a>
-                                                                        </h2>
-                                                                    </div>
-
-                                                                    <div id="collapse2" class="collapse"
-                                                                         aria-labelledby="heading2"
-                                                                         data-parent="#accordionExample">
-                                                                        <div class="card-body">
-                                                                            We will ship your vehicle as soon as you
-                                                                            complete the
-                                                                            minimum
-                                                                            deposit for shipment. It is 50%~100% of the
-                                                                            Total C&F, which
-                                                                            is
-                                                                            required for the shipment to be processed.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <div class="tab-pane fade" id="pills-others" role="tabpanel"
-                                                                 aria-labelledby="pills-others-tab">
-
-
-                                                                <div class="card row ">
-                                                                    <div class="card-header" id="heading3">
-                                                                        <h2 class="mb-0">
-                                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                               type="button" data-toggle="collapse"
-                                                                               data-target="#collapse3"
-                                                                               aria-expanded="true"
-                                                                               aria-controls="collapse3">
-                                                                                Q2. How long will shipping take?
-                                                                            </a>
-                                                                        </h2>
-                                                                    </div>
-
-                                                                    <div id="collapse3" class="collapse"
-                                                                         aria-labelledby="heading3"
-                                                                         data-parent="#accordionExample">
-                                                                        <div class="card-body">
-                                                                            We cannot commit an accurate time of
-                                                                            shipment as it depends
-                                                                            on
-                                                                            shipping schedule and availability of space.
-                                                                            On an average,
-                                                                            it takes
-                                                                            4 to 6 weeks.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <div class="tab-pane fade" id="pills-howtopay"
-                                                                 role="tabpanel"
-                                                                 aria-labelledby="pills-howtopay">
-
-
-                                                                <div class="card row ">
-                                                                    <div class="card-header" id="heading4">
-                                                                        <h2 class="mb-0">
-                                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                               type="button" data-toggle="collapse"
-                                                                               data-target="#collapse4"
-                                                                               aria-expanded="true"
-                                                                               aria-controls="collapse4">
-                                                                                Q3. How long does it take for the
-                                                                                documents to reach my
-                                                                                country?
-                                                                            </a>
-                                                                        </h2>
-                                                                    </div>
-
-                                                                    <div id="collapse4" class="collapse"
-                                                                         aria-labelledby="heading4"
-                                                                         data-parent="#accordionExample">
-                                                                        <div class="card-body">
-                                                                            Once shipment has departed, Original BL Scan
-                                                                            will be
-                                                                            supplied within
-                                                                            2-3 business days after the complete CNF
-                                                                            payment is made.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
+                                            <div class="tab-pane fade" id="pills-profile"
+                                                 role="tabpanel"
+                                                 aria-labelledby="pills-profile-tab">
+
+
+                                                <div class="card row ">
+                                                    <div class="card-header" id="heading1">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button" data-toggle="collapse"
+                                                               data-target="#collapse1"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse1">
+                                                                Q1. When do I have to make the complete
+                                                                payment?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse1" class="collapse"
+                                                         aria-labelledby="heading1"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            You are required to make the complete
+                                                            payment after the bid
+                                                            is
+                                                            YEN(¥) or USD ($) , to avoid any delay in
+                                                            the shipment.
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
-                                            <div class="row my-5 w-100">
-                                                <div class="col-md-12 col-lg-12 col-sm-12">
-                                                    <div class="bg-wrapper text-light p-5 shadow"
-                                                         style="background: url('assets/images/cta-bg.png');">
-                                                        <h2 class="fw-bold">SS Japan</h2>
-                                                        <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p>
-                                                        <a href="{{ route('contact') }}">
-                                                            <button class="btn btn-primary">Contact
-                                                                Us
-                                                            </button>
-                                                        </a>
+                                            <div class="tab-pane fade" id="pills-contact"
+                                                 role="tabpanel"
+                                                 aria-labelledby="pills-contact-tab">
+
+
+                                                <div class="card row ">
+                                                    <div class="card-header" id="heading2">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button" data-toggle="collapse"
+                                                               data-target="#collapse2"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse2">
+                                                                Q1. When will the car be shipped?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse2" class="collapse"
+                                                         aria-labelledby="heading2"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            We will ship your vehicle as soon as you
+                                                            complete the
+                                                            minimum
+                                                            deposit for shipment. It is 50%~100% of the
+                                                            Total C&F, which
+                                                            is
+                                                            required for the shipment to be processed.
+                                                        </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
+                                            <div class="tab-pane fade" id="pills-others" role="tabpanel"
+                                                 aria-labelledby="pills-others-tab">
+
+
+                                                <div class="card row ">
+                                                    <div class="card-header" id="heading3">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button" data-toggle="collapse"
+                                                               data-target="#collapse3"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse3">
+                                                                Q2. How long will shipping take?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse3" class="collapse"
+                                                         aria-labelledby="heading3"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            We cannot commit an accurate time of
+                                                            shipment as it depends
+                                                            on
+                                                            shipping schedule and availability of space.
+                                                            On an average,
+                                                            it takes
+                                                            4 to 6 weeks.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-howtopay"
+                                                 role="tabpanel"
+                                                 aria-labelledby="pills-howtopay">
+
+
+                                                <div class="card row ">
+                                                    <div class="card-header" id="heading4">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button" data-toggle="collapse"
+                                                               data-target="#collapse4"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse4">
+                                                                Q3. How long does it take for the
+                                                                documents to reach my
+                                                                country?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse4" class="collapse"
+                                                         aria-labelledby="heading4"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            Once shipment has departed, Original BL Scan
+                                                            will be
+                                                            supplied within
+                                                            2-3 business days after the complete CNF
+                                                            payment is made.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+{{--                            <div class="row my-5 w-100">--}}
+{{--                                <div class="col-md-12 col-lg-12 col-sm-12">--}}
+{{--                                    <div class="bg-wrapper text-light p-5 shadow"--}}
+{{--                                         style="background: url('assets/images/cta-bg.png');">--}}
+{{--                                        <h2 class="fw-bold">SS Japan</h2>--}}
+{{--                                        <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p>--}}
+{{--                                        <a href="{{ route('contact') }}">--}}
+{{--                                            <button class="btn btn-primary">Contact--}}
+{{--                                                Us--}}
+{{--                                            </button>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
+                    </div>
 
 
                     <!-- Right Column -->
@@ -1510,68 +1535,97 @@
             <!-- Modal -->
 
 
-{{--            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"--}}
-{{--                 aria-hidden="true">--}}
-{{--                <div class="modal-dialog">--}}
-{{--                    <div class="modal-content">--}}
-{{--                        <div class="modal-header">--}}
-{{--                            <h1 class="modal-title fs-5" id="exampleModalLabel1">Customer Review</h1>--}}
+            {{--            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"--}}
+            {{--                 aria-hidden="true">--}}
+            {{--                <div class="modal-dialog">--}}
+            {{--                    <div class="modal-content">--}}
+            {{--                        <div class="modal-header">--}}
+            {{--                            <h1 class="modal-title fs-5" id="exampleModalLabel1">Customer Review</h1>--}}
 
-{{--                        </div>--}}
-{{--                        <div class="modal-body">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-8 col-lg-8"><img class="w-100" alt="" id="review-img"></div>--}}
-{{--                                <div class="col-md-4 col-lg-4 body-inner">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-12">--}}
-
-
-{{--                                            <h6 class="mt-4 font-weight-bold" id="username"><i--}}
-{{--                                                    class="fa-solid fa-user"></i> UserName</h6>--}}
-{{--                                        @php--}}
-{{--                                            $reviewValue = $reviews->rating; // Your review value from the backend--}}
-{{--                                            $maxStars = 5; // Maximum number of stars--}}
-
-{{--                                            // Calculate the number of filled and empty stars--}}
-{{--                                            $filledStars = min($reviewValue, $maxStars);--}}
-{{--                                            $emptyStars = $maxStars - $filledStars;--}}
-{{--                                        @endphp--}}
-
-{{--                                        <!-- Display filled stars -->--}}
-{{--                                            @for ($i = 0; $i < $filledStars; $i++)--}}
-{{--                                                <i class="fas fa-star" style="color:#F9C303;"></i>--}}
-{{--                                            @endfor--}}
-
-{{--                                        <!-- Display empty stars -->--}}
-{{--                                            @for ($i = 0; $i < $emptyStars; $i++)--}}
-{{--                                                <i class="far fa-star" style="color: #F9C303;"></i>--}}
-{{--                                            @endfor--}}
-
-{{--                                        </div>--}}
+            {{--                        </div>--}}
+            {{--                        <div class="modal-body">--}}
+            {{--                            <div class="row">--}}
+            {{--                                <div class="col-md-8 col-lg-8"><img class="w-100" alt="" id="review-img"></div>--}}
+            {{--                                <div class="col-md-4 col-lg-4 body-inner">--}}
+            {{--                                    <div class="row">--}}
+            {{--                                        <div class="col-md-12">--}}
 
 
-{{--                                    </div>--}}
+            {{--                                            <h6 class="mt-4 font-weight-bold" id="username"><i--}}
+            {{--                                                    class="fa-solid fa-user"></i> UserName</h6>--}}
+            {{--                                        @php--}}
+            {{--                                            $reviewValue = $reviews->rating; // Your review value from the backend--}}
+            {{--                                            $maxStars = 5; // Maximum number of stars--}}
+
+            {{--                                            // Calculate the number of filled and empty stars--}}
+            {{--                                            $filledStars = min($reviewValue, $maxStars);--}}
+            {{--                                            $emptyStars = $maxStars - $filledStars;--}}
+            {{--                                        @endphp--}}
+
+            {{--                                        <!-- Display filled stars -->--}}
+            {{--                                            @for ($i = 0; $i < $filledStars; $i++)--}}
+            {{--                                                <i class="fas fa-star" style="color:#F9C303;"></i>--}}
+            {{--                                            @endfor--}}
+
+            {{--                                        <!-- Display empty stars -->--}}
+            {{--                                            @for ($i = 0; $i < $emptyStars; $i++)--}}
+            {{--                                                <i class="far fa-star" style="color: #F9C303;"></i>--}}
+            {{--                                            @endfor--}}
+
+            {{--                                        </div>--}}
 
 
-{{--                                    <h4 class="my-3">Reviews</h4>--}}
-{{--                                    <h6 id="review-description">--}}
-{{--                                    </h6>--}}
+            {{--                                    </div>--}}
 
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="modal-footer border-0">--}}
-{{--                            <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Close</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+
+            {{--                                    <h4 class="my-3">Reviews</h4>--}}
+            {{--                                    <h6 id="review-description">--}}
+            {{--                                    </h6>--}}
+
+            {{--                                </div>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                        <div class="modal-footer border-0">--}}
+            {{--                            <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Close</button>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </section>
     </div>
 
 
 @endsection
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialize likeCounts as an object with unique review IDs as keys
+        let likeCounts = {};
+
+        // Attach a click event listener to all elements with class "like_button"
+        const likeButtons = document.querySelectorAll('.like_button');
+        likeButtons.forEach(like_button => {
+            like_button.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default link behavior
+                const reviewId = like_button.getAttribute('data-reviewid');
+
+                // Check if the likeCount for this review exists in likeCounts object, if not, initialize it to 0
+                if (!likeCounts.hasOwnProperty(reviewId)) {
+                    likeCounts[reviewId] = 5;
+                }
+
+                // Increment the like count for this review
+                likeCounts[reviewId] += 1;
+
+                // Update the displayed like count for this review
+                const likeCountSpan = like_button.parentElement.querySelector('.likeCount');
+                if (likeCountSpan) {
+                    likeCountSpan.textContent = likeCounts[reviewId];
+                }
+            });
+        });
+
+    });
+
     function addToFavorites() {
         console.log('here');
         const listingId = document.getElementById('addToFavoritesBtn').getAttribute('data-listing-id');
@@ -1584,7 +1638,7 @@
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 // Make sure to include the CSRF token if your application requires CSRF protection
             },
-            body: JSON.stringify({ listingId })
+            body: JSON.stringify({listingId})
         })
             .then(response => {
                 if (!response.ok) {
@@ -1600,6 +1654,7 @@
                 console.error('Error adding listing to favorites', error);
             });
     }
+
 </script>
 <style>
     .row {
@@ -1613,20 +1668,94 @@
         margin-bottom: 30px;
     !important; /* Adds space between the rows */
     }
+    .col-md-4.col-sm-12.col-lg-3 {
+        padding: 0 15px; /* Adjust the padding if necessary */
+        margin-bottom: 30px; /* Adds space between the rows */
+        box-sizing: border-box; /* Ensures padding is included in the width */
+    }
 
+    /*.mob-hide .box-content {*/
+    /*    border-radius: 10px !important;*/
+    /*    background: #FFF !important;*/
+    /*    width: 260px !important;*/
+    /*    height: 416px !important;*/
+    /*    flex-shrink: 0 !important;*/
+    /*    border: none !important; !* Assuming you don't need a border, or update if you have a border style *!*/
+    /*    margin: auto !important; !* Centering the box if needed *!*/
+    /*    display: flex !important;*/
+    /*    flex-direction: column !important;*/
+    /*    justify-content: space-between !important;*/
+    /*    overflow: hidden !important; !* Ensuring content doesn't spill out *!*/
+    /*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); !* Adding a subtle shadow for depth, adjust as needed *!*/
+    /*}*/
     .mob-hide .box-content {
-        border-radius: 10px !important;
-        background: #FFF !important;
-        width: 260px !important;
-        height: 416px !important;
-        flex-shrink: 0 !important;
-        border: none !important; /* Assuming you don't need a border, or update if you have a border style */
-        margin: auto !important; /* Centering the box if needed */
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        overflow: hidden !important; /* Ensuring content doesn't spill out */
+        border-radius: 10px;
+        background: #FFF;
+        flex-shrink: 0;
+        border: none; /* Assuming you don't need a border, or update if you have a border style */
+        margin: auto; /* Centering the box if needed */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden; /* Ensuring content doesn't spill out */
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adding a subtle shadow for depth, adjust as needed */
+    }
+
+    /* For large screens (e.g., desktops) */
+    @media (min-width: 2000px) {
+        .mob-hide .box-content {
+            width: 340px; /* Adjusted width for very large screens */
+            height: 544px; /* Adjusted height for very large screens */
+        }
+        .col-md-4.col-sm-12.col-lg-3 {
+            /* Adjust width similarly if necessary */
+            width: calc(25% - 30px); /* Assuming a 4-column layout, adjust the percentage as needed */
+        }
+    }
+
+    /* For screens around 1920x1080 */
+    @media (min-width: 1920px) and (max-width: 1999px) {
+        .mob-hide .box-content {
+            width: 375px; /* Adjusted width for 1920px screens */
+            height: 460px; /* Adjusted height for 1920px screens */
+        }
+        .col-md-4.col-sm-12.col-lg-3 {
+            /* Calculate the width minus the total horizontal padding to maintain the box size */
+            width: calc(33.3333% - 30px); /* Assuming a 3-column layout, adjust the percentage as needed */
+            /* If you have a specific gutter width you want to maintain, adjust the -30px above */
+        }
+    }
+
+    /* For large screens (e.g., desktops) */
+    @media (min-width: 1200px) and (max-width: 1919px) {
+        .mob-hide .box-content {
+            width: 260px; /* No change from your original */
+            height: 416px; /* No change from your original */
+        }
+    }
+
+    /* For medium screens (e.g., tablets in landscape mode) */
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .mob-hide .box-content {
+            width: 200px; /* No change from your original */
+            height: 330px; /* No change from your original */
+        }
+    }
+
+    /* For small screens (e.g., tablets in portrait mode) */
+    @media (min-width: 768px) and (max-width: 991px) {
+        .mob-hide .box-content {
+            width: 100%; /* No change from your original */
+            height: auto; /* No change from your original */
+        }
+    }
+
+    /* For extra small screens (e.g., smartphones) */
+    @media (max-width: 767px) {
+        .mob-hide .box-content {
+            width: 100%; /* No change from your original */
+            height: auto; /* No change from your original */
+        }
     }
 
     .mob-hide .box-content img {
@@ -1719,7 +1848,7 @@
         width: 100% !important;
         height: 35px !important;
         flex-shrink: 0 !important;
-        border-radius: 0px 0px 10px 10px !important;
+        border-radius: 0 0 10px 10px !important;
         background: #531010 !important;
         color: white !important;
         font-size: 0.7rem !important;
@@ -1728,10 +1857,7 @@
         border: none !important;
         padding: 0 !important; /* Padding is not needed since height is explicitly set */
         display: block !important; /* To ensure the width is respected */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-top: 8px !important;
-        margin-bottom: 0 !important; /* Remove bottom margin if you want the button to align with the card's bottom edge */
+        margin: 8px auto 0 !important;
     }
 
     .mob-hide .box-content button:hover {
@@ -1782,6 +1908,7 @@
         cursor: pointer;
         font-size: 1.8rem; /* Adjust as needed */
     }
+    /*  end of car box styling */
 
     .best-seller {
         background-color: #FFF;
@@ -1842,6 +1969,7 @@
             font-size: 1.5rem; /* Smaller icon size on smaller screens */
         }
     }
+
     .my-3.custom {
         background-color: #731718; /* Dark red background */
         height: 50px; /* Increased height */
@@ -1854,12 +1982,12 @@
         align-items: center; /* Align items vertically */
         justify-content: center; /* Align content horizontally */
     }
+
     .custom-icon {
-        width: 6em;  /* Same size as the icon */
+        width: 6em; /* Same size as the icon */
         height: 2em; /* Maintain aspect ratio */
         object-fit: contain; /* Keep the image from being distorted */
     }
-
 
 
     .reviews-container {
@@ -1874,13 +2002,13 @@
     }
 
     .review-car-image {
-        width: 100px; /* Adjust as needed */
-        height: auto;
-        margin-right: 10px;
+        width: 14em; /* Adjust as needed */
+        height: 10em;
+        margin-right: 0;
     }
 
     .review-content {
-        border: 1px solid #ddd; /* Light grey border */
+        border: 0px solid #ddd; /* Light grey border */
         border-radius: 4px;
         padding: 10px;
         width: calc(100% - 120px); /* Adjust based on image width and margins */
@@ -1912,5 +2040,24 @@
     .review-actions {
         /* Style for the action buttons */
         margin-top: 10px;
+    }
+    .custom-icon {
+        width: 150%; /* Adjust the width to fit the container */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 60px; /* Maximum width of the image */
+        max-height: 60px; /* Maximum height of the image */
+        display: block; /* To remove any extra space below the image */
+        margin: 0 auto; /* Center the image in its column */
+    }
+    @media only screen and (max-width: 768px) {
+        .custom-icon {
+            max-width: 85px; /* Smaller size for mobile devices */
+            max-height: 100px;
+        }
+
+        .col-3, .col-8 {
+            flex: 0 0 100%; /* Stack the image and text on top of each other */
+            max-width: 100%; /* Use full width */
+        }
     }
 </style>

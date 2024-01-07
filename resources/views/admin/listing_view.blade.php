@@ -473,6 +473,10 @@
                             <textarea class="form-control" id="reviewDescription" name="description" rows="3" required></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="reviewDescription">Enter Name of Customer</label>
+                            <textarea class="form-control" id="reviewDescription" name="name_of_customer" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="reviewRating">Rating</label>
                             <select class="form-control" id="reviewRating" name="rating" required>
                                 <option value="">Select a rating</option>
@@ -481,6 +485,15 @@
                                 <option value="3">3 Stars</option>
                                 <option value="4">4 Stars</option>
                                 <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Country</label>
+                            <select class="form-control" id="reviewRating" name="country" required>
+                                <option value="">Select a Country</option>
+                                @foreach($listing as $row)
+                                <option value="{{$row->rListingLocation->id}}">{{$row->rListingLocation->listing_location_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

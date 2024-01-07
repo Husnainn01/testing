@@ -578,18 +578,28 @@ class ListingController extends Controller
 
     public function add_review(Request $request)
     {
-        $admin_data=Auth::user();
-        $data=[
-            'listing_id'=>$request->listing_id,
-            'agent_id'=>$admin_data->id,
-            'agent_type'=>'Customer',
-            'rating'=>$request->rating,
-            'review'=>$request->description,
-        ];
-        Review::updateOrCreate(
-            ['listing_id' => $request->listing_id],
-            $data
-        );        return redirect()->back()->with('success', 'Review added successfully!');
+        try {
+            $admin_data=Auth::user();
+            $data=[
+                'listing_id'=>$request->listing_id,
+                'agent_id'=>$admin_data->id,
+                'agent_type'=>'Customer',
+                'rating'=>$request->rating,
+                'name'=>$request->name_of_customer,
+                'location_id'=>$request->country,
+                'review'=>$request->description,
+            ];
+            Review::updateOrCreate(
+                ['listing_id' => $request->listing_id],
+                $data
+            );
+            return redirect()->back()->with('success', 'Review added successfully!');
+        }
+        catch (\Exception $e)
+        {
+            return redirect()->back()->with('error', 'Failed to add review please try again later');
+        }
+
     }
 
 }
