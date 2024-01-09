@@ -4,42 +4,42 @@
     $countcars=\App\Models\Listing::all()->count();
 @endphp
 @section('content')
-    <div id="overlay"></div>
-    <div id="dialog-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-sm-12">
-                    <button id="close-dialog">X</button>
-                    <h2>Select Your Country!</h2>
-                    <p>Select Your import country to check the inventory in stock.</p>
-                </div>
-                <div class="col-md-12 col-lg-12 col-sm-12 my-2">
-                    <form action="{{ route('dialogbox') }}">
-                        <select id="id_select2_example" name="location" style="width: 200px;">
+{{--    <div id="overlay"></div>--}}
+{{--    <div id="dialog-box">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12 col-lg-12 col-sm-12">--}}
+{{--                    <button id="close-dialog">X</button>--}}
+{{--                    <h2>Select Your Country!</h2>--}}
+{{--                    <p>Select Your import country to check the inventory in stock.</p>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-12 col-lg-12 col-sm-12 my-2">--}}
+{{--                    <form action="{{ route('dialogbox') }}">--}}
+{{--                        <select id="id_select2_example" name="location" style="width: 200px;">--}}
 
-                            @foreach ($location as $locationitems)
-                                <option value="{{ $locationitems->id }}"
-                                        data-img_src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}">
-                                    {{ $locationitems->listing_location_name }}</option>
-                            @endforeach
-                        </select>
-                        <div class="col-md-3 col-sm-12 col-lg-3 col-12 my-3">
-                            <button class="btn btn-primary w-100 py-2"
-                                    type="submit">Submit
-                            </button>
-                        </div>
-                    </form>
-                </div>
+{{--                            @foreach ($location as $locationitems)--}}
+{{--                                <option value="{{ $locationitems->id }}"--}}
+{{--                                        data-img_src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}">--}}
+{{--                                    {{ $locationitems->listing_location_name }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                        <div class="col-md-3 col-sm-12 col-lg-3 col-12 my-3">--}}
+{{--                            <button class="btn btn-primary w-100 py-2"--}}
+{{--                                    type="submit">Submit--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
 
-                <div class="col-md-12 col-sm-12 col-lg-12 col-12 my-3"><a href="{{ url('/') }}" class="float-right">
-                        <p class="mt-2 btn btn-primary text-white"><i class="fas fa-globe mx-2" aria-hidden="true"></i>GO
-                            TO
-                            THE SS Japan</p>
-                </div>
-                </a>
-            </div>
-        </div>
-    </div>
+{{--                <div class="col-md-12 col-sm-12 col-lg-12 col-12 my-3"><a href="{{ url('/') }}" class="float-right">--}}
+{{--                        <p class="mt-2 btn btn-primary text-white"><i class="fas fa-globe mx-2" aria-hidden="true"></i>GO--}}
+{{--                            TO--}}
+{{--                            THE SS Japan</p>--}}
+{{--                </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="container-fluid p-0">
         <section class="mob-hide">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -1711,6 +1711,10 @@
             /* Adjust width similarly if necessary */
             width: calc(25% - 30px); /* Assuming a 4-column layout, adjust the percentage as needed */
         }
+        .favorite-button{
+            position: absolute;
+            top:360px;
+        }
     }
 
     /* For screens around 1920x1080 */
@@ -1723,6 +1727,10 @@
             /* Calculate the width minus the total horizontal padding to maintain the box size */
             width: calc(33.3333% - 30px); /* Assuming a 3-column layout, adjust the percentage as needed */
             /* If you have a specific gutter width you want to maintain, adjust the -30px above */
+        }
+        .favorite-button{
+            position: absolute;
+            top:360px;
         }
     }
 

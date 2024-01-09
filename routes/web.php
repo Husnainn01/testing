@@ -1077,7 +1077,7 @@ Route::get('admin/customer-status/{id}', [CustomerControllerForAdmin::class,'cha
 
 Route::post('/filtercar',[ListingController::class,'carfilter'])->name('filtercar');
 Route::get('/brands/{slug}',[ListingController::class,'brandsfilter'])->name('brandsfilter');
-Route::get('dialogbox',[ListingController::class,'dialogbox'])->name('dialogbox');
+//Route::get('dialogbox',[ListingController::class,'dialogbox'])->name('dialogbox');
 Route::get('/steering/{type}',[ListingController::class,'steeringtype'])->name('steering');
 Route::get('/pricing/{price1}/{price2}', [ListingController::class, 'pricingtype'])->name('pricing');
 Route::post('/mainfilter',[ListingController::class,'mainfilter'])->name('mainfilter');
