@@ -116,16 +116,16 @@
                         @else
                             <span class="badge position-absolute start-0 p-2 text-light primary top-0">SOLD</span>
                         @endif
-                        <span class="water-mark" style="background-color:black;opacity: 0.6">1/{{$listing_photos->count()}}</span>
+                        <span class="water-mark" style="background-color:black;">1/{{$listing_photos->count()}}</span>
                         {{--                        <div class="water-mark"><h4>SS-Japan.com</h4></div>--}}
                     </div>
 
                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
                     {{-- <a class="carousel-fullscreen" href="#carousel" role="button">
@@ -167,7 +167,7 @@
                 @php $chunked_photos = array_chunk($listing_photos->toArray(), 8); @endphp
 
                 <!-- Carousel Indicators -->
-                    <ol class="carousel-indicators" style="margin-bottom: -25px;">
+                    <ol class="carousel-indicators" style="margin-bottom: -15px;">
                         @foreach ($chunked_photos as $photo_chunk_index => $photo_chunk)
                             <li data-target="#carousel-thumbs" data-slide-to="{{ $photo_chunk_index }}"
                                 class="{{ $photo_chunk_index == 0 ? 'active' : '' }}"></li>
@@ -199,16 +199,16 @@
 
                     <!-- Carousel Controls -->
                     <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
 
-                <div class="row border-bottom my-3 pt-5 d-block" style="margin-top:-35px !important;">
+                <div class="row border-bottom my-3 pt-5 d-block">
                     <div class="col-md-6">
                         <h5>Share:
                             @foreach ($social_media_items as $items)
@@ -220,9 +220,9 @@
 
                 </div>
                 <div class="row my-2">
-{{--                    <div class="col-md-12 mb-3">--}}
-{{--                        <h3>Specification</h3>--}}
-{{--                    </div>--}}
+                    <div class="col-md-12 mb-3">
+                        <h3>Specification</h3>
+                    </div>
                     <div
                         class="col-md-2 col-sm-6 col-sm-6 col-lg-2 border-right specification border-dark text-center p-md-0 p-lg-0 p-3">
                         <p class="mb-0">{{$detail->listing_mileage}}</p><small>Mileage</small>
@@ -253,49 +253,32 @@
                                     <td class="text-left pl-2"><small>{{$detail->listing_price}}</small></td>
                         </tr> --}}
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Ref. No.</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-{{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Type</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_type}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Type</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_type}}</small></td>
                         </tr>
 
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Chassis No.</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Extreior Color</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_exterior_color}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Extreior Color</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_exterior_color}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Model Code</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td><td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Engine Size</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Cylinder</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_cylinder}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Cylinder</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_cylinder}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Location</small></td>
-                            <td class="text-left pl-2"><small>{{$listing_locations_car->listing_location_name}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Steering</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_steering}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Steering</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_steering}}</small></td>
                         </tr>
@@ -305,12 +288,8 @@
                         </tr> --}}
 
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Version/Class</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Fuel Type</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_fuel_type}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Fuel Type</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_fuel_type}}</small></td>
                         </tr>
@@ -319,12 +298,14 @@
                                     <td class="text-left pl-2"><small>{{$detail->listing_vin}}</small></td>
                         </tr> --}}
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Derive</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Price</small></td>
+                            <td class="text-left pl-2"><small>
+                                    @if(!session()->get('currency_symbol'))
+                                        ${{ round($detail->listing_price,2) }}
+                                    @else
+                                        {{ session()->get('currency_symbol') }}{{ round($detail->listing_price*session()->get('currency_value'),2) }}
+                                    @endif
+                                </small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Price</small></td>
                             <td class="text-left pl-2"><small>
                                     @if(!session()->get('currency_symbol'))
@@ -335,37 +316,29 @@
                                 </small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Transmission</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Body</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_body}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Body</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_body}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Registration<br>Year/Month</small></td>
-                            <td class="text-left pl-2">
-                                <small>-
-                                    {{--                                    {{$detail->listing_type}}--}}
-                                </small>
-                            </td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Seat</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_seat}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Seat</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_seat}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Manufacture<br>year/Month</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Wheel</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_wheel}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Wheel</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_wheel}}</small></td>
                         </tr>
-{{--                        <tr>--}}
-{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
-{{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
-{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
-{{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
-{{--                        </tr>--}}
+                        <tr>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>
+                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>
+                        </tr>
                         {{-- <tr>
                                     <td style="background: #EBF3FF;" class="text-left pl-2"><small>Model Year</small></td>
                                     <td class="text-left pl-2"><small>{{$detail->listing_model_year}}</small></td>
@@ -597,7 +570,10 @@
                             <small>I want to know about the condition of the car.</small>
                         </label>
                     </div>
-                                </span>
+
+
+                            </div>
+
                         </div>
                         <div class="row border-bottom p-3">
                             <div class="col-md-12 col-sm-12 col-lg-12">
@@ -635,7 +611,7 @@
                                 </button>
                             </div>
                         </div>
-                        </div>
+
                     </div>
                     <h2> {{ FEATURES }}</h2>
                     <div class="features-grid">
@@ -653,6 +629,7 @@
                 </div>
 
                 <!--</form>-->
+            </div>
         </div>
     </div>
 
