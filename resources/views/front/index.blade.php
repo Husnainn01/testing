@@ -4,42 +4,42 @@
     $countcars=\App\Models\Listing::all()->count();
 @endphp
 @section('content')
-{{--    <div id="overlay"></div>--}}
-{{--    <div id="dialog-box">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12 col-lg-12 col-sm-12">--}}
-{{--                    <button id="close-dialog">X</button>--}}
-{{--                    <h2>Select Your Country!</h2>--}}
-{{--                    <p>Select Your import country to check the inventory in stock.</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-12 col-lg-12 col-sm-12 my-2">--}}
-{{--                    <form action="{{ route('dialogbox') }}">--}}
-{{--                        <select id="id_select2_example" name="location" style="width: 200px;">--}}
+    {{--    <div id="overlay"></div>--}}
+    {{--    <div id="dialog-box">--}}
+    {{--        <div class="container">--}}
+    {{--            <div class="row">--}}
+    {{--                <div class="col-md-12 col-lg-12 col-sm-12">--}}
+    {{--                    <button id="close-dialog">X</button>--}}
+    {{--                    <h2>Select Your Country!</h2>--}}
+    {{--                    <p>Select Your import country to check the inventory in stock.</p>--}}
+    {{--                </div>--}}
+    {{--                <div class="col-md-12 col-lg-12 col-sm-12 my-2">--}}
+    {{--                    <form action="{{ route('dialogbox') }}">--}}
+    {{--                        <select id="id_select2_example" name="location" style="width: 200px;">--}}
 
-{{--                            @foreach ($location as $locationitems)--}}
-{{--                                <option value="{{ $locationitems->id }}"--}}
-{{--                                        data-img_src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}">--}}
-{{--                                    {{ $locationitems->listing_location_name }}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-{{--                        <div class="col-md-3 col-sm-12 col-lg-3 col-12 my-3">--}}
-{{--                            <button class="btn btn-primary w-100 py-2"--}}
-{{--                                    type="submit">Submit--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
+    {{--                            @foreach ($location as $locationitems)--}}
+    {{--                                <option value="{{ $locationitems->id }}"--}}
+    {{--                                        data-img_src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}">--}}
+    {{--                                    {{ $locationitems->listing_location_name }}</option>--}}
+    {{--                            @endforeach--}}
+    {{--                        </select>--}}
+    {{--                        <div class="col-md-3 col-sm-12 col-lg-3 col-12 my-3">--}}
+    {{--                            <button class="btn btn-primary w-100 py-2"--}}
+    {{--                                    type="submit">Submit--}}
+    {{--                            </button>--}}
+    {{--                        </div>--}}
+    {{--                    </form>--}}
+    {{--                </div>--}}
 
-{{--                <div class="col-md-12 col-sm-12 col-lg-12 col-12 my-3"><a href="{{ url('/') }}" class="float-right">--}}
-{{--                        <p class="mt-2 btn btn-primary text-white"><i class="fas fa-globe mx-2" aria-hidden="true"></i>GO--}}
-{{--                            TO--}}
-{{--                            THE SS Japan</p>--}}
-{{--                </div>--}}
-{{--                </a>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--                <div class="col-md-12 col-sm-12 col-lg-12 col-12 my-3"><a href="{{ url('/') }}" class="float-right">--}}
+    {{--                        <p class="mt-2 btn btn-primary text-white"><i class="fas fa-globe mx-2" aria-hidden="true"></i>GO--}}
+    {{--                            TO--}}
+    {{--                            THE SS Japan</p>--}}
+    {{--                </div>--}}
+    {{--                </a>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <div class="container-fluid p-0">
         <section class="mob-hide">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -115,7 +115,7 @@
 
                     <!-- left Column -->
 
-                    <div class="col-md-2 order-2 order-sm-2  order-md-1 left-sidebar">
+                    <div class="col-md-2 order-2 order-sm-2  order-md-1 left-sidebar" style="margin-top: -60px;">
                         <div class="first-side">
                             @include('front.layouts.left_sidebar')
                         </div>
@@ -944,11 +944,12 @@
                                                     @endfor
                                                     <br>
                                                     <p><small class="fw-bold">
-                                                        by {{ $reviews->name }}
-                                                        ({{$reviews->location->listing_location_name}})
-                                                        on {{$reviews->created_at->format('d / M / Y')}}</small>
+                                                            by {{ $reviews->name }}
+                                                            ({{$reviews->location->listing_location_name}})
+                                                            on {{$reviews->created_at->format('d / M / Y')}}</small>
                                                     </p>
-                                                    <strong style="color:#951111; float:right;padding-right: 100px;">Verified Buyer</strong>
+                                                    <strong style="color:#951111; float:right;padding-right: 100px;">Verified
+                                                        Buyer</strong>
                                                     <small class="d-block">{{ $reviews->review }}</small>
                                                 </div>
                                                 {{--                                                        <p class="review-title">{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}</p>--}}
@@ -1131,243 +1132,241 @@
                                     <h2>FAQS</h2>
                                     <div class="mainfaqs">
 
-                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link active" id="pills-home-tab"
-                                                   data-toggle="pill"
-                                                   href="#pills-home" role="tab"
-                                                   aria-controls="pills-home"
-                                                   aria-selected="true">All Questions Related To all
-                                                    Problems</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="pills-profile-tab"
-                                                   data-toggle="pill"
-                                                   href="#pills-profile" role="tab"
-                                                   aria-controls="pills-profile"
-                                                   aria-selected="false">QUESTIONS REGARDING AUCTION</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="pills-contact-tab"
-                                                   data-toggle="pill"
-                                                   href="#pills-contact" role="tab"
-                                                   aria-controls="pills-lhd"
-                                                   aria-selected="false">QUESTIONS REGARDING PAYMENT</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="pills-others-tab"
-                                                   data-toggle="pill"
-                                                   href="#pills-others" role="tab"
-                                                   aria-controls="pills-others"
-                                                   aria-selected="false">QUESTIONS REGARDING
-                                                    SHIPMENT</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a class="nav-link" id="pills-howtopay-tab"
-                                                   data-toggle="pill"
-                                                   href="#pills-howtopay" role="tab"
-                                                   aria-controls="pills-howtopay"
-                                                   aria-selected="false">MISCELLANEOUS QUESTIONS</a>
-                                            </li>
+                                        {{--                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">--}}
+                                        {{--                                            <li class="nav-item" role="presentation">--}}
+                                        {{--                                                <a class="nav-link active" id="pills-home-tab"--}}
+                                        {{--                                                   data-toggle="pill"--}}
+                                        {{--                                                   href="#pills-home" role="tab"--}}
+                                        {{--                                                   aria-controls="pills-home"--}}
+                                        {{--                                                   aria-selected="true">All Questions Related To all--}}
+                                        {{--                                                    Problems</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                            <li class="nav-item" role="presentation">--}}
+                                        {{--                                                <a class="nav-link" id="pills-profile-tab"--}}
+                                        {{--                                                   data-toggle="pill"--}}
+                                        {{--                                                   href="#pills-profile" role="tab"--}}
+                                        {{--                                                   aria-controls="pills-profile"--}}
+                                        {{--                                                   aria-selected="false">QUESTIONS REGARDING AUCTION</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                            <li class="nav-item" role="presentation">--}}
+                                        {{--                                                <a class="nav-link" id="pills-contact-tab"--}}
+                                        {{--                                                   data-toggle="pill"--}}
+                                        {{--                                                   href="#pills-contact" role="tab"--}}
+                                        {{--                                                   aria-controls="pills-lhd"--}}
+                                        {{--                                                   aria-selected="false">QUESTIONS REGARDING PAYMENT</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                            <li class="nav-item" role="presentation">--}}
+                                        {{--                                                <a class="nav-link" id="pills-others-tab"--}}
+                                        {{--                                                   data-toggle="pill"--}}
+                                        {{--                                                   href="#pills-others" role="tab"--}}
+                                        {{--                                                   aria-controls="pills-others"--}}
+                                        {{--                                                   aria-selected="false">QUESTIONS REGARDING--}}
+                                        {{--                                                    SHIPMENT</a>--}}
+                                        {{--                                            </li>--}}
+                                        {{--                                            <li class="nav-item" role="presentation">--}}
+                                        {{--                                                <a class="nav-link" id="pills-howtopay-tab"--}}
+                                        {{--                                                   data-toggle="pill"--}}
+                                        {{--                                                   href="#pills-howtopay" role="tab"--}}
+                                        {{--                                                   aria-controls="pills-howtopay"--}}
+                                        {{--                                                   aria-selected="false">MISCELLANEOUS QUESTIONS</a>--}}
+                                        {{--                                            </li>--}}
 
-                                        </ul>
+                                        {{--                                        </ul>--}}
                                         <div class="tab-content" id="pills-tabContent">
-                                            <div class="tab-pane fade show active" id="pills-home"
-                                                 role="tabpanel"
-                                                 aria-labelledby="pills-home-tab">
-                                                <div class="row  px-4">
+                                            {{--                                            <div class="tab-pane fade show active" id="pills-home"--}}
+                                            {{--                                                 role="tabpanel"--}}
+                                            {{--                                                 aria-labelledby="pills-home-tab">--}}
+                                            {{--                                                <div class="row  px-4">--}}
 
-                                                    <div class="accordion w-100" id="accordionExample">
-
-
-                                                        <div class="card row ">
-                                                            <div class="card-header" id="heading1">
-                                                                <h2 class="mb-0">
-                                                                    <a class="accordo-text btn-link btn-block text-left collapsed font-weight-bold"
-                                                                       type="button"
-                                                                       data-toggle="collapse"
-                                                                       data-target="#collapse1"
-                                                                       aria-expanded="true"
-                                                                       aria-controls="collapse1">
-                                                                        Q1. How do I buy a
-                                                                        vehicle/machinery from SS
-                                                                        Japan
-                                                                        Limited?
-                                                                    </a>
-                                                                </h2>
-                                                            </div>
-
-                                                            <div id="collapse1" class="collapse"
-                                                                 aria-labelledby="heading1"
-                                                                 data-parent="#accordionExample">
-                                                                <div class="card-body">
-                                                                    Once you have provided us with the
-                                                                    necessary
-                                                                    information
-                                                                    regarding the vehicle you want, and
-                                                                    have made the
-                                                                    initial
-                                                                    auction deposit, we can start
-                                                                    searching and send you
-                                                                    possible matches daily. Once you
-                                                                    give us a go ahead
-                                                                    to
-                                                                    purchase, we will source your car.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="card row ">
-                                                            <div class="card-header" id="heading2">
-                                                                <h2 class="mb-0">
-                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                       type="button"
-                                                                       data-toggle="collapse"
-                                                                       data-target="#collapse2"
-                                                                       aria-expanded="true"
-                                                                       aria-controls="collapse2">
-                                                                        Q2. Who takes care of getting my
-                                                                        car ready for
-                                                                        export
-                                                                        and shipping it?
-                                                                    </a>
-                                                                </h2>
-                                                            </div>
-
-                                                            <div id="collapse2" class="collapse"
-                                                                 aria-labelledby="heading2"
-                                                                 data-parent="#accordionExample">
-                                                                <div class="card-body">
-                                                                    We will prepare your vehicle for
-                                                                    export to any port
-                                                                    of your
-                                                                    choosing and will handle all the
-                                                                    booking and
-                                                                    shipping
-                                                                    process from Japan. Depending on
-                                                                    your country and
-                                                                    method of
-                                                                    shipping, costs for transport will
-                                                                    be confirmed.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="card row ">
-                                                            <div class="card-header" id="heading3">
-                                                                <h2 class="mb-0">
-                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                       type="button"
-                                                                       data-toggle="collapse"
-                                                                       data-target="#collapse3"
-                                                                       aria-expanded="true"
-                                                                       aria-controls="collapse3">
-                                                                        Q3. What is the Auction Grading
-                                                                        System?
-                                                                    </a>
-                                                                </h2>
-                                                            </div>
-
-                                                            <div id="collapse3" class="collapse"
-                                                                 aria-labelledby="heading3"
-                                                                 data-parent="#accordionExample">
-                                                                <div class="card-body">
-                                                                    All vehicles sold at auction are
-                                                                    given an overall
-                                                                    grade by
-                                                                    the independent auction engineers
-                                                                    that inspect them.
-                                                                    Grades
-                                                                    can range from 0 to 9 but most
-                                                                    auctions only use 0
-                                                                    to 5.
-                                                                    This number is shown in either the
-                                                                    top left or top
-                                                                    right of
-                                                                    the auction sheet.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="card row ">
-                                                            <div class="card-header" id="heading4">
-                                                                <h2 class="mb-0">
-                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                       type="button"
-                                                                       data-toggle="collapse"
-                                                                       data-target="#collapse4"
-                                                                       aria-expanded="true"
-                                                                       aria-controls="collapse4">
-                                                                        Q4. How can I confirm about the
-                                                                        quality of the
-                                                                        car?
-                                                                    </a>
-                                                                </h2>
-                                                            </div>
-
-                                                            <div id="collapse4" class="collapse"
-                                                                 aria-labelledby="heading4"
-                                                                 data-parent="#accordionExample">
-                                                                <div class="card-body">
-                                                                    We thoroughly inspect every vehicle
-                                                                    to ensure
-                                                                    highest
-                                                                    quality possible, and provide only
-                                                                    the most recent
-                                                                    pictures
-                                                                    of the vehicles to our customers for
-                                                                    their
-                                                                    satisfaction.
-                                                                    Furthermore, our agents guide you
-                                                                    extensively about
-                                                                    the
-                                                                    vehicle’s condition before and after
-                                                                    you buy them.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="card row ">
-                                                            <div class="card-header" id="heading5">
-                                                                <h2 class="mb-0">
-                                                                    <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                                       type="button"
-                                                                       data-toggle="collapse"
-                                                                       data-target="#collapse5"
-                                                                       aria-expanded="true"
-                                                                       aria-controls="collapse5">
-                                                                        Q5. Does your buying team
-                                                                        inspect the cars
-                                                                        before
-                                                                        bidding?
-                                                                    </a>
-                                                                </h2>
-                                                            </div>
-
-                                                            <div id="collapse5" class="collapse"
-                                                                 aria-labelledby="heading5"
-                                                                 data-parent="#accordionExample">
-                                                                <div class="card-body">
-                                                                    Yes, we examine the car completely
-                                                                    and once
-                                                                    satisfied, we
-                                                                    bid on your selected vehicles.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
+                                            {{--                                                    <div class="accordion w-100" id="accordionExample">--}}
+                                            <div class="row">
+                                                <div class="card col-md-6">
+                                                    <div class="card-header" id="heading1">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button"
+                                                               data-toggle="collapse"
+                                                               data-target="#collapse1"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse1">
+                                                                Q1. How do I buy a
+                                                                vehicle/machinery from SS
+                                                                Japan
+                                                                Limited?
+                                                            </a>
+                                                        </h2>
                                                     </div>
 
+                                                    <div id="collapse1" class="collapse"
+                                                         aria-labelledby="heading1"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            Once you have provided us with the
+                                                            necessary
+                                                            information
+                                                            regarding the vehicle you want, and
+                                                            have made the
+                                                            initial
+                                                            auction deposit, we can start
+                                                            searching and send you
+                                                            possible matches daily. Once you
+                                                            give us a go ahead
+                                                            to
+                                                            purchase, we will source your car.
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="pills-profile"
-                                                 role="tabpanel"
-                                                 aria-labelledby="pills-profile-tab">
+
+                                                <div class="card col-md-6">
+                                                    <div class="card-header" id="heading2">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button"
+                                                               data-toggle="collapse"
+                                                               data-target="#collapse2"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse2">
+                                                                Q2. Who takes care of getting my
+                                                                car ready for
+                                                                export
+                                                                and shipping it?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse2" class="collapse"
+                                                         aria-labelledby="heading2"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            We will prepare your vehicle for
+                                                            export to any port
+                                                            of your
+                                                            choosing and will handle all the
+                                                            booking and
+                                                            shipping
+                                                            process from Japan. Depending on
+                                                            your country and
+                                                            method of
+                                                            shipping, costs for transport will
+                                                            be confirmed.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card col-md-6">
+                                                    <div class="card-header" id="heading3">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button"
+                                                               data-toggle="collapse"
+                                                               data-target="#collapse3"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse3">
+                                                                Q3. What is the Auction Grading
+                                                                System?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse3" class="collapse"
+                                                         aria-labelledby="heading3"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            All vehicles sold at auction are
+                                                            given an overall
+                                                            grade by
+                                                            the independent auction engineers
+                                                            that inspect them.
+                                                            Grades
+                                                            can range from 0 to 9 but most
+                                                            auctions only use 0
+                                                            to 5.
+                                                            This number is shown in either the
+                                                            top left or top
+                                                            right of
+                                                            the auction sheet.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card col-md-6">
+                                                    <div class="card-header" id="heading4">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button"
+                                                               data-toggle="collapse"
+                                                               data-target="#collapse4"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse4">
+                                                                Q4. How can I confirm about the
+                                                                quality of the
+                                                                car?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse4" class="collapse"
+                                                         aria-labelledby="heading4"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            We thoroughly inspect every vehicle
+                                                            to ensure
+                                                            highest
+                                                            quality possible, and provide only
+                                                            the most recent
+                                                            pictures
+                                                            of the vehicles to our customers for
+                                                            their
+                                                            satisfaction.
+                                                            Furthermore, our agents guide you
+                                                            extensively about
+                                                            the
+                                                            vehicle’s condition before and after
+                                                            you buy them.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card col-md-6">
+                                                    <div class="card-header" id="heading5">
+                                                        <h2 class="mb-0">
+                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
+                                                               type="button"
+                                                               data-toggle="collapse"
+                                                               data-target="#collapse5"
+                                                               aria-expanded="true"
+                                                               aria-controls="collapse5">
+                                                                Q5. Does your buying team
+                                                                inspect the cars
+                                                                before
+                                                                bidding?
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse5" class="collapse"
+                                                         aria-labelledby="heading5"
+                                                         data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            Yes, we examine the car completely
+                                                            and once
+                                                            satisfied, we
+                                                            bid on your selected vehicles.
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
-                                                <div class="card row ">
+                                                {{--                                                    </div>--}}
+
+                                                {{--                                                </div>--}}
+                                                {{--                                            </div>--}}
+                                                {{--                                            <div class="tab-pane fade" id="pills-profile"--}}
+                                                {{--                                                 role="tabpanel"--}}
+                                                {{--                                                 aria-labelledby="pills-profile-tab">--}}
+
+
+                                                <div class="card col-md-6">
                                                     <div class="card-header" id="heading1">
                                                         <h2 class="mb-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
@@ -1395,13 +1394,13 @@
                                                 </div>
 
 
-                                            </div>
-                                            <div class="tab-pane fade" id="pills-contact"
-                                                 role="tabpanel"
-                                                 aria-labelledby="pills-contact-tab">
+                                                {{--                                            </div>--}}
+                                                {{--                                            <div class="tab-pane fade" id="pills-contact"--}}
+                                                {{--                                                 role="tabpanel"--}}
+                                                {{--                                                 aria-labelledby="pills-contact-tab">--}}
 
 
-                                                <div class="card row ">
+                                                <div class="card col-md-6">
                                                     <div class="card-header" id="heading2">
                                                         <h2 class="mb-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
@@ -1430,12 +1429,12 @@
                                                 </div>
 
 
-                                            </div>
-                                            <div class="tab-pane fade" id="pills-others" role="tabpanel"
-                                                 aria-labelledby="pills-others-tab">
+                                                {{--                                            </div>--}}
+                                                {{--                                            <div class="tab-pane fade" id="pills-others" role="tabpanel"--}}
+                                                {{--                                                 aria-labelledby="pills-others-tab">--}}
 
 
-                                                <div class="card row ">
+                                                <div class="card col-md-6">
                                                     <div class="card-header" id="heading3">
                                                         <h2 class="mb-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
@@ -1464,13 +1463,13 @@
                                                 </div>
 
 
-                                            </div>
-                                            <div class="tab-pane fade" id="pills-howtopay"
-                                                 role="tabpanel"
-                                                 aria-labelledby="pills-howtopay">
+                                                {{--                                            </div>--}}
+                                                {{--                                            <div class="tab-pane fade" id="pills-howtopay"--}}
+                                                {{--                                                 role="tabpanel"--}}
+                                                {{--                                                 aria-labelledby="pills-howtopay">--}}
 
 
-                                                <div class="card row ">
+                                                <div class="card col-md-6">
                                                     <div class="card-header" id="heading4">
                                                         <h2 class="mb-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
@@ -1497,36 +1496,35 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
+
+                                            {{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="row my-5 w-100">--}}
-{{--                                <div class="col-md-12 col-lg-12 col-sm-12">--}}
-{{--                                    <div class="bg-wrapper text-light p-5 shadow"--}}
-{{--                                         style="background: url('assets/images/cta-bg.png');">--}}
-{{--                                        <h2 class="fw-bold">SS Japan</h2>--}}
-{{--                                        <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p>--}}
-{{--                                        <a href="{{ route('contact') }}">--}}
-{{--                                            <button class="btn btn-primary">Contact--}}
-{{--                                                Us--}}
-{{--                                            </button>--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="row my-5 w-100">--}}
+                            {{--                                <div class="col-md-12 col-lg-12 col-sm-12">--}}
+                            {{--                                    <div class="bg-wrapper text-light p-5 shadow"--}}
+                            {{--                                         style="background: url('assets/images/cta-bg.png');">--}}
+                            {{--                                        <h2 class="fw-bold">SS Japan</h2>--}}
+                            {{--                                        <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p>--}}
+                            {{--                                        <a href="{{ route('contact') }}">--}}
+                            {{--                                            <button class="btn btn-primary">Contact--}}
+                            {{--                                                Us--}}
+                            {{--                                            </button>--}}
+                            {{--                                        </a>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
                         </div>
                     </div>
 
 
                     <!-- Right Column -->
-
-                    <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark ">
+                    <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark" style="margin-top: -60px;">
                         @include('front.layouts.right_sidebar')
                     </div>
-
                 </div>
             </div>
             <!-- Button trigger modal -->
@@ -1668,6 +1666,7 @@
         margin-bottom: 30px;
     !important; /* Adds space between the rows */
     }
+
     .col-md-4.col-sm-12.col-lg-3 {
         padding: 0 15px; /* Adjust the padding if necessary */
         margin-bottom: 30px; /* Adds space between the rows */
@@ -1707,13 +1706,15 @@
             width: 340px; /* Adjusted width for very large screens */
             height: 544px; /* Adjusted height for very large screens */
         }
+
         .col-md-4.col-sm-12.col-lg-3 {
             /* Adjust width similarly if necessary */
             width: calc(25% - 30px); /* Assuming a 4-column layout, adjust the percentage as needed */
         }
-        .favorite-button{
+
+        .favorite-button {
             position: absolute;
-            top:360px;
+            top: 360px;
         }
     }
 
@@ -1721,16 +1722,18 @@
     @media (min-width: 1920px) and (max-width: 1999px) {
         .mob-hide .box-content {
             width: 375px; /* Adjusted width for 1920px screens */
-            height: 460px; /* Adjusted height for 1920px screens */
+            height: 500px; /* Adjusted height for 1920px screens */
         }
+
         .col-md-4.col-sm-12.col-lg-3 {
             /* Calculate the width minus the total horizontal padding to maintain the box size */
             width: calc(33.3333% - 30px); /* Assuming a 3-column layout, adjust the percentage as needed */
             /* If you have a specific gutter width you want to maintain, adjust the -30px above */
         }
-        .favorite-button{
+
+        .favorite-button {
             position: absolute;
-            top:360px;
+            top: 400px !important;
         }
     }
 
@@ -1856,7 +1859,7 @@
         width: 100% !important;
         height: 35px !important;
         flex-shrink: 0 !important;
-        border-radius: 0 0 10px 10px !important;
+        border-radius: 0 0 5px 5px !important;
         background: #531010 !important;
         color: white !important;
         font-size: 0.7rem !important;
@@ -1916,6 +1919,7 @@
         cursor: pointer;
         font-size: 1.8rem; /* Adjust as needed */
     }
+
     /*  end of car box styling */
 
     .best-seller {
@@ -1982,7 +1986,7 @@
         background-color: #731718; /* Dark red background */
         height: 50px; /* Increased height */
         text-align: center; /* Center text horizontally */
-        margin-left: -20px; /* Adjust as needed */
+        margin-left: -45px; /* Adjust as needed */
         width: inherit; /* Width */
         color: white; /* Set the text color to white */
         line-height: 50px; /* Center text vertically by setting line height equal to height */
@@ -2049,6 +2053,7 @@
         /* Style for the action buttons */
         margin-top: 10px;
     }
+
     .custom-icon {
         width: 150%; /* Adjust the width to fit the container */
         height: auto; /* Maintain aspect ratio */
@@ -2057,6 +2062,7 @@
         display: block; /* To remove any extra space below the image */
         margin: 0 auto; /* Center the image in its column */
     }
+
     @media only screen and (max-width: 768px) {
         .custom-icon {
             max-width: 85px; /* Smaller size for mobile devices */

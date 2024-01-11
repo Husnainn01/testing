@@ -70,15 +70,21 @@
                 padding: 5% !important;
             }
         }
+        .specification {
+            border: 1px solid #c7c7c7;
+        ; /* Or another color for the border */
+            padding: 5px 0; /* Adjust the padding as needed */
+            margin-bottom: 1rem;
+        }
     </style>
     <div class="container my-5">
         <div class="row px-3 px-sm-3  ">
             <div class="col-md-6 print-50">
                 <h6>Home {{ $detail->brand_name }} > {{ $detail->listing_name }} > SUV >2012</h6>
             {{--
-			 <div class="carousel">
-			<div class="big-slide">
-				  <img src="{{asset('/uploads/listing_photos/'.$listing_first_photos->photo)}}" alt="Image 1">
+                         <div class="carousel">
+                        <div class="big-slide">
+                                  <img src="{{asset('/uploads/listing_photos/'.$listing_first_photos->photo)}}" alt="Image 1">
             <div class="slider-arrow prev"><i class="fas fa-chevron-left  "></i></div>
             <div class="slider-arrow next"><i class="fas fa-chevron-right"></i></div>
         </div>
@@ -129,13 +135,13 @@
                         <span class="sr-only">Next</span>
                     </a>
                     {{-- <a class="carousel-fullscreen" href="#carousel" role="button">
-								<span class="carousel-fullscreen-icon" aria-hidden="true"></span>
-								<span class="sr-only">Fullscreen</span>
-							</a>
-							<a class="carousel-pause pause" href="#carousel" role="button">
-								<span class="carousel-pause-icon" aria-hidden="true"></span>
-								<span class="sr-only">Pause</span>
-							</a> --}}
+                                                                <span class="carousel-fullscreen-icon" aria-hidden="true"></span>
+                                                                <span class="sr-only">Fullscreen</span>
+                                                        </a>
+                                                        <a class="carousel-pause pause" href="#carousel" role="button">
+                                                                <span class="carousel-pause-icon" aria-hidden="true"></span>
+                                                                <span class="sr-only">Pause</span>
+                                                        </a> --}}
                 </div>
 
                 <!-- Carousel Navigatiom -->
@@ -217,34 +223,45 @@
                             @endforeach
                         </h5>
                     </div>
-
+                    <a style="border: none;
+		background: transparent;
+		cursor: pointer;float: right;" onclick="handleClick()">
+            <span class="text-right" style="font-size:20px;color: #003580;margin-top: -30px;">
+                <i class="fas fa-download"></i> Download
+            </span>
+                    </a>
                 </div>
-                <div class="row my-2">
-                    <div class="col-md-12 mb-3">
-                        <h3>Specification</h3>
+                <div class="row my-2 text-center">
+                    <!-- Year -->
+                    <div class="col-md-3 col-sm-6 col-lg-3 specification">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <p class="mb-0">{{ $detail->listing_model_year }}</p>
+                        <small>Year</small>
                     </div>
-                    <div
-                        class="col-md-2 col-sm-6 col-sm-6 col-lg-2 border-right specification border-dark text-center p-md-0 p-lg-0 p-3">
-                        <p class="mb-0">{{$detail->listing_mileage}}</p><small>Mileage</small>
+                    <!-- Mileage -->
+                    <div class="col-md-3 col-sm-6 col-lg-3 specification">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        <p class="mb-0">{{ $detail->listing_mileage }}</p>
+                        <small>Mileage</small>
                     </div>
-                    <div
-                        class="col-md-2 col-sm-6 col-sm-6 col-lg-2 border-right specification border-dark text-center  p-md-0 p-lg-0 p-3">
-                        <p class="mb-0">{{$detail->listing_model_year}}</p><small>Year</small>
+                    <!-- Fuel Type -->
+                    <div class="col-md-2 col-sm-6 col-lg-2 specification">
+                        <i class="fa fa-fire" aria-hidden="true"></i>
+                        <p class="mb-0">{{ $detail->listing_fuel_type }}</p>
+                        <small>Fuel</small>
                     </div>
-                    <div
-                        class="col-md-2 col-sm-6 col-sm-6 col-lg-2 border-right specification border-dark text-center  p-md-0 p-lg-0 p-3">
-                        <p class="mb-0">{{$detail->listing_engine_capacity}}</p><small>Engine</small>
+                    <!-- Transmission -->
+                    <div class="col-md-2 col-sm-6 col-lg-2 specification">
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                        <p class="mb-0">{{ $detail->listing_transmission }}</p>
+                        <small>Trans</small>
                     </div>
-                    <div
-                        class="col-md-2 col-sm-6 col-sm-6 col-lg-2 border-right specification border-dark text-center  p-md-0 p-lg-0 p-3">
-                        <p class="mb-0">{{$detail->listing_transmission}}</p><small>Trans</small>
+                    <!-- Engine Capacity -->
+                    <div class="col-md-2 col-sm-6 col-lg-2 specification">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        <p class="mb-0">{{ $detail->listing_engine_capacity }}</p>
+                        <small>Engine</small>
                     </div>
-                    <div
-                        class="col-md-3 col-sm-6 col-sm-6 col-lg-3 border-right specification border-dark text-center  p-md-0 p-lg-0 p-3">
-                        <p class="mb-0">{{$listing_locations_car->listing_location_name}}</p><small>Location</small>
-                    </div>
-
-
                 </div>
                 <div class="row my-4">
                     <table class="table-bordered w-100 text-left specification">
@@ -253,32 +270,51 @@
                                     <td class="text-left pl-2"><small>{{$detail->listing_price}}</small></td>
                         </tr> --}}
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Type</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_type}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Ref. No.</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+{{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Type</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_type}}</small></td>
                         </tr>
 
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Extreior Color</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_exterior_color}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Chassis No.</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Extreior Color</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_exterior_color}}</small></td>
                         </tr>
                         <tr>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Model Code</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td><td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td>
+{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>--}}
+{{--                            <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td>--}}
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Cylinder</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_cylinder}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Engine Size</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Cylinder</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_cylinder}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Steering</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_steering}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Location</small></td>
+                            <td class="text-left pl-2"><small>{{$listing_locations_car->listing_location_name}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Steering</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_steering}}</small></td>
                         </tr>
@@ -288,8 +324,12 @@
                         </tr> --}}
 
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Fuel Type</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_fuel_type}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Version/Class</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Fuel Type</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_fuel_type}}</small></td>
                         </tr>
@@ -298,6 +338,12 @@
                                     <td class="text-left pl-2"><small>{{$detail->listing_vin}}</small></td>
                         </tr> --}}
                         <tr>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Derive</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Price</small></td>
                             <td class="text-left pl-2"><small>
                                     @if(!session()->get('currency_symbol'))
@@ -306,39 +352,39 @@
                                         {{ session()->get('currency_symbol') }}{{ round($detail->listing_price*session()->get('currency_value'),2) }}
                                     @endif
                                 </small></td>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Price</small></td>
-                            <td class="text-left pl-2"><small>
-                                    @if(!session()->get('currency_symbol'))
-                                        ${{ round($detail->listing_price,2) }}
-                                    @else
-                                        {{ session()->get('currency_symbol') }}{{ round($detail->listing_price*session()->get('currency_value'),2) }}
-                                    @endif
-                                </small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Body</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_body}}</small></td>
+                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Transmission</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Body</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_body}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Seat</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_seat}}</small></td>
+                            <td style="background: #EBF3FF; color:orangered" class="text-left pl-2"><small>Registration<br>Year/Month</small></td>
+                            <td class="text-left pl-2">
+                                <small>-
+                                    {{--                                    {{$detail->listing_type}}--}}
+                                </small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Seat</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_seat}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Wheel</small></td>
+                            <td style="background: #EBF3FF; color:green;" class="text-left pl-2"><small>Manufacture<br>year/Month</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_wheel}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Wheel</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_wheel}}</small></td>
                         </tr>
-                        <tr>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>
-                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>
-                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
+{{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
+{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
+{{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
+{{--                        </tr>--}}
                         {{-- <tr>
                                     <td style="background: #EBF3FF;" class="text-left pl-2"><small>Model Year</small></td>
                                     <td class="text-left pl-2"><small>{{$detail->listing_model_year}}</small></td>
@@ -375,8 +421,8 @@
                     <h5 class="py-2 w-100">
                         {{$detail->listing_name}}</h5>
                     <a style="border: none;
-		background: transparent;
-		cursor: pointer;" onclick="handleClick()">
+                background: transparent;
+                cursor: pointer;" onclick="handleClick()">
             <span class="text-right" style="font-size:26px;color: #003580;">
                 <i class="fas fa-print"></i> Print
             </span>
