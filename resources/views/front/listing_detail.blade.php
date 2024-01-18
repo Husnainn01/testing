@@ -70,9 +70,9 @@
                 padding: 5% !important;
             }
         }
+
         .specification {
-            border: 1px solid #c7c7c7;
-        ; /* Or another color for the border */
+            border: 1px solid #c7c7c7;; /* Or another color for the border */
             padding: 5px 0; /* Adjust the padding as needed */
             margin-bottom: 1rem;
         }
@@ -273,7 +273,7 @@
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Ref. No.</small></td>
                             <td class="text-left pl-2">
                                 <small>-
-{{--                                    {{$detail->listing_type}}--}}
+                                    {{--                                    {{$detail->listing_type}}--}}
                                 </small>
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Type</small></td>
@@ -299,8 +299,8 @@
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td>
-{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>--}}
-{{--                            <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td>--}}
+                            {{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>--}}
+                            {{--                            <td class="text-left pl-2"><small>{{$detail->listing_interior_color}}</small></td>--}}
                         </tr>
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Engine Size</small></td>
@@ -314,7 +314,8 @@
                         </tr>
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Location</small></td>
-                            <td class="text-left pl-2"><small>{{$listing_locations_car->listing_location_name}}</small></td>
+                            <td class="text-left pl-2"><small>{{$listing_locations_car->listing_location_name}}</small>
+                            </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Steering</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_steering}}</small></td>
                         </tr>
@@ -364,7 +365,8 @@
                             <td class="text-left pl-2"><small>{{$detail->listing_body}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF; color:orangered" class="text-left pl-2"><small>Registration<br>Year/Month</small></td>
+                            <td style="background: #EBF3FF; color:orangered" class="text-left pl-2">
+                                <small>Registration<br>Year/Month</small></td>
                             <td class="text-left pl-2">
                                 <small>-
                                     {{--                                    {{$detail->listing_type}}--}}
@@ -374,17 +376,18 @@
                             <td class="text-left pl-2"><small>{{$detail->listing_seat}}</small></td>
                         </tr>
                         <tr>
-                            <td style="background: #EBF3FF; color:green;" class="text-left pl-2"><small>Manufacture<br>year/Month</small></td>
+                            <td style="background: #EBF3FF; color:green;" class="text-left pl-2"><small>Manufacture<br>year/Month</small>
+                            </td>
                             <td class="text-left pl-2"><small>{{$detail->listing_wheel}}</small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Wheel</small></td>
                             <td class="text-left pl-2"><small>{{$detail->listing_wheel}}</small></td>
                         </tr>
-{{--                        <tr>--}}
-{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
-{{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
-{{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
-{{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
-{{--                        </tr>--}}
+                        {{--                        <tr>--}}
+                        {{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
+                        {{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
+                        {{--                            <td style="background: #EBF3FF;" class="text-left pl-2"><small>Doors</small></td>--}}
+                        {{--                            <td class="text-left pl-2"><small>{{$detail->listing_door}}</small></td>--}}
+                        {{--                        </tr>--}}
                         {{-- <tr>
                                     <td style="background: #EBF3FF;" class="text-left pl-2"><small>Model Year</small></td>
                                     <td class="text-left pl-2"><small>{{$detail->listing_model_year}}</small></td>

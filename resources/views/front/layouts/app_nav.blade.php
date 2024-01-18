@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="row pt-3">
+        <div class="row pt-3" style="background-color:black;">
             <div class="col-md-2 position-relative ">
                 <div class="w-50  text-center position-relative">
                     <a href="{{ url('/') }}"><img class="w-75 p-1"
@@ -65,8 +65,8 @@
                     @csrf
                     <input class="w-80 py-2 px-3 border-0 search" type="text"
                            placeholder="Search by stock ID or Keyword" name="text">
-                    <button type="submit" style="background:#ececed;"
-                            class="p-2 border-0 float-right text-dark search-btn">Search
+                    <button type="submit" style="background:#731718;"
+                            class="p-2 border-0 float-right text search-btn">Search
                     </button>
 
 
@@ -313,7 +313,7 @@
                     <div class="mr-3">
 
                         <div class="d-flex">
-                            <div class="mr-2"><i class="far fa-heart fs-4 my-2" aria-hidden="true"></i></div>
+                            <div class="mr-2"><i class="fa-solid fa-heart fs-4 my-2" aria-hidden="true"></i></div>
 
                             <div class="my-auto">
                                 <a class=" text-light" href="#">
@@ -330,7 +330,7 @@
                                  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                  aria-expanded="false">
                                 <div class="d-flex">
-                                    <div class="mr-2"><i class="fas fa-user-circle fs-4 my-2" aria-hidden="true"></i>
+                                    <div class="mr-2"><i class="fas fa-user fs-4 my-2" aria-hidden="true"></i>
                                     </div>
                                     <div class=" my-auto pl-0" onclick="{{ route('customer_login') }}">
                                         <small class="m-0">Login</small>

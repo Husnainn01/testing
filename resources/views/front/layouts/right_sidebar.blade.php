@@ -106,7 +106,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
         }
     }
 </style>
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;position: sticky;top:18px">
 
 <div class="my-3 card-features">
 

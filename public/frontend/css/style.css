@@ -19,7 +19,11 @@ p, small, li {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
-
+.side-header{
+    background-color: #531010 !important;
+    color: white;
+    font-size: 0.8rem;
+}
 .desktop-header {
     position: relative;
     width: 100%;
@@ -250,6 +254,9 @@ header a {
 
 .card-header {
     border: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .flag {
@@ -262,7 +269,7 @@ header a {
     z-index: 10;
     background: #731718 !important;
     border-radius: 0 0 34px 34px;
-    margin-top: 55px;
+    margin-top: 18px;
 }
 @media (min-width: 1920px) {
     .search-box {
@@ -275,7 +282,6 @@ header a {
 }
 
 .search-box-wrapper {
-    margin-top: -8%;
     z-index: 100;
 }
 
@@ -476,7 +482,7 @@ td {
 }
 
 .btn-link::before {
-    content: ">";
+    content: "";
     color: red;
     font-weight: bold;
     display: inline-block;
@@ -658,6 +664,10 @@ td {
 
 .first-side {
     border-right: 1px solid #e5e5e5;
+    position:sticky;
+    top:30px;
+    max-height:100vh;
+    overflow:auto;
 }
 
 .flex-container {
@@ -1477,6 +1487,8 @@ body.mobile-nav-open {
 
     .first-side {
         border: 0px !important;
+        position:sticky !important;
+        top: 40px !important;
     }
 
     .mob-hide {

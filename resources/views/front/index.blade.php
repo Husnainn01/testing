@@ -110,13 +110,12 @@
         @endif
 
         <section>
-            <div class="container-fluid px-md-5 px-lg-5  my-5">
+            <div class="container-fluid mt-3">
                 <div class="row ">
-
                     <!-- left Column -->
-
-                    <div class="col-md-2 order-2 order-sm-2  order-md-1 left-sidebar" style="margin-top: -60px;">
-                        <div class="first-side">
+                    <div class="col-md-2 order-2 order-sm-2  order-md-1 mb-4">
+                        {{-- left-sidebar --}}
+                        <div class="first-side pb-4" style="position: sticky;top: 15px;max-height: 90vh;overflow: auto">
                             @include('front.layouts.left_sidebar')
                         </div>
                     </div>
@@ -137,12 +136,12 @@
                             <form action="{{ route('filtercar') }}" method="POST" id="form-car">
                                 <div id="homefilter-body">
                                     <div
-                                        class="row p-md-3 p-lg-3 p-sm-1 p-1 search-box shadow rounded-bottom-2 bg-white"
+                                        class="row p-md-3 p-lg-3 pt-0 p-sm-1 p-1 search-box shadow rounded-bottom-2 bg-white"
                                         style="border-top:5px solid #731718;">
-                                        <di class="col-md-12">
+                                        <div class="col-md-12">
                                             <h4 style="color:white;"><i class="fa fa-search" aria-hidden="true"></i>
                                                 Search for cars</h4>
-                                        </di>
+                                        </div>
                                     @csrf
                                     <!--make-->
                                         <div class="col-md-3 col-6 col-sm-6">
@@ -1180,9 +1179,11 @@
 
                                             {{--                                                    <div class="accordion w-100" id="accordionExample">--}}
                                             <div class="row">
-                                                <div class="card col-md-6">
+                                                <div class="card col-md-6 border-0">
+
                                                     <div class="card-header" id="heading1">
-                                                        <h2 class="mb-0">
+                                                        <div class="row align-items-center">
+                                                        <h2 class="mb-0  col-11 px-0">
                                                             <a class="accordo-text btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button"
                                                                data-toggle="collapse"
@@ -1195,6 +1196,11 @@
                                                                 Limited?
                                                             </a>
                                                         </h2>
+                                                            <div class="col-1">
+                                                                <i class="fa-solid fa-caret-down"></i>
+                                                            </div>
+                                                    </div>
+
                                                     </div>
 
                                                     <div id="collapse1" class="collapse"
@@ -1217,9 +1223,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6">
+                                                <div class="card col-md-6 border-0">
                                                     <div class="card-header" id="heading2">
-                                                        <h2 class="mb-0">
+                                                        <div class="row align-items-center">
+                                                        <h2 class="mb-0 col-11 px-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button"
                                                                data-toggle="collapse"
@@ -1232,6 +1239,10 @@
                                                                 and shipping it?
                                                             </a>
                                                         </h2>
+                                                            <div class="col-1">
+                                                                <i class="fa-solid fa-caret-down"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse2" class="collapse"
@@ -1253,9 +1264,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6">
-                                                    <div class="card-header" id="heading3">
-                                                        <h2 class="mb-0">
+                                                <div class="card col-md-6 border-0">
+                                                    <div class="row m-0 align-items-center">
+                                                    <div class="card-header col-11 px-0" id="heading3">
+                                                        <h2 class="mb-0  px-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button"
                                                                data-toggle="collapse"
@@ -1266,6 +1278,10 @@
                                                                 System?
                                                             </a>
                                                         </h2>
+                                                        </div>
+                                                        <div class="col-1 d-flex p-0 justify-content-center h-100 align-items-center" style="background-color: rgba(0,0,0,.03)">
+                                                            <i class="fa-solid fa-caret-down pr-1"></i>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse3" class="collapse"
@@ -1289,9 +1305,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6">
+                                                <div class="card col-md-6 border-0">
                                                     <div class="card-header" id="heading4">
-                                                        <h2 class="mb-0">
+                                                        <div class="row align-items-center">
+                                                        <h2 class="mb-0 col-11 px-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button"
                                                                data-toggle="collapse"
@@ -1303,6 +1320,10 @@
                                                                 car?
                                                             </a>
                                                         </h2>
+                                                            <div class="col-1">
+                                                                <i class="fa-solid fa-caret-down"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse4" class="collapse"
@@ -1327,9 +1348,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6">
+                                                <div class="card col-md-6 border-0">
                                                     <div class="card-header" id="heading5">
-                                                        <h2 class="mb-0">
+                                                        <div class="row align-items-center">
+                                                        <h2 class="mb-0 col-11 px-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button"
                                                                data-toggle="collapse"
@@ -1342,6 +1364,10 @@
                                                                 bidding?
                                                             </a>
                                                         </h2>
+                                                            <div class="col-1">
+                                                                <i class="fa-solid fa-caret-down"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse5" class="collapse"
@@ -1366,9 +1392,10 @@
                                                 {{--                                                 aria-labelledby="pills-profile-tab">--}}
 
 
-                                                <div class="card col-md-6">
+                                                <div class="card col-md-6 border-0">
                                                     <div class="card-header" id="heading1">
-                                                        <h2 class="mb-0">
+                                                        <div class="row align-items-center">
+                                                        <h2 class="mb-0 col-11 px-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button" data-toggle="collapse"
                                                                data-target="#collapse1"
@@ -1378,6 +1405,10 @@
                                                                 payment?
                                                             </a>
                                                         </h2>
+                                                            <div class="col-1">
+                                                                <i class="fa-solid fa-caret-down"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse1" class="collapse"
@@ -1400,8 +1431,10 @@
                                                 {{--                                                 aria-labelledby="pills-contact-tab">--}}
 
 
-                                                <div class="card col-md-6">
-                                                    <div class="card-header" id="heading2">
+                                                <div class="card col-md-6 border-0">
+                                                    <div class="row m-0 align-items-center justify-content-between h-100">
+                                                    <div class="card-header col-11 px-0" id="heading2">
+
                                                         <h2 class="mb-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button" data-toggle="collapse"
@@ -1411,6 +1444,11 @@
                                                                 Q1. When will the car be shipped?
                                                             </a>
                                                         </h2>
+
+                                                        </div>
+                                                        <div class="col-1 d-flex p-0 justify-content-center h-100 align-items-center" style="background-color: rgba(0,0,0,.03)">
+                                                            <i class="fa-solid fa-caret-down pr-1"></i>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse2" class="collapse"
@@ -1434,8 +1472,10 @@
                                                 {{--                                                 aria-labelledby="pills-others-tab">--}}
 
 
-                                                <div class="card col-md-6">
-                                                    <div class="card-header" id="heading3">
+                                                <div class="card col-md-6 border-0">
+                                                    <div class="row m-0 align-items-center">
+                                                        <div class="card-header col-11 px-0" id="heading2">
+
                                                         <h2 class="mb-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button" data-toggle="collapse"
@@ -1445,6 +1485,11 @@
                                                                 Q2. How long will shipping take?
                                                             </a>
                                                         </h2>
+
+                                                        </div>
+                                                        <div class="col-1 d-flex p-0 justify-content-center h-100 align-items-center" style="background-color: rgba(0,0,0,.03)">
+                                                            <i class="fa-solid fa-caret-down pr-1"></i>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse3" class="collapse"
@@ -1469,9 +1514,10 @@
                                                 {{--                                                 aria-labelledby="pills-howtopay">--}}
 
 
-                                                <div class="card col-md-6">
+                                                <div class="card col-md-6 border-0">
                                                     <div class="card-header" id="heading4">
-                                                        <h2 class="mb-0">
+                                                        <div class="row align-items-center">
+                                                        <h2 class="mb-0 col-11 px-0">
                                                             <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
                                                                type="button" data-toggle="collapse"
                                                                data-target="#collapse4"
@@ -1482,6 +1528,10 @@
                                                                 country?
                                                             </a>
                                                         </h2>
+                                                            <div class="col-1">
+                                                            <i class="fa-solid fa-caret-down"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div id="collapse4" class="collapse"
@@ -1522,7 +1572,7 @@
 
 
                     <!-- Right Column -->
-                    <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark" style="margin-top: -60px;">
+                    <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark right-sidebar">
                         @include('front.layouts.right_sidebar')
                     </div>
                 </div>
