@@ -13,7 +13,8 @@ class Port extends Model
     protected $table = 'ports';
     protected $fillable = [
         'name',
-        'country_id'
+        'country_id',
+        'price'
     ];
 
     public function country()

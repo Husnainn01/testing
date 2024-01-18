@@ -70,7 +70,7 @@ class ListingLocationController extends Controller
 
         unset($data['listing_location_photo']);
         $data['listing_location_photo'] = $final_name;
-       
+
         $listing_location->fill($data)->save();
 
         return redirect()->route('admin_listing_location_view')->with('success', SUCCESS_ACTION);
@@ -139,11 +139,11 @@ class ListingLocationController extends Controller
     public function destroy($id)
     {
 
-        
+
         $tot = Listing::where('listing_location_id',$id)->count();
         if($tot)
         {
-            return Redirect()->back()->with('error', ERR_ITEM_DELETE);   
+            return Redirect()->back()->with('error', ERR_ITEM_DELETE);
         }
 
         $listing_location = ListingLocation::findOrFail($id);
@@ -175,7 +175,7 @@ class ListingLocationController extends Controller
         $cityData = $request->all();
         $listing_city = new City();
         $listing_city->fill($cityData);
-        $listing_city->save();        
+        $listing_city->save();
         return redirect()->route('admin_listing_city_view')->with('success', SUCCESS_ACTION);
     }
 
@@ -190,19 +190,19 @@ class ListingLocationController extends Controller
     {
         // Find the city by its ID
         $listing_city = City::findOrFail($id);
-    
+
         // Validate the request data
         $request->validate([
             'name' => 'required',
             'country_id' => 'required|unique:cities,id,' . $id, // Ensure the uniqueness rule excludes the current city
         ]);
-    
+
         $cityData = $request->all();
-    
+
         // Update the city model with the new data
         $listing_city->fill($cityData);
         $listing_city->save();
-    
+
         return redirect()->route('admin_listing_city_view')->with('success', SUCCESS_ACTION);
     }
 
@@ -229,12 +229,13 @@ class ListingLocationController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'price' => 'required',
             'country_id' => 'required'
         ]);
         $portyData = $request->all();
         $listing_port = new Port();
         $listing_port->fill($portyData);
-        $listing_port->save();        
+        $listing_port->save();
         return redirect()->route('admin_listing_port_view')->with('success', SUCCESS_ACTION);
     }
 
@@ -250,6 +251,7 @@ class ListingLocationController extends Controller
         $listing_port = Port::findOrFail($id);
         $request->validate([
             'name' => 'required',
+            'price' => 'required',
             'country_id' => 'required|unique:cities,id,' . $id, // Ensure the uniqueness rule excludes the current city
         ]);
         $portData = $request->all();
@@ -288,7 +290,7 @@ class ListingLocationController extends Controller
             ->route('admin_listing_option_service_view')
             ->with('success', 'Option service created successfully');
     }
-    
+
     public function option_service_edit($id)
     {
         $optionService = OptionService::findOrFail($id);

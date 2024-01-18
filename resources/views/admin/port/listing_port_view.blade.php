@@ -16,6 +16,7 @@
                     <tr>
                         <th>ID</th>
                         <th>{{ NAME }}</th>
+                        <th>{{ PRICE }}</th>
                         <th>Country</th>
                         <th>{{ ACTION }}</th>
                     </tr>
@@ -25,6 +26,7 @@
                             <tr>
                                 <td>{{ $listing_port->id }}</td>
                                 <td>{{ $listing_port->name }}</td>
+                                <td>{{ $listing_port->price }}</td>
                                 <td>{{ $listing_port->country->listing_location_name }}</td>
                                 <td>
                                     <a href="{{ route('admin_listing_port_edit',$listing_port->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>

@@ -3,43 +3,55 @@
     $slider = \App\Models\Slide::where('id', 1)->first();
     $countcars=\App\Models\Listing::all()->count();
 @endphp
+
+<style>
+    .border-bottom {
+        border-bottom: 2px solid gray;
+    }
+    .border-end{
+        border-bottom: 3px solid gray;
+    }
+</style>
+
 @section('content')
-    {{--    <div id="overlay"></div>--}}
-    {{--    <div id="dialog-box">--}}
-    {{--        <div class="container">--}}
-    {{--            <div class="row">--}}
-    {{--                <div class="col-md-12 col-lg-12 col-sm-12">--}}
-    {{--                    <button id="close-dialog">X</button>--}}
-    {{--                    <h2>Select Your Country!</h2>--}}
-    {{--                    <p>Select Your import country to check the inventory in stock.</p>--}}
-    {{--                </div>--}}
-    {{--                <div class="col-md-12 col-lg-12 col-sm-12 my-2">--}}
-    {{--                    <form action="{{ route('dialogbox') }}">--}}
-    {{--                        <select id="id_select2_example" name="location" style="width: 200px;">--}}
+    {{-- <div id="overlay"></div>--}}
+    {{-- <div id="dialog-box">--}}
+    {{-- <div class="container">--}}
+    {{-- <div class="row">--}}
+    {{-- <div class="col-md-12 col-lg-12 col-sm-12">--}}
+    {{-- <button id="close-dialog">X</button>--}}
+    {{-- <h2>Select Your Country!</h2>--}}
+    {{-- <p>Select Your import country to check the inventory in stock.</p>--}}
+    {{-- </div>--}}
+    {{-- <div class="col-md-12 col-lg-12 col-sm-12 my-2">--}}
+    {{-- <form action="{{ route('dialogbox') }}">--}}
+    {{-- <select id="id_select2_example" name="location" style="width: 200px;">--}}
 
-    {{--                            @foreach ($location as $locationitems)--}}
-    {{--                                <option value="{{ $locationitems->id }}"--}}
-    {{--                                        data-img_src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}">--}}
-    {{--                                    {{ $locationitems->listing_location_name }}</option>--}}
-    {{--                            @endforeach--}}
-    {{--                        </select>--}}
-    {{--                        <div class="col-md-3 col-sm-12 col-lg-3 col-12 my-3">--}}
-    {{--                            <button class="btn btn-primary w-100 py-2"--}}
-    {{--                                    type="submit">Submit--}}
-    {{--                            </button>--}}
-    {{--                        </div>--}}
-    {{--                    </form>--}}
-    {{--                </div>--}}
+    {{-- @foreach ($location as $locationitems)--}}
+    {{-- <option value="{{ $locationitems->id }}" --}} {{--
+                            data-img_src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}">
+                            --}}
+    {{-- {{ $locationitems->listing_location_name }}</option>--}}
+    {{-- @endforeach--}}
+    {{-- </select>--}}
+    {{-- <div class="col-md-3 col-sm-12 col-lg-3 col-12 my-3">--}}
+    {{-- <button class="btn btn-primary w-100 py-2" --}} {{-- type="submit">Submit--}}
+    {{-- </button>--}}
+    {{-- </div>--}}
+    {{-- </form>--}}
+    {{-- </div>--}}
 
-    {{--                <div class="col-md-12 col-sm-12 col-lg-12 col-12 my-3"><a href="{{ url('/') }}" class="float-right">--}}
-    {{--                        <p class="mt-2 btn btn-primary text-white"><i class="fas fa-globe mx-2" aria-hidden="true"></i>GO--}}
-    {{--                            TO--}}
-    {{--                            THE SS Japan</p>--}}
-    {{--                </div>--}}
-    {{--                </a>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+    {{-- <div class="col-md-12 col-sm-12 col-lg-12 col-12 my-3"><a href="{{ url('/') }}"
+            class="float-right">--}}
+    {{-- <p class="mt-2 btn btn-primary text-white"><i class="fas fa-globe mx-2"
+            aria-hidden="true"></i>GO--}}
+    {{-- TO--}}
+    {{-- THE SS Japan</p>--}}
+    {{-- </div>--}}
+    {{-- </a>--}}
+    {{-- </div>--}}
+    {{-- </div>--}}
+    {{-- </div>--}}
     <div class="container-fluid p-0">
         <section class="mob-hide">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -63,32 +75,27 @@
                 <div class="carousel-inner">
                     @if ($slider->slide1 != '')
                         <div class="carousel-item active">
-                            <img src="{{ asset('uploads/sliders/' . $slider->slide1) }}" class="d-block w-100"
-                                 alt="...">
+                            <img src="{{ asset('uploads/sliders/' . $slider->slide1) }}" class="d-block w-100" alt="...">
                         </div>
                     @endif
                     @if ($slider->slide2 != '')
                         <div class="carousel-item">
-                            <img src="{{ asset('uploads/sliders/' . $slider->slide2) }}" class="d-block w-100"
-                                 alt="...">
+                            <img src="{{ asset('uploads/sliders/' . $slider->slide2) }}" class="d-block w-100" alt="...">
                         </div>
                     @endif
                     @if ($slider->slide3 != '')
                         <div class="carousel-item">
-                            <img src="{{ asset('uploads/sliders/' . $slider->slide3) }}" class="d-block w-100"
-                                 alt="...">
+                            <img src="{{ asset('uploads/sliders/' . $slider->slide3) }}" class="d-block w-100" alt="...">
                         </div>
                     @endif
                     @if ($slider->slide4 != '')
                         <div class="carousel-item">
-                            <img src="{{ asset('uploads/sliders/' . $slider->slide4) }}" class="d-block w-100"
-                                 alt="...">
+                            <img src="{{ asset('uploads/sliders/' . $slider->slide4) }}" class="d-block w-100" alt="...">
                         </div>
                     @endif
                     @if ($slider->slide5 != '')
                         <div class="carousel-item">
-                            <img src="{{ asset('uploads/sliders/' . $slider->slide5) }}" class="d-block w-100"
-                                 alt="...">
+                            <img src="{{ asset('uploads/sliders/' . $slider->slide5) }}" class="d-block w-100" alt="...">
                         </div>
                     @endif
                 </div>
@@ -110,10 +117,10 @@
         @endif
 
         <section>
-            <div class="container-fluid mt-3">
+            <div class="container-fluid">
                 <div class="row ">
                     <!-- left Column -->
-                    <div class="col-md-2 order-2 order-sm-2  order-md-1 mb-4">
+                    <div class="col-md-2 order-2 order-sm-2  order-md-1 mb-4 pl-0">
                         {{-- left-sidebar --}}
                         <div class="first-side pb-4" style="position: sticky;top: 15px;max-height: 90vh;overflow: auto">
                             @include('front.layouts.left_sidebar')
@@ -124,20 +131,19 @@
 
                     <div class="col-md-8 order-1 order-sm-1 order-lg-1 search-box-wrapper px-md-5 px-lg-5 px-sm-0">
                         <div class="px-3 px-sm-3 px-md-0 px-lg-0">
-                            {{--                            <div class="row header-search-box">--}}
-                            {{--                                <div class="col-md-3"></div>--}}
-                            {{--                                <div class="col-md-4"></div>--}}
-                            {{--                                <div class="col-md-5 p-3 text-center primary"--}}
-                            {{--                                    style="color:white;border-top-left-radius:100px;">--}}
-                            {{--                                    <h5>{{$countcars}} Total Car </h5>--}}
-                            {{--                                </div>--}}
+                            {{-- <div class="row header-search-box">--}}
+                            {{-- <div class="col-md-3"></div>--}}
+                            {{-- <div class="col-md-4"></div>--}}
+                            {{-- <div class="col-md-5 p-3 text-center primary" --}} {{--
+                                style="color:white;border-top-left-radius:100px;">--}}
+                            {{-- <h5>{{$countcars}} Total Car </h5>--}}
+                            {{-- </div>--}}
 
-                            {{--                            </div>--}}
+                            {{-- </div>--}}
                             <form action="{{ route('filtercar') }}" method="POST" id="form-car">
                                 <div id="homefilter-body">
-                                    <div
-                                        class="row p-md-3 p-lg-3 pt-0 p-sm-1 p-1 search-box shadow rounded-bottom-2 bg-white"
-                                        style="border-top:5px solid #731718;">
+                                    <div class="row p-md-3 p-lg-3 pt-0 p-sm-1 p-1 search-box shadow rounded-bottom-2 bg-white"
+                                         style="border-top:5px solid #731718;">
                                         <div class="col-md-12">
                                             <h4 style="color:white;"><i class="fa fa-search" aria-hidden="true"></i>
                                                 Search for cars</h4>
@@ -146,8 +152,7 @@
                                     <!--make-->
                                         <div class="col-md-3 col-6 col-sm-6">
                                             <label for="" class="mb-2 font-weight-bold">Make</label>
-                                            <select name="brand" id="" class="w-100 form-select"
-                                                    onchange="brandChange()">
+                                            <select name="brand" id="" class="w-100 form-select" onchange="brandChange()">
                                                 <option value="">Select Make</option>
                                                 @foreach ($brands as $brandsitems)
                                                     <option value="{{ $brandsitems->id }}">
@@ -258,8 +263,7 @@
                                         </div>
                                         <!--button-->
                                         <div class="col-md-3">
-                                            <input type="submit" value="Search"
-                                                   class="btn btn-primary my-4 w-100 py-2"
+                                            <input type="submit" value="Search" class="btn btn-primary my-4 w-100 py-2"
                                                    style="background-color: #808080 !important;border-radius: 0 !important;margin-top: 30px !important;">
                                         </div>
                                         <!--steering-->
@@ -282,17 +286,17 @@
                                             </select>
                                         </div>
                                         <!--Type-->
-                                    {{--                                        <div class="col-md-4 col-sm-6 col-6">--}}
-                                    {{--                                            <label for="" class="mb-2 font-weight-bold">Location</label>--}}
-                                    {{--                                            <select name="location" id="" class="w-100 form-select">--}}
-                                    {{--                                                <option value="">Select Location</option>--}}
-                                    {{--                                                @foreach ($location as $locationitems)--}}
-                                    {{--                                                    <option value="{{ $locationitems->id }}">--}}
-                                    {{--                                                        {{ $locationitems->listing_location_name }}</option>--}}
-                                    {{--                                                @endforeach--}}
+                                    {{-- <div class="col-md-4 col-sm-6 col-6">--}}
+                                    {{-- <label for="" class="mb-2 font-weight-bold">Location</label>--}}
+                                    {{-- <select name="location" id="" class="w-100 form-select">--}}
+                                    {{-- <option value="">Select Location</option>--}}
+                                    {{-- @foreach ($location as $locationitems)--}}
+                                    {{-- <option value="{{ $locationitems->id }}">--}}
+                                    {{-- {{ $locationitems->listing_location_name }}</option>--}}
+                                    {{-- @endforeach--}}
 
-                                    {{--                                            </select>--}}
-                                    {{--                                        </div>--}}
+                                    {{-- </select>--}}
+                                    {{-- </div>--}}
                                     <!--price-->
                                         <div class="col-md-3 col-6 col-sm-6">
                                             <label for="steering" class="mb-2 font-weight-bold">Price</label>
@@ -301,7 +305,8 @@
                                         </div>
                                         <!--count-->
                                         <div class="col-md-3 col-6 col-sm-6" style="margin-bottom:20px;">
-                                            <span style="color: #FFFFFF;float: right;padding-top: 35px;">{{$countcars}} &nbsp;&nbsp;items match</span>
+                                        <span style="color: #FFFFFF;float: right;padding-top: 35px;">{{$countcars}}
+                                            &nbsp;&nbsp;items match</span>
                                         </div>
                                     </div>
                                 </div>
@@ -328,9 +333,8 @@
                                         <div class="border rounded box box-content position-relative">
                                             <div class="badge-used-car">{{$carsitems->listing_type}}</div>
                                             <!-- The image of the car -->
-                                            <img
-                                                src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
-                                                class="w-100" height="130" alt="car" style="object-fit: cover;">
+                                            <img src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
+                                                 class="w-100" height="130" alt="car" style="object-fit: cover;">
                                             <!-- Car details -->
                                             <div class="content">
                                                 <h2>{{ $carsitems->listing_name }}</h2>
@@ -344,9 +348,10 @@
                                                     <span>{{ $carsitems->listing_transmission }}</span>
                                                 </div>
                                                 <div class="price">
-                                                    <span>{{session()->get('currency_symbol')}} {{ $carsitems->listing_price }}</span>
-                                                    <span
-                                                        class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
+                                            <span>{{session()->get('currency_symbol')}} {{ $carsitems->listing_price
+                                                }}</span>
+                                                    <span class="update">Updated {{ $carsitems->updated_at->diffForHumans()
+                                                }}</span>
                                                 </div>
                                                 <div class="favorite-button" id="addToFavoritesBtn"
                                                      data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
@@ -360,81 +365,88 @@
                                 </div>
                             @endforeach
 
-                            {{--                                                                <div class="col-md-2 col-sm-12 col-lg-3 mb-5 mob-hide">--}}
-                            {{--                                    <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}"--}}
-                            {{--                                        class="text-dark box-content" style="text-decoration: none;">--}}
-                            {{--                                        <div class="border rounded box box-content position-relative">--}}
-                            {{--                                            <img src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"--}}
-                            {{--                                                class="w-100" height="130" alt="car">--}}
-                            {{--                                            @if ($carsitems->listing_stock_status == 'in_stock')--}}
-                            {{--                                                <span class="badge position-absolute start-0 p-2 text-light primary">In--}}
-                            {{--                                                    Stock</span>--}}
-                            {{--                                            @elseif($carsitems->listing_stock_status == 'reserved')--}}
-                            {{--                                                <span--}}
-                            {{--                                                    class="badge position-absolute start-0 p-2 text-light primary">Reserved</span>--}}
-                            {{--                                            @else--}}
-                            {{--                                                <span--}}
-                            {{--                                                    class="badge position-absolute start-0 p-2 text-light primary">SOLD</span>--}}
-                            {{--                                            @endif--}}
+                            {{-- <div class="col-md-2 col-sm-12 col-lg-3 mb-5 mob-hide">--}}
+                            {{-- <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}"
+                                --}} {{-- class="text-dark box-content" style="text-decoration: none;">--}}
+                            {{-- <div class="border rounded box box-content position-relative">--}}
+                            {{-- <img
+                                src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
+                                --}} {{-- class="w-100" height="130" alt="car">--}}
+                            {{-- @if ($carsitems->listing_stock_status == 'in_stock')--}}
+                            {{-- <span class="badge position-absolute start-0 p-2 text-light primary">In--}}
+                            {{-- Stock</span>--}}
+                            {{-- @elseif($carsitems->listing_stock_status == 'reserved')--}}
+                            {{-- <span--}} {{-- class="badge position-absolute start-0 p-2 text-light primary">
+                                        Reserved</span>--}}
+                            {{-- @else--}}
+                            {{-- <span--}} {{--
+                                            class="badge position-absolute start-0 p-2 text-light primary">
+                                            SOLD</span>--}}
+                            {{-- @endif--}}
 
-                            {{--                                            <div class="p-2 ">--}}
+                            {{-- <div class="p-2 ">--}}
 
-                            {{--                                                <h6 class="my-1">{{ $carsitems->listing_name }}</h6>--}}
-                            {{--                                                <div class="d-block">--}}
+                            {{-- <h6 class="my-1">{{ $carsitems->listing_name }}</h6>--}}
+                            {{-- <div class="d-block">--}}
 
-                            {{--                                                    <small class=" fw-bold d-block  mt-1">--}}
-                            {{--                                                        Stock-id: <span class="text-danger ">{{ $carsitems->listing_stock_id }}</span>--}}
-                            {{--                                                    </small>--}}
-                            {{--                                                    <small>--}}
+                            {{-- <small class=" fw-bold d-block  mt-1">--}}
+                            {{-- Stock-id: <span class="text-danger ">{{
+                                $carsitems->listing_stock_id }}</span>--}}
+                            {{-- </small>--}}
+                            {{-- <small>--}}
 
-                            {{--                                                        @if (Auth::check())--}}
-                            {{--                                                            Price:<span class="text-danger fw-bold">--}}
-                            {{--                                                            @if(!session()->get('currency_symbol'))--}}
-                            {{--                                                                ${{ round($carsitems->listing_price,2) }}--}}
-                            {{--                                                            @else--}}
-                            {{--                                                                {{ session()->get('currency_symbol') }}{{ round($carsitems->listing_price*session()->get('currency_value'),2) }}--}}
-                            {{--                                                            @endif</span>--}}
-                            {{--                                                        @else--}}
-                            {{--                                                            Price:<span class="text-danger fw-bold"> <a--}}
-                            {{--                                                                    class="w-25  text-danger"--}}
-                            {{--                                                                    href="{{ route('customer_login') }}"><u>login</u></a></span>--}}
-                            {{--                                                        @endif--}}
-                            {{--                                                        </span>--}}
-                            {{--                                                    </small>--}}
-                            {{--                                                </div>--}}
-
-
-                            {{--                                                <small class=" fw-bold d-block  mt-1">--}}
-                            {{--                                                    Type: <span class="text-danger ">{{ $carsitems->listing_type }}</span>--}}
-                            {{--                                                </small>--}}
-
-
-                            {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                            {{--                                                    Fuel: <span--}}
-                            {{--                                                        class="text-danger">{{ $carsitems->listing_fuel_type }}</span>--}}
-                            {{--                                                </small>--}}
+                            {{-- @if (Auth::check())--}}
+                            {{-- Price:<span class="text-danger fw-bold">--}}
+                            {{-- @if(!session()->get('currency_symbol'))--}}
+                            {{-- ${{ round($carsitems->listing_price,2) }}--}}
+                            {{-- @else--}}
+                            {{-- {{ session()->get('currency_symbol') }}{{
+                            round($carsitems->listing_price*session()->get('currency_value'),2)
+                            }}--}}
+                            {{-- @endif</span>--}}
+                            {{-- @else--}}
+                            {{-- Price:<span class="text-danger fw-bold">
+                                <a--}} {{-- class="w-25  text-danger" --}} {{--
+                                                                href="{{ route('customer_login') }}">
+                                                                <u>login</u></a></span>--}}
+                            {{-- @endif--}}
+                            {{-- </span>--}}
+                            {{-- </small>--}}
+                            {{-- </div>--}}
 
 
-                            {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                            {{--                                                    Engine: <span--}}
-                            {{--                                                        class="text-danger">{{ $carsitems->listing_engine_capacity }}</span>--}}
-                            {{--                                                </small>--}}
-                            {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                            {{--                                                    Transmission: <span--}}
-                            {{--                                                        class="text-danger">{{ $carsitems->listing_transmission }}</span>--}}
-                            {{--                                                </small>--}}
-                            {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                            {{--                                                    Steering: <span--}}
-                            {{--                                                        class="text-danger">{{ $carsitems->steering }}</span>--}}
-                            {{--                                                </small>--}}
+                            {{-- <small class=" fw-bold d-block  mt-1">--}}
+                            {{-- Type: <span class="text-danger ">{{ $carsitems->listing_type }}</span>--}}
+                            {{-- </small>--}}
+
+
+                            {{-- <small class="fw-bold d-block  mt-1">--}}
+                            {{-- Fuel: <span--}} {{-- class="text-danger">{{ $carsitems->listing_fuel_type }}</span>--}}
+                            {{-- </small>--}}
+
+
+                            {{-- <small class="fw-bold d-block  mt-1">--}}
+                            {{-- Engine: <span--}} {{-- class="text-danger">{{ $carsitems->listing_engine_capacity
+                                }}</span>--}}
+                            {{-- </small>--}}
+                            {{-- <small class="fw-bold d-block  mt-1">--}}
+                            {{-- Transmission: <span--}} {{-- class="text-danger">{{ $carsitems->listing_transmission
+                                }}</span>--}}
+                            {{-- </small>--}}
+                            {{-- <small class="fw-bold d-block  mt-1">--}}
+                            {{-- Steering: <span--}} {{-- class="text-danger">{{ $carsitems->steering }}</span>--}}
+                            {{-- </small>--}}
 
 
 
 
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </a>--}}
-                            {{--                                </div>--}}
+                            {{--
+                        </div>--}}
+                            {{--
+                        </div>--}}
+                            {{-- </a>--}}
+                            {{--
+                        </div>--}}
 
                             <div class=" desktop-hide col-12 ">
 
@@ -446,14 +458,11 @@
                                                 <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}"
                                                    class="text-dark box-content" style="text-decoration: none;">
                                                     <div class="border rounded box box-content position-relative">
-                                                        <img
-                                                            src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
-                                                            height="130" class="w-100" alt="car"
-                                                            style="object-fit: cover;">
+                                                        <img src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
+                                                             height="130" class="w-100" alt="car" style="object-fit: cover;">
                                                         @if ($carsitems->listing_stock_status == 'in_stock')
-                                                            <span
-                                                                class="badge position-absolute start-0 p-2 top-0 text-light primary">In
-                                                                    Stock</span>
+                                                            <span class="badge position-absolute start-0 p-2 top-0 text-light primary">In
+                                        Stock</span>
                                                         @elseif($carsitems->listing_stock_status == 'reserved')
                                                             <span
                                                                 class="badge position-absolute start-0 p-2 top-0 text-light primary">Reserved</span>
@@ -466,50 +475,48 @@
                                                             <h6 class="my-1">{{ $carsitems->listing_name }}</h6>
                                                             <div class="d-block">
                                                                 <small class=" fw-bold d-block  mt-1">
-                                                                    Stock-id: <span
-                                                                        class="text-danger ">{{ $carsitems->listing_stock_id }}</span>
+                                                                    Stock-id: <span class="text-danger ">{{ $carsitems->listing_stock_id
+                                                    }}</span>
                                                                 </small>
                                                                 <small>
 
                                                                     @if (Auth::check())
                                                                         Price:<span class="text-danger fw-bold">
-                                                                            @if(!session()->get('currency_symbol'))
+                                                    @if(!session()->get('currency_symbol'))
                                                                                 ${{ round($carsitems->listing_price,2) }}
                                                                             @else
-                                                                                {{ session()->get('currency_symbol') }}{{ round($carsitems->listing_price*session()->get('currency_value'),2) }}
+                                                                                {{ session()->get('currency_symbol') }}{{
+                                                    round($carsitems->listing_price*session()->get('currency_value'),2)
+                                                    }}
                                                                             @endif</span>
                                                                     @else
-                                                                        Price:<span class="text-danger fw-bold"> <a
-                                                                                class="w-25  text-danger"
-                                                                                href="{{ route('customer_login') }}"><u>login</u></a></span>
+                                                                        Price:<span class="text-danger fw-bold"> <a class="w-25  text-danger"
+                                                                                                                    href="{{ route('customer_login') }}"><u>login</u></a></span>
                                                                         @endif
                                                                         </span>
                                                                 </small>
                                                             </div>
                                                             <small class=" fw-bold d-block mt-1">
-                                                                Type: <span
-                                                                    class="text-danger">{{ $carsitems->listing_type }}</span>
+                                                                Type: <span class="text-danger">{{ $carsitems->listing_type }}</span>
                                                             </small>
 
 
                                                             <small class="fw-bold d-block  mt-1">
-                                                                Fuel: <span
-                                                                    class="text-danger">{{ $carsitems->listing_fuel_type }}</span>
+                                                                Fuel: <span class="text-danger">{{ $carsitems->listing_fuel_type }}</span>
                                                             </small>
 
 
                                                             <small class="fw-bold d-block  mt-1">
-                                                                Engine: <span
-                                                                    class="text-danger">{{ $carsitems->listing_engine_capacity }}</span>
+                                                                Engine: <span class="text-danger">{{ $carsitems->listing_engine_capacity
+                                                }}</span>
                                                             </small>
                                                             <small class="fw-bold d-block  mt-1">
-                                                                Transmission: <span
-                                                                    class="text-danger">{{ $carsitems->listing_transmission }}</span>
+                                                                Transmission: <span class="text-danger">{{ $carsitems->listing_transmission
+                                                }}</span>
                                                             </small>
 
                                                             <small class="fw-bold d-block  mt-1">
-                                                                Steering: <span
-                                                                    class="text-danger">{{ $carsitems->steering }}</span>
+                                                                Steering: <span class="text-danger">{{ $carsitems->steering }}</span>
                                                             </small>
 
 
@@ -551,9 +558,8 @@
                                             <div class="border rounded box box-content position-relative">
                                                 <div class="badge-used-car">Used Car</div>
                                                 <!-- The image of the car -->
-                                                <img
-                                                    src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
-                                                    class="w-100" height="130" alt="car" style="object-fit: cover;">
+                                                <img src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
+                                                     class="w-100" height="130" alt="car" style="object-fit: cover;">
                                                 <!-- Car details -->
                                                 <div class="content">
                                                     <h2>{{ $carsitems->listing_name }}</h2>
@@ -569,13 +575,11 @@
                                                     </div>
                                                     <div class="price">
                                                         <span>{{session()->get('currency_symbol')}} {{ $carsitems->listing_price }}</span>
-                                                        <span
-                                                            class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
+                                                        <span class="update">Updated {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                     </div>
                                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                                     <div class="favorite-button" id="addToFavoritesBtn"
-                                                         data-listing-id="{{ $carsitems->id }}"
-                                                         onclick="addToFavorites()">
+                                                         data-listing-id="{{ $carsitems->id }}" onclick="addToFavorites()">
                                                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                                                     </div>
                                                     <button>GET A PRICE QUOTE NOW</button>
@@ -583,76 +587,81 @@
                                             </div>
                                         </a>
                                     </div>
-                                    {{--                                <div class="col-md-2 col-sm-12 col-lg-3 mb-5 mob-hide">--}}
-                                    {{--                                    <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}"--}}
-                                    {{--                                        class="text-dark box-content" style="text-decoration: none;">--}}
-                                    {{--                                        <div class="border rounded box box-content position-relative">--}}
-                                    {{--                                            <img src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"--}}
-                                    {{--                                                class="w-100" height="130" alt="car">--}}
-                                    {{--                                            @if ($carsitems->listing_stock_status == 'in_stock')--}}
-                                    {{--                                                <span class="badge position-absolute start-0 p-2 text-light primary">In--}}
-                                    {{--                                                    Stock</span>--}}
-                                    {{--                                            @elseif($carsitems->listing_stock_status == 'reserved')--}}
-                                    {{--                                                <span--}}
-                                    {{--                                                    class="badge position-absolute start-0 p-2 text-light primary">Reserved</span>--}}
-                                    {{--                                            @else--}}
-                                    {{--                                                <span--}}
-                                    {{--                                                    class="badge position-absolute start-0 p-2 text-light primary">SOLD</span>--}}
-                                    {{--                                            @endif--}}
-                                    {{--                                            <div class="p-2">--}}
+                                    {{-- <div class="col-md-2 col-sm-12 col-lg-3 mb-5 mob-hide">--}}
+                                    {{-- <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}" --}} {{--
+                        class="text-dark box-content" style="text-decoration: none;">--}}
+                                    {{-- <div class="border rounded box box-content position-relative">--}}
+                                    {{-- <img
+                                        src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
+                                        --}} {{-- class="w-100" height="130" alt="car">--}}
+                                    {{-- @if ($carsitems->listing_stock_status == 'in_stock')--}}
+                                    {{-- <span class="badge position-absolute start-0 p-2 text-light primary">In--}}
+                                    {{-- Stock</span>--}}
+                                    {{-- @elseif($carsitems->listing_stock_status == 'reserved')--}}
+                                    {{-- <span--}} {{-- class="badge position-absolute start-0 p-2 text-light primary">
+                                Reserved</span>--}}
+                                    {{-- @else--}}
+                                    {{-- <span--}} {{-- class="badge position-absolute start-0 p-2 text-light primary">
+                                    SOLD</span>--}}
+                                    {{-- @endif--}}
+                                    {{-- <div class="p-2">--}}
 
-                                    {{--                                                <h6 class="my-1">{{ $carsitems->listing_name }}</h6>--}}
-                                    {{--                                                <div class="d-block">--}}
-                                    {{--                                                    <small class=" fw-bold d-block  mt-1">--}}
-                                    {{--                                                        Stock-id: <span class="text-danger ">{{ $carsitems->listing_stock_id }}</span>--}}
-                                    {{--                                                    </small>--}}
-                                    {{--                                                    <small>--}}
+                                    {{-- <h6 class="my-1">{{ $carsitems->listing_name }}</h6>--}}
+                                    {{-- <div class="d-block">--}}
+                                    {{-- <small class=" fw-bold d-block  mt-1">--}}
+                                    {{-- Stock-id: <span class="text-danger ">{{
+                                        $carsitems->listing_stock_id }}</span>--}}
+                                    {{-- </small>--}}
+                                    {{-- <small>--}}
 
-                                    {{--                                                        @if (Auth::check())--}}
-                                    {{--                                                            Price:<span class="text-danger fw-bold">--}}
-                                    {{--                                                            @if(!session()->get('currency_symbol'))--}}
-                                    {{--                                                                ${{ round($carsitems->listing_price,2) }}--}}
-                                    {{--                                                            @else--}}
-                                    {{--                                                                {{ session()->get('currency_symbol') }}{{ round($carsitems->listing_price*session()->get('currency_value'),2) }}--}}
-                                    {{--                                                            @endif</span>--}}
-                                    {{--                                                        @else--}}
-                                    {{--                                                            Price:<span class="text-danger fw-bold"> <a--}}
-                                    {{--                                                                    class="w-25  text-danger"--}}
-                                    {{--                                                                    href="{{ route('customer_login') }}"><u>login</u></a></span>--}}
-                                    {{--                                                        @endif--}}
-                                    {{--                                                        </span>--}}
-                                    {{--                                                    </small>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                                <small class=" fw-bold d-block mt-1">--}}
-                                    {{--                                                    Type: <span class="text-danger">{{ $carsitems->listing_type }}</span>--}}
-                                    {{--                                                </small>--}}
-
-
-                                    {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                                    {{--                                                    Fuel: <span--}}
-                                    {{--                                                        class="text-danger">{{ $carsitems->listing_fuel_type }}</span>--}}
-                                    {{--                                                </small>--}}
+                                    {{-- @if (Auth::check())--}}
+                                    {{-- Price:<span class="text-danger fw-bold">--}}
+                                    {{-- @if(!session()->get('currency_symbol'))--}}
+                                    {{-- ${{ round($carsitems->listing_price,2) }}--}}
+                                    {{-- @else--}}
+                                    {{-- {{ session()->get('currency_symbol') }}{{
+                                    round($carsitems->listing_price*session()->get('currency_value'),2)
+                                    }}--}}
+                                    {{-- @endif</span>--}}
+                                    {{-- @else--}}
+                                    {{-- Price:<span class="text-danger fw-bold">
+                                        <a--}} {{-- class="w-25  text-danger" --}} {{--
+                                                        href="{{ route('customer_login') }}"><u>login</u></a></span>--}}
+                                    {{-- @endif--}}
+                                    {{-- </span>--}}
+                                    {{-- </small>--}}
+                                    {{-- </div>--}}
+                                    {{-- <small class=" fw-bold d-block mt-1">--}}
+                                    {{-- Type: <span class="text-danger">{{ $carsitems->listing_type }}</span>--}}
+                                    {{-- </small>--}}
 
 
-                                    {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                                    {{--                                                    Engine: <span--}}
-                                    {{--                                                        class="text-danger">{{ $carsitems->listing_engine_capacity }}</span>--}}
-                                    {{--                                                </small>--}}
-                                    {{--                                                <small class="fw-bold d-block  mt-1">--}}
-                                    {{--                                                    Transmission: <span--}}
-                                    {{--                                                        class="text-danger">{{ $carsitems->listing_transmission }}</span>--}}
-                                    {{--                                                </small>--}}
-
-                                    {{--                                                <small class=" fw-bold d-block  mt-1">--}}
-                                    {{--                                                   Steering: <span class="text-danger ">{{ $carsitems->steering }}</span>--}}
-                                    {{--                                                </small>--}}
+                                    {{-- <small class="fw-bold d-block  mt-1">--}}
+                                    {{-- Fuel: <span--}} {{-- class="text-danger">{{ $carsitems->listing_fuel_type }}</span>--}}
+                                    {{-- </small>--}}
 
 
+                                    {{-- <small class="fw-bold d-block  mt-1">--}}
+                                    {{-- Engine: <span--}} {{-- class="text-danger">{{ $carsitems->listing_engine_capacity }}</span>--}}
+                                    {{-- </small>--}}
+                                    {{-- <small class="fw-bold d-block  mt-1">--}}
+                                    {{-- Transmission: <span--}} {{-- class="text-danger">{{ $carsitems->listing_transmission
+                        }}</span>--}}
+                                    {{-- </small>--}}
 
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </a>--}}
-                                    {{--                                </div>--}}
+                                    {{-- <small class=" fw-bold d-block  mt-1">--}}
+                                    {{-- Steering: <span class="text-danger ">{{ $carsitems->steering }}</span>--}}
+                                    {{-- </small>--}}
+
+
+
+                                    {{--
+                                </div>--}}
+                                    {{--
+                                </div>--}}
+                                    {{-- </a>--}}
+                                    {{--
+                            </div>--}}
                                 @endforeach
                                 <div class="desktop-hide col-12">
 
@@ -664,71 +673,60 @@
                                                     <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}"
                                                        class="text-dark box-content" style="text-decoration: none;">
                                                         <div class="border rounded box box-content position-relative">
-                                                            <img
-                                                                src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
-                                                                height="130" class="w-100" alt="car"
-                                                                style="object-fit: cover;">
+                                                            <img src="{{ asset('uploads/listing_featured_photos/' . $carsitems->listing_featured_photo) }}"
+                                                                 height="130" class="w-100" alt="car" style="object-fit: cover;">
                                                             @if ($carsitems->listing_stock_status == 'in_stock')
-                                                                <span
-                                                                    class="badge position-absolute start-0 p-2 top-0 text-light primary">In
-                                                                Stock</span>
+                                                                <span class="badge position-absolute start-0 p-2 top-0 text-light primary">In
+                            Stock</span>
                                                             @elseif($carsitems->listing_stock_status == 'reserved')
-                                                                <span
-                                                                    class="badge position-absolute start-0 p-2 top-0 text-light primary">Reserved</span>
+                                                                <span class="badge position-absolute start-0 p-2 top-0 text-light primary">Reserved</span>
                                                             @else
-                                                                <span
-                                                                    class="badge position-absolute start-0 p-2 text-light top-0 primary">SOLD</span>
+                                                                <span class="badge position-absolute start-0 p-2 text-light top-0 primary">SOLD</span>
                                                             @endif
                                                             <div class="p-2">
 
                                                                 <h6 class="my-1">{{ $carsitems->listing_name }}</h6>
                                                                 <div class="d-block">
                                                                     <small class=" fw-bold d-block  mt-1">
-                                                                        Stock-id: <span
-                                                                            class="text-danger ">{{ $carsitems->listing_stock_id }}</span>
+                                                                        Stock-id: <span class="text-danger ">{{ $carsitems->listing_stock_id }}</span>
                                                                     </small>
                                                                     <small>
 
                                                                         @if (Auth::check())
                                                                             Price:<span class="text-danger fw-bold">
-                                                                        @if(!session()->get('currency_symbol'))
+                                        @if(!session()->get('currency_symbol'))
                                                                                     ${{ round($carsitems->listing_price,2) }}
                                                                                 @else
-                                                                                    {{ session()->get('currency_symbol') }}{{ round($carsitems->listing_price*session()->get('currency_value'),2) }}
+                                                                                    {{ session()->get('currency_symbol') }}{{
+                                        round($carsitems->listing_price*session()->get('currency_value'),2) }}
                                                                                 @endif</span>
                                                                         @else
-                                                                            Price:<span class="text-danger fw-bold"> <a
-                                                                                    class="w-25  text-danger"
-                                                                                    href="{{ route('customer_login') }}"><u>login</u></a></span>
+                                                                            Price:<span class="text-danger fw-bold"> <a class="w-25  text-danger"
+                                                                                                                        href="{{ route('customer_login') }}"><u>login</u></a></span>
                                                                             @endif
                                                                             </span>
                                                                     </small>
                                                                 </div>
                                                                 <small class=" fw-bold d-block mt-1">
-                                                                    Type: <span
-                                                                        class="text-danger">{{ $carsitems->listing_type }}</span>
+                                                                    Type: <span class="text-danger">{{ $carsitems->listing_type }}</span>
                                                                 </small>
 
 
                                                                 <small class="fw-bold d-block  mt-1">
-                                                                    Fuel: <span
-                                                                        class="text-danger">{{ $carsitems->listing_fuel_type }}</span>
+                                                                    Fuel: <span class="text-danger">{{ $carsitems->listing_fuel_type }}</span>
                                                                 </small>
 
 
                                                                 <small class="fw-bold d-block  mt-1">
-                                                                    Engine: <span
-                                                                        class="text-danger">{{ $carsitems->listing_engine_capacity }}</span>
+                                                                    Engine: <span class="text-danger">{{ $carsitems->listing_engine_capacity }}</span>
                                                                 </small>
                                                                 <small class="fw-bold d-block  mt-1">
-                                                                    Transmission: <span
-                                                                        class="text-danger">{{ $carsitems->listing_transmission }}</span>
+                                                                    Transmission: <span class="text-danger">{{ $carsitems->listing_transmission }}</span>
                                                                 </small>
 
 
                                                                 <small class=" fw-bold d-block  mt-1">
-                                                                    Steering: <span
-                                                                        class="text-danger ">{{ $carsitems->steering }}</span>
+                                                                    Steering: <span class="text-danger ">{{ $carsitems->steering }}</span>
                                                                 </small>
 
 
@@ -809,8 +807,7 @@
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-3">
-                                            <img src="{{asset('images/sedan.png')}}" alt="Car" class="custom-icon"
-                                                 style="height:5em;">
+                                            <img src="{{asset('images/sedan.png')}}" alt="Car" class="custom-icon" style="height:5em;">
                                         </div>
                                         <div class="col-8">
                                             <ul class="list-unstyled ">
@@ -898,25 +895,23 @@
 
                             </div>
                             <span class="w-50 mob-100 float-left">
-                                    <h2>Client Reviews</h2>
-                                </span>
+    <h2>Client Reviews</h2>
+</span>
                             <span class="w-50">
-                                    <a href="{{route('allreviews')}}">
-                                        <button class="btn btn-primary float-right px-4 py-2">View All</button>
-                                    </a>
-                                    <a href="{{ route('add-review') }}">
-                                        <button class="btn btn-primary float-right px-4 py-2">Add Review</button>
-                                    </a>
-                                </span>
-                            <input class="hidden" id="appurl" value="{{ env('APP_URL') }}"/>
+    <a href="{{route('allreviews')}}">
+        <button class="btn btn-primary float-right px-4 py-2">View All</button>
+    </a>
+    <a href="{{ route('add-review') }}">
+        <button class="btn btn-primary float-right px-4 py-2">Add Review</button>
+    </a>
+</span>
+                            <input class="hidden" id="appurl" value="{{ env('APP_URL') }}" />
                             <div class="reviews-container">
                                 @foreach ($clientreviews as $reviews)
                                     @if ($reviews->listing)
                                         <div class="review-item">
-                                            <img
-                                                src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}"
-                                                alt="Car"
-                                                class="review-car-image">
+                                            <img src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}" alt="Car"
+                                                 class="review-car-image">
                                             <div class="review-content">
                                                 <h6 style="color:#020a0a;">{{ $reviews->name }}</h6>
                                                 <img style="float:right;padding-right:2em;"
@@ -933,13 +928,11 @@
                                                 @endphp
 
                                                 <!-- Display filled stars -->
-                                                    @for ($i = 0; $i < $filledStars; $i++)
-                                                        <i class="fas fa-star" style="color:#F9C303;"></i>
+                                                    @for ($i = 0; $i < $filledStars; $i++) <i class="fas fa-star" style="color:#F9C303;"></i>
                                                     @endfor
 
                                                 <!-- Display empty stars -->
-                                                    @for ($i = 0; $i < $emptyStars; $i++)
-                                                        <i class="far fa-star" style="color: #F9C303;"></i>
+                                                    @for ($i = 0; $i < $emptyStars; $i++) <i class="far fa-star" style="color: #F9C303;"></i>
                                                     @endfor
                                                     <br>
                                                     <p><small class="fw-bold">
@@ -951,15 +944,13 @@
                                                         Buyer</strong>
                                                     <small class="d-block">{{ $reviews->review }}</small>
                                                 </div>
-                                                {{--                                                        <p class="review-title">{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}</p>--}}
-                                                {{--                                                        <p class="review-details">{{ $reviews->review ? $reviews->review : 'null' }}</p>--}}
-                                                <p class="review-meta">Review on <strong
-                                                        style="color:#0b0be7;">{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}</strong>
+                                                {{-- <p class="review-title">{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}</p>--}}
+                                                {{-- <p class="review-details">{{ $reviews->review ? $reviews->review : 'null' }}</p>--}}
+                                                <p class="review-meta">Review on <strong style="color:#0b0be7;">{{ $reviews->listing->listing_name ?
+                    $reviews->listing->listing_name : 'null' }}</strong>
                                                 </p>
                                                 <p style="float: right; padding-right:2em;">
-                                                    Like &nbsp;&nbsp;<a class="like_button"
-                                                                        data-reviewid="{{ $reviews->id }}"
-                                                                        href="javascript:void(0)"><i
+                                                    Like &nbsp;&nbsp;<a class="like_button" data-reviewid="{{ $reviews->id }}" href="javascript:void(0)"><i
                                                             class="fa fa-thumbs-up" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                                     (<span class="likeCount">5</span>)
                                                 </p>
@@ -971,240 +962,220 @@
                                         <hr>
                                 @endif
                             @endforeach
-                            {{--                                            <div class="review-text">--}}
-                            {{--                                                <p class="review-title">Happy with belta</p>--}}
-                            {{--                                                <p class="review-details">I like the car and the mileage is good.</p>--}}
-                            {{--                                                <p class="review-meta">Review on TOYOTA Belta (DBA-KSP92)</p>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="review-actions">--}}
-                            {{--                                                <!-- Insert action buttons here -->--}}
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
+                            {{-- <div class="review-text">--}}
+                            {{-- <p class="review-title">Happy with belta</p>--}}
+                            {{-- <p class="review-details">I like the car and the mileage is good.</p>--}}
+                            {{-- <p class="review-meta">Review on TOYOTA Belta (DBA-KSP92)</p>--}}
+                            {{-- </div>--}}
+                            {{-- <div class="review-actions">--}}
+                            {{--
+                            <!-- Insert action buttons here -->--}}
+                            {{--
+                        </div>--}}
+                            {{--
+                        </div>--}}
+                            {{-- </div>--}}
                             <!-- Repeat for the second review -->
                             </div>
 
-                            {{--                                <div class="row my-5 mob-hide">--}}
-                            {{--                                <div class="col-md-12">--}}
+                            {{-- <div class="row my-5 mob-hide">--}}
+                            {{-- <div class="col-md-12">--}}
 
 
 
-                            {{--                                    @foreach ($clientreviews as $reviews)--}}
-                            {{--                                        @if ($reviews->listing)--}}
-                            {{--                                            <div--}}
-                            {{--                                                data-name="{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}"--}}
-                            {{--                                                data-img="{{ $reviews->listing->listing_featured_photo ? $reviews->listing->listing_featured_photo : 'null' }}"--}}
-                            {{--                                                data-review="{{ $reviews->review ? $reviews->review : 'null' }}"--}}
-                            {{--                                                data-car_name="{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}"--}}
-                            {{--                                                data-time="{{ $reviews->created_at ? $reviews->created_at : 'null' }}">--}}
-                            {{--                                                <a type="button" class="bg-transparent border-0 m-0 p-0 w-100"--}}
-                            {{--                                                   style="cursor:pointer" data-bs-toggle="modal"--}}
-                            {{--                                                   data-bs-target="#exampleModal1">--}}
+                            {{-- @foreach ($clientreviews as $reviews)--}}
+                            {{-- @if ($reviews->listing)--}}
+                            {{-- <div--}} {{-- data-name="{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}" --}} {{--
+            data-img="{{ $reviews->listing->listing_featured_photo ? $reviews->listing->listing_featured_photo : 'null' }}"
+            --}} {{-- data-review="{{ $reviews->review ? $reviews->review : 'null' }}" --}} {{--
+            data-car_name="{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}" --}} {{--
+            data-time="{{ $reviews->created_at ? $reviews->created_at : 'null' }}">--}}
+                            {{-- <a type="button" class="bg-transparent border-0 m-0 p-0 w-100" --}} {{-- style="cursor:pointer"
+                data-bs-toggle="modal" --}} {{-- data-bs-target="#exampleModal1">--}}
 
 
-                            {{--                                                    <div class="row mt-4 client-box2 py-1">--}}
+                            {{-- <div class="row mt-4 client-box2 py-1">--}}
 
-                            {{--                                                        <div class="col-md-3 col-lg-3 col-sm-12"--}}
-                            {{--                                                             style="background:url('{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}');background-size:cover;padding:7% 0px;"--}}
-                            {{--                                                             alt="{{ $reviews->listing->listing_name }}')">--}}
-
-
-                            {{--                                                        </div>--}}
-                            {{--                                                        <div class="col-md-9 col-sm-12 col-lg-9"--}}
-                            {{--                                                             style="text-align:left;">--}}
+                            {{-- <div class="col-md-3 col-lg-3 col-sm-12" --}} {{--
+                        style="background:url('{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}');background-size:cover;padding:7% 0px;"
+                        --}} {{-- alt="{{ $reviews->listing->listing_name }}')">--}}
 
 
-                            {{--                                                        @php--}}
-                            {{--                                                            $reviewValue = $reviews->rating; // Your review value from the backend--}}
-                            {{--                                                            $maxStars = 5; // Maximum number of stars--}}
-
-                            {{--                                                            // Calculate the number of filled and empty stars--}}
-                            {{--                                                            $filledStars = min($reviewValue, $maxStars);--}}
-                            {{--                                                            $emptyStars = $maxStars - $filledStars;--}}
-                            {{--                                                        @endphp--}}
-
-                            {{--                                                        <!-- Display filled stars -->--}}
-                            {{--                                                            @for ($i = 0; $i < $filledStars; $i++)--}}
-                            {{--                                                                <i class="fas fa-star" style="color:#F9C303;"></i>--}}
-                            {{--                                                            @endfor--}}
-
-                            {{--                                                        <!-- Display empty stars -->--}}
-                            {{--                                                            @for ($i = 0; $i < $emptyStars; $i++)--}}
-                            {{--                                                                <i class="far fa-star" style="color: #F9C303;"></i>--}}
-                            {{--                                                            @endfor--}}
-                            {{--                                                            <h6 class="fw-bold" style="color:#731718;">--}}
-                            {{--                                                                {{ $reviews->agent->name }}</h6>--}}
-                            {{--                                                            <small class="d-block">{{ $reviews->review }}</small>--}}
-                            {{--                                                        </div>--}}
+                            {{-- </div>--}}
+                            {{-- <div class="col-md-9 col-sm-12 col-lg-9" --}} {{-- style="text-align:left;">--}}
 
 
-                            {{--                                                    </div>--}}
+                            {{-- @php--}}
+                            {{-- $reviewValue = $reviews->rating; // Your review value from the backend--}}
+                            {{-- $maxStars = 5; // Maximum number of stars--}}
 
-                            {{--                                                </a>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        @endif--}}
-                            {{--                                    @endforeach--}}
+                            {{-- // Calculate the number of filled and empty stars--}}
+                            {{-- $filledStars = min($reviewValue, $maxStars);--}}
+                            {{-- $emptyStars = $maxStars - $filledStars;--}}
+                            {{-- @endphp--}}
 
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                            {{--
+                            <!-- Display filled stars -->--}}
+                            {{-- @for ($i = 0; $i < $filledStars; $i++)--}} {{-- <i class="fas fa-star"
+                            style="color:#F9C303;"></i>--}}
+                            {{-- @endfor--}}
 
-
-                            {{--                            <div class="row my-5 desktop-hide">--}}
-                            {{--                                <div class="col-md-12">--}}
-                            {{--                                    <h2>Client Reviews</h2>--}}
-                            {{--                                    <a href="{{ route('allreviews') }}" class="d-block my-4">--}}
-                            {{--                                        <button--}}
-                            {{--                                            class="btn btn-primary  py-2">View All--}}
-                            {{--                                        </button>--}}
-                            {{--                                    </a>--}}
-
-
-                            {{--                                    <div class="owl-carousel owl-theme">--}}
-                            {{--                                        @foreach ($clientreviews as $reviews)--}}
-                            {{--                                            @if ($reviews->listing)--}}
-                            {{--                                                <div class="items">--}}
-                            {{--                                                    <div data-name="{{ $reviews->agent->name }}"--}}
-                            {{--                                                         data-img="{{ $reviews->listing->listing_featured_photo }}"--}}
-                            {{--                                                         data-review="{{ $reviews->review }}"--}}
-                            {{--                                                         data-car_name="{{ $reviews->listing->listing_name }}"--}}
-                            {{--                                                         data-time="{{ $reviews->created_at }}">--}}
-                            {{--                                                        <a type="button" class="bg-transparent border-0 m-0 p-0 "--}}
-                            {{--                                                           style="cursor:pointer" data-bs-toggle="modal"--}}
-                            {{--                                                           data-bs-target="#exampleModal1">--}}
+                            {{--
+                            <!-- Display empty stars -->--}}
+                            {{-- @for ($i = 0; $i < $emptyStars; $i++)--}} {{-- <i class="far fa-star"
+                                style="color: #F9C303;"></i>--}}
+                            {{-- @endfor--}}
+                            {{-- <h6 class="fw-bold" style="color:#731718;">--}}
+                            {{-- {{ $reviews->agent->name }}</h6>--}}
+                            {{-- <small class="d-block">{{ $reviews->review }}</small>--}}
+                            {{--
+                </div>--}}
 
 
-                            {{--                                                            <div class="row mt-4 client-box2 py-1">--}}
+                            {{-- </div>--}}
 
-                            {{--                                                                <div class="col-md-3 col-lg-3 col-sm-12 px-1">--}}
-                            {{--                                                                    <img--}}
-                            {{--                                                                        src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}"--}}
-                            {{--                                                                        class="w-100"--}}
-                            {{--                                                                        style="    height: 160px;--}}
+                            {{-- </a>--}}
+                            {{-- </div>--}}
+                            {{-- @endif--}}
+                            {{-- @endforeach--}}
+
+                            {{-- </div>--}}
+                            {{-- </div>--}}
+
+
+                            {{-- <div class="row my-5 desktop-hide">--}}
+                            {{-- <div class="col-md-12">--}}
+                            {{-- <h2>Client Reviews</h2>--}}
+                            {{-- <a href="{{ route('allreviews') }}" class="d-block my-4">--}}
+                            {{-- <button--}} {{-- class="btn btn-primary  py-2">View All--}}
+                            {{-- </button>--}}
+                            {{-- </a>--}}
+
+
+                            {{-- <div class="owl-carousel owl-theme">--}}
+                            {{-- @foreach ($clientreviews as $reviews)--}}
+                            {{-- @if ($reviews->listing)--}}
+                            {{-- <div class="items">--}}
+                            {{-- <div data-name="{{ $reviews->agent->name }}" --}} {{--
+                    data-img="{{ $reviews->listing->listing_featured_photo }}" --}} {{--
+                    data-review="{{ $reviews->review }}" --}} {{-- data-car_name="{{ $reviews->listing->listing_name }}"
+                    --}} {{-- data-time="{{ $reviews->created_at }}">--}}
+                            {{-- <a type="button" class="bg-transparent border-0 m-0 p-0 " --}} {{-- style="cursor:pointer"
+                        data-bs-toggle="modal" --}} {{-- data-bs-target="#exampleModal1">--}}
+
+
+                            {{-- <div class="row mt-4 client-box2 py-1">--}}
+
+                            {{-- <div class="col-md-3 col-lg-3 col-sm-12 px-1">--}}
+                            {{-- <img--}} {{--
+                                    src="{{ asset('uploads/listing_featured_photos/' . $reviews->listing->listing_featured_photo) }}"
+                                    --}} {{-- class="w-100" --}} {{-- style="    height: 160px;--}}
                             {{--					object-fit: cover;">--}}
 
-                            {{--                                                                </div>--}}
-                            {{--                                                                <div class="col-md-9 col-sm-12 col-lg-9"--}}
-                            {{--                                                                     style="text-align:left;">--}}
+                            {{-- </div>--}}
+                            {{-- <div class="col-md-9 col-sm-12 col-lg-9" --}} {{-- style="text-align:left;">--}}
 
 
-                            {{--                                                                @php--}}
-                            {{--                                                                    $reviewValue = $reviews->rating; // Your review value from the backend--}}
-                            {{--                                                                    $maxStars = 5; // Maximum number of stars--}}
+                            {{-- @php--}}
+                            {{-- $reviewValue = $reviews->rating; // Your review value from the backend--}}
+                            {{-- $maxStars = 5; // Maximum number of stars--}}
 
-                            {{--                                                                    // Calculate the number of filled and empty stars--}}
-                            {{--                                                                    $filledStars = min($reviewValue, $maxStars);--}}
-                            {{--                                                                    $emptyStars = $maxStars - $filledStars;--}}
-                            {{--                                                                @endphp--}}
+                            {{-- // Calculate the number of filled and empty stars--}}
+                            {{-- $filledStars = min($reviewValue, $maxStars);--}}
+                            {{-- $emptyStars = $maxStars - $filledStars;--}}
+                            {{-- @endphp--}}
 
-                            {{--                                                                <!-- Display filled stars -->--}}
-                            {{--                                                                    @for ($i = 0; $i < $filledStars; $i++)--}}
-                            {{--                                                                        <i class="fas fa-star"--}}
-                            {{--                                                                           style="color:#F9C303;"></i>--}}
-                            {{--                                                                    @endfor--}}
+                            {{--
+                            <!-- Display filled stars -->--}}
+                            {{-- @for ($i = 0; $i < $filledStars; $i++)--}} {{-- <i class="fas fa-star" --}} {{--
+                                    style="color:#F9C303;"></i>--}}
+                            {{-- @endfor--}}
 
-                            {{--                                                                <!-- Display empty stars -->--}}
-                            {{--                                                                    @for ($i = 0; $i < $emptyStars; $i++)--}}
-                            {{--                                                                        <i class="far fa-star"--}}
-                            {{--                                                                           style="color: #F9C303;"></i>--}}
-                            {{--                                                                    @endfor--}}
-                            {{--                                                                    <h6 class="fw-bold" style="color:#731718;">--}}
-                            {{--                                                                        {{ $reviews->agent->name }}</h6>--}}
-                            {{--                                                                    <small--}}
-                            {{--                                                                        class="d-block">{{ $reviews->review }}</small>--}}
-                            {{--                                                                </div>--}}
+                            {{--
+                            <!-- Display empty stars -->--}}
+                            {{-- @for ($i = 0; $i < $emptyStars; $i++)--}} {{-- <i class="far fa-star" --}} {{--
+                                        style="color: #F9C303;"></i>--}}
+                            {{-- @endfor--}}
+                            {{-- <h6 class="fw-bold" style="color:#731718;">--}}
+                            {{-- {{ $reviews->agent->name }}</h6>--}}
+                            {{-- <small--}} {{-- class="d-block">{{ $reviews->review }}</small>--}}
+                            {{--
+            </div>--}}
 
 
-                            {{--                                                            </div>--}}
+                            {{-- </div>--}}
 
-                            {{--                                                        </a>--}}
-                            {{--                                                    </div>--}}
-                            {{--                                                </div>--}}
-                            {{--                                            @endif--}}
-                            {{--                                        @endforeach--}}
+                            {{-- </a>--}}
+                            {{-- </div>--}}
+                            {{-- </div>--}}
+                            {{-- @endif--}}
+                            {{-- @endforeach--}}
 
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                            {{-- </div>--}}
+                            {{-- </div>--}}
+                            {{-- </div>--}}
 
                             <div class="row my-5">
                                 <div class="col-md-12">
                                     <h2>FAQS</h2>
                                     <div class="mainfaqs">
 
-                                        {{--                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">--}}
-                                        {{--                                            <li class="nav-item" role="presentation">--}}
-                                        {{--                                                <a class="nav-link active" id="pills-home-tab"--}}
-                                        {{--                                                   data-toggle="pill"--}}
-                                        {{--                                                   href="#pills-home" role="tab"--}}
-                                        {{--                                                   aria-controls="pills-home"--}}
-                                        {{--                                                   aria-selected="true">All Questions Related To all--}}
-                                        {{--                                                    Problems</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                            <li class="nav-item" role="presentation">--}}
-                                        {{--                                                <a class="nav-link" id="pills-profile-tab"--}}
-                                        {{--                                                   data-toggle="pill"--}}
-                                        {{--                                                   href="#pills-profile" role="tab"--}}
-                                        {{--                                                   aria-controls="pills-profile"--}}
-                                        {{--                                                   aria-selected="false">QUESTIONS REGARDING AUCTION</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                            <li class="nav-item" role="presentation">--}}
-                                        {{--                                                <a class="nav-link" id="pills-contact-tab"--}}
-                                        {{--                                                   data-toggle="pill"--}}
-                                        {{--                                                   href="#pills-contact" role="tab"--}}
-                                        {{--                                                   aria-controls="pills-lhd"--}}
-                                        {{--                                                   aria-selected="false">QUESTIONS REGARDING PAYMENT</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                            <li class="nav-item" role="presentation">--}}
-                                        {{--                                                <a class="nav-link" id="pills-others-tab"--}}
-                                        {{--                                                   data-toggle="pill"--}}
-                                        {{--                                                   href="#pills-others" role="tab"--}}
-                                        {{--                                                   aria-controls="pills-others"--}}
-                                        {{--                                                   aria-selected="false">QUESTIONS REGARDING--}}
-                                        {{--                                                    SHIPMENT</a>--}}
-                                        {{--                                            </li>--}}
-                                        {{--                                            <li class="nav-item" role="presentation">--}}
-                                        {{--                                                <a class="nav-link" id="pills-howtopay-tab"--}}
-                                        {{--                                                   data-toggle="pill"--}}
-                                        {{--                                                   href="#pills-howtopay" role="tab"--}}
-                                        {{--                                                   aria-controls="pills-howtopay"--}}
-                                        {{--                                                   aria-selected="false">MISCELLANEOUS QUESTIONS</a>--}}
-                                        {{--                                            </li>--}}
+                                        {{-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">--}}
+                                        {{-- <li class="nav-item" role="presentation">--}}
+                                        {{-- <a class="nav-link active" id="pills-home-tab" --}} {{-- data-toggle="pill" --}} {{--
+                        href="#pills-home" role="tab" --}} {{-- aria-controls="pills-home" --}} {{--
+                        aria-selected="true">All Questions Related To all--}}
+                                        {{-- Problems</a>--}}
+                                        {{-- </li>--}}
+                                        {{-- <li class="nav-item" role="presentation">--}}
+                                        {{-- <a class="nav-link" id="pills-profile-tab" --}} {{-- data-toggle="pill" --}} {{--
+                        href="#pills-profile" role="tab" --}} {{-- aria-controls="pills-profile" --}} {{--
+                        aria-selected="false">QUESTIONS REGARDING AUCTION</a>--}}
+                                        {{-- </li>--}}
+                                        {{-- <li class="nav-item" role="presentation">--}}
+                                        {{-- <a class="nav-link" id="pills-contact-tab" --}} {{-- data-toggle="pill" --}} {{--
+                        href="#pills-contact" role="tab" --}} {{-- aria-controls="pills-lhd" --}} {{--
+                        aria-selected="false">QUESTIONS REGARDING PAYMENT</a>--}}
+                                        {{-- </li>--}}
+                                        {{-- <li class="nav-item" role="presentation">--}}
+                                        {{-- <a class="nav-link" id="pills-others-tab" --}} {{-- data-toggle="pill" --}} {{--
+                        href="#pills-others" role="tab" --}} {{-- aria-controls="pills-others" --}} {{--
+                        aria-selected="false">QUESTIONS REGARDING--}}
+                                        {{-- SHIPMENT</a>--}}
+                                        {{-- </li>--}}
+                                        {{-- <li class="nav-item" role="presentation">--}}
+                                        {{-- <a class="nav-link" id="pills-howtopay-tab" --}} {{-- data-toggle="pill" --}} {{--
+                        href="#pills-howtopay" role="tab" --}} {{-- aria-controls="pills-howtopay" --}} {{--
+                        aria-selected="false">MISCELLANEOUS QUESTIONS</a>--}}
+                                        {{-- </li>--}}
 
-                                        {{--                                        </ul>--}}
+                                        {{-- </ul>--}}
                                         <div class="tab-content" id="pills-tabContent">
-                                            {{--                                            <div class="tab-pane fade show active" id="pills-home"--}}
-                                            {{--                                                 role="tabpanel"--}}
-                                            {{--                                                 aria-labelledby="pills-home-tab">--}}
-                                            {{--                                                <div class="row  px-4">--}}
+                                            {{-- <div class="tab-pane fade show active" id="pills-home" --}} {{-- role="tabpanel" --}} {{--
+                    aria-labelledby="pills-home-tab">--}}
+                                            {{-- <div class="row  px-4">--}}
 
-                                            {{--                                                    <div class="accordion w-100" id="accordionExample">--}}
+                                            {{-- <div class="accordion w-100" id="accordionExample">--}}
                                             <div class="row">
-                                                <div class="card col-md-6 border-0">
-
-                                                    <div class="card-header" id="heading1">
-                                                        <div class="row align-items-center">
-                                                        <h2 class="mb-0  col-11 px-0">
-                                                            <a class="accordo-text btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button"
-                                                               data-toggle="collapse"
-                                                               data-target="#collapse1"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse1">
-                                                                Q1. How do I buy a
-                                                                vehicle/machinery from SS
-                                                                Japan
-                                                                Limited?
-                                                            </a>
-                                                        </h2>
-                                                            <div class="col-1">
-                                                                <i class="fa-solid fa-caret-down"></i>
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom mr-1">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading1">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse1"
+                                                                   aria-expanded="true" aria-controls="collapse1">
+                                                                    How do I buy a
+                                                                    vehicle/machinery from SS
+                                                                    Japan
+                                                                    Limited?
+                                                                </a>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                        </div>
                                                     </div>
-
-                                                    </div>
-
-                                                    <div id="collapse1" class="collapse"
-                                                         aria-labelledby="heading1"
+                                                    <div id="collapse1" class="collapse" aria-labelledby="heading1"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             Once you have provided us with the
@@ -1223,30 +1194,27 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="card-header" id="heading2">
-                                                        <div class="row align-items-center">
-                                                        <h2 class="mb-0 col-11 px-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button"
-                                                               data-toggle="collapse"
-                                                               data-target="#collapse2"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse2">
-                                                                Q2. Who takes care of getting my
-                                                                car ready for
-                                                                export
-                                                                and shipping it?
-                                                            </a>
-                                                        </h2>
-                                                            <div class="col-1">
-                                                                <i class="fa-solid fa-caret-down"></i>
+                                                {{-- two --}}
+
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading2">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse2"
+                                                                   aria-expanded="true" aria-controls="collapse2">
+                                                                    Who takes care of getting my
+                                                                    car ready for
+                                                                    export
+                                                                    and shipping it?
+                                                                </a>
                                                             </div>
                                                         </div>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                        </div>
                                                     </div>
-
-                                                    <div id="collapse2" class="collapse"
-                                                         aria-labelledby="heading2"
+                                                    <div id="collapse2" class="collapse" aria-labelledby="heading2"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             We will prepare your vehicle for
@@ -1264,28 +1232,24 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="row m-0 align-items-center">
-                                                    <div class="card-header col-11 px-0" id="heading3">
-                                                        <h2 class="mb-0  px-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button"
-                                                               data-toggle="collapse"
-                                                               data-target="#collapse3"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse3">
-                                                                Q3. What is the Auction Grading
-                                                                System?
-                                                            </a>
-                                                        </h2>
+                                                {{-- three --}}
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom mr-1">
+                                                        <div class="col-9 px-0">
+                                                            <div class="card-header px-0" id="heading2">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse2"
+                                                                   aria-expanded="true" aria-controls="collapse2">
+                                                                    What is the Auction Grading
+                                                                    System?
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-1 d-flex p-0 justify-content-center h-100 align-items-center" style="background-color: rgba(0,0,0,.03)">
-                                                            <i class="fa-solid fa-caret-down pr-1"></i>
+                                                        <div class="col-3 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
                                                         </div>
                                                     </div>
-
-                                                    <div id="collapse3" class="collapse"
-                                                         aria-labelledby="heading3"
+                                                    <div id="collapse2" class="collapse" aria-labelledby="heading2"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             All vehicles sold at auction are
@@ -1305,29 +1269,26 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="card-header" id="heading4">
-                                                        <div class="row align-items-center">
-                                                        <h2 class="mb-0 col-11 px-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button"
-                                                               data-toggle="collapse"
-                                                               data-target="#collapse4"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse4">
-                                                                Q4. How can I confirm about the
-                                                                quality of the
-                                                                car?
-                                                            </a>
-                                                        </h2>
-                                                            <div class="col-1">
-                                                                <i class="fa-solid fa-caret-down"></i>
+                                                {{-- four --}}
+
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading4">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse4"
+                                                                   aria-expanded="true" aria-controls="collapse4">
+                                                                    How can I confirm about the
+                                                                    quality of the
+                                                                    car?
+                                                                </a>
                                                             </div>
                                                         </div>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                        </div>
                                                     </div>
-
-                                                    <div id="collapse4" class="collapse"
-                                                         aria-labelledby="heading4"
+                                                    <div id="collapse4" class="collapse" aria-labelledby="heading4"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             We thoroughly inspect every vehicle
@@ -1348,30 +1309,28 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="card-header" id="heading5">
-                                                        <div class="row align-items-center">
-                                                        <h2 class="mb-0 col-11 px-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button"
-                                                               data-toggle="collapse"
-                                                               data-target="#collapse5"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse5">
-                                                                Q5. Does your buying team
-                                                                inspect the cars
-                                                                before
-                                                                bidding?
-                                                            </a>
-                                                        </h2>
-                                                            <div class="col-1">
-                                                                <i class="fa-solid fa-caret-down"></i>
+                                                {{-- five --}}
+
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom mr-1">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading5">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse5"
+                                                                   aria-expanded="true" aria-controls="collapse5">
+                                                                    Does your buying team
+                                                                    inspect the cars
+                                                                    before
+                                                                    bidding?
+                                                                </a>
                                                             </div>
                                                         </div>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                        </div>
                                                     </div>
-
-                                                    <div id="collapse5" class="collapse"
-                                                         aria-labelledby="heading5"
+                                                    {{-- drop --}}
+                                                    <div id="collapse5" class="collapse" aria-labelledby="heading5"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             Yes, we examine the car completely
@@ -1381,38 +1340,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {{--
+                                            </div>--}}
 
-
-                                                {{--                                                    </div>--}}
-
-                                                {{--                                                </div>--}}
-                                                {{--                                            </div>--}}
-                                                {{--                                            <div class="tab-pane fade" id="pills-profile"--}}
-                                                {{--                                                 role="tabpanel"--}}
-                                                {{--                                                 aria-labelledby="pills-profile-tab">--}}
-
-
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="card-header" id="heading1">
-                                                        <div class="row align-items-center">
-                                                        <h2 class="mb-0 col-11 px-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button" data-toggle="collapse"
-                                                               data-target="#collapse1"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse1">
-                                                                Q1. When do I have to make the complete
-                                                                payment?
-                                                            </a>
-                                                        </h2>
-                                                            <div class="col-1">
-                                                                <i class="fa-solid fa-caret-down"></i>
+                                                {{--
+                                            </div>--}}
+                                                {{-- </div>--}}
+                                                {{-- <div class="tab-pane fade" id="pills-profile" --}} {{-- role="tabpanel" --}} {{--
+                        aria-labelledby="pills-profile-tab">--}}
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading1">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse1"
+                                                                   aria-expanded="true" aria-controls="collapse1">
+                                                                    When do I have to make the complete
+                                                                    payment?
+                                                                </a>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
                                                         </div>
                                                     </div>
 
-                                                    <div id="collapse1" class="collapse"
-                                                         aria-labelledby="heading1"
+                                                    <div id="collapse1" class="collapse" aria-labelledby="heading1"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             You are required to make the complete
@@ -1425,34 +1378,32 @@
                                                 </div>
 
 
-                                                {{--                                            </div>--}}
-                                                {{--                                            <div class="tab-pane fade" id="pills-contact"--}}
-                                                {{--                                                 role="tabpanel"--}}
-                                                {{--                                                 aria-labelledby="pills-contact-tab">--}}
+                                                {{--
+                                            </div>--}}
+                                                {{-- <div class="tab-pane fade" id="pills-contact" --}} {{-- role="tabpanel" --}} {{--
+                        aria-labelledby="pills-contact-tab">--}}
 
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="row m-0 align-items-center justify-content-between h-100">
-                                                    <div class="card-header col-11 px-0" id="heading2">
+                                                {{-- seven --}}
 
-                                                        <h2 class="mb-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button" data-toggle="collapse"
-                                                               data-target="#collapse2"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse2">
-                                                                Q1. When will the car be shipped?
-                                                            </a>
-                                                        </h2>
-
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom mr-1">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading2">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse2"
+                                                                   aria-expanded="true" aria-controls="collapse2">
+                                                                    When will the car be shipped?
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-1 d-flex p-0 justify-content-center h-100 align-items-center" style="background-color: rgba(0,0,0,.03)">
-                                                            <i class="fa-solid fa-caret-down pr-1"></i>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
                                                         </div>
                                                     </div>
 
-                                                    <div id="collapse2" class="collapse"
-                                                         aria-labelledby="heading2"
+
+                                                    <div id="collapse2" class="collapse" aria-labelledby="heading2"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             We will ship your vehicle as soon as you
@@ -1467,33 +1418,31 @@
                                                 </div>
 
 
-                                                {{--                                            </div>--}}
-                                                {{--                                            <div class="tab-pane fade" id="pills-others" role="tabpanel"--}}
-                                                {{--                                                 aria-labelledby="pills-others-tab">--}}
+                                                {{--
+                                            </div>--}}
+                                                {{-- <div class="tab-pane fade" id="pills-others" role="tabpanel" --}} {{--
+                        aria-labelledby="pills-others-tab">--}}
 
+                                                {{-- eight --}}
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="row m-0 align-items-center">
-                                                        <div class="card-header col-11 px-0" id="heading2">
-
-                                                        <h2 class="mb-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button" data-toggle="collapse"
-                                                               data-target="#collapse3"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse3">
-                                                                Q2. How long will shipping take?
-                                                            </a>
-                                                        </h2>
-
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center border-bottom">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading2">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse3"
+                                                                   aria-expanded="true" aria-controls="collapse3">
+                                                                    How long will shipping take?
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-1 d-flex p-0 justify-content-center h-100 align-items-center" style="background-color: rgba(0,0,0,.03)">
-                                                            <i class="fa-solid fa-caret-down pr-1"></i>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
                                                         </div>
                                                     </div>
 
-                                                    <div id="collapse3" class="collapse"
-                                                         aria-labelledby="heading3"
+
+                                                    <div id="collapse3" class="collapse" aria-labelledby="heading3"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             We cannot commit an accurate time of
@@ -1508,34 +1457,30 @@
                                                 </div>
 
 
-                                                {{--                                            </div>--}}
-                                                {{--                                            <div class="tab-pane fade" id="pills-howtopay"--}}
-                                                {{--                                                 role="tabpanel"--}}
-                                                {{--                                                 aria-labelledby="pills-howtopay">--}}
+                                                {{--
+                                            </div>--}}
+                                                {{-- <div class="tab-pane fade" id="pills-howtopay" --}} {{-- role="tabpanel" --}} {{--
+                        aria-labelledby="pills-howtopay">--}}
 
 
-                                                <div class="card col-md-6 border-0">
-                                                    <div class="card-header" id="heading4">
-                                                        <div class="row align-items-center">
-                                                        <h2 class="mb-0 col-11 px-0">
-                                                            <a class="accordo-text  btn-link btn-block text-left collapsed font-weight-bold"
-                                                               type="button" data-toggle="collapse"
-                                                               data-target="#collapse4"
-                                                               aria-expanded="true"
-                                                               aria-controls="collapse4">
-                                                                Q3. How long does it take for the
-                                                                documents to reach my
-                                                                country?
-                                                            </a>
-                                                        </h2>
-                                                            <div class="col-1">
-                                                            <i class="fa-solid fa-caret-down"></i>
+                                                <div class="col-lg-6">
+                                                    <div class="row align-items-center mr-1">
+                                                        <div class="col-10 px-0">
+                                                            <div class="card-header px-0" id="heading4">
+                                                                <a class="accordo-text px-0 btn-block text-left collapsed"
+                                                                   type="button" data-toggle="collapse" data-target="#collapse4"
+                                                                   aria-expanded="true" aria-controls="collapse4">
+                                                                    How long does it take for the
+                                                                    documents to reach my
+                                                                    country?
+                                                                </a>
                                                             </div>
                                                         </div>
+                                                        <div class="col-2 text-right">
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                        </div>
                                                     </div>
-
-                                                    <div id="collapse4" class="collapse"
-                                                         aria-labelledby="heading4"
+                                                    <div id="collapse4" class="collapse" aria-labelledby="heading4"
                                                          data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             Once shipment has departed, Original BL Scan
@@ -1546,27 +1491,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-12 border-end"></div>
                                             </div>
 
-                                            {{--                                            </div>--}}
+                                            {{-- </div>--}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {{--                            <div class="row my-5 w-100">--}}
-                            {{--                                <div class="col-md-12 col-lg-12 col-sm-12">--}}
-                            {{--                                    <div class="bg-wrapper text-light p-5 shadow"--}}
-                            {{--                                         style="background: url('assets/images/cta-bg.png');">--}}
-                            {{--                                        <h2 class="fw-bold">SS Japan</h2>--}}
-                            {{--                                        <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p>--}}
-                            {{--                                        <a href="{{ route('contact') }}">--}}
-                            {{--                                            <button class="btn btn-primary">Contact--}}
-                            {{--                                                Us--}}
-                            {{--                                            </button>--}}
-                            {{--                                        </a>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                            {{-- <div class="row my-5 w-100">--}}
+                            {{-- <div class="col-md-12 col-lg-12 col-sm-12">--}}
+                            {{-- <div class="bg-wrapper text-light p-5 shadow" --}} {{--
+            style="background: url('assets/images/cta-bg.png');">--}}
+                            {{-- <h2 class="fw-bold">SS Japan</h2>--}}
+                            {{-- <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p>--}}
+                            {{-- <a href="{{ route('contact') }}">--}}
+                            {{-- <button class="btn btn-primary">Contact--}}
+                            {{-- Us--}}
+                            {{-- </button>--}}
+                            {{-- </a>--}}
+                            {{-- </div>--}}
+                            {{-- </div>--}}
+                            {{-- </div>--}}
                         </div>
                     </div>
 
@@ -1583,65 +1529,68 @@
             <!-- Modal -->
 
 
-            {{--            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"--}}
-            {{--                 aria-hidden="true">--}}
-            {{--                <div class="modal-dialog">--}}
-            {{--                    <div class="modal-content">--}}
-            {{--                        <div class="modal-header">--}}
-            {{--                            <h1 class="modal-title fs-5" id="exampleModalLabel1">Customer Review</h1>--}}
+            {{-- <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" --}} {{--
+    aria-hidden="true">--}}
+            {{-- <div class="modal-dialog">--}}
+            {{-- <div class="modal-content">--}}
+            {{-- <div class="modal-header">--}}
+            {{-- <h1 class="modal-title fs-5" id="exampleModalLabel1">Customer Review</h1>--}}
 
-            {{--                        </div>--}}
-            {{--                        <div class="modal-body">--}}
-            {{--                            <div class="row">--}}
-            {{--                                <div class="col-md-8 col-lg-8"><img class="w-100" alt="" id="review-img"></div>--}}
-            {{--                                <div class="col-md-4 col-lg-4 body-inner">--}}
-            {{--                                    <div class="row">--}}
-            {{--                                        <div class="col-md-12">--}}
-
-
-            {{--                                            <h6 class="mt-4 font-weight-bold" id="username"><i--}}
-            {{--                                                    class="fa-solid fa-user"></i> UserName</h6>--}}
-            {{--                                        @php--}}
-            {{--                                            $reviewValue = $reviews->rating; // Your review value from the backend--}}
-            {{--                                            $maxStars = 5; // Maximum number of stars--}}
-
-            {{--                                            // Calculate the number of filled and empty stars--}}
-            {{--                                            $filledStars = min($reviewValue, $maxStars);--}}
-            {{--                                            $emptyStars = $maxStars - $filledStars;--}}
-            {{--                                        @endphp--}}
-
-            {{--                                        <!-- Display filled stars -->--}}
-            {{--                                            @for ($i = 0; $i < $filledStars; $i++)--}}
-            {{--                                                <i class="fas fa-star" style="color:#F9C303;"></i>--}}
-            {{--                                            @endfor--}}
-
-            {{--                                        <!-- Display empty stars -->--}}
-            {{--                                            @for ($i = 0; $i < $emptyStars; $i++)--}}
-            {{--                                                <i class="far fa-star" style="color: #F9C303;"></i>--}}
-            {{--                                            @endfor--}}
-
-            {{--                                        </div>--}}
+            {{-- </div>--}}
+            {{-- <div class="modal-body">--}}
+            {{-- <div class="row">--}}
+            {{-- <div class="col-md-8 col-lg-8"><img class="w-100" alt="" id="review-img"></div>--}}
+            {{-- <div class="col-md-4 col-lg-4 body-inner">--}}
+            {{-- <div class="row">--}}
+            {{-- <div class="col-md-12">--}}
 
 
-            {{--                                    </div>--}}
+            {{-- <h6 class="mt-4 font-weight-bold" id="username">
+                <i--}} {{-- class="fa-solid fa-user"></i> UserName
+                                </h6>--}}
+            {{-- @php--}}
+            {{-- $reviewValue = $reviews->rating; // Your review value from the backend--}}
+            {{-- $maxStars = 5; // Maximum number of stars--}}
+
+            {{-- // Calculate the number of filled and empty stars--}}
+            {{-- $filledStars = min($reviewValue, $maxStars);--}}
+            {{-- $emptyStars = $maxStars - $filledStars;--}}
+            {{-- @endphp--}}
+
+            {{--
+            <!-- Display filled stars -->--}}
+            {{-- @for ($i = 0; $i < $filledStars; $i++)--}} {{-- <i class="fas fa-star"
+                                    style="color:#F9C303;"></i>--}}
+            {{-- @endfor--}}
+
+            {{--
+            <!-- Display empty stars -->--}}
+            {{-- @for ($i = 0; $i < $emptyStars; $i++)--}} {{-- <i class="far fa-star"
+                                        style="color: #F9C303;"></i>--}}
+            {{-- @endfor--}}
+
+            {{--
+</div>--}}
 
 
-            {{--                                    <h4 class="my-3">Reviews</h4>--}}
-            {{--                                    <h6 id="review-description">--}}
-            {{--                                    </h6>--}}
+            {{-- </div>--}}
 
-            {{--                                </div>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                        <div class="modal-footer border-0">--}}
-            {{--                            <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Close</button>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
+
+            {{-- <h4 class="my-3">Reviews</h4>--}}
+            {{-- <h6 id="review-description">--}}
+            {{-- </h6>--}}
+
+            {{-- </div>--}}
+            {{-- </div>--}}
+            {{-- </div>--}}
+            {{-- <div class="modal-footer border-0">--}}
+            {{-- <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Close</button>--}}
+            {{-- </div>--}}
+            {{-- </div>--}}
+            {{-- </div>--}}
+            {{-- </div>--}}
         </section>
     </div>
-
 
 @endsection
 <script>
@@ -1702,7 +1651,27 @@
                 console.error('Error adding listing to favorites', error);
             });
     }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all FAQ question elements
+        var faqQuestions = document.querySelectorAll('.card-header a');
 
+        // Add click event listener to each question
+        faqQuestions.forEach(function(question) {
+            question.addEventListener('click', function(event) {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // The id of the div that contains the answer
+                var targetId = this.getAttribute('data-target');
+
+                // The div that contains the answer
+                var answerDiv = document.querySelector(targetId);
+
+                // Toggle the 'collapse' class to show or hide the answer
+                answerDiv.classList.toggle('collapse');
+            });
+        });
+    });
 </script>
 <style>
     .row {
@@ -1794,6 +1763,57 @@
             height: 416px; /* No change from your original */
         }
     }
+    @media (min-width: 1500px) and (max-width: 1650px) {
+        .mob-hide .box-content {
+            width: 325px; /* Adjusted width for 1920px screens */
+            height: 460px; /* Adjusted height for 1920px screens */
+        }
+
+        .col-md-4.col-sm-12.col-lg-3 {
+            /* Calculate the width minus the total horizontal padding to maintain the box size */
+            width: calc(33.3333% - 30px); /* Assuming a 3-column layout, adjust the percentage as needed */
+            /* If you have a specific gutter width you want to maintain, adjust the -30px above */
+        }
+
+        .favorite-button {
+            position: absolute;
+            top: 380px !important;
+        }
+    }
+    @media (min-width: 1650px) and (max-width: 1800px) {
+        .mob-hide .box-content {
+            width: 350px; /* Adjusted width for 1920px screens */
+            height: 470px; /* Adjusted height for 1920px screens */
+        }
+
+        .col-md-4.col-sm-12.col-lg-3 {
+            /* Calculate the width minus the total horizontal padding to maintain the box size */
+            width: calc(33.3333% - 30px); /* Assuming a 3-column layout, adjust the percentage as needed */
+            /* If you have a specific gutter width you want to maintain, adjust the -30px above */
+        }
+
+        .favorite-button {
+            position: absolute;
+            top: 380px !important;
+        }
+    }
+    @media (min-width: 1801px) and (max-width: 1919px) {
+        .mob-hide .box-content {
+            width: 340px; /* Adjusted width for 1920px screens */
+            height: 450px; /* Adjusted height for 1920px screens */
+        }
+
+        .col-md-4.col-sm-12.col-lg-3 {
+            /* Calculate the width minus the total horizontal padding to maintain the box size */
+            width: calc(33.3333% - 30px); /* Assuming a 3-column layout, adjust the percentage as needed */
+            /* If you have a specific gutter width you want to maintain, adjust the -30px above */
+        }
+
+        .favorite-button {
+            position: absolute;
+            top: 360px !important;
+        }
+    }
 
     /* For medium screens (e.g., tablets in landscape mode) */
     @media (min-width: 992px) and (max-width: 1199px) {
@@ -1820,6 +1840,7 @@
     }
 
     .mob-hide .box-content img {
+        padding: 8px;
         display: block !important;
         width: 100% !important;
         height: 170px !important;
@@ -1857,7 +1878,6 @@
         font-size: 0.7rem !important;
         display: flex !important;
         align-items: center !important;
-        font-size: 0.7rem !important;
         margin: 4px 0 !important; /* Adjust vertical margin as needed */
         justify-content: left !important;
         flex-wrap: wrap !important;
@@ -1932,14 +1952,27 @@
     .badge-used-car {
         position: absolute !important;
         top: 134px !important; /* Adjust as needed */
-        right: 1px !important; /* Adjust as needed */
+        right: 10px !important; /* Adjust as needed */
         background-color: #531010 !important; /* Red background, change as needed */
+        color: white !important;
+        padding: 5px 10px !important;
+        font-size: 0.7rem !important;
+        /*font-weight: bold !important;*/
+        z-index: 10 !important; /* Ensure it's above other content */
+        /*border-radius: 0 0 3px 3px !important; !* Rounded bottom corners *!*/
+    }
+    .badge-photo {
+        position: absolute !important;
+        top: 140px !important; /* Adjust as needed */
+        right: 219px !important; /* Adjust as needed */
+        opacity:0.8;
+        background-color: #020a0a !important; /* Red background, change as needed */
         color: white !important;
         padding: 5px 10px !important;
         font-size: 0.7rem !important;
         font-weight: bold !important;
         z-index: 10 !important; /* Ensure it's above other content */
-        border-radius: 0 0 3px 3px !important; /* Rounded bottom corners */
+        /*border-radius: 0 0 3px 3px !important; !* Rounded bottom corners *!*/
     }
 
     .favorite-button {

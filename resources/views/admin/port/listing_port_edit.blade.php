@@ -18,6 +18,10 @@
                     <input type="text" name="name" class="form-control" value="{{ $listing_port->name }}" autofocus required>
                 </div>
                 <div class="form-group">
+                    <label for="">{{ PRICE }} *</label>
+                    <input type="number" name="price" class="form-control" value="{{ $listing_port->price  }}" autofocus required>
+                </div>
+                <div class="form-group">
                     <label for="country">Choose Country *</label>
                     <select class="form-control" name="country_id" id="country">
                         @foreach($countries as $country)

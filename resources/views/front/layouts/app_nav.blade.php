@@ -264,7 +264,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <div class="d-flex my-auto justify-content-center">
+                <div class="d-flex my-auto justify-content-center" style="font-size: 1.5rem">
                     <div class="mr-3">
                         <div class="dropdown float-right support-dropdown">
                             {{--                            <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"--}}

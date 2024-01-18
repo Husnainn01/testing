@@ -19,11 +19,7 @@ p, small, li {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
-.side-header{
-    background-color: #531010 !important;
-    color: white;
-    font-size: 0.8rem;
-}
+
 .desktop-header {
     position: relative;
     width: 100%;
@@ -249,7 +245,7 @@ header a {
 }
 
 .card {
-    margin: 15px 0px !important;
+    margin: 15px 0px;
 }
 
 .card-header {
@@ -269,7 +265,6 @@ header a {
     z-index: 10;
     background: #731718 !important;
     border-radius: 0 0 34px 34px;
-    margin-top: 18px;
 }
 @media (min-width: 1920px) {
     .search-box {
@@ -666,8 +661,8 @@ td {
     border-right: 1px solid #e5e5e5;
     position:sticky;
     top:30px;
-    max-height:100vh;
-    overflow:auto;
+    /* max-height:100vh; */
+    /* overflow:auto; */
 }
 
 .flex-container {
@@ -1259,6 +1254,7 @@ body.mobile-nav-open {
 
 .card-header {
     width: 100%;
+    background-color: unset !important;
 }
 
 #owl-demo .item {
@@ -1568,3 +1564,71 @@ body.mobile-nav-open {
         padding: 0px 22px;
     }
 }
+.side-header{
+    background-color: #731718 !important;
+    color: white;
+    font-size: 0.8rem;
+}
+.text-performa{
+    font-size: 0.5rem;
+    background-color: #bbb5b5;
+}
+.text-lg{
+    font-size: 1rem;
+}
+.text-md{
+    font-size: 0.9rem;
+}
+.text-xs{
+    font-size: 0.5rem;
+}
+.text-sm{
+    font-size: 0.6rem;
+}
+.form-label{
+    font-size: 0.7rem;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: gray;
+}
+.form-fields{
+    margin-top: 0.1rem;
+    border: 0;
+    padding-left: 0.4rem;
+    border-radius: 0.2rem;
+    width: 100%;
+}
+.form-fields::placeholder{
+    font-size: 0.8rem;
+    padding-bottom: 0.3rem;
+}
+.form-btn{
+    font-size: 0.8rem;
+    width: 100%;
+    border: 0;
+    background-color: #E66B02;
+    color: white;
+    font-weight: bold;
+}
+.inquiry-header{
+    color: #E66B02;
+}
+.post-select{
+    width: 100%;
+    font-weight: 600;
+}
+.port-data{
+    background-color: #D6F1FF;
+    border-top: 2px solid #8B7575;
+}
+.fa-question{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fw-bold{
+    font-weight: 600;
+}
+
+
