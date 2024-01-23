@@ -12,7 +12,7 @@ $(document).ready(function() {
     item: '.brands-box',
     count: 12,
     counterInBtn: true,
-      btnHTML: '<a href="#" class=" fw-bold"><small>More></small></a>',
+      btnHTML: '<a href="#" class=" fw-bold seeMore"><small>View More... </small></a>',
   });
 
   $('.brands-list-footer').simpleLoadMore({

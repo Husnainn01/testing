@@ -17,6 +17,7 @@ use App\Models\Amenity;
 use App\Models\PageListingBrandItem;
 use App\Models\PageListingItem;
 use App\Models\PageListingLocationItem;
+use App\Models\Port;
 use App\Models\Review;
 use App\Models\Wishlist;
 use App\Models\User;
@@ -250,8 +251,7 @@ class ListingController extends Controller
         $listing_brands = ListingBrand::orderBy('listing_brand_name', 'asc')->get();
         $listing_locations = ListingLocation::orderBy('listing_location_name', 'asc')->get();
         $listing_locations_car = ListingLocation::where('id',$detail->listing_location_id)->first();
-
-
+        $listing_ports = Port::orderBy('id', 'asc')->get();
         $reviews = Review::where('listing_id',$detail->id)
             ->orderBy('id', 'asc')
             ->get();
@@ -318,7 +318,7 @@ class ListingController extends Controller
         $freights = Freight::all();
         $insurances = Insurance::all();
         $inspection_certificates = Inspection::all();
-        return view('front.listing_detail', compact('inspection_certificates','insurances','freights','detail','listing_locations_car','listing_first_photos','g_setting','listing_social_items','listing_photos','listing_videos','listing_amenities','listing_additional_features','listing_brands','listing_locations','agent_detail','reviews','current_auth_user_id', 'already_given', 'overall_rating','all_amenities','detail'));
+        return view('front.listing_detail', compact('inspection_certificates','insurances','freights','detail','listing_locations_car','listing_first_photos','listing_ports','g_setting','listing_social_items','listing_photos','listing_videos','listing_amenities','listing_additional_features','listing_brands','listing_locations','agent_detail','reviews','current_auth_user_id', 'already_given', 'overall_rating','all_amenities','detail'));
     }
 
     public function brand_all()
@@ -729,7 +729,7 @@ class ListingController extends Controller
     public function get_qoute(Request $request)
     {
         if (!Auth::check()) {
-            return redirect()->route('customer_login');
+            return redirect()->route('customer_login')->with('success','Please login to continue');
         }
         $car = Listing::findorFail(intval($request->car_id));
         $FOB_price = floatval($car->listing_price) ?? 0;

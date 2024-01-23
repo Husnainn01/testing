@@ -566,7 +566,7 @@ td {
 }
 
 .small-logo {
-    width: 10%;
+    width: 11%;
     margin-right: 8px;
 }
 
@@ -1152,10 +1152,13 @@ body.mobile-nav-open {
     border-radius: 50%;
     background: #731718;
     color: #fff;
-    opacity: 0.7;
+    /* opacity: 0.7; */
     z-index: 99;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .top-0 {
@@ -1565,7 +1568,7 @@ body.mobile-nav-open {
     }
 }
 .side-header{
-    background-color: #731718 !important;
+    background-color: #531010 !important;
     color: white;
     font-size: 0.8rem;
 }
@@ -1630,5 +1633,6 @@ body.mobile-nav-open {
 .fw-bold{
     font-weight: 600;
 }
+
 
 

@@ -5,8 +5,8 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
 
     /* Base styles for .card-features */
     .card-features {
-        width: 260px;
-        height: 330px;
+        width: 254px;
+        height: 291px;
         border: 1px solid maroon;
         border-left-width: 3px;
         border-right-width: 3px;
@@ -16,14 +16,14 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
 
     /* Responsive styles */
-    @media only screen and (max-width: 768px) {
-        .card-features {
-            width: 90%;
-            height: auto;
-            border-width: 2px;
-        }
-        /* Add any additional responsive styles needed */
-    }
+    /*@media only screen and (max-width: 768px) {*/
+    /*    .card-features {*/
+    /*        width: 90%;*/
+    /*        height: auto;*/
+    /*        border-width: 2px;*/
+    /*    }*/
+    /*    !* Add any additional responsive styles needed *!*/
+    /*}*/
     .one-third {
         width: calc(33.333% - 10px); /* Adjust width to account for 3 in a row, minus gap */
         display: flex;
@@ -33,7 +33,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
     .card-features p {
         color: grey;
-        font-size: 12px;
+        font-size: 10px;
     }
     .create-account {
         display: flex;
@@ -84,27 +84,98 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     }
 
     /* Responsive Styles */
-    @media only screen and (max-width: 768px) {
-        .card-features {
-            width: 90%;
-            height: auto;
-            margin-right: 0;
-            border-left: 2px solid maroon;
-            border-right: 2px solid maroon;
-        }
-        .create-account {
-            flex-direction: column;
-            align-items: center;
-            margin-left: 0;
-        }
-        .feature {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .button a {
-            width: 90%;
+    /*@media only screen and (max-width: 768px) {*/
+    /*    .card-features {*/
+    /*        width: 90%;*/
+    /*        height: auto;*/
+    /*        margin-right: 0;*/
+    /*        border-left: 2px solid maroon;*/
+    /*        border-right: 2px solid maroon;*/
+    /*    }*/
+    /*    .create-account {*/
+    /*        flex-direction: column;*/
+    /*        align-items: center;*/
+    /*        margin-left: 0;*/
+    /*    }*/
+    /*    .feature {*/
+    /*        margin-left: auto;*/
+    /*        margin-right: auto;*/
+    /*    }*/
+    /*    .button a {*/
+    /*        width: 90%;*/
+    /*    }*/
+    /*}*/
+    @media (min-width: 2000px) {
+        .one-third {
+            width: calc(25% - 10px); /* 4 cards per row */
         }
     }
+
+    /* For screens around 1920x1080 - 3 columns */
+    @media (min-width: 1920px) and (max-width: 1999px) {
+        .one-third {
+            width: calc(33.333% - 10px); /* 3 cards per row */
+        }
+    }
+
+    /* For screens between 1651px and 1919px - 3 columns */
+    @media (min-width: 1651px) and (max-width: 1919px) {
+        .one-third {
+            width: calc(33.333% - 10px); /* 3 cards per row */
+        }
+    }
+
+    /* For screens between 1500px and 1650px - 3 columns */
+    @media (min-width: 1500px) and (max-width: 1650px) {
+        .one-third {
+            width: calc(33.333% - 10px); /* 3 cards per row */
+        }
+    }
+    /* For screens between 1200px and 1499px - 2 columns */
+    @media (min-width: 1200px) and (max-width: 1499px) {
+        .one-third {
+            width: calc(33.333% - 10px); /* 2 cards per row */
+        }
+    }
+
+    /* For medium screens between 992px and 1199px - 2 columns */
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .one-third {
+            width: calc(33.333% - 10px); /* 3 cards per row */
+        }
+        .card-features {
+            width: 180px; /* Further adjusted width */
+            height: auto; /* Adjusted height */
+            /* Other styles */
+        }
+    }
+
+    /* For small screens between 768px and 991px - 3 columns */
+    @media (min-width: 768px) and (max-width: 991px) {
+        .one-third {
+            width: calc(33.333% - 10px); /* 3 cards per row */
+        }
+        .card-features {
+            width: 160px; /* Further adjusted width */
+            height: auto; /* Adjusted height */
+            /* Other styles */
+        }
+    }
+
+    /* For extra small screens - 1 column */
+    @media (max-width: 767px) {
+        .one-third {
+            width: 100%; /* 1 card per row */
+            margin-bottom: 20px; /* Add some space between cards */
+        }
+        .card-features {
+            width: 90%; /* Adjusted width for very small screens */
+            height: auto; /* Adjusted height */
+            /* Other styles */
+        }
+    }
+
+
 </style>
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;position: sticky;top:18px">
 
@@ -171,7 +242,7 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
             href="#"
         @endif
         >
-        <img style="object-fit: cover;" src="{{ asset('uploads/advertisements/'.$advertisements->above_brand_1) }}" height="250px" width="210px" class="shadow rounded-2 m-lg-auto m-md-auto d-block" alt="img">
+        <img style="object-fit: cover;" src="{{ asset('uploads/advertisements/'.$advertisements->above_featured_listing_1) }}" height="250px" width="210px" class="shadow rounded-2 m-lg-auto m-md-auto d-block" alt="img">
     </a>
 </div>
 <div class="my-3">

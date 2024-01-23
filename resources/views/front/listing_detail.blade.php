@@ -429,12 +429,11 @@ $userdata=Auth::user();
         <div class="col-md-6 col-lg-6 col-sm-12 col-12  print_rit_50">
             <div class="row p-3 border-md-bottom border-lg-bottom ">
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <h3 class="font-weight-bold">Stock-id:{{$detail->listing_stock_id}}</h3>
-                <button class="btn btn-primary float-right" id="addToFavoritesBtn" data-listing-id="{{ $detail->id }}"
-                    onclick="addToFavorites()">❤️ Add to Favorites
-                </button>
-                <h5 class="py-2 w-100">
-                    {{$detail->listing_name}}</h5>
+{{--                <h3 class="font-weight-bold">Stock-id:{{$detail->listing_stock_id}}</h3>--}}
+{{--                <button class="btn btn-primary float-right" id="addToFavoritesBtn" data-listing-id="{{ $detail->id }}"--}}
+{{--                    onclick="addToFavorites()">❤️ Add to Favorites--}}
+{{--                </button>--}}
+
 {{--                <a style="border: none;--}}
 {{--                background: transparent;--}}
 {{--                cursor: pointer;" onclick="handleClick()">--}}
@@ -460,25 +459,39 @@ $userdata=Auth::user();
                 <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                     @csrf
                     <div class="row border-bottom p-3">
+                        <h3 class="py-2" style="font-weight:bold;">
+                            {{$detail->listing_name}} <br>
+                            <div style="font-weight: 100;">{{$detail->listing_stock_id}}</div>
+                        </h3>
+{{--                        <h5 class="font-weight-bold">{{$detail->listing_stock_id}}</h5>--}}
                         <div class="col-lg-6">
                             <div class="row">
-                                <div class="col-5 px-0">
-                                    <span class="position-relative">
-                                        <div class="float-left">FOB Price:</div>
-                                    </span>
+{{--                                <div class="col-5 px-0">--}}
+{{--                                    <span class="position-relative">--}}
+{{--                                        <div class="float-left">Price:</div>--}}
+{{--                                    </span>--}}
+{{--                                    <div class="col-5 pt-3 px-0 text-right" style="color:red; font-weight:bold;">--}}
+{{--                                        {{$detail->listing_price}}$--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <div class="col-5 pt-3 px-0">
+                                    Price:
                                 </div>
-                                <div class="col-5 px-0">
+                                <div class="col-5 pt-3 px-0 text-right" style="color:red;font-weight:bold;">
+                                    {{$detail->listing_price}}$
+                                </div>
+{{--                                <div class="col-5 px-0" display="none">--}}
                                     @auth
-                                    <h5 class="orange text-right">${{$detail->listing_price}}</h5>
-                                    <input type="hidden" name="car_id" value="{{ $detail->id }}">
-                                    <input type="hidden" id="car_listing_price" value="{{ $detail->listing_price }}">
+{{--                                    <h5 class="orange text-right">${{$detail->listing_price}}</h5>--}}
+                                    <input type="hidden" class="form-fields" name="car_id" value="{{ $detail->id }}">
+                                    <input type="hidden" class="form-fields" id="car_listing_price" value="{{ $detail->listing_price }}">
                                     @endauth
-                                </div>
+{{--                                </div>--}}
                                 <div class="col-5 pt-3 px-0">
                                     Total Price:
                                 </div>
-                                <div class="col-5 pt-3 px-0 text-right">
-                                    23$
+                                <div class="col-5 pt-3 px-0 text-right" style="color:red;font-weight:bold;">
+                                    {{$detail->listing_price}}$
                                 </div>
                                 <div class="col-12 mt-lg-5 mt-3 border">
                                     <div class="row">
@@ -522,31 +535,31 @@ $userdata=Auth::user();
                                 <div class="col-sm-6 px-1 pl-2 mt-2">
                                     <label for="" class="form-label">Your Name <span
                                             class="text-danger">*</span></label>
-                                    <Input class="form-fields" placeholder="Name" />
+                                    <Input class="form-fields" name="name" id="name" placeholder="Name"></Input>
                                 </div>
                                 <div class="col-sm-6 px-1 pl-2 mt-2">
                                     <label for="" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <Input class="form-fields" placeholder="Email" />
+                                    <Input class="form-fields" name="email" id="email" placeholder="Email"></Input>
                                 </div>
                                 <div class="col-sm-6 px-1 pl-2 my-2">
                                     <label for="" class="form-label">Tel <span class="text-danger">*</span></label>
-                                    <Input class="form-fields" placeholder="Email" />
+                                    <Input class="form-fields" name="phone_no" id="phone_no" placeholder="Tel"></Input>
                                 </div>
                                 <div class="col-sm-6 px-1 pl-2 d-flex flex-column my-2">
                                     <label for="" class="form-label">Country <span class="text-danger">*</span></label>
-                                    <select name="" id="" class="form-fields mt-2 py-1 form-label">
-                                        <option value="">option1</option>
-                                        <option value="">option2</option>
-                                        <option value="">option3</option>
+                                    <select name="country" id="country" class="form-fields mt-2 py-1 form-label">
+                                        @foreach($listing_locations as $country)
+                                        <option value="{{$country->id}}">{{$country->listing_location_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-sm-6 px-1 pl-2">
                                     <label for="" class="form-label">City <span class="text-danger">*</span></label>
-                                    <Input class="form-fields" placeholder="City" />
+                                    <Input class="form-fields" name="city" id="city" placeholder="City"></Input>
                                 </div>
                                 <div class="col-sm-6 px-1 pl-2 mt-sm-0 mt-2">
                                     <label for="" class="form-label">Address <span class="text-danger">*</span></label>
-                                    <Input class="form-fields" placeholder="Address" />
+                                    <Input class="form-fields" name="address" id="address" placeholder="Address"></Input>
                                 </div>
                                 <div class="col-12 px-1 pl-2 mt-2">
                                     <button class="form-btn py-2 rounded mt-3 d-flex align-items-center justify-content-center">
@@ -669,13 +682,15 @@ $userdata=Auth::user();
                     </div>
                 </form>
                 {{-- second form --}}
-                <div class="row mt-3 mx-0 bg-light rounded px-3 py-3">
+                <div class="row mt-3 mx-0 bg-light rounded px-3 py-3" style="border-radius:25px !important;">
                     <div class="col-4 text-sm pt-2 px-0">
                         <b>FINAL COUNTRY</b>
                     </div>
                     <div class="col-8 px-0">
-                        <select name="" id="" class="post-select text-sm py-2">
-                            <option value="">Pakistan</option>
+                        <select name="final_country" id="final_country" class="post-select text-sm py-2">
+                            @foreach($listing_locations as $country)
+                            <option value="{{$country->id}}">{{$country->listing_location_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-12 px-0">
@@ -684,7 +699,13 @@ $userdata=Auth::user();
                                 PORT/CITY
                             </div>
                             <div class="col-4 d-flex flex-column">
-                                <b>Karachi</b>
+                                <b>
+                                    <select name="port" id="port" class="post-select text-sm py-2">
+                                        @foreach($listing_ports as $port)
+                                            <option value="{{$port->id}}" data-price="{{$port->price}}" data-name="{{$port->name}}">{{$port->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </b>
                                 <span class="text-sm">pick up the port (RORO)</span>
                             </div>
                             <div class="col-4">
@@ -695,7 +716,7 @@ $userdata=Auth::user();
                     <div class="row w-100 mx-0 mt-3">
                         <div class="col-12 text-sm px-0">
                             <span class="">
-                                from <b>KARACHI</b> port to
+                                from <b id="selected-port-name-from">-</b> port to
                             </span>
                         </div>
                         <div class="col-12 port-data py-2 mt-2">
@@ -703,14 +724,14 @@ $userdata=Auth::user();
                                 <div class="col-4">
                                     <span class="d-flex align-items-center">
                                         <input type="radio">
-                                        <b class="text-sm pl-2">KARACHI</b>
+                                        <b class="text-sm pl-2" id="selected-port-name">-</b>
                                     </span>
                                 </div>
                                 <div class="col-4 text-md">
                                     <span class="text-md text-primary">pick up at port</span>
                                 </div>
                                 <div class="col-4">
-                                    <span class="text-danger fw-bold">$369</span>
+                                    <span class="text-danger fw-bold" id="selected-port-price">$</span>
                                 </div>
                             </div>
                         </div>
@@ -735,12 +756,13 @@ $userdata=Auth::user();
                                 </div>
                                 <div class="col-6 text-right">
                                     <span class="fw-bold text-secondary">CIF</span>
-                                    <span class="fw-bold text-danger">$3,8</span>
+                                    <span class="fw-bold text-danger" id="total-price">$</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 {{--                <div class="container-fluid border my-4 print_hide "--}}
 {{--                    style="border-color:#5A922C!important;background-color: #F7FFF0;">--}}
 {{--                    <!--<form >-->--}}
@@ -1804,6 +1826,32 @@ $userdata=Auth::user();
 </div> --}}
 
 <script>
+    var carBasePrice = {{ $detail->listing_price }};
+    document.addEventListener('DOMContentLoaded', function() {
+        const portSelect = document.getElementById('port');
+        const selectedPortNameElement = document.getElementById('selected-port-name'); // Port name element
+        const selectedPortNameElementFrom = document.getElementById('selected-port-name-from'); // Port name element
+        const selectedPortPriceElement = document.getElementById('selected-port-price');
+        const portNameElement = document.querySelector('.port-name'); // Ensure this element exists
+        const portPriceElement = document.querySelector('.port-price'); // Ensure this element exists
+        const totalPriceElement = document.getElementById('total-price'); // Use the correct ID
+
+        portSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const portName = selectedOption.getAttribute('data-name');
+            const portPrice = parseFloat(selectedOption.getAttribute('data-price'));
+
+            if (selectedPortNameElement) selectedPortNameElement.textContent = portName;
+            if (selectedPortNameElementFrom) selectedPortNameElementFrom.textContent = portName;
+            if (selectedPortPriceElement) selectedPortPriceElement.textContent = `$${portPrice.toFixed(2)}`;
+
+
+            const totalPrice = carBasePrice + portPrice;
+            if (totalPriceElement) totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+        });
+    });
+
+
     function calculateTotal() {
             var total = 0;
             var price = parseFloat(document.getElementById('car_listing_price').value);

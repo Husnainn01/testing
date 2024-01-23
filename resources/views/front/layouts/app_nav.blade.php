@@ -63,11 +63,18 @@
             <div class="col-md-6">
                 <form action="{{ url('search-listing') }}" method="POST">
                     @csrf
-                    <input class="w-80 py-2 px-3 border-0 search" type="text"
-                           placeholder="Search by stock ID or Keyword" name="text">
-                    <button type="submit" style="background:#731718;"
-                            class="p-2 border-0 float-right text search-btn">Search
-                    </button>
+                    <div class="row">
+                        <div class="col-11 px-0">
+                            <input class="w-100 py-2 px-3 border-0 search" type="text"
+                                   placeholder="Search for used cars" name="text">
+                        </div>
+                        <div class="col-1 px-0">
+                            <button type="submit" style="background:#731718;"
+                                    class="border-0 search-btn h-100 w-100 d-flex justify-content-center align-items-center">
+                                <i class="fa-solid fa-magnifying-glass text-white"></i>
+                            </button>
+                        </div>
+                    </div>
 
 
                     <div class="col-md-12 mt-3">
@@ -313,12 +320,11 @@
                     <div class="mr-3">
 
                         <div class="d-flex">
-                            <div class="mr-2"><i class="fa-solid fa-heart fs-4 my-2" aria-hidden="true"></i></div>
-
+                            <div class="mr-2"><i class="fa-solid fa-heart fs-4 my-2" style="font-size: 1.9rem" aria-hidden="true"></i></div>
                             <div class="my-auto">
                                 <a class=" text-light" href="#">
                                     {{--                                    <small class="m-0 text-light" href="#">Check</small>--}}
-                                    <small class="m-0 text-light">favourites</small>
+                                    <small class="m-0 text-light">Favorites</small>
                                 </a>
                             </div>
 
@@ -330,7 +336,7 @@
                                  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                  aria-expanded="false">
                                 <div class="d-flex">
-                                    <div class="mr-2"><i class="fas fa-user fs-4 my-2" aria-hidden="true"></i>
+                                    <div class="mr-2"><i class="fas fa-user fs-4 my-2" style="font-size: 1.8rem" aria-hidden="true"></i>
                                     </div>
                                     <div class=" my-auto pl-0" onclick="{{ route('customer_login') }}">
                                         <small class="m-0">Login</small>
@@ -398,7 +404,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 mt-3">
+                <div class="col-md-12 mt-3 px-0">
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"
@@ -406,8 +412,8 @@
                                  aria-expanded="false">
                                 <div class="d-flex">
                                     <div class="mr-2"><i class="fas fa-headset fs-4 my-2" aria-hidden="true"></i></div>
-                                    <div class="my-auto"><small class="m-0"> Support</small>
-                                        <small class="m-0">call us</small>
+                                    <div class="my-auto">
+                                        Support call us
                                     </div>
                                 </div>
                             </div>

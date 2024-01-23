@@ -11,6 +11,7 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
     }
     .load-more__btn-wrap {
     text-align: right;
+    margin-bottom: 1.1rem
 }
 </style>
 <div class="container">
@@ -18,9 +19,9 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         <div class="col-12 side-header py-2">
             Search By Brand
         </div>
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center" style="padding-left:1.8rem !important">
             <div class="brands-list mob-hide">
-                <div class="row mx-2 brands-box">
+                <div class="row brands-box">
                     <ul class="list-unstyled  brand-responsive">
                         @foreach ($leftside_brands as $branditems)
                         @php
@@ -59,18 +60,18 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
     </div>
     <div class="row">
         <div class="col-12 side-header py-2">Search By Type</div>
-        <div class="col-12">
+        <div class="col-12 pl-3">
             <ul class="list-unstyled">
-                <li class="mt-3 pl-3">
+                <li class="mt-3">
                     <a class="text-decoration-none d-flex" href="{{ route('Find-type', ['slug' => 'suv']) }}">
                         <i class="fa-solid fa-truck"></i>
                         <small class="pl-2">SUV</small>
                 </li>
-                <li class="mt-3 pl-3"><a class="text-decoration-none"
+                <li class="mt-3"><a class="text-decoration-none"
                         href="{{ route('Find-type', ['slug' => 'cargo']) }}">
                         <i class="fa-solid fa-truck"></i>
                         <small class="pl-2">Cargo</small></li>
-                <li class="mt-3 pl-3"><a class="text-decoration-none"
+                <li class="mt-3"><a class="text-decoration-none"
                         href="{{ route('Find-type', ['slug' => 'truck']) }}">
                         <i class="fa-solid fa-truck"></i>
                         <small class="pl-2">Truck</small></li>
@@ -82,8 +83,8 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         <div class="col-12 side-header py-2 w-full">
             Search By Steering
         </div>
-        <div class="col-12">
-            <ul class="list-unstyled mob-hide px-3">
+        <div class="col-12 pl-3">
+            <ul class="list-unstyled mob-hide">
                 <a href="{{ route('steering', ['type' => 'right_steering']) }}" class="text-dark"
                     style="text-decoration:none;">
                     <li class="py-2"><i class="fas fa-car"></i><small class="pl-1"> Right Hand</small></li>
@@ -99,8 +100,8 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         <div class="col-12 side-header py-2">
             Search By Price
         </div>
-        <div class="col-12 d-flex justify-content-center">
-            <ul class="list-unstyled mob-hide">
+        <div class="col-12 d-flex justify-content-center pl-3">
+            <ul class="list-unstyled mob-hide w-100">
                 <a href="{{ route('pricing', ['price1' => 0, 'price2' => 500]) }}" class="text-dark"
                     style="text-decoration:none;">
                     <li class="py-2">
@@ -157,8 +158,8 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         <div class="col-12 side-header py-2">
             Category
         </div>
-        <div class="col-12 d-flex justify-content-center">
-            <ul class="list-unstyled d-flex align-items-center flex-column pl-3">
+        <div class="col-12 d-flex justify-content-center pl-3">
+            <ul class="list-unstyled d-flex align-items-center flex-column">
                 @foreach ($category as $item)
                 <li class="mt-3">
                     <a class="text-decoration-none"
@@ -176,13 +177,13 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         <div class="col-12 side-header py-2">
             Inventory Location
         </div>
-        <div class="col-12">
+        <div class="col-12 pl-3">
             <ul class="list-unstyled">
                 @foreach ($location as $locationitems)
-                <li class="mt-3 pl-3"><a class="text-decoration-none"
+                <li class="mt-3"><a class="text-decoration-none"
                         href="{{ route('location_find', ['slug' => $locationitems->listing_location_slug]) }}">
-                        <img src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}"
-                            height="25" width="25">
+                        <img class="small-logo" src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}"
+                            >
                         <small class="pl-2">
                             {{ $locationitems->listing_location_name }}
                         </small>
