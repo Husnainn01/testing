@@ -26,7 +26,7 @@
                                         class="btn btn-primary float-right px-4 py-2">View All</button></a></span>
                             @foreach ($clientreviews as $reviews)
                                 @if ($reviews->listing)
-                                    <div data-name="{{ $reviews->agent->name ? $reviews->agent->name : 'null' }}"
+                                    <div data-name="{{ $reviews->name ? $reviews->name : 'null' }}"
                                         data-img="{{ $reviews->listing->listing_featured_photo ? $reviews->listing->listing_featured_photo : 'null' }}"
                                         data-review="{{ $reviews->review ? $reviews->review : 'null' }}"
                                         data-car_name="{{ $reviews->listing->listing_name ? $reviews->listing->listing_name : 'null' }}"
@@ -68,7 +68,7 @@
                                                     @for ($i = 0; $i < $emptyStars; $i++)
                                                         <i class="far fa-star" style="color: #F9C303;"></i>
                                                     @endfor
-                                                    <h6 class="fw-bold" style="color:#731718;">{{ $reviews->agent->name }}
+                                                    <h6 class="fw-bold" style="color:#731718;">{{ $reviews->name }}
                                                     </h6>
                                                     <small class="d-block">{{ $reviews->review }}</small>
                                                 </div>
@@ -97,7 +97,7 @@
                                 @foreach ($clientreviews as $reviews)
                                     @if ($reviews->listing)
                                         <div class="items">
-                                            <div data-name="{{ $reviews->agent->name }}"
+                                            <div data-name="{{ $reviews->name }}"
                                                 data-img="{{ $reviews->listing->listing_featured_photo }}"
                                                 data-review="{{ $reviews->review }}"
                                                 data-car_name="{{ $reviews->listing->listing_name }}"
@@ -132,7 +132,7 @@
                                                                 <i class="far fa-star" style="color: #F9C303;"></i>
                                                             @endfor
                                                             <h6 class="fw-bold" style="color:#731718;">
-                                                                {{ $reviews->agent->name }}</h6>
+                                                                {{ $reviews->name}}</h6>
                                                             <small class="d-block">{{ $reviews->review }}</small>
                                                         </div>
 

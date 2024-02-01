@@ -1,5 +1,6 @@
 @php
 $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
+$social_media_items=\App\Models\SocialMediaItem::all();
 @endphp
 <style>
 
@@ -234,6 +235,28 @@ $advertisements = App\Models\HomeAdvertisement::where('id', 1)->first();
     </div>
 
 </div>
+    <div class="my-3">
+        <h5>Follow us on :</h5>
+        <h5>
+{{--            @foreach ($social_media_items as $items)--}}
+{{--                <a href="{{$items->social_url}}"><i class="{{$items->social_icon}}"--}}
+{{--                                                    style="color:white!important;background:#731718;padding:10px;border-radius:5px;"></i></a>--}}
+{{--            @endforeach--}}
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="{{asset('images/facebook.png')}}" alt="Facebook" style="width: 30px;height: 30px;margin-right: 10px;"/>
+            </a>
+            <a href="https://twitter.com/" target="_blank">
+                <img src="{{asset('images/X.png')}}" alt="Twitter" style="width: 30px;height: 30px;margin-right: 10px;"/>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="{{asset('images/instagram.png')}}" alt="Instagram" style="width: 30px;height: 30px;margin-right: 10px;"/>
+            </a>
+            <a href="https://www.youtube.com" target="_blank">
+                <img src="{{asset('images/youtube.png')}}" alt="YouTube" style="width: 30px;height: 35px;margin-right: 10px;"/>
+            </a>
+        </h5>
+    </div>
+
 <div class="my-3">
     <a
         @if(isset($advertisements->above_brand_1_url))

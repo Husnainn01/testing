@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use DB;
 use Auth;
 
@@ -578,6 +579,17 @@ class ListingController extends Controller
 
     public function add_review(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'listing_id' => 'required|numeric',
+            'rating' => 'required|numeric|min:1|max:5',
+            'name_of_customer' => 'required|string|max:255',
+            'country' => 'required',
+            'description' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         try {
             $admin_data=Auth::user();
             $data=[
@@ -597,7 +609,7 @@ class ListingController extends Controller
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->with('error', 'Failed to add review please try again later');
+            return redirect()->back()->with('error', $e->getMessage());
         }
 
     }

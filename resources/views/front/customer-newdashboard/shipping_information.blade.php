@@ -4,7 +4,6 @@
     <ul class="list-unstyled list-inline">
         <li class="list-inline-item text-primary">Dashboard</li>>
         <li class="list-inline-item mx-2">Car and Shipping Information</li>
-
     </ul>
     <h3 class="fw-medium">Car and Shipping Information</h3>
 
@@ -93,15 +92,21 @@
     <tr>
         <td>{{ $shippingOrder->shipping_id }}</td>
         <td>
-            <a href="{{ route('customer.shipment.view', ['id' => $shippingOrder->id]) }}" title="View Shipment">
-                {{ $shippingOrder->offer->car_name }}
-            </a>
+            <ul>
+                @foreach($shippingOrder->offers as $offer)
+                <li>
+                    <a  class="text-primary text-decoration-underline" href="{{ route('customer.shipment.view', ['id' => $shippingOrder->id]) }}" title="View Shipment">
+                        {{ $offer->car_name }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
         </td>
         <td>{{ $shippingOrder->created_at }}</td>
         <td>{{ $shippingOrder->country_selected->listing_location_name }}</td>
         <td>{{ $shippingOrder->city_selected->name }}</td>
         <td>{{ $shippingOrder->port_selected->name }}</td>
-        
+
         @php
             $documents = $shippingOrder->documents->pluck('status')->toArray();
         @endphp
@@ -135,7 +140,7 @@
         </td>
     </tr>
     @endforeach
-</tbody>                  
+</tbody>
 </table>
 </div>
 </div>

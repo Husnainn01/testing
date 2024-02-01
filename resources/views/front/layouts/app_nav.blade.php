@@ -30,8 +30,11 @@
                 <p class="mb-0">Cars added today : {{$today_cars}} </p>
             </div>
             <div class="col-md-3" style="max-width: 25%">
-                <p class="text-center mb-0"><i class="far fa-clock"></i> Japanese Time
-                    : {{ \Carbon\Carbon::now()->format('M/d/Y h:i A') }}</p>
+                <p class="text-center mb-0"><i class="far fa-clock"></i>
+                    Japanese Time :
+{{--                    {{ \Carbon\Carbon::now()->format('M/d/Y h:i A') }}--}}
+                    <span id="local-time"></span>
+                </p>
             </div>
             <div class="col-md-3" style="max-width: 20%">
                 <div class="dropdown float-right">
@@ -53,8 +56,8 @@
             </div>
         </div>
         <div class="row pt-3" style="background-color:black;">
-            <div class="col-md-2 position-relative ">
-                <div class="w-50  text-center position-relative">
+            <div class="col-md-2 position-relative " style="justify-content: center;display: flex;">
+                <div class="w-80  text-center position-relative">
                     <a href="{{ url('/') }}"><img class="w-75 p-1"
                                                   src="{{ asset('uploads/site_photos/' .$g_settings->logo)}}"
                                                   alt="logo"></a>
@@ -271,7 +274,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <div class="d-flex my-auto justify-content-center" style="font-size: 1.5rem">
+                <div class="d-flex my-auto" style="justify-content: end;font-size: 1.5rem">
                     <div class="mr-3">
                         <div class="dropdown float-right support-dropdown">
                             {{--                            <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"--}}
@@ -404,7 +407,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 mt-3 px-0">
+                <div class="col-md-12 mt-3 px-0" style="justify-content: end;display: flex;">
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"
@@ -564,6 +567,27 @@
         </div>
     </div>
 </header>
+<script>
+    function formatAMPM(date) {
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var day = date.getDate();
+        var month = months[date.getMonth()];
+        var year = date.getFullYear();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var strTime = month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+
+    document.getElementById('local-time').textContent = formatAMPM(new Date());
+    // document.getElementById('local-time').textContent = new Date().toLocaleString("en-US", {timeZoneName: "short"});
+</script>
+
 <!--  -->
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->

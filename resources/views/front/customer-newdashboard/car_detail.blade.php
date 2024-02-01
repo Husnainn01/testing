@@ -7,37 +7,62 @@
     </ul>
     <h3 class="fw-medium">{{ $detail->listing_name }} Details</h3>
 </section>
-<section class="container">
+<section class="container mb-3">
     <div class="row">
 
-        <div class="col-6" style="background: url('')">
-            <img src="{{ asset('uploads/listing_featured_photos/' . $detail->listing_featured_photo) }}" class="w-100 mt-2" alt="">
-            <div class="container text-center my-3">
-                <div class="row mx-auto my-auto justify-content-center">
-                    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                @foreach($listing_photos as $listing_photo)
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-img">
-                                                <img src=" {{ asset('/uploads/listing_photos/'.$listing_photo->photo) }} " class="img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+        <div class="col-6" >
+            <div id="carousel" class="carousel slide gallery background-secondary" data-ride="carousel">
+                <div class="carousel-inner">
+                    @php $key = 0; @endphp
+                    @foreach ($listing_photos as $photos)
+                        @php $key++; @endphp
+                        <div class="carousel-item {{ $key == 1 ? 'active' : '' }}" data-slide-number="{{ $key }}" data-toggle="lightbox" data-gallery="gallery" data-remote="{{ asset('/uploads/car_photos/'.$photos->car_photo) }}">
+                            <img height="300" style="object-fit: cover;" src="{{ asset('/uploads/listing_photos/'.$photos->photo) }}" class="d-block w-100" alt="...">
                         </div>
-                        <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </a>
-                        <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
+
+                <a class="carousel-control-prev"  role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next"  role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                {{-- <a class="carousel-fullscreen" href="#carousel" role="button">
+                    <span class="carousel-fullscreen-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Fullscreen</span>
+                </a>
+                <a class="carousel-pause pause" href="#carousel" role="button">
+                    <span class="carousel-pause-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Pause</span>
+                </a> --}}
             </div>
 
+            <!-- Carousel Navigatiom -->
+            <div id="carousel-thumbs" class="carousel slide " data-ride="carousel">
+                <div class="carousel-inner ">
+                    <div class="carousel-item active" data-slide-number="0">
+                        <div class="row mx-0 " style="background:#EBEBEB!important;">
+                            @php $value = 0; @endphp
+                    @foreach ($listing_photos as $photos)
+
+                        <div id="carousel-selector-{{$value}}" class="thumb col-3 px-1 py-2  {{ $value == 0 ? 'selected' : '' }}" data-target="#carousel" data-slide-to="{{$value}}">
+                            @php $value++; @endphp
+                            <img src="{{ asset('/uploads/listing_photos/'.$photos->photo) }}" style="height: 85px;
+                            width: 100%;
+                            object-fit: cover;cursor:pointer;"  alt='img' class="img-fluid">
+                        </div>
+                    @endforeach
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
         <div class="col-6">
             <div class="row my-2">
@@ -70,7 +95,7 @@
 
 
             </div>
-            <div class="row my-4">
+            <div class="row my-4 pe-5">
                 <table class="table-bordered w-100 text-left specification">
                     {{-- <tr >
                                 <td style="background: #EBF3FF;" class="text-left pl-2"><small>Price</small></td>
@@ -157,7 +182,7 @@
                         $res = DB::table('amenities')->where('id',$row->amenity_id)->first();
                         @endphp
                         <div class="w-auto py-2 px-2 border mx-1 my-1" style="background:#F7FFF0">
-                            <small>{{$res->amenity_name}}<</small>
+                            <small>{{$res->amenity_name}}</small>
                         </div>
                     @endforeach
                 </div>
@@ -165,4 +190,61 @@
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+      $(document).ready(function() {
+  // Initialize the carousel
+  $("#carousel").carousel();
+
+  // Handle custom carousel navigation buttons
+  $(".carousel-control-prev").click(function() {
+    fadeCarousel("prev");
+  });
+
+  $(".carousel-control-next").click(function() {
+    fadeCarousel("next");
+  });
+
+  // Handle thumbnail clicks
+  $("#carousel-thumbs .thumb").click(function() {
+    var slideNumber = parseInt($(this).attr("data-slide-to"));
+    fadeCarousel(slideNumber);
+  });
+
+  // Update thumbnail selection on slide change
+  $("#carousel").on("slide.bs.carousel", function(event) {
+    var currentSlide = $(event.relatedTarget);
+    var slideNumber = currentSlide.index();
+    $("#carousel-thumbs .thumb").removeClass("selected");
+    $("#carousel-selector-" + slideNumber).addClass("selected");
+  });
+
+  // Function to fade carousel
+  function fadeCarousel(slideNumber) {
+    var $carouselInner = $("#carousel .carousel-inner");
+    var $slides = $carouselInner.find(".carousel-item");
+    var $activeSlide = $carouselInner.find(".carousel-item.active");
+
+    if (typeof slideNumber === 'string') {
+      slideNumber = slideNumber === "prev" ? $activeSlide.prev().index() : $activeSlide.next().index();
+    }
+
+    if (slideNumber >= $slides.length) {
+      slideNumber = 0;
+    } else if (slideNumber < 0) {
+      slideNumber = $slides.length - 1;
+    }
+
+    var $nextSlide = $slides.eq(slideNumber);
+
+    if (!$nextSlide.hasClass("active")) {
+      $activeSlide.fadeOut(400, function() {
+        $activeSlide.removeClass("active");
+        $nextSlide.fadeIn(400).addClass("active");
+      });
+    }
+  }
+});
+
+</script>
 @endsection

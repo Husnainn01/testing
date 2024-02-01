@@ -32,7 +32,7 @@
                             <div class="container"></div>
                             <div class="row mt-2">
                                 <h6 class="text-primary p-0 fw-bold mb-0">{{ $user_favourite->listing_name }}</h6>
-                                <p>{{ $user_favourite->listing_description }}</p>
+                                {{-- <p>{{ $user_favourite->listing_description }}</p> --}}
                                 <div class="badges p-0 mb-2"><span class="badge bg-dark">{{ $user_favourite->listing_stock_status }}</span>
                                     <!-- <span class="badge bg-success mx-2">BF Stock</span><span class="badge bg-warning">Today Offers</span>-->
                                 </div>
@@ -98,7 +98,7 @@
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div class="cars"  style="height: 700px;overflow-y:auto;">
                 @forelse($total_pending_listing_cars as $total_pending_listing_car)
-                    @php 
+                    @php
                         $pending_car = $total_pending_listing_car->car;
                     @endphp
                     <section class="container border-bottom pb-1">
@@ -171,7 +171,7 @@
             <div class="cars"  style="height: 700px;overflow-y:auto;">
                 @forelse($total_reserved_listing_cars as $total_reserved_listing_car)
                     @php
-                        $reserved_car = $total_reserved_listing_car->car;            
+                        $reserved_car = $total_reserved_listing_car->car;
                     @endphp
                     <section class="container border-bottom pb-1">
                         <div class="row">
@@ -254,42 +254,4 @@
 </section> --}}
 
 {{--  --}}
-
-
-<section class="container-fluid p-3 m-auto my-3">
-    <i class="fa-solid fa-car text-primary mb-2"></i> Recommendations for You
-  <div class="divider w-100 border-top"></div>
-  <div class="row mt-3 gap-1 bg-light p-2">
-    <div class="col-lg-2 col-md-4 col-sm-12">
-        <img src="{{asset('uploads/listing_photos/jeep.jfif')}}" class="w-100" alt="">
-        <small class="d-block fw-bold">2018  JEEPWRANGLER</small>
-        <small class="d-block">Vehicle Price:</small>
-        <small class="d-block">$26,090</small>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12">
-        <img src="{{asset('uploads/listing_photos/jeep.jfif')}}" class="w-100" alt="">
-        <small class="d-block fw-bold">2018  JEEPWRANGLER</small>
-        <small class="d-block">Vehicle Price:</small>
-        <small class="d-block">$26,090</small>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12">
-        <img src="{{asset('uploads/listing_photos/jeep.jfif')}}" class="w-100" alt="">
-        <small class="d-block fw-bold">2018  JEEPWRANGLER</small>
-        <small class="d-block">Vehicle Price:</small>
-        <small class="d-block">$26,090</small>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12">
-        <img src="{{asset('uploads/listing_photos/jeep.jfif')}}" class="w-100" alt="">
-        <small class="d-block fw-bold">2018  JEEPWRANGLER</small>
-        <small class="d-block">Vehicle Price:</small>
-        <small class="d-block">$26,090</small>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12">
-        <img src="{{asset('uploads/listing_photos/jeep.jfif')}}" class="w-100" alt="">
-        <small class="d-block fw-bold">2018  JEEPWRANGLER</small>
-        <small class="d-block">Vehicle Price:</small>
-        <small class="d-block">$26,090</small>
-    </div>
-  </div>
-</section>
 @endsection

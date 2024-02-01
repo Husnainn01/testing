@@ -16,10 +16,10 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-12 side-header py-2">
+        <div class="col-12 side-header py-2" style="padding-left:2.25rem !important;">
             Search By Brand
         </div>
-        <div class="col-12 d-flex justify-content-center" style="padding-left:1.8rem !important">
+        <div class="col-12 d-flex justify-content-center" style="padding-left:3.2rem !important">
             <div class="brands-list mob-hide">
                 <div class="row brands-box">
                     <ul class="list-unstyled  brand-responsive">
@@ -59,8 +59,8 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         </div>
     </div>
     <div class="row">
-        <div class="col-12 side-header py-2">Search By Type</div>
-        <div class="col-12 pl-3">
+        <div class="col-12 side-header py-2" style="padding-left:2.25rem !important;">Search By Type</div>
+        <div class="col-12 pl-4" style="padding-left:2.25rem !important;">
             <ul class="list-unstyled">
                 <li class="mt-3">
                     <a class="text-decoration-none d-flex" href="{{ route('Find-type', ['slug' => 'suv']) }}">
@@ -80,10 +80,10 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         </div>
     </div>
     <div class="row">
-        <div class="col-12 side-header py-2 w-full">
+        <div class="col-12 side-header py-2 w-full" style="padding-left:2.25rem !important;">
             Search By Steering
         </div>
-        <div class="col-12 pl-3">
+        <div class="col-12 pl-4" style="padding-left:2.25rem !important;">
             <ul class="list-unstyled mob-hide">
                 <a href="{{ route('steering', ['type' => 'right_steering']) }}" class="text-dark"
                     style="text-decoration:none;">
@@ -97,10 +97,10 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         </div>
     </div>
     <div class="row">
-        <div class="col-12 side-header py-2">
+        <div class="col-12 side-header py-2" style="padding-left:2.25rem !important;">
             Search By Price
         </div>
-        <div class="col-12 d-flex justify-content-center pl-3">
+        <div class="col-12 d-flex justify-content-center pl-4" style="padding-left:2.25rem !important;">
             <ul class="list-unstyled mob-hide w-100">
                 <a href="{{ route('pricing', ['price1' => 0, 'price2' => 500]) }}" class="text-dark"
                     style="text-decoration:none;">
@@ -155,10 +155,10 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         </div>
     </div>
     <div class="row">
-        <div class="col-12 side-header py-2">
+        <div class="col-12 side-header py-2" style="padding-left:2.25rem !important;">
             Category
         </div>
-        <div class="col-12 d-flex justify-content-center pl-3">
+        <div class="col-12 d-flex justify-content-center pl-4" style="padding-left:2.25rem !important;">
             <ul class="list-unstyled d-flex align-items-center flex-column">
                 @foreach ($category as $item)
                 <li class="mt-3">
@@ -174,17 +174,17 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
         </div>
     </div>
     <div class="row">
-        <div class="col-12 side-header py-2">
+        <div class="col-12 side-header py-2" style="padding-left:2.25rem !important;">
             Inventory Location
         </div>
-        <div class="col-12 pl-3">
+        <div class="col-12 pl-4" style="padding-left:2.25rem !important;">
             <ul class="list-unstyled">
                 @foreach ($location as $locationitems)
                 <li class="mt-3"><a class="text-decoration-none"
                         href="{{ route('location_find', ['slug' => $locationitems->listing_location_slug]) }}">
                         <img class="small-logo" src="{{ asset('uploads/listing_location_photos/' . $locationitems->listing_location_photo) }}"
                             >
-                        <small class="pl-2">
+                        <small>
                             {{ $locationitems->listing_location_name }}
                         </small>
                     </a>

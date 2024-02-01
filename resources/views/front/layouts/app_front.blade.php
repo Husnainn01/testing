@@ -238,7 +238,7 @@ session()->put('currency_value',$value1);
         @include('front.layouts.app_footer')
 
 
-      	<div class="scroll-top">
+      	<div class="scroll-top" onclick="scrollToTop()">
 		  	<i class="fas fa-long-arrow-alt-up"></i>
 	    </div>
 
@@ -327,6 +327,10 @@ selectElement.empty();
             });
 }
 
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
     </script>
    </body>
 </html>

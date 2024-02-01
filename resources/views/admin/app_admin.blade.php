@@ -126,7 +126,7 @@ $g_setting = \App\Models\GeneralSetting::where('id',1)->first();
                 </div>
             </li>
         @endcan
-        
+
         @can('admin_inspection_view' , 'admin_inspection_create')
         <!-- Inspection -->
         <li class="nav-item {{ $route == 'admin_inspection_view'|| $route =='admin_inspection_create' ? 'active' : '' }}">
@@ -286,7 +286,7 @@ $g_setting = \App\Models\GeneralSetting::where('id',1)->first();
         </li>
         @endcan
 
-        
+
 
         <!-- Listing Settings -->
         @can('admin_listing_brand_view' , 'admin_listing_location_view' , 'admin_amenity_view' , 'admin_listing_view')
@@ -309,7 +309,7 @@ $g_setting = \App\Models\GeneralSetting::where('id',1)->first();
                         @can('admin_listing_port_view')
                             <a class="collapse-item" href="{{ route('admin_listing_port_view') }}">Listing Ports</a>
                         @endcan
-                                                
+
                         @can('admin_amenity_view')
                            <a class="collapse-item" href="{{ route('admin_amenity_view') }}">{{ LISTING_AMENITY }}</a>
                         @endcan
@@ -434,7 +434,7 @@ $g_setting = \App\Models\GeneralSetting::where('id',1)->first();
             </a>
         </li> -->
 
-        
+
 
 
         <!-- Divider -->

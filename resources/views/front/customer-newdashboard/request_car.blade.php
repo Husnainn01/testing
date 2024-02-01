@@ -13,34 +13,42 @@
     <div class="row">
         <div class="col-12"></div>
         <div class="col-12">
-            <form action="" class="border p-5">
+            <form action="{{ route('requested_car_store') }}" method="POST" class="border p-5">
+                @csrf
+
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-12">
-                        <label for="car-name">Car Name</label>
-                        <input type="text" class="form-control rounded-3" id="car-name">
+                        <label for="car-name" class="form-label">Car Name *</label>
+                        <input type="text" required class="form-control rounded-3" id="car-name" name="car_name" required>
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-12">
-                        <label for="car-name">Car Model</label>
-                        <input type="text" class="form-control rounded-3" id="car-name">
+                        <label for="car-model" class="form-label">Car Model *</label>
+                        <input type="text" required class="form-control rounded-3" id="car-model" name="car_model" required>
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-12 mt-1">
-                        <label for="car-name">Year</label>
-                        <input type="text" class="form-control rounded-3" id="car-name">
+                        <label for="year" class="form-label">Year *</label>
+                        <input type="text" required required class="form-control rounded-3" id="year" name="year" required>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-12  mt-1">
-                        <label for="car-name">Mileage</label>
-                        <input type="text" class="form-control rounded-3" id="car-name">
+
+                    <div class="col-lg-6 col-md-6 col-12 mt-1">
+                        <label for="mileage" class="form-label">Mileage</label>
+                        <input type="text" required class="form-control rounded-3" id="mileage" name="mileage" required>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-12  mt-1">
-                        <label for="car-name">Engine</label>
-                        <input type="text" class="form-control rounded-3" id="car-name">
+
+                    <div class="col-lg-6 col-md-6 col-12 mt-1">
+                        <label for="engine" class="form-label">Engine *</label>
+                        <input type="text" required class="form-control rounded-3" id="engine" name="engine" required>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-12  mt-1">
-                        <label for="car-name">Trans</label>
-                        <input type="text" class="form-control rounded-3" id="car-name">
+
+                    <div class="col-lg-6 col-md-6 col-12 mt-1">
+                        <label for="transmission" class="form-label">Transmission *</label>
+                        <input type="text" required class="form-control rounded-3" id="transmission" name="transmission" required>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-12  mt-1">
-                       <button class="btn btn-primary m-auto d-block px-5 py-2 mt-3">Submit</button>
+
+                    <div class="col-lg-12 col-md-12 col-12 mt-1">
+                        <button class="btn btn-primary m-auto d-block px-5 py-2 mt-3" type="submit">Submit</button>
                     </div>
                 </div>
             </form>

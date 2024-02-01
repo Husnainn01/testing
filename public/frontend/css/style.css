@@ -203,8 +203,10 @@ header a {
 }
 
 .card-body {
-    padding-top: 0px !important;
+    padding-top: 0 !important;
     background: #F7F7F7 !important;
+    margin-left: -15px;
+    width: 420px;
 }
 
 .footer-flag {
@@ -566,7 +568,7 @@ td {
 }
 
 .small-logo {
-    width: 11%;
+    width: 20%;
     margin-right: 8px;
 }
 
@@ -780,7 +782,7 @@ header small {
 }
 
 .dropdown-menu {
-    top: 22px !important;
+    top: 50px !important;
     position: absolute;
 
 }
@@ -997,9 +999,9 @@ select:focus option:checked {
 }
 
 .btn-primary {
-    background-color: #ffffff !important;
+    background-color: #731718 !important;
     border: none !important;
-    color: #030303 !important;
+    color: white !important;
     border-radius: 30px !important;
 }
 
@@ -1570,7 +1572,8 @@ body.mobile-nav-open {
 .side-header{
     background-color: #531010 !important;
     color: white;
-    font-size: 0.8rem;
+    font-size: 1.15rem;
+    height: 45px;
 }
 .text-performa{
     font-size: 0.5rem;

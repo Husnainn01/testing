@@ -13,7 +13,7 @@
     <div class="cars"  style="height: 700px;overflow-y:auto;">
         @forelse($total_reserved_listing_cars as $total_reserved_listing_car)
             @php
-                $reserved_car = $total_reserved_listing_car->car;            
+                $reserved_car = $total_reserved_listing_car->car;
             @endphp
             <section class="container border-bottom pb-1">
                 <div class="row">
@@ -24,7 +24,7 @@
                         <div class="container"></div>
                         <div class="row mt-2">
                             <h6 class="text-primary p-0 fw-bold mb-0">{{ $reserved_car->listing_name }}</h6>
-                            <p>{{ $reserved_car->listing_description }}</p>
+                            {{-- <p>{{ $reserved_car->listing_description }}</p> --}}
                             <div class="badges p-0 mb-2"><span class="badge bg-dark">{{ $reserved_car->listing_stock_status }}</span>
                                 <!-- <span class="badge bg-success mx-2">BF Stock</span><span class="badge bg-warning">Today Offers</span>-->
                             </div>

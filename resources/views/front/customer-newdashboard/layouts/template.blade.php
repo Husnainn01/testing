@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{{ asset('images/ssjapanfevico.png') }}">
     <title>Customer Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/003e68ae06.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('assets_customer/css/style.css')}}">
 </head>
   <body>
-    <div class="container border p-0">
+    <section class="container-fluid px-0 overflow-hidden">
     <section class="row">
     <div class="col-12">
         @include('front.customer-newdashboard.layouts.topnav')
@@ -26,88 +27,94 @@
         @include('front.customer-newdashboard.layouts.footer')
     </div>
     </section>
-</div>
+
+</section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js "></script>
     <script>
-        var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset properties which we will animate
-var animating; //flag to prevent quick multi-click glitches
+
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-$(".next").click(function(){
-	if(animating) return false;
-	animating = true;
 
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
+$(document).ready(function () {
+    var current_fs, previous_fs; // Fieldsets
+    var animating = false; // Flag to prevent quick multi-click glitches
 
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    $(".next").click(function () {
+        if (animating) return false;
+        animating = true;
 
-	//show the next fieldset
-	next_fs.show();
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale current_fs down to 80%
-			scale = 1 - (1 - now) * 0.2;
-			//2. bring next_fs from the right(50%)
-			left = (now * 50)+"%";
-			//3. increase opacity of next_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({
-        'transform': 'scale('+scale+')',
-        'position': 'absolute'
-      });
-			next_fs.css({'left': left, 'opacity': opacity});
-		},
-		duration: 800,
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		},
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
+        current_fs = $(this).closest('fieldset');
+        var next_fs = $(this).closest('fieldset').next();
+
+        // Activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        // Show the next fieldset
+        next_fs.show();
+        // Hide the current fieldset with style
+        current_fs.animate({ opacity: 0 }, {
+            step: function (now, mx) {
+                // As the opacity of current_fs reduces to 0 - stored in "now"
+                // 1. Scale current_fs down to 80%
+                var scale = 1 - (1 - now) * 0.2;
+                // 2. Bring next_fs from the right(50%)
+                var left = (now * 50) + "%";
+                // 3. Increase opacity of next_fs to 1 as it moves in
+                var opacity = 1 - now;
+                current_fs.css({ 'transform': 'scale(' + scale + ')', 'position': 'absolute' });
+                next_fs.css({ 'left': left, 'opacity': opacity });
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            // This comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+
+    $(".previous").click(function () {
+        if (animating) return false;
+        animating = true;
+
+        current_fs = $(this).closest('fieldset');
+        var previous_fs = $(this).closest('fieldset').prev();
+
+        // De-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+        // Show the previous fieldset
+        previous_fs.show();
+        // Hide the current fieldset with style
+        current_fs.animate({ opacity: 0 }, {
+            step: function (now, mx) {
+                // As the opacity of current_fs reduces to 0 - stored in "now"
+                // 1. Scale previous_fs from 80% to 100%
+                var scale = 0.8 + (1 - now) * 0.2;
+                // 2. Take current_fs to the right(50%) - from 0%
+                var left = ((1 - now) * 50) + "%";
+                // 3. Increase opacity of previous_fs to 1 as it moves in
+                var opacity = 1 - now;
+                current_fs.css({ 'left': left });
+                previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity });
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            // This comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
 });
 
-$(".previous").click(function(){
-	if(animating) return false;
-	animating = true;
 
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
 
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-	//show the previous fieldset
-	previous_fs.show();
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale previous_fs from 80% to 100%
-			scale = 0.8 + (1 - now) * 0.2;
-			//2. take current_fs to the right(50%) - from 0%
-			left = ((1-now) * 50)+"%";
-			//3. increase opacity of previous_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({'left': left});
-			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-		},
-		duration: 800,
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		},
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
 $('#add_new-tab-content').hide();
 $('#default-tab-content').show();
 
@@ -141,14 +148,29 @@ $('#receiver_default-tab').click(function(){
 });
 document.getElementById('submitForm').addEventListener('click', function () {
         const mandatoryFields = [
-            'offer_id',
+            'offer_ids',
             'service',
             'country',
             'city',
             'container_port'
         ];
+        //
+        var checkedCheckboxes = $('#exampleModal input[name="offer_ids[]"]:checked');
+        var checkedValues = checkedCheckboxes.map(function() {
+            return $(this).val();
+        }).get();
+        if (checkedValues.length === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please select at least one offer!',
+            });
+            return;
+        }
+        //
+        // offer_ids
         const formData = {
-            offer_id: parseInt(document.getElementById('offer_id').value),
+            offer_ids: checkedValues,
             service: document.getElementById('service').value,
             country: parseInt(document.getElementById('country').value),
             city: parseInt(document.getElementById('city').value),
@@ -172,7 +194,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
             return;
         }
         if (formData.consignee_tab === 'default-tab') {
-            {{--formData.consignee_id = parseInt({{ Auth::user()->id }});--}}
+            formData.consignee_id = parseInt({{ Auth::user()->id }});
             formData.default_name = document.querySelector('input[name="default_name"]').value;
             formData.default_company_name = document.querySelector('input[name="default_company_name"]').value;
             formData.default_email = document.querySelector('input[name="default_email"]').value;
@@ -180,7 +202,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
             formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
             formData.default_address = document.querySelector('input[name="default_address"]').value;
         } else {
-            {{--formData.consignee_id = parseInt({{ Auth::user()->id }});--}}
+            formData.consignee_id = parseInt({{ Auth::user()->id }});
             formData.default_name = document.querySelector('input[name="consignee_name"]').value;
             formData.default_company_name = document.querySelector('input[name="consignee_company_name"]').value;
             formData.default_email = document.querySelector('input[name="consignee_email"]').value;
@@ -190,7 +212,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
         }
 
         if (formData.receiver_tab === 'receiver_default-tab') { // Use 'receiver_default' instead of 'receiver_default-tab'
-            {{--formData.receiver_id = parseInt({{ Auth::user()->id }});--}}
+            formData.receiver_id = parseInt({{ Auth::user()->id }});
             formData.receiver_default_name = document.querySelector('input[name="receiver_default_name"]').value;
             formData.receiver_default_company_name = document.querySelector('input[name="receiver_default_company_name"]').value;
             formData.receiver_default_email = document.querySelector('input[name="receiver_default_email"]').value;
@@ -198,7 +220,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
             formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]').value;
             formData.receiver_default_address = document.querySelector('input[name="receiver_default_address"]').value;
         } else {
-{{--            formData.receiver_id = parseInt({{ Auth::user()->id }});--}}
+            formData.receiver_id = parseInt({{ Auth::user()->id }});
             formData.receiver_default_name = document.querySelector('input[name="receiver_add_name"]').value;
             formData.receiver_default_company_name = document.querySelector('input[name="receiver_add_company_name"]').value;
             formData.receiver_default_email = document.querySelector('input[name="receiver_add_email"]').value;
@@ -261,10 +283,22 @@ document.getElementById('submitForm').addEventListener('click', function () {
                 }
             } else {
                 // Handle cases where the response does not contain the expected data
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: data.errors.offer_ids,
+                });
+                return;
                 console.error('Invalid response format:', data);
             }
         })
         .catch(error => {
+            Swal.fire({
+                      icon: 'error',
+                      title: 'There was a problem with the fetch operation',
+                      text: error,
+                  });
+                return;
             console.error('There was a problem with the fetch operation:', error);
         });
 

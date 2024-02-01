@@ -86,7 +86,7 @@ $userdata=Auth::user();
 <div class="container my-5">
     <div class="row px-3 px-sm-3">
         <div class="col-md-6 print-50">
-            <h6>Home {{ $detail->brand_name }} > {{ $detail->listing_name }} > SUV >2012</h6>
+            <h6>Home {{ $detail->brand_name }} > {{ $detail->listing_name }} > {{$detail->listing_body}} >{{$detail->listing_model_year}}</h6>
             {{--
             <div class="carousel">
                 <div class="big-slide">
@@ -1947,7 +1947,7 @@ $userdata=Auth::user();
     }
 
     .feature-box.highlight {
-        background-color: #f38989;
+        background-color: #feddc1;
         /* Highlight color */
         font-weight: bold;
         color: black;
