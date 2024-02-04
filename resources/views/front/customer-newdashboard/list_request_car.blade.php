@@ -24,7 +24,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($requestedCars as $index => $car)
+                @if($requestedCars == null)
+                    <tr>
+                        <td colspan="7" class="text-center">No requested cars found.</td>
+                    </tr>
+                @else
+                    @foreach($requestedCars as $index => $car)
                         <tr>
                             <th scope="row">{{ $index + 1 }}</th>
                             <td>{{ $car->car_name }}</td>
@@ -34,11 +39,8 @@
                             <td>{{ $car->engine }}</td>
                             <td>{{ $car->transmission }}</td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="7" class="text-center">No requested cars found.</td>
-                        </tr>
-                    @endforelse
+                        @endforeach
+                @endif
                 </tbody>
             </table>
         </div>

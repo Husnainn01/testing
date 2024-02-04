@@ -191,6 +191,7 @@ Route::get('all-reserved-vehicles',[CustomerControllerForFront::class,'all_reser
 Route::get('customer/shipping-documents',[CustomerControllerForFront::class,'customer_shipping_documents'])->name('customer_shipping_documents');
 Route::post('post/customer/shipping-documents',[CustomerControllerForFront::class,'customer_shipping_documents'])->name('shippind_doc');
 Route::get('customer/shipping-module',[CustomerControllerForFront::class,'web_ordering_history'])->name('web_ordering_history');
+Route::get('customer/get_cities_and_ports',[CustomerControllerForFront::class,'get_cities_and_ports'])->name('get_cities_and_ports');
 Route::get('customer/landtransport',[CustomerControllerForFront::class,'customer_land_transport'])->name('customer_land_transport');
 Route::get('customer/invoices',[CustomerControllerForFront::class,'customer_invoice'])->name('customer_invoices');
 Route::get('customer/car_shipping_information',[CustomerControllerForFront::class,'car_and_shipping_information'])->name('customer_car_and_shipping_information');
@@ -202,9 +203,12 @@ Route::post('customer/car_and_shipping_info_filter', [CustomerControllerForFront
 Route::get('/edit-invoice/{invoice}', [CustomerControllerForFront::class,'editInvoice'])->name('edit_invoice');
 // Route::view('update-password','front.customer-newdashboard.update_password')->name('update-password');
 Route::get('customer/update_customer_password',[CustomerControllerForFront::class,'update_customer_password'])->name('update_customer_password');
-
+    Route::get('customer/request_car',[CustomerControllerForFront::class,'request_car'])->name('request_car');
+    Route::get('customer/list_request_car',[CustomerControllerForFront::class,'list_request_car'])->name('list_request_car');
     // customer_offers
 Route::get('customer_offers', [CustomerControllerForFront::class,'customer_offers'])->name('customer_offers');
+    Route::post('customer/requested_car_store', [CustomerControllerForFront::class, 'requested_car_store'])
+        ->name('requested_car_store');
 // car_detail
 Route::get('car_detail/{slug}', [CustomerControllerForFront::class,'car_detail'])
     ->name('car_detail');

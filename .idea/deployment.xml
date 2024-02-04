@@ -6,7 +6,7 @@
       <paths name="ss-japan">
         <serverdata>
           <mappings>
-            <mapping deploy="/var/www/husnain" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

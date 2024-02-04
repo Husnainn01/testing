@@ -85,7 +85,7 @@ $userdata=Auth::user();
         </section>
     </div>
 
-    <div class="container-fluid px-md-5 px-lg-5 px-sm-5 my-2">
+    <div class="container-fluid">
         <div class="row left-sidebar">
 
             <!-- left Column -->
@@ -112,7 +112,7 @@ $userdata=Auth::user();
 
                             </div>
                             <div id="main_filter_body" class="row p-3 search-box shadow rounded-bottom-2"
-                                style="border-top:5px solid #731718;">
+                                style="border-top:5px solid #731718;margin-top: 40px">
                                 <div class="col-md-4 px-1">
 
                                     <select name="brands" id="" class="w-100 form-select">
@@ -571,7 +571,7 @@ $userdata=Auth::user();
 
                         <h5>
                             <small class=>FOB Prices:</small>
-                            @if (Auth::check())
+{{--                            @if (Auth::check())--}}
                             <small class="float-right text-danger fs-sm mt-2">
                             @php
                                 $listingPrice = (string) $items->listing_price; // Convert to string
@@ -596,30 +596,33 @@ $userdata=Auth::user();
                                 @endif
                             </small>
 
-                            @else
-                            <small class="float-right text-danger"><a class="text-danger" href="{{route('customer_login')}}">Login</a></small>
-                            @endif
+{{--                            @else--}}
+{{--                            <small class="float-right text-danger"><a class="text-danger" href="{{route('customer_login')}}">Login</a></small>--}}
+{{--                            @endif--}}
 
 
                         </h5>
 
                         <h5 class="mt-2"><small class="float-start">Total Price</small><small
-                                class="float-right text-danger" data-toggle="modal"
-                            data-target="#exampleModal">ASK</small></h5>
-                        <button type="button" class="btn btn-primary my-2 w-100 send-offer" data-toggle="modal"
-                            data-target="#exampleModal">
+                                class="float-right text-danger" data-toggle="modal">ASK</small></h5>
+                        <a type="button" href="{{route('front_listing_detail',['slug'=>$items->listing_slug])}}" class="btn btn-primary my-2 w-100 send-offer">
                             Send Offer
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
             @endforeach
+
         </div>
         </div>
 
-
     </div>
     </div>
+                <?php
+                if ($data->count() == 0) {
+                    echo '<h5 style="margin-top:30px;color:red;">No record found</h5>';
+                }
+                ?>
     </div>
 
 

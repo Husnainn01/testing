@@ -101,8 +101,8 @@ class HomeController extends Controller
         $locations=ListingLocation::all();
         $carsdata=Listing::latest()->paginate(4);
         $clientreviews = Review::with('agent','listing')->take(2)->get();
-        $most_popular_cars = Listing::where('is_featured','Yes')->orderBy('created_at','desc')->paginate(8);
-        $new_arrivals = Listing::where('is_new_arrival',1)->orderBy('created_at','desc')->paginate(8);
+        $most_popular_cars = Listing::where('is_featured','Yes')->orderBy('created_at','desc')->paginate(8, ['*'], 'mpc_page');
+        $new_arrivals = Listing::where('is_new_arrival',1)->orderBy('created_at','desc')->paginate(8, ['*'], 'na_page');
         $faqs=Faq::all();
         // $advertisements = HomeAdvertisement::where('id',1)->first();
         return view('front.index',compact('new_arrivals','most_popular_cars','brands','locations','carsdata','clientreviews','faqs','location',));

@@ -19,7 +19,7 @@
                     <div class="brands-list">
                         <div class="row mx-2 brands-box">
                             <ul class="list-unstyled">
-                                @foreach ($locations as $item)
+                                @foreach ($locations->take(11) as $item)
                                 <li class="my-2 "><a class="brands-box" href="{{route('location_find',['slug'=>$item->listing_location_slug])}}"><p>
                                     {{-- <img src="assets/images/flags/AO.svg" class="flag" alt=""> --}}
                                     <img class="mr-2" src="{{asset('uploads/listing_location_photos/'.$item->listing_location_photo)}}" height="20" width="30">{{$item->listing_location_name}}</p></a></li>
@@ -38,7 +38,7 @@
                     <div class="brands-list">
                         <div class="row mx-2 brands-box">
                             <ul class="list-unstyled">
-                                @foreach ($brands as $brandsitems)
+                                @foreach ($brands->take(11) as $brandsitems)
                                 <li>
                                     <a class="brands-box" href="{{ route('brandsfilter',['slug'=>$brandsitems->listing_brand_slug])}}"><p><img src="{{asset('uploads/listing_brand_photos/'.$brandsitems->listing_brand_photo)}}" height="20" width="30" alt="car" class="mr-2">{{$brandsitems->listing_brand_name}} </p></a></li>
 
@@ -56,7 +56,7 @@
     <div class="w-30">
         <h6 class="mb-3">By Category</h4>
             <ul class="list-unstyled">
-                @foreach ($category as $item)
+                @foreach ($category->take(11) as $item)
                 <li class="mt-3"><a class="text-decoration-none" href="{{route('category',['slug'=>$item->category_slug])}}"><small>{{$item->category_name}}</small></a></li>
                 @endforeach
             </ul>
@@ -177,7 +177,7 @@
 		</div>
 	</div> --}}
 	 <div class="container-fluid text-light">
-        <div class="row border-bottom border-white py-1" style="background-color:gray;color:white;" >
+        <div class="row border-bottom border-white py-1" style="background-color:#414141;color:white;" >
            <div class="col-md-12 text-center"><small class="text-center">2023 SS-Japan. All right reserved:<a href="{{route('privacy_policy')}}">Privacy Policy</a> | <a href="{{route('terms_services')}}">Terms & Condition</a> | <a href="{{route('cookiecookie')}}">Cookies</a></small></div>
             </div>
         </div>

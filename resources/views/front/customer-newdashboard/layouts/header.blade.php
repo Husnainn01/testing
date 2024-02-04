@@ -22,7 +22,7 @@
         </ul>
     </div>
     <div class="head ">
-        <div class="head bg-light text-dark w-100 text-start px-2 py-2 fw-bold"><i class="fa-solid fa-user text-primary me-1"></i> Account Settings</div>
+        <div class="head bg-secondary text-white w-100 text-start px-2 py-2 fw-bold"><i class="fa-solid fa-user text-primary me-1"></i> Account Settings</div>
         <ul class="list-unstyled p-2 mb-0">
             <!-- <li class="ms-2"><a  class="{{ Request::routeIs('verify-email')  ? 'active' : '' }} " href="{{route('verify-email')}}">Verify Email</a></li> -->
             <li class="ms-2 py-1"><a  class="{{ Request::routeIs('account_info')  ? 'active' : '' }} " href="{{route('account_info')}}">Account Information</a></li>
@@ -31,7 +31,7 @@
             <!-- <li class="ms-2 py-1"><a class="{{ Request::routeIs('history')  ? 'active' : '' }} "  href="{{route('history')}}">History</a></li> -->
             <!-- <li class="ms-2 py-1"><a  class="{{ Request::routeIs('deposite')  ? 'active' : '' }} " href="{{route('deposite')}}">Check your deposite</a></li> -->
             <!-- <li class="ms-2 py-1"><a  class="{{ Request::routeIs('language-preference')  ? 'active' : '' }} " href="{{route('language-preference')}}">Language Preferences</a></li> -->
-            <li class="ms-2 py-1"><a  class="{{ Request::routeIs('update_customer_password')  ? 'active' : '' }} " href="{{route('update_customer_password')}}">Update your password</a></li>
+            <li class="ms-2 py-1"><a  class="{{ Request::routeIs('update_customer_password')  ? 'active' : '' }} " href="{{route('update_customer_password')}}">Update your password1</a></li>
             <!-- <li class="ms-2 py-1"><a  class="{{ Request::routeIs('favorites')  ? 'active' : '' }} " href="{{route('favorites')}}">Favorites</li> -->
             {{-- <li class="ms-2 py-1"><a href="#">Notify</a></li>
             <li class="ms-2 py-1"><a>Save Search</a></li> --}}

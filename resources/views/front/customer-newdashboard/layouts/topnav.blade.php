@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg bg-dark ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('customer_dashboard') }}"><img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}" height="70" alt=""><span class="text-white fw-bold fs-5 mx-3">My Account</span>
+        <a class="navbar-brand" href="{{ '/' }}"><img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}" height="70" alt=""><span class="text-white fw-bold fs-5 mx-3">My Account</span>
         @if(Auth::user())
             <small class="text-white">Hello, {{ Auth::user()->name }}</small></a>
-        @endif  
+        @endif
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

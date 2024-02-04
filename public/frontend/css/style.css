@@ -203,10 +203,8 @@ header a {
 }
 
 .card-body {
-    padding-top: 0 !important;
+    padding-top: 0px !important;
     background: #F7F7F7 !important;
-    margin-left: -15px;
-    width: 420px;
 }
 
 .footer-flag {
@@ -568,7 +566,7 @@ td {
 }
 
 .small-logo {
-    width: 20%;
+    width: 17%;
     margin-right: 8px;
 }
 
@@ -782,7 +780,7 @@ header small {
 }
 
 .dropdown-menu {
-    top: 50px !important;
+    top: 25px !important;
     position: absolute;
 
 }
@@ -1572,8 +1570,9 @@ body.mobile-nav-open {
 .side-header{
     background-color: #531010 !important;
     color: white;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     height: 45px;
+    width: 211px;
 }
 .text-performa{
     font-size: 0.5rem;

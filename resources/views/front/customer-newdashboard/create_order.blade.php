@@ -14,7 +14,7 @@
 @endif
   @csrf
     <!-- progressbar -->
-    <ul id="progressbar">
+    <ul id="progressbar" style="margin-left: 230px !important;">
       <li class="active">Personal Details</li>
       <li>Consignee information</li>
       <li>Optional Services</li>
@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Choose Offers *</h5>
-                        <a class="btn btn-danger text-decoration-none text-white" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Select Offers</a>  
+                        <a class="btn btn-danger text-decoration-none text-white" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Select Offers</a>
                         <!-- @if(count($qoutes) > 0)
                             <ul class="list-group list-group-flush">
                                 @foreach($qoutes as $qoute)

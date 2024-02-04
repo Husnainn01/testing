@@ -225,7 +225,7 @@ $userdata=Auth::user();
                 <div class="col-md-6">
                     <h5>Share:
                         @foreach ($social_media_items as $items)
-                        <a href="{{$items->social_url}}"><i class="{{$items->social_icon}}"
+                        <a style="font-size: .9rem;" href="{{$items->social_url}}"><i class="{{$items->social_icon}}"
                                 style="color:white!important;background:#731718;padding:10px;border-radius:5px;"></i></a>
                         @endforeach
                     </h5>
@@ -459,7 +459,7 @@ $userdata=Auth::user();
                 <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                     @csrf
                     <div class="row border-bottom p-3">
-                        <h3 class="py-2" style="font-weight:bold;">
+                        <h3 class="py-2" style="font-weight:bold;min-width: 70%">
                             {{$detail->listing_name}} <br>
                             <div style="font-weight: 100;">{{$detail->listing_stock_id}}</div>
                         </h3>
@@ -854,11 +854,9 @@ $userdata=Auth::user();
                     @foreach($listing_amenities as $row)
                     @php
                     $res = DB::table('amenities')->where('id', $row->amenity_id)->first();
-                    $highlight = in_array($res->amenity_name, ['Alloy Wheels', 'Power Steering','Power
-                    Window','A/C','ABS','Airbag','Radio','Jack','Back Camera', 'Keyless Entry', 'Navigation','Fog
-                    Lights','Tv','DVD']); // Define your highlighted features
+                    $highlight = in_array($res->amenity_name, ['Power Steering','Airbag','Rear Spoiler','Wheel Spanner','Keyless Entry','Navigation','Power Window','Radio','Fog Lights','Jack','Back Camera','Alloy Wheels','ABS']);
                     @endphp
-                    <div class="feature-box {{ $highlight ? 'highlight' : '' }}">
+                    <div class="feature-box {{ $highlight ? 'fade' : 'highlight' }}">
                         {{ $res->amenity_name }}
                     </div>
                     @endforeach
@@ -1995,6 +1993,9 @@ $userdata=Auth::user();
 
     .water-mark {
         right: 475px !important;
+    }
+    .fade:not(.show){
+        opacity : .5 !important;
     }
 </style>
 @endsection

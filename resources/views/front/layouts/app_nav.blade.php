@@ -19,7 +19,7 @@
 @endphp
 <header class="desktop-header primary">
     <div class="container-fluid text-light">
-        <div class="row border-bottom border-white py-2" style="background-color:gray;color:white;height:35px">
+        <div class="row border-bottom border-white py-2" style="background-color:#414141;color:white;height:35px;border-color: #414141 !important;">
             <div class="col-md-3" style="max-width: 20%">
                 <p class="mb-0">Japanese Used Cars for Sale </p>
             </div>
@@ -56,8 +56,8 @@
             </div>
         </div>
         <div class="row pt-3" style="background-color:black;">
-            <div class="col-md-2 position-relative " style="justify-content: center;display: flex;">
-                <div class="w-80  text-center position-relative">
+            <div class="col-md-2 position-relative " style="justify-content: center;display: flex;margin-top: -8px !important;">
+                <div class="w-60  text-center position-relative">
                     <a href="{{ url('/') }}"><img class="w-75 p-1"
                                                   src="{{ asset('uploads/site_photos/' .$g_settings->logo)}}"
                                                   alt="logo"></a>
@@ -81,7 +81,7 @@
 
 
                     <div class="col-md-12 mt-3">
-                        <ul class="list-inline" style="font-size: 14px">
+                        <ul class="list-inline" style="font-size: 1rem">
                             <li class="list-inline-item">
                                 <div class="dropdown stock-dropdown">
                                     <button class="bg-transparent text-light dropdown-toggle border-0" type="button"
@@ -274,72 +274,99 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <div class="d-flex my-auto" style="justify-content: end;font-size: 1.5rem">
+                <div class="d-flex my-auto" style="justify-content: end;font-size: 1rem">
+{{--                    <div class="mr-3">--}}
+{{--                        <div class="dropdown float-right support-dropdown">--}}
+{{--                                                        <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"--}}
+{{--                                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"--}}
+{{--                                                             aria-expanded="false">--}}
+{{--                                                            <div class="d-flex">--}}
+{{--                                                                <div class="mr-2"><i class="fas fa-headset fs-4 my-2" aria-hidden="true"></i></div>--}}
+{{--                                                                <div class="my-auto"><small class="m-0"> Support</small>--}}
+{{--                                                                    <small class="m-0">call us</small>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--}}
+{{--                                <div class="container">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-md-6 col-lg-6">--}}
+{{--                                            <h6>Call Us</h6>--}}
+{{--                                            <small class="d-block">Call to our team</small>--}}
+{{--                                            <small class="d-block">+81-52-387-9772</small>--}}
+{{--                                            <h6 class="m-0 mt-3">Email Us</h6>--}}
+{{--                                            <a href="info@ss-japan.com"><small>info@ss-japan.com</small></a>--}}
+{{--                                            <h6 class="m-0 mt-3">Business Hours</h6>--}}
+{{--                                            <small>Mon-Fri 10.00AM - 7.00 PM</small>--}}
+{{--                                            <small>Saturday 10.00AM - 1.00 PM</small>--}}
+
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6 col-lg-6">--}}
+{{--                                            <h6>Chat Now</h6>--}}
+{{--                                            <small>Chat with SS Japan team &amp; support team for quick answers on--}}
+{{--                                                product features pricing and more</small>--}}
+{{--                                            <a href="#" class="btn btn-primary w-75 my-2 cursor-pointer d-block">Chat--}}
+{{--                                                Now</a>--}}
+{{--                                            <small class="d-block">24x7</small>--}}
+{{--                                            <small><i class="fab fa-whatsapp bg-success p-1 rounded-circle text-light"--}}
+{{--                                                      aria-hidden="true"></i> +81-52-387-9772</small>--}}
+{{--                                        </div>--}}
+
+{{--                                    </div>--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+
+{{--                    </div>--}}
+{{--                    <div class="mr-3">--}}
+
+{{--                        <div class="d-flex">--}}
+{{--                            <div class="mr-2"><i class="fa-solid fa-heart fs-4 my-2" style="font-size: 1.1rem" aria-hidden="true"></i></div>--}}
+{{--                            <div class="my-auto">--}}
+{{--                                <a class=" text-light" href="#">--}}
+{{--                                    --}}{{--                                    <small class="m-0 text-light" href="#">Check</small>--}}
+{{--                                    <small class="m-0 text-light">Favorites</small>--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="mr-3">
-                        <div class="dropdown float-right support-dropdown">
-                            {{--                            <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"--}}
-                            {{--                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"--}}
-                            {{--                                 aria-expanded="false">--}}
-                            {{--                                <div class="d-flex">--}}
-                            {{--                                    <div class="mr-2"><i class="fas fa-headset fs-4 my-2" aria-hidden="true"></i></div>--}}
-                            {{--                                    <div class="my-auto"><small class="m-0"> Support</small>--}}
-                            {{--                                        <small class="m-0">call us</small>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-6">
-                                            <h6>Call Us</h6>
-                                            <small class="d-block">Call to our team</small>
-                                            <small class="d-block">+81-52-387-9772</small>
-                                            <h6 class="m-0 mt-3">Email Us</h6>
-                                            <a href="info@ss-japan.com"><small>info@ss-japan.com</small></a>
-                                            <h6 class="m-0 mt-3">Business Hours</h6>
-                                            <small>Mon-Fri 10.00AM - 7.00 PM</small>
-                                            <small>Saturday 10.00AM - 1.00 PM</small>
-
-                                        </div>
-                                        <div class="col-md-6 col-lg-6">
-                                            <h6>Chat Now</h6>
-                                            <small>Chat with SS Japan team &amp; support team for quick answers on
-                                                product features pricing and more</small>
-                                            <a href="#" class="btn btn-primary w-75 my-2 cursor-pointer d-block">Chat
-                                                Now</a>
-                                            <small class="d-block">24x7</small>
-                                            <small><i class="fab fa-whatsapp bg-success p-1 rounded-circle text-light"
-                                                      aria-hidden="true"></i> +81-52-387-9772</small>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="mr-3">
-
                         <div class="d-flex">
-                            <div class="mr-2"><i class="fa-solid fa-heart fs-4 my-2" style="font-size: 1.9rem" aria-hidden="true"></i></div>
-                            <div class="my-auto">
-                                <a class=" text-light" href="#">
-                                    {{--                                    <small class="m-0 text-light" href="#">Check</small>--}}
-                                    <small class="m-0 text-light">Favorites</small>
-                                </a>
+                            <div class="mr-2">
+                                <i class="fa-solid fa-heart fs-4 my-2" style="font-size: 1.1rem" aria-hidden="true"></i>
                             </div>
-
+                            <div class="my-auto">
+                                @auth
+                                    <!-- If the user is logged in, redirect to the favorites route -->
+                                    <a class="text-light" href="{{ route('favorites') }}">
+                                        <small class="m-0">Favorites</small>
+                                    </a>
+                                @else
+                                    <!-- If the user is not logged in, redirect to the login page -->
+                                    <a class="text-light" href="{{ route('customer_login') }}">
+                                        <small class="m-0">Favorites</small>
+                                    </a>
+                                @endauth
+                            </div>
                         </div>
                     </div>
+
                     <div class="">
+                        @if(Auth::user() || (Auth::guard('admin')->check()))
+                            <div class="mr-3" style="margin-top: 10px">
+                            <a href="{{ route('customer_dashboard') }}" class="w-75 m-auto d-block "><small style="color: white">Dashboard</small></a>
+                            </div>
+                        @else
+
                         <div class="dropdown  login-dropdown">
                             <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"
                                  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                  aria-expanded="false">
                                 <div class="d-flex">
-                                    <div class="mr-2"><i class="fas fa-user fs-4 my-2" style="font-size: 1.8rem" aria-hidden="true"></i>
+                                    <div class="mr-2"><i class="fas fa-user fs-4 my-2" style="font-size: 1.1rem" aria-hidden="true"></i>
                                     </div>
                                     <div class=" my-auto pl-0" onclick="{{ route('customer_login') }}">
                                         <small class="m-0">Login</small>
@@ -394,6 +421,28 @@
                                                     In
                                                 </button>
                                             </a>
+{{--                                            <div class="feature-container" style="display: flex;overflow: hidden;justify-content: space-between">--}}
+{{--                                                <ul class="login-features">--}}
+{{--                                                    <li class="login-feature-item" style="display: inline-block; width: auto; text-align: center; font-size: 11px; line-height: 18px; box-sizing: border-box;">--}}
+{{--                                                        <i class="fa-solid fa-heart"></i><br>--}}
+{{--                                                        Favorites--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="login-feature-item" style="display: inline-block; width: auto; text-align: center; font-size: 11px; line-height: 18px; box-sizing: border-box;">--}}
+{{--                                                        <i class="fa-solid fa-heart"></i><br>--}}
+{{--                                                        Notify Me--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="login-feature-item" style="display: inline-block; width: auto; text-align: center; font-size: 11px; line-height: 18px; box-sizing: border-box;">--}}
+{{--                                                        <i class="fa-solid fa-heart"></i><br>--}}
+{{--                                                        Save Search--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="login-feature-item" style="display: inline-block; width: auto; text-align: center; font-size: 11px; line-height: 18px; box-sizing: border-box;">--}}
+{{--                                                        <i class="fa-solid fa-heart"></i><br>--}}
+{{--                                                        Easy Inquiry--}}
+{{--                                                    </li>--}}
+{{--                                                </ul>--}}
+{{--                                            </div>--}}
+
+
                                             <br><br>
                                             <small class="text-center d-block w-100">New Customer ?
                                                 <a href="{{ route('customer_registration') }}">
@@ -405,18 +454,47 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-12 mt-3 px-0" style="justify-content: end;display: flex;">
-                    <ul class="list-inline">
+                    <ul class="list-inline" style="font-size: 1rem;">
                         <li class="list-inline-item">
-                            <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"
-                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                 aria-expanded="false">
-                                <div class="d-flex">
-                                    <div class="mr-2"><i class="fas fa-headset fs-4 my-2" aria-hidden="true"></i></div>
-                                    <div class="my-auto">
-                                        Support call us
+                            <div class="dropdown">
+                                <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"
+                                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                     aria-expanded="false">
+                                    <div class="d-flex">
+                                        <div class="mr-2"><i class="fas fa-headset fs-4 my-2" aria-hidden="true"></i></div>
+                                        <div class="my-auto"><small class="m-0"> Support</small>
+                                            <small class="m-0">call us</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 320% !important;">
+                                    <div class="container row">
+                                            <div class="dropdown-item" style="max-width: 45% !important;">
+                                                <h6>Call Us</h6>
+                                                <small class="d-block">Call to our team</small>
+                                                <small class="d-block">+81-52-387-9772</small>
+                                                <h6 class="m-0 mt-3">Email Us</h6>
+                                                <a href="info@ss-japan.com"><small>info@ss-japan.com</small></a>
+                                                <h6 class="m-0 mt-3">Business Hours</h6>
+                                                <small>Mon-Fri 10.00AM - 7.00 PM</small><br>
+                                                <small>Saturday 10.00AM - 1.00 PM</small>
+
+                                            </div>
+                                            <div class="dropdown-item" style="max-width: 45% !important;">
+                                                <h6>Chat Now</h6>
+                                                <small>Chat with SS Japan team &amp;<br> support team for quick <br>answers on
+                                                    product features<br> pricing and more</small>
+                                                <a href="#" class="btn btn-primary w-54 my-2 cursor-pointer d-block">Chat
+                                                    Now</a>
+                                                <small class="d-block">24x7</small>
+                                                <small><i class="fab fa-whatsapp bg-success p-1 rounded-circle text-light"
+                                                          aria-hidden="true"></i> +81-52-387-9772</small>
+                                            </div>
+
                                     </div>
                                 </div>
                             </div>

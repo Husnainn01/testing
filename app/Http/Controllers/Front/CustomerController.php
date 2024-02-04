@@ -39,11 +39,12 @@ use PayPal\Api\Transaction;
 use Razorpay\Api\Api;
 use Mollie\Laravel\Facades\Mollie;
 use App\Models\OptionService;
-use App\Models\ShippingOrder; 
-use App\Models\Document; 
+use App\Models\ShippingOrder;
+use App\Models\Document;
+use App\Models\RequestedCar;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
-use App\Models\TTDocument;
+use App\Models\TtDocument;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\ListingPageMessage;
 use App\Mail\ListingPageReport;
@@ -55,31 +56,32 @@ use App\Models\Freight;
 use App\Models\Insurance;
 use App\Models\Inspection;
 use App\Models\Qoute;
+use App\Models\Service;
 
 class CustomerController extends Controller
 {
-	public function __construct() {
-    	$this->middleware('auth:web');
+    public function __construct() {
+        $this->middleware('auth:web');
     }
 
-    public function dashboard() 
+    public function dashboard()
     {
         $page_other_item = PageOtherItem::where('id',1)->first();
         $g_setting = GeneralSetting::where('id', 1)->first();
         $total_active_listing =
             Listing::where('listing_status', 'Active')
-            ->where('user_id', Auth::user()->id)
-            ->count();
+                ->where('user_id', Auth::user()->id)
+                ->count();
 
         $total_pending_listing =
             Listing::where('listing_status', 'Pending')
-            ->where('user_id', Auth::user()->id)
-            ->count();
+                ->where('user_id', Auth::user()->id)
+                ->count();
         $total_pending_listing_cars =
             Qoute::where('status', 'offered')
-            ->where('user_id', Auth::user()->id)
-            ->with('car')
-            ->get();
+                ->where('user_id', Auth::user()->id)
+                ->with('car')
+                ->get();
         $total_reserved_listing_cars = Qoute::where('status', 'reserved')
             ->where('user_id', Auth::user()->id)
             ->with('car')
@@ -90,8 +92,8 @@ class CustomerController extends Controller
             ->where('currently_active', 1)
             ->first();
         $user_favourites = Auth::user()->favorites;
-            return view('front.customer-newdashboard.dashboard', compact('total_reserved_listing_cars','total_pending_listing_cars','user_favourites','g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
-            // return view('front.customerDashboard.customer_dashboard', compact('g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
+        return view('front.customer-newdashboard.dashboard', compact('total_reserved_listing_cars','total_pending_listing_cars','user_favourites','g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
+        // return view('front.customerDashboard.customer_dashboard', compact('g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
     }
     public function all_reserved_vehicles()
     {
@@ -103,11 +105,11 @@ class CustomerController extends Controller
     }
     public function car_detail($slug)
     {
-        
+
         $g_setting = GeneralSetting::where('id', 1)->first();
         $detail = Listing::with('rListingLocation', 'rListingBrand')
-        	->where('listing_slug', $slug)
-        	->first();
+            ->where('listing_slug', $slug)
+            ->first();
 
         // $listing_social_items = ListingSocialItem::where('listing_id', $detail->id)->get();
         $listing_social_items = ListingSocialItem::where('listing_id', $detail->id)->get();
@@ -198,7 +200,7 @@ class CustomerController extends Controller
         return view('front.customer-newdashboard.car_detail', compact('inspection_certificates','insurances','freights','detail','listing_locations_car','listing_first_photos','g_setting','listing_social_items','listing_photos','listing_videos','listing_amenities','listing_additional_features','listing_brands','listing_locations','agent_detail','reviews','current_auth_user_id', 'already_given', 'overall_rating','all_amenities'));
     }
 
-    public function update_profile() 
+    public function update_profile()
     {
         $user_data = Auth::user();
         $page_other_item = PageOtherItem::where('id',1)->first();
@@ -206,7 +208,7 @@ class CustomerController extends Controller
         return view('front.customer_update_profile', compact('user_data','g_setting','page_other_item'));
     }
 
-    public function update_profile_confirm(Request $request) 
+    public function update_profile_confirm(Request $request)
     {
 
         if(env('PROJECT_MODE') == 0) {
@@ -231,14 +233,14 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', SUCCESS_PROFILE_UPDATE);
     }
 
-    public function update_password() 
+    public function update_password()
     {
         $g_setting = GeneralSetting::where('id', 1)->first();
         $page_other_item = PageOtherItem::where('id',1)->first();
         return view('front.customer_update_password', compact('g_setting','page_other_item'));
     }
 
-    public function update_password_confirm(Request $request) 
+    public function update_password_confirm(Request $request)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -261,7 +263,7 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', SUCCESS_PASSWORD_UPDATE);
     }
 
-    public function update_photo() 
+    public function update_photo()
     {
         $user_data = Auth::user();
         $g_setting = DB::table('general_settings')->where('id', 1)->first();
@@ -269,7 +271,7 @@ class CustomerController extends Controller
         return view('front.customer_update_photo', compact('user_data','g_setting','page_other_item'));
     }
 
-    public function update_photo_confirm(Request $request) 
+    public function update_photo_confirm(Request $request)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -298,7 +300,7 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', SUCCESS_PHOTO_UPDATE);
     }
 
-    public function update_banner() 
+    public function update_banner()
     {
         $user_data = Auth::user();
         $g_setting = DB::table('general_settings')->where('id', 1)->first();
@@ -306,7 +308,7 @@ class CustomerController extends Controller
         return view('front.customer_update_banner', compact('user_data','g_setting','page_other_item'));
     }
 
-    public function update_banner_confirm(Request $request) 
+    public function update_banner_confirm(Request $request)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -336,7 +338,7 @@ class CustomerController extends Controller
     }
 
 
-    public function listing_view() 
+    public function listing_view()
     {
         $user_data = Auth::user();
 
@@ -366,7 +368,7 @@ class CustomerController extends Controller
         return view('front.customer_listing_view', compact('g_setting','listing','page_other_item'));
     }
 
-    public function listing_view_detail($id) 
+    public function listing_view_detail($id)
     {
         $user_data = Auth::user();
         $check_other = Listing::where('id', $id)->first();
@@ -412,7 +414,7 @@ class CustomerController extends Controller
     }
 
 
-    public function listing_add() 
+    public function listing_add()
     {
         $user_data = Auth::user();
 
@@ -427,7 +429,7 @@ class CustomerController extends Controller
 
         $total_listing_added_by_customer =
             Listing::where('user_id', $user_data->id)
-            ->count();
+                ->count();
 
         $total_amenities = 0;
         $total_photos = 0;
@@ -468,7 +470,7 @@ class CustomerController extends Controller
         return view('front.customer_listing_add', compact('g_setting','listing','listing_brand','listing_location','amenity', 'listing_error_message','total_amenities','total_photos','total_videos','total_social_items','total_additional_features','allow_featured','page_other_item'));
     }
 
-    public function listing_add_store(Request $request) 
+    public function listing_add_store(Request $request)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -482,18 +484,18 @@ class CustomerController extends Controller
             'listing_featured_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'listing_price' => 'required|numeric'
         ],
-        [
-            'listing_name.required' => ERR_NAME_REQUIRED,
-            'listing_name.unique' => ERR_NAME_EXIST,
-            'listing_slug.unique' => ERR_SLUG_UNIQUE,
-            'listing_description.required' => ERR_DESCRIPTION_REQUIRED,
-            'listing_featured_photo.required' => ERR_PHOTO_REQUIRED,
-            'listing_featured_photo.image' => ERR_PHOTO_IMAGE,
-            'listing_featured_photo.mimes' => ERR_PHOTO_JPG_PNG_GIF,
-            'listing_featured_photo.max' => ERR_PHOTO_MAX,
-            'listing_price.required' => ERR_PRICE_REQUIRED,
-            'listing_price.numeric' => ERR_PRICE_NUMERIC
-        ]);
+            [
+                'listing_name.required' => ERR_NAME_REQUIRED,
+                'listing_name.unique' => ERR_NAME_EXIST,
+                'listing_slug.unique' => ERR_SLUG_UNIQUE,
+                'listing_description.required' => ERR_DESCRIPTION_REQUIRED,
+                'listing_featured_photo.required' => ERR_PHOTO_REQUIRED,
+                'listing_featured_photo.image' => ERR_PHOTO_IMAGE,
+                'listing_featured_photo.mimes' => ERR_PHOTO_JPG_PNG_GIF,
+                'listing_featured_photo.max' => ERR_PHOTO_MAX,
+                'listing_price.required' => ERR_PRICE_REQUIRED,
+                'listing_price.numeric' => ERR_PRICE_NUMERIC
+            ]);
 
         $statement = DB::select("SHOW TABLE STATUS LIKE 'listings'");
         $ai_id = $statement[0]->Auto_increment;
@@ -621,7 +623,7 @@ class CustomerController extends Controller
         return redirect()->route('customer_listing_view')->with('success', SUCCESS_LISTING_ADD);
     }
 
-    public function listing_edit($id) 
+    public function listing_edit($id)
     {
         $user_data = Auth::user();
         $check_other = Listing::where('id', $id)->first();
@@ -665,7 +667,7 @@ class CustomerController extends Controller
         return view('front.customer_listing_edit', compact('g_setting','listing','listing_brand','listing_location','amenity','listing_photos','listing_videos','listing_additional_features','listing_social_items','listing_amenities','existing_amenities_array','total_amenities','total_photos','total_videos','total_social_items','total_additional_features','allow_featured','page_other_item'));
     }
 
-    public function listing_update(Request $request, $id) 
+    public function listing_update(Request $request, $id)
     {
         $user_data = Auth::user();
         $listing = Listing::findOrFail($id);
@@ -842,7 +844,7 @@ class CustomerController extends Controller
         return redirect()->route('customer_listing_view')->with('success', SUCCESS_LISTING_EDIT);
     }
 
-    public function listing_delete($id) 
+    public function listing_delete($id)
     {
         $listing = Listing::findOrFail($id);
         $listing->delete();
@@ -862,7 +864,7 @@ class CustomerController extends Controller
     }
 
 
-    public function listing_delete_social_item($id) 
+    public function listing_delete_social_item($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -873,7 +875,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_SOCIAL_ITEM_DELETE);
     }
 
-    public function listing_delete_photo($id) 
+    public function listing_delete_photo($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -884,7 +886,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_PHOTO_DELETE);
     }
 
-    public function listing_delete_video($id) 
+    public function listing_delete_video($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -895,7 +897,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_VIDEO_DELETE);
     }
 
-    public function listing_delete_additional_feature($id) 
+    public function listing_delete_additional_feature($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -906,7 +908,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_ADDITIONAL_FEATURE_DELETE);
     }
 
-    public function submit_review(Request $request) 
+    public function submit_review(Request $request)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -931,7 +933,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_RATING_PLACED);
     }
 
-    public function package() 
+    public function package()
     {
         $g_setting = GeneralSetting::where('id', 1)->first();
         $page_other_item = PageOtherItem::where('id',1)->first();
@@ -939,7 +941,7 @@ class CustomerController extends Controller
         return view('front.customer_package', compact('g_setting','package','page_other_item'));
     }
 
-    public function free_enroll($id) 
+    public function free_enroll($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -972,7 +974,7 @@ class CustomerController extends Controller
         return Redirect()->route('customer_package_purchase_history')->with('success', SUCCESS_PACKAGE_ENROLL);
     }
 
-    public function my_reviews() 
+    public function my_reviews()
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
@@ -1002,7 +1004,7 @@ class CustomerController extends Controller
         return view('front.customer_my_reviews', compact('g_setting','reviews','page_other_item'));
     }
 
-    public function review_edit($id) 
+    public function review_edit($id)
     {
         $g_setting = GeneralSetting::where('id', 1)->first();
         $page_other_item = PageOtherItem::where('id',1)->first();
@@ -1025,7 +1027,7 @@ class CustomerController extends Controller
         return redirect()->route('customer_my_reviews')->with('success', SUCCESS_REVIEW_UPDATE);
     }
 
-    public function review_delete($id) 
+    public function review_delete($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -1036,7 +1038,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_REVIEW_DELETE);
     }
 
-    public function wishlist() 
+    public function wishlist()
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
@@ -1059,12 +1061,12 @@ class CustomerController extends Controller
             return Redirect()->route('customer_package')->with('error', ERR_LISTING_DATE_EXPIRED);
         }
 
-        
+
         $wishlist = Wishlist::where('user_id', $user_data->id)->orderBy('id', 'asc')->paginate(10);
         return view('front.customer_wishlist', compact('g_setting','wishlist','page_other_item'));
     }
 
-    public function wishlist_delete($id) 
+    public function wishlist_delete($id)
     {
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
@@ -1075,7 +1077,7 @@ class CustomerController extends Controller
         return Redirect()->back()->with('success', SUCCESS_ITEM_REMOVED_FROM_WISHLIST);
     }
 
-    public function purchase_history() 
+    public function purchase_history()
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
@@ -1087,7 +1089,7 @@ class CustomerController extends Controller
         return view('front.customer_package_purchase_history', compact('g_setting','package_purchase','page_other_item'));
     }
 
-    public function purchase_history_detail($id) 
+    public function purchase_history_detail($id)
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
@@ -1101,7 +1103,7 @@ class CustomerController extends Controller
         return view('front.customer_package_purchase_history_detail', compact('g_setting','detail','page_other_item'));
     }
 
-    public function invoice($id) 
+    public function invoice($id)
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
@@ -1116,7 +1118,7 @@ class CustomerController extends Controller
         return view('front.customer_package_purchase_invoice', compact('user_data','g_setting','detail','page_other_item'));
     }
 
-    public function buy_package($id) 
+    public function buy_package($id)
     {
         $g_setting = GeneralSetting::where('id',1)->first();
         $package_detail = Package::where('id',$id)->first();
@@ -1127,7 +1129,7 @@ class CustomerController extends Controller
         return view('front.customer_package_buy', compact('g_setting','page_other_item'));
     }
 
-    public function paypal() 
+    public function paypal()
     {
         if(!session()->get('package_id')) {
             return redirect()->to('/');
@@ -1161,8 +1163,8 @@ class CustomerController extends Controller
         $details = new Details();
 
         $details->setShipping(0)
-                ->setTax(0)
-                ->setSubtotal($final_price);
+            ->setTax(0)
+            ->setSubtotal($final_price);
 
         $amount->setCurrency(session()->get('currency_name'));
         $amount->setTotal($final_price);
@@ -1275,13 +1277,13 @@ class CustomerController extends Controller
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
                 PackagePurchase::where('user_id',$user_data->id)->update($data);
-    
+
                 // Selected Package Detail
                 $package_detail = Package::where('id',session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
-                $end_date = date('Y-m-d', strtotime("+$valid_days days"));    
-    
+                $end_date = date('Y-m-d', strtotime("+$valid_days days"));
+
                 $obj = new PackagePurchase;
                 $obj->user_id = $user_data->id;
                 $obj->package_id = session()->get('package_id');
@@ -1296,14 +1298,14 @@ class CustomerController extends Controller
                 $obj->package_end_date = $end_date;
                 $obj->currently_active = 1;
                 $obj->save();
-    
+
                 // Send Email To Customer
                 $payment_method = 'Stripe';
-    
+
                 $et_data = EmailTemplate::where('id', 8)->first();
                 $subject = $et_data->et_subject;
                 $message = $et_data->et_content;
-    
+
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $response->balance_transaction, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
@@ -1312,14 +1314,14 @@ class CustomerController extends Controller
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
                 Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
-    
+
                 session()->forget('package_id');
                 session()->forget('package_name');
                 session()->forget('package_price');
 
                 return Redirect()->route('customer_package_purchase_history')->with('success', SUCCESS_PACKAGE_PURCHASE);
             }
-            
+
         }
 
     }
@@ -1355,13 +1357,13 @@ class CustomerController extends Controller
                     // Make all other previous packages status to 0 and this package status 1
                     $data['currently_active'] = 0;
                     PackagePurchase::where('user_id',$user_data->id)->update($data);
-        
+
                     // Selected Package Detail
                     $package_detail = Package::where('id',session()->get('package_id'))->first();
                     $valid_days = $package_detail->valid_days;
                     $start_date = date('Y-m-d');
-                    $end_date = date('Y-m-d', strtotime("+$valid_days days"));    
-        
+                    $end_date = date('Y-m-d', strtotime("+$valid_days days"));
+
                     $obj = new PackagePurchase;
                     $obj->user_id = $user_data->id;
                     $obj->package_id = session()->get('package_id');
@@ -1376,14 +1378,14 @@ class CustomerController extends Controller
                     $obj->package_end_date = $end_date;
                     $obj->currently_active = 1;
                     $obj->save();
-        
+
                     // Send Email To Customer
                     $payment_method = 'Razorpay';
-        
+
                     $et_data = EmailTemplate::where('id', 8)->first();
                     $subject = $et_data->et_subject;
                     $message = $et_data->et_content;
-        
+
                     $message = str_replace('[[customer_name]]', $user_data->name, $message);
                     $message = str_replace('[[transaction_id]]', $payId, $message);
                     $message = str_replace('[[payment_method]]', $payment_method, $message);
@@ -1392,7 +1394,7 @@ class CustomerController extends Controller
                     $message = str_replace('[[package_start_date]]', $start_date, $message);
                     $message = str_replace('[[package_end_date]]', $end_date, $message);
                     Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
-        
+
                     session()->forget('package_id');
                     session()->forget('package_name');
                     session()->forget('package_price');
@@ -1448,13 +1450,13 @@ class CustomerController extends Controller
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
                 PackagePurchase::where('user_id',$user_data->id)->update($data);
-    
+
                 // Selected Package Detail
                 $package_detail = Package::where('id',session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
-                $end_date = date('Y-m-d', strtotime("+$valid_days days"));    
-    
+                $end_date = date('Y-m-d', strtotime("+$valid_days days"));
+
                 $obj = new PackagePurchase;
                 $obj->user_id = $user_data->id;
                 $obj->package_id = session()->get('package_id');
@@ -1469,14 +1471,14 @@ class CustomerController extends Controller
                 $obj->package_end_date = $end_date;
                 $obj->currently_active = 1;
                 $obj->save();
-    
+
                 // Send Email To Customer
                 $payment_method = 'Flutterwave';
-    
+
                 $et_data = EmailTemplate::where('id', 8)->first();
                 $subject = $et_data->et_subject;
                 $message = $et_data->et_content;
-    
+
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $tnx_id, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
@@ -1485,7 +1487,7 @@ class CustomerController extends Controller
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
                 Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
-    
+
                 session()->forget('package_id');
                 session()->forget('package_name');
                 session()->forget('package_price');
@@ -1544,17 +1546,17 @@ class CustomerController extends Controller
             if(env('PROJECT_MODE') == 0) {
                 return Redirect()->route('customer_package_purchase_history')->with('error', env('PROJECT_NOTIFICATION'));
             } else {
-                
+
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
                 PackagePurchase::where('user_id',$user_data->id)->update($data);
-    
+
                 // Selected Package Detail
                 $package_detail = Package::where('id',session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
-                $end_date = date('Y-m-d', strtotime("+$valid_days days"));    
-    
+                $end_date = date('Y-m-d', strtotime("+$valid_days days"));
+
                 $obj = new PackagePurchase;
                 $obj->user_id = $user_data->id;
                 $obj->package_id = session()->get('package_id');
@@ -1569,14 +1571,14 @@ class CustomerController extends Controller
                 $obj->package_end_date = $end_date;
                 $obj->currently_active = 1;
                 $obj->save();
-    
+
                 // Send Email To Customer
                 $payment_method = 'Mollie';
-    
+
                 $et_data = EmailTemplate::where('id', 8)->first();
                 $subject = $et_data->et_subject;
                 $message = $et_data->et_content;
-    
+
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $payment->id, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
@@ -1585,7 +1587,7 @@ class CustomerController extends Controller
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
                 Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
-    
+
                 session()->forget('package_id');
                 session()->forget('package_name');
                 session()->forget('package_price');
@@ -1597,7 +1599,7 @@ class CustomerController extends Controller
             return Redirect()->back()->with('error', ERR_PAYMENT_FAILED);
         }
     }
-    
+
     public function customer_shipping_documents(Request $request)
     {
         $user = Auth::user();
@@ -1605,19 +1607,19 @@ class CustomerController extends Controller
         if ($request->isMethod('post')) {
             $filterData = $request->all();
             $query = ShippingOrder::where('consignee_id', $user->id);
-    
+
             if ($filterData['service'] != 'Choose') {
                 $query->where('service', $filterData['service']);
             }
-    
+
             if ($filterData['status'] != 'Choose') {
                 $query->where('status', $filterData['status']);
             }
-    
+
             if (!empty($filterData['offer_id'])) {
                 $query->where('offer_id', $filterData['offer_id']);
             }
-    
+
             if (!empty($filterData['shipping_id'])) {
                 $query->where('shipping_id', $filterData['shipping_id']);
             }
@@ -1628,24 +1630,76 @@ class CustomerController extends Controller
 
         return view('front.customerDashboard.customer_shipping_documents',compact('user','qoutes','shippingOrders'));
     }
-    
+
     public function web_ordering_history()
     {
         $user = Auth::user();
         $offers = $user->quotes;
-        
+
         return view('front.customerDashboard.web_ordering_history',compact('offers'));
     }
 
     public function customer_land_transport()
     {
         $user = Auth::user();
-        $qoutes = $user->quotes->where('status','offered');
+        // $qoutes = $user->quotes->where('status','reserved');
+        // dd($qoutes);
+        $qoutes = $user->quotes()
+            ->where('status', 'reserved')
+            ->doesntHave('shippingOrders')
+            ->get();
+
+        // shippingOrders
         $countries = ListingLocation::get();
         $cities = City::get();
         $ports = Port::get();
         $option_services = OptionService::get();
-        return view('front.customer-newdashboard.create_order',compact('user','qoutes','countries','cities','ports', 'option_services'));
+        $deregistration_service = Service::where('id',1)->first();
+        $english_export_service = Service::where('id',2)->first();
+        $photo_service = Service::where('id',3)->first();
+        $ss_custom_photo_service = Service::where('id',4)->first();
+        $ss_custom_inspection_service = Service::where('id',5)->first();
+        $ss_custom_cleaning_service = Service::where('id',6)->first();
+        return view('front.customer-newdashboard.create_order',compact('ss_custom_inspection_service','ss_custom_cleaning_service','ss_custom_photo_service','photo_service','english_export_service','deregistration_service','user','qoutes','countries','cities','ports', 'option_services'));
+    }
+
+    public function request_car()
+    {
+        return view('front.customer-newdashboard.request_car');
+    }
+
+    public function list_request_car()
+    {
+        $user = Auth::user();
+        $requestedCars = $user->requestedCar ?? null;
+        return view('front.customer-newdashboard.list_request_car',compact('requestedCars'));
+    }
+
+    public function requested_car_store(Request $request)
+    {
+        $request->validate([
+            'car_name' => 'required',
+            'car_model' => 'required',
+            'year' => 'required|integer',
+            'mileage' => 'required|integer',
+            'engine' => 'required',
+            'transmission' => 'required',
+        ]);
+
+        $requestData = $request->all() ?? null;
+        $requestData['user_id'] = Auth::id(); // Set user_id from the authenticated user
+//        RequestedCar::create($requestData);
+
+        return redirect()->route('list_request_car')->with('success', 'Requested car created successfully');
+    }
+
+    public function get_cities_and_ports(Request $request)
+    {
+        $countryId = $request->input('country_id');
+        $country = ListingLocation::find($countryId);
+        $cities = $country ? $country->cities : [];
+        $ports = $country ? $country->ports : [];
+        return response()->json(['cities' => $cities, 'ports' => $ports]);
     }
 
     public function customer_invoice()
@@ -1661,34 +1715,34 @@ class CustomerController extends Controller
         $cities = City::get();
         $ports = Port::get();
         $shippingOrders = [];
-    
+
         if ($request->isMethod('post')) {
             // Handle the form submission and filter shipping orders based on form data
             $filterData = $request->all();
-    
+
             // Customize the logic to filter shipping orders based on form input and the authenticated user
             $query = ShippingOrder::where('consignee_id', Auth::user()->id);
-    
+
             if (!empty($filterData['country'])) {
                 $query->where('country', $filterData['country']);
             }
-    
+
             if (!empty($filterData['city'])) {
                 $query->where('city', $filterData['city']);
             }
-    
+
             if (!empty($filterData['port'])) {
                 $query->where('container_port', $filterData['port']);
             }
-    
+
             if (!empty($filterData['service_plan'])) {
                 $query->where('service', $filterData['service_plan']);
             }
-    
+
             if (!empty($filterData['shipping_id'])) {
                 $query->where('shipping_id', $filterData['shipping_id']);
             }
-    
+
             $shippingOrders = $query->get();
         } else {
             $shippingOrders = ShippingOrder::where('consignee_id', Auth::user()->id)->get();
@@ -1754,7 +1808,7 @@ class CustomerController extends Controller
         }
 
         return redirect()->back()->with('success', 'TT document created/updated successfully');
-    }    
+    }
 
 
     public function view_car_and_shipping_information($id)
@@ -1765,71 +1819,82 @@ class CustomerController extends Controller
 
     public function place_order_shipping(Request $request)
     {
-            $rules = [
-                'offer_id' => 'required|numeric',
-                'service' => 'required|string',
-                'country' => 'required|numeric',
-                'city' => 'required|numeric',
-                'container_port' => 'required|numeric'
-            ];
 
-            $messages = [
-                'required' => 'The :attribute field is required.',
-                'numeric' => 'The :attribute field must be a number.',
-                'string' => 'The :attribute field must be a string.',
-            ];
+        $rules = [
+            'offer_ids' => 'required|array',
+            'offer_ids.*' => 'required|numeric',
+            'service' => 'required|string',
+            'country' => 'required|numeric',
+            'city' => 'required|numeric',
+            'container_port' => 'required|numeric'
+        ];
 
-            $validator = Validator::make($request->all(), $rules, $messages);
-            if ($validator->fails()) {
-                return response()->json(['status' => 'error', 'errors' => $validator->errors()], 422);
+        $messages = [
+            'required' => 'The :attribute field is required.',
+            'array' => 'The :attribute field must be an array.',
+            'numeric' => 'The :attribute field must be a number.',
+            'string' => 'The :attribute field must be a string.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(['status' => 'error', 'errors' => $validator->errors()], 422);
+        }
+
+        $shippingOrder = new ShippingOrder([
+            'service' => $request->input('service'),
+            'country' => $request->input('country'),
+            'city' => $request->input('city'),
+            'container_port' => $request->input('container_port'),
+            'consignee_tab' => $request->input('consignee_tab'),
+            'receiver_tab' => $request->input('receiver_tab'),
+            'consignee_id' => $request->input('consignee_id'),
+            'default_name' => $request->input('default_name') ?? "-",
+            'default_company_name' => $request->input('default_company_name') ?? "-",
+            'default_email' => $request->input('default_email') ?? "-",
+            'default_phone_number' => $request->input('default_phone_number') ?? 0,
+            'default_phone_2' => $request->input('default_phone_2') ?? 0,
+            'default_address' => $request->input('default_address') ?? "-",
+            'receiver_id' => $request->input('receiver_id'),
+            'receiver_default_name' => $request->input('receiver_default_name') ?? "-",
+            'receiver_default_company_name' => $request->input('receiver_default_company_name') ?? "-",
+            'receiver_default_email' => $request->input('receiver_default_email') ?? "-",
+            'receiver_default_phone_number' => $request->input('receiver_default_phone_number') ?? 0,
+            'receiver_default_phone_2' => $request->input('receiver_default_phone_2') ?? 0,
+            'receiver_default_address' => $request->input('receiver_default_address') ?? "-",
+            'deregistration_service' => $request->deregistration_service ?? 0,
+            'english_export_service' => $request->english_export_service ?? 0,
+            'photo_service' => $request->photo_service ?? 0,
+            'ss_custom_photo_service' => $request->ss_custom_photo_service ?? 0,
+            'ss_custom_inspection_service' => $request->ss_custom_inspection_service ?? 0,
+            'ss_custom_cleaning_service' => $request->ss_custom_cleaning_service ?? 0,
+        ]);
+        $shippingOrder->save();
+        $shippingOrder->shipping_id= 'ss-'.$shippingOrder->id;
+        $shippingOrder->save();
+        if ($request->has('offer_ids')) {
+            $offerIdList = $request->input('offer_ids'); // This should return the array of selected service IDs
+            $offerIds = [];
+            foreach ($offerIdList as $offerId) {
+                $offerIds[] = (int)$offerId;
             }
-            $shippingOrder = new ShippingOrder([
-                'offer_id' => $request->input('offer_id'),
-                'service' => $request->input('service'),
-                'country' => $request->input('country'),
-                'city' => $request->input('city'),
-                'container_port' => $request->input('container_port'),
-                'consignee_tab' => $request->input('consignee_tab'),
-                'receiver_tab' => $request->input('receiver_tab'),
-                'consignee_id' => $request->input('consignee_id'),
-                'default_name' => $request->input('default_name') ?? "-",
-                'default_company_name' => $request->input('default_company_name') ?? "-",
-                'default_email' => $request->input('default_email') ?? "-",
-                'default_phone_number' => $request->input('default_phone_number') ?? 0,
-                'default_phone_2' => $request->input('default_phone_2') ?? 0,
-                'default_address' => $request->input('default_address') ?? "-",
-                'receiver_id' => $request->input('receiver_id'),
-                'receiver_default_name' => $request->input('receiver_default_name') ?? "-",
-                'receiver_default_company_name' => $request->input('receiver_default_company_name') ?? "-",
-                'receiver_default_email' => $request->input('receiver_default_email') ?? "-",
-                'receiver_default_phone_number' => $request->input('receiver_default_phone_number') ?? 0,
-                'receiver_default_phone_2' => $request->input('receiver_default_phone_2') ?? 0,
-                'receiver_default_address' => $request->input('receiver_default_address') ?? "-",
-                'deregistration_service' => $request->deregistration_service ?? 0,
-                'english_export_service' => $request->english_export_service ?? 0,
-                'photo_service' => $request->photo_service ?? 0,
-                'ss_custom_photo_service' => $request->ss_custom_photo_service ?? 0,
-                'ss_custom_inspection_service' => $request->ss_custom_inspection_service ?? 0,
-                'ss_custom_cleaning_service' => $request->ss_custom_cleaning_service ?? 0,
-            ]);
-            $shippingOrder->save();
-            $shippingOrder->shipping_id= 'ss-'.$shippingOrder->id;
-            $shippingOrder->save();
-            if($request->service_name)
-            {
-                $serviceNames = $request->service_name; // This should return the array of selected service IDs
-                $serviceIds = [];
-                foreach ($serviceNames as $serviceName) {
-                    $serviceIds[] = (int)$serviceName;
-                }
-                $shippingOrder->optionServices()->attach($serviceIds);
+            $shippingOrder->offers()->attach($offerIds);
+        }
+        if($request->service_name)
+        {
+            $serviceNames = $request->service_name; // This should return the array of selected service IDs
+            $serviceIds = [];
+            foreach ($serviceNames as $serviceName) {
+                $serviceIds[] = (int)$serviceName;
             }
-            $success = true;
-            return response()->json([
-                'success' => $success,
-                'message' => 'Shipping order placed successfully',
-                'shippingOrder' => $shippingOrder,
-            ]);
+            $shippingOrder->optionServices()->attach($serviceIds);
+        }
+        $success = true;
+        return response()->json([
+            'success' => $success,
+            'message' => 'Shipping order placed successfully',
+            'shippingOrder' => $shippingOrder,
+        ]);
     }
 
     public function car_and_shipping_info_filter(Request $request)
@@ -1858,8 +1923,8 @@ class CustomerController extends Controller
 
         if (!$request->filled('country') && !$request->filled('city') && !$request->filled('port') && !$request->filled('service_plan') && !$request->filled('shopping_order_id')) {
             $data = $query->get();
-        } 
-        else 
+        }
+        else
         {
             $data = $query->get();
         }
@@ -1881,7 +1946,7 @@ class CustomerController extends Controller
     }
     public function download_shipment_tt_document($id)
     {
-        $document = TTDocument::findOrFail($id);
+        $document = TtDocument::findOrFail($id);
         $filePath = $document->document_path;
         return Storage::download($filePath);
     }

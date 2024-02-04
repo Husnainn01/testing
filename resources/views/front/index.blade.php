@@ -203,7 +203,7 @@
                                             </select>
                                         </div>
                                         <!--Year-->
-                                        <div class="col-md-3 col-sm-6 col-6">
+                                        <div class="col-md-4 col-sm-6 col-6">
                                             <label for="" class="mb-2 font-weight-bold">
                                                 Year
                                             </label>
@@ -269,9 +269,9 @@
                                             </div>
                                         </div>
                                         <!--button-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <input type="submit" value="Search" class="btn btn-primary my-4 w-100 py-2"
-                                                   style="background-color: #b5b2b2 !important;border-radius: 0 !important;margin-top: 30px !important;color:black !important;font-weight: bold;">
+                                                   style="background-color: black !important;border-radius: 6px !important;margin-top: 30px !important;color:white !important;font-weight: bold;">
                                         </div>
                                         <!--steering-->
                                         <div class="col-md-3 col-6 col-sm-6">
@@ -322,12 +322,12 @@
                         <div class="row">
                             @if (isset($carlocation))
                                 <div class="col-md-12 col-sm-12 col-lg-12">
-                                    <h3 class="my-4 fw-bold">Most Popular Cars In
-                                        {{ $carlocation->listing_location_name }}</h3>
+                                    <h4 class="my-4 fw-bold">Most Popular Cars In
+                                        {{ $carlocation->listing_location_name }}</h4>
                                 </div>
                             @else
                                 <div class="col-md-12 col-sm-12 col-lg-12">
-                                    <h3 class="my-4 fw-bold">Most Popular Cars</h3>
+                                    <h4 class="my-4 fw-bold">Most Popular Cars</h4>
                                 </div>
                             @endif
                         </div>
@@ -349,7 +349,7 @@
                                             <!-- Car details -->
                                             <div class="content">
                                                 <h2>{{ $carsitems->listing_name }}</h2>
-                                                <p class="location">Islamabad</p> <!-- Dynamic location if available -->
+                                                <p class="location">{{$carsitems->rListingLocation->listing_location_name}}</p> <!-- Dynamic location if available -->
                                                 <div class="text-md pl-2">
                                                     <span>{{ $carsitems->listing_model_year }} |</span>
                                                     {{--                                            <span>{{ $carsitems->listing_year }} |</span>--}}
@@ -566,12 +566,12 @@
 
                             <div class="col-12 justify-content-end">
                                 <div class="mob-hide px-3 pagination d-flex justify-content-end">
-                                    {{ $most_popular_cars->links() }}
+                                    {{ $most_popular_cars->appends(request()->except('mpc_page'))->links() }}
                                 </div>
                             </div>
                             <div class="row mt-4 px-3">
                                 <div class="col-md-12 col-sm-12 col-lg-12">
-                                    <h3 class="my-4 fw-bold">New Arrivals Cars</h3>
+                                    <h4 class="my-4 fw-bold">New Arrivals Cars</h4>
                                 </div>
 
                                 @foreach ($new_arrivals as $carsitems)
@@ -591,7 +591,7 @@
                                                 <!-- Car details -->
                                                 <div class="content">
                                                     <h2>{{ $carsitems->listing_name }}</h2>
-                                                    <p class="location">Islamabad</p>
+                                                    <p class="location">{{$carsitems->rListingLocation->listing_location_name}}</p>
                                                     <!-- Dynamic location if available -->
                                                     <div class="text-md pl-2">
                                                         <span>{{ $carsitems->listing_model_year }} |</span>
@@ -802,15 +802,15 @@
 
                                 <div class="col-12 justify-content-end">
                                     <div class="mob-hide px-3 pagination d-flex justify-content-end">
-                                        {{ $new_arrivals->links() }}
+                                        {{ $new_arrivals->appends(request()->except('na_page'))->links() }}
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-12 col-lg-12 col-sm-12">
-                                <h2 class="fw-bold">Best Seller By Types</h2>
+                                <h4 class="fw-bold">Best Seller By Types</h4>
                             </div>
-                            <div class="row my-5 border-bottom border-1 best-seller">
+                            <div class="row my-5 border-bottom border-1 best-seller" style="margin-top:1rem !important;">
                                 <div class="col-md-4 col-lg-4 col-sm-12 my-3">
                                     <div class="row ">
                                         <div class="col-5 justify-content-end">
@@ -957,14 +957,14 @@
 
                             </div>
                             <span class="w-50 mob-100 float-left">
-    <h2>Client Reviews</h2>
+    <h4 class="fw-bold">Client Reviews</h4>
 </span>
                             <span class="w-50">
     <a href="{{ route('add-review') }}">
-        <button class="btn btn-primary float-right px-4 py-2">
+        <div class="float-right px-4 py-2">
             <i class="fa-solid fa-plus text-white px-2 py-1 mr-1 rounded" style="background-color: #951111"></i>
             Add Review
-        </button>
+        </div>
     </a>
 </span>
                             <input class="hidden" id="appurl" value="{{ env('APP_URL') }}"/>
@@ -1198,7 +1198,7 @@
 
                             <div class="row my-5">
                                 <div class="col-md-12">
-                                    <h2>FAQS</h2>
+                                    <h4 class="fw-bold">FAQS</h4>
                                     <div class="mainfaqs">
 
                                         {{-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">--}}
@@ -1259,7 +1259,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="collapse1" class="collapse" aria-labelledby="heading1"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             Once you have provided us with the
                                                             necessary
@@ -1300,7 +1300,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="collapse2" class="collapse" aria-labelledby="heading2"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We will prepare your vehicle for
                                                             export to any port
@@ -1337,7 +1337,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="collapse7" class="collapse" aria-labelledby="heading2"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             All vehicles sold at auction are
                                                             given an overall
@@ -1378,7 +1378,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="collapse4" class="collapse" aria-labelledby="heading4"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We thoroughly inspect every vehicle
                                                             to ensure
@@ -1422,7 +1422,7 @@
                                                     </div>
                                                     {{-- drop --}}
                                                     <div id="collapse5" class="collapse" aria-labelledby="heading5"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             Yes, we examine the car completely
                                                             and once
@@ -1459,7 +1459,7 @@
                                                     </div>
 
                                                     <div id="collapse6" class="collapse" aria-labelledby="heading1"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             You are required to make the complete
                                                             payment after the bid
@@ -1499,7 +1499,7 @@
 
 
                                                     <div id="collapse8" class="collapse" aria-labelledby="heading2"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We will ship your vehicle as soon as you
                                                             complete the
@@ -1540,7 +1540,7 @@
 
 
                                                     <div id="collapse3" class="collapse" aria-labelledby="heading3"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We cannot commit an accurate time of
                                                             shipment as it depends
@@ -1580,7 +1580,7 @@
                                                         </div>
                                                     </div>
                                                     <div id="collapse9" class="collapse" aria-labelledby="heading4"
-                                                         data-parent="#accordionExample" style="position: absolute;z-index: 9;">
+                                                         data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             Once shipment has departed, Original BL Scan
                                                             will be
@@ -1724,6 +1724,7 @@
 
     function addToFavorites() {
         console.log('here');
+
         const listingId = document.getElementById('addToFavoritesBtn').getAttribute('data-listing-id');
 
         // Make an AJAX request using fetch
