@@ -1,11 +1,11 @@
 <?php
 namespace App\Models;
+use App\Models\Listing;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Qoute;
 use App\Models\Invoice;
-use App\Models\Listing;
 
 
 class User extends Authenticatable
@@ -53,6 +53,10 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->belongsToMany(Listing::class, 'favorites', 'user_id', 'listing_id')->withTimestamps();
+    }
+    public function requestedCar()
+    {
+        return $this->hasMany(RequestedCar::class, 'user_id');
     }
 
 }

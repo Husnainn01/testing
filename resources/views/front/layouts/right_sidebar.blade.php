@@ -178,7 +178,7 @@ $social_media_items=\App\Models\SocialMediaItem::all();
 
 
 </style>
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;position: sticky;top:18px">
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;position: sticky;top:-821px !important;">
 
 <div class="my-3 card-features">
 

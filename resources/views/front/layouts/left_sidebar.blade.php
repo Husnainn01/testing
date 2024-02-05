@@ -65,16 +65,16 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
                 <li class="mt-3">
                     <a class="text-decoration-none d-flex" href="{{ route('Find-type', ['slug' => 'suv']) }}">
                         <i class="fa-solid fa-truck"></i>
-                        <small class="pl-2">SUV</small>
+                        <small class="pl-2">SUV</small></a>
                 </li>
                 <li class="mt-3"><a class="text-decoration-none"
                         href="{{ route('Find-type', ['slug' => 'cargo']) }}">
                         <i class="fa-solid fa-truck"></i>
-                        <small class="pl-2">Cargo</small></li>
+                        <small class="pl-2">Cargo</small></a>
                 <li class="mt-3"><a class="text-decoration-none"
                         href="{{ route('Find-type', ['slug' => 'truck']) }}">
                         <i class="fa-solid fa-truck"></i>
-                        <small class="pl-2">Truck</small></li>
+                        <small class="pl-2">Truck</small></a>
                 {{-- <li class="mt-3"><a class="text-decoration-none"><small>C</small></li> --}}
             </ul>
         </div>
@@ -166,7 +166,7 @@ $type = \App\Models\Listing::pluck('listing_body')->unique();
                         href="{{ route('category', ['slug' => $item->category_slug]) }}"><small><img
                                 src="{{ asset('uploads/categories_images/' . $item->category_image) }}"
                                 class="small-logo" alt="" />
-                            {{ $item->category_name }}</small>
+                            {{ $item->category_name }}</small></a>
                         @endforeach
                         {{--
                 <li class="mt-3"><a class="text-decoration-none"><small>C</small></li> --}}

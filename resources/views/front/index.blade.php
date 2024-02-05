@@ -129,7 +129,7 @@
                     <!-- left Column -->
                     <div class="col-md-2 order-2 order-sm-2  order-md-1 mb-4 pl-0">
                         {{-- left-sidebar --}}
-                        <div class="first-side pb-4" style="position: sticky;top: 15px;overflow: auto">
+                        <div class="first-side pb-4" style="position: sticky;top: -1800px !important;">
                             @include('front.layouts.left_sidebar')
                         </div>
                     </div>
@@ -2004,6 +2004,10 @@
             width: calc(33.3333% - 30px);
             /* 3 cards per row */
         }
+        .search-box-wrapper{
+            margin-top: -100px !important;
+        }
+
 
         /* Other styles */
     }

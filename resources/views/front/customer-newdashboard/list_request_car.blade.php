@@ -33,7 +33,7 @@
                         <tr>
                             <th scope="row">{{ $index + 1 }}</th>
                             <td>{{ $car->car_name }}</td>
-                            <td>{{ $car->car_model }}</td>
+                            <td>{{ $car->model }}</td>
                             <td>{{ $car->year }}</td>
                             <td>{{ $car->mileage }}</td>
                             <td>{{ $car->engine }}</td>

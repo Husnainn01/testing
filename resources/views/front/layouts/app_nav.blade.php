@@ -274,7 +274,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <div class="d-flex my-auto" style="justify-content: end;font-size: 1rem">
+                <div class="d-flex my-auto" style="justify-content: end;font-size: 21px">
 {{--                    <div class="mr-3">--}}
 {{--                        <div class="dropdown float-right support-dropdown">--}}
 {{--                                                        <div class="border-0 bg-transparent text-light" style="cursor: pointer;" type="button"--}}
@@ -488,7 +488,7 @@
                                                 <h6>Chat Now</h6>
                                                 <small>Chat with SS Japan team &amp;<br> support team for quick <br>answers on
                                                     product features<br> pricing and more</small>
-                                                <a href="#" class="btn btn-primary w-54 my-2 cursor-pointer d-block">Chat
+                                                <a href="{{route('contact')}}" class="btn btn-primary w-54 my-2 cursor-pointer d-block">Chat
                                                     Now</a>
                                                 <small class="d-block">24x7</small>
                                                 <small><i class="fab fa-whatsapp bg-success p-1 rounded-circle text-light"

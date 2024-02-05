@@ -89,10 +89,13 @@ $userdata=Auth::user();
         <div class="row left-sidebar">
 
             <!-- left Column -->
-            <div class="col-md-2 order-2 order-sm-2  order-md-1 first-side">
+            <div class="col-md-2 order-2 order-sm-2  order-md-1 first-side" style="position: sticky;top: -1800px !important;padding-left: 0;padding-right: 0;">
                 @include('front.layouts.left_sidebar')
 
             </div>
+{{--            <div class="first-side pb-4" style="position: sticky;top: 15px;overflow: auto">--}}
+{{--                @include('front.layouts.left_sidebar')--}}
+{{--            </div>--}}
 
             <!-- Middle Column -->
 

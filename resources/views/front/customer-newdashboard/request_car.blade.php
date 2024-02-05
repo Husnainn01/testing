@@ -24,7 +24,7 @@
 
                     <div class="col-lg-6 col-md-6 col-12">
                         <label for="car-model" class="form-label">Car Model *</label>
-                        <input type="text" required class="form-control rounded-3" id="car-model" name="car_model" required>
+                        <input type="text" required class="form-control rounded-3" id="car-model" name="model" required>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-12 mt-1">

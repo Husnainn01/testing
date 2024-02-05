@@ -1670,6 +1670,7 @@ class CustomerController extends Controller
 
     public function list_request_car()
     {
+
         $user = Auth::user();
         $requestedCars = $user->requestedCar ?? null;
         return view('front.customer-newdashboard.list_request_car',compact('requestedCars'));
@@ -1679,16 +1680,16 @@ class CustomerController extends Controller
     {
         $request->validate([
             'car_name' => 'required',
-            'car_model' => 'required',
-            'year' => 'required|integer',
-            'mileage' => 'required|integer',
+            'model' => 'required',
+            'year' => 'required',
+            'mileage' => 'required',
             'engine' => 'required',
             'transmission' => 'required',
         ]);
 
         $requestData = $request->all() ?? null;
-        $requestData['user_id'] = Auth::id(); // Set user_id from the authenticated user
-//        RequestedCar::create($requestData);
+        $requestData['user_id'] = Auth::id();// Set user_id from the authenticated user
+        RequestedCar::create($requestData);
 
         return redirect()->route('list_request_car')->with('success', 'Requested car created successfully');
     }
