@@ -17,14 +17,14 @@ $social_media_items=\App\Models\SocialMediaItem::all();
     }
 
     /* Responsive styles */
-    /*@media only screen and (max-width: 768px) {*/
+    /@media only screen and (max-width: 768px) {/
     /*    .card-features {*/
     /*        width: 90%;*/
     /*        height: auto;*/
     /*        border-width: 2px;*/
     /*    }*/
-    /*    !* Add any additional responsive styles needed *!*/
-    /*}*/
+    /*    !* Add any additional responsive styles needed !/
+    /}/
     .one-third {
         width: calc(33.333% - 10px); /* Adjust width to account for 3 in a row, minus gap */
         display: flex;
@@ -85,7 +85,7 @@ $social_media_items=\App\Models\SocialMediaItem::all();
     }
 
     /* Responsive Styles */
-    /*@media only screen and (max-width: 768px) {*/
+    /@media only screen and (max-width: 768px) {/
     /*    .card-features {*/
     /*        width: 90%;*/
     /*        height: auto;*/
@@ -105,7 +105,7 @@ $social_media_items=\App\Models\SocialMediaItem::all();
     /*    .button a {*/
     /*        width: 90%;*/
     /*    }*/
-    /*}*/
+    /}/
     @media (min-width: 2000px) {
         .one-third {
             width: calc(25% - 10px); /* 4 cards per row */

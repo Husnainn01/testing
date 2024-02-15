@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-lg-3 col-sm-6 col-md-6 col-6"><img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}" height="70" alt="">
         <ul class="list-unstyled mx-3 py-3">
-            <li class="my-1">+81 42 440 3440</li>
+            <li class="my-1">+81-52-387-9772</li>
             <li class="my-1">info@ssjapan.com</li>
-            <li class="my-1">1-32-2 Kojimacho, Chofu City,
-                Tokyo 182-0026 Japan</li>
+            <li class="my-1"> 1-1506, Nishifukuda, Minato-ku, Nagoya city,
+                 Aichi-ken, Japan 455-0874</li>
         </ul>
         </div>
         <div class="col-lg-3 col-sm-6 col-md-6 col-6">
@@ -49,9 +49,10 @@
 <div class="row bg-dark">
     <div class="col-12 ">
         <ul class="list-unstyled list-inline text-center mt-2">
-            <li class="list-inline-item text-white">Terms & Conditions</li>
-            <li class="list-inline-item text-white">Privacy</li>
-            <li class="list-inline-item text-white">Disclaimer</li>
+            <a href='https://www.ss-japan.com/terms_and_services'><li class="list-inline-item text-white">Terms & Conditions</li> </a>
+            
+            <a href='https://www.ss-japan.com/privacy_policy'><li class="list-inline-item text-white">Privacy</li></a>
+            <a href='https://www.ss-japan.com/csr_policy'><li class="list-inline-item text-white">CSR-Policy</li></a>
 
         </ul>
     </div>

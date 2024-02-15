@@ -58,9 +58,9 @@
             </select>
         </div>
         <div class="col-md-4">
-            <label for="shipping_id" class="form-label">Shopping Order ID</label>
+            <label for="shipping_id" class="form-label">Stock Number</label>
             <input type="text" id="shipping_id" name="shipping_id" class="form-control"
-                placeholder="Enter Shopping Order ID" value="{{ $request->input('shipping_id') }}">
+                placeholder="Enter Stock Number" value="{{ $request->input('shipping_id') }}">
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -75,15 +75,14 @@
 <table class="table table-striped" style="width:100%">
 <thead>
     <tr>
-        <th>Shopping Order ID</th>
-        <th>Car</th>
+        <th>Stock Number</th>
+        <th>Chassis Number</th>
         <th>Order Date</th>
         <th>Country</th>
         <th>City</th>
         <th>Port</th>
         <th>VESSEL</th>
         <th>ETD/ETA</th>
-        <th>POL/POD</th>
         <th>TT/Copy</th>
     </tr>
 </thead>
@@ -150,7 +149,7 @@
         document.getElementById('country').selectedIndex = 0;
         document.getElementById('city').selectedIndex = 0;
         document.getElementById('port').selectedIndex = 0;
-        document.getElementById('service_plan').selectedIndex = 0;
+        document.getEle+mentById('service_plan').selectedIndex = 0;
         document.getElementById('shipping_id').value = '';
     });
 </script>

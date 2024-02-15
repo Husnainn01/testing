@@ -41,7 +41,7 @@
                                 <td>{{ $offer->inspection->inspection_type ?? '-' }}</td>
                                 <td>{{ $offer->offer }}</td>
                                 <td>{{ $offer->total_price }}</td>
-                                <td>@if($offer->status=='offered') Offered @elseif($offer->status == 'reserved') Other Customer already purchased @elseif($offer->status == 'sold') Sold @else In-stock @endif </td>
+                                <td>@if($offer->status=='offered') Offered @elseif($offer->status == 'reserved') Sold @elseif($offer->status == 'sold') Sold @else In-stock @endif </td>
                                 <td>{{ $offer->agreed_price }}</td>
                                 <td>{{ $offer->remarks }}</td>
                                 <td>

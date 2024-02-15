@@ -14,10 +14,9 @@
 @endif
   @csrf
     <!-- progressbar -->
-    <ul id="progressbar" style="margin-left: 230px !important;">
+    <ul id="progressbar" style="margin-left: 430px !important;">
       <li class="active">Personal Details</li>
       <li>Consignee information</li>
-      <li>Optional Services</li>
       <li>Finish</li>
   </ul>
     <!-- fieldsets -->
@@ -61,20 +60,20 @@
                                             <table class="table text-start">
                                                 <tr>
                                                     <th></th>
-                                                    <th>Name</th>
-                                                    <th>Image</th>
+                                                    <th>Photos</th>
                                                     <th>Stock ID</th>
-                                                    <th>Engine</th>
+                                                    <th>Name</th>
+                                                    <th>Transmission</th>
                                                     <th>Brand</th>
                                                 </tr>
                                                 @foreach($qoutes as $qoute)
                                                     <tr>
                                                         <td> <input type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}"> </td>
-                                                        <td>{{ $qoute->car->listing_name }}</td>
-                                                        <td>
+                                                         <td>
                                                             <img src="{{ asset('uploads/listing_featured_photos/' . $qoute->car->listing_featured_photo) }}" class="mt-2 rounded-3" height="60px" style="object-fit: cover;" alt="as">
                                                         </td>
                                                         <td>{{ $qoute->car->listing_stock_id }}</td>
+                                                        <td>{{ $qoute->car->listing_name }}</td>
                                                         <td>{{ $qoute->car->listing_transmission }}</td>
                                                         <td>{{ $qoute->car->rListingBrand->listing_brand_name }}</td>
                                                     </tr>
@@ -111,17 +110,13 @@
                 </select>
             </div>
 
-            <div class="col-lg-4 p-4">
-                <select name="city" id="city" class="form-select w-100" disabled>
-                    <option disabled selected>Select City <span class="text-danger">*</span></option>
-                </select>
-            </div>
+           <div class="col-lg-4 p-4">
+                 <select name="city" id="city" class="form-select w-100" disabled>
+                      <option disable selected>Select Port <span class="text-danger">*</span></option>
+                 </select>
+          </div>
 
-            <div class="col-lg-4 p-4">
-                <select name="container_port" id="container_port" class="form-select w-100" disabled>
-                    <option disabled selected>Select a Port <span class="text-danger">*</span></option>
-                </select>
-            </div>
+          
         </div>
     </div>
       <input type="button" name="next" class="next action-button rounded-3" value="Next" />
@@ -278,24 +273,9 @@
           </div> <!-- END tabs-content -->
         </div>
     </fieldset>
-    <fieldset>
-      <h2 class="fs-title">Step 3</h2>
-      <h3 class="fs-subtitle">Optional Services</h3>
-        <div class="w-100 border p-5">
-            @foreach($option_services as $key=>$option_service)
-                <div class="form-check text-start">
-                    <input class="form-check-input" name="service_name[{{ $key }}]" type="checkbox" value="{{ $option_service->id }}" id="service_id_{{ $option_service->id }}">
-                    <label class="form-check-label" for="service_name">
-                        {{ $option_service->name}} {{$option_service->price }}
-                    </label>
-                </div>
-            @endforeach
-        </div>
-    <input type="button" name="previous" class="previous action-button rounded-3" value="Previous" />
-    <input type="button" name="next" class="next action-button rounded-3" value="Next" />
-  </fieldset>
-  <fieldset>
-    <h2 class="fs-title">Step 4</h2>
+ 
+ <fieldset>
+    <h2 class="fs-title">Step 3</h2>
     <h3 class="fs-subtitle">Service before shipping & SS Custom Services</h3>
     <div class="container">
         <div class="row border p-5 rounded-3">
@@ -353,48 +333,33 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-  <script>
-    $(document).ready(function () {
-        $('#country').on('change', function () {
-            var countryId = $(this).val();
+<script>
+$(document).ready(function () {
+    $('#country').on('change', function () {
+        var countryId = $(this).val();
 
-            // Make AJAX call to get cities and ports
-            $.ajax({
-                url: "{{ route('get_cities_and_ports') }}",
-                type: 'GET',
-                data: { country_id: countryId },
-                success: function (response) {
-                    // Update cities dropdown
-                    var citiesDropdown = $('#city');
-                    citiesDropdown.empty();
-                    if (response.cities && response.cities.length > 0) {
-                        citiesDropdown.prop('disabled', false);
-                        $.each(response.cities, function (id, name) {
-                            citiesDropdown.append('<option value="' + name.id + '">' + name.name + '</option>');
-                        });
-                    }
-                    else
-                    {
-                        citiesDropdown.prop('disabled', true);
-                    }
-                    var portDropdown = $('#container_port');
-                    portDropdown.empty();
-                    console.log(response);
-                    if (response.ports && response.ports.length > 0) {
-                        portDropdown.prop('disabled', false);
-                        $.each(response.ports, function (id, name) {
-                            portDropdown.append('<option value="' + name.id + '">' + name.name + '</option>');
-                        });
-                    } else {
-                        portDropdown.prop('disabled', true);
-                        portDropdown.append('<option value="" selected>Select Port</option>');
-                    }
-                },
-                error: function (error) {
-                    console.log(error);
+        // Make AJAX call to get cities based on the selected country
+        $.ajax({
+            url: "{{ route('get_cities_and_ports') }}", // You might want to rename this route if it only returns cities now
+            type: 'GET',
+            data: { country_id: countryId },
+            success: function (response) {
+                // Update cities dropdown
+                var citiesDropdown = $('#city');
+                citiesDropdown.empty().append('<option value="" selected>Select City</option>'); // Always allow selection
+                citiesDropdown.prop('disabled', false); // Keep enabled
+                if (response.cities && response.cities.length > 0) {
+                    $.each(response.cities, function (index, city) {
+                        citiesDropdown.append('<option value="' + city.id + '">' + city.name + '</option>');
+                    });
                 }
-            });
+            },
+            error: function (error) {
+                console.log(error);
+            }
         });
     });
+});
 </script>
+
 @endsection

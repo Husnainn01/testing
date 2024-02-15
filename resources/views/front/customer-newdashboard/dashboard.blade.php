@@ -40,7 +40,7 @@
                                     <h6 class="text-primary p-0 fw-bold mb-0">{{ $pending_car->listing_name }}</h6>
                                     <p>{{ $pending_car->listing_description }}</p>
                                     <div class="badges p-0 mb-2"><span class="badge bg-dark">{{ $pending_car->listing_stock_status }}</span>
-                                        <!-- <span class="badge bg-success mx-2">BF Stock</span><span class="badge bg-warning">Today Offers</span>-->
+                                   
                                     </div>
                                     <table class="table-bordered w-100 text-left specification" style="font-size: 12px;">
                                         {{-- <tr >
@@ -112,7 +112,7 @@
                                     <h6 class="text-primary p-0 fw-bold mb-0">{{ $reserved_car->listing_name }}</h6>
                                     <p>{{ $reserved_car->listing_description }}</p>
                                     <div class="badges p-0 mb-2"><span class="badge bg-dark">{{ $reserved_car->listing_stock_status }}</span>
-                                        <!-- <span class="badge bg-success mx-2">BF Stock</span><span class="badge bg-warning">Today Offers</span>-->
+                                       
                                     </div>
                                     <table class="table-bordered w-100 text-left specification" style="font-size: 12px;">
                                         {{-- <tr >

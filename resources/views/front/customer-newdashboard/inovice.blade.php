@@ -18,7 +18,7 @@
                     <tr>
                         <th>Invoice ID</th>
                         <th>User ID</th>
-                        <th>Shipping Order ID</th>
+                        <th>Stock Number</th>
                         <th>Car Name</th>
                         <th>Car Brand</th>
                         <th>Car Location</th>

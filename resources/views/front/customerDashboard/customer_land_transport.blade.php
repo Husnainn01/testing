@@ -49,13 +49,13 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-4 p-4">
-                                <select name="city" id="city" class="form-select w-50  py-3">
-                                    <option disabled selected>Select City</option>
-                                    @foreach($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                    @endforeach
-                                </select>
+                            <!-- <div class="col-lg-4 p-4">
+                                <!-- <select name="city" id="city" class="form-select w-50  py-3">
+                                   <!--  <option disabled selected>Select City</option>
+                                   <!--  @foreach($cities as $city)
+                                        <!-- <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                  <!--   @endforeach
+                                <!-- </select>
                             </div>
                             <div class="col-lg-4 p-4">
                                 <select name="container_port" id="container_port" class="form-select w-50  py-3">

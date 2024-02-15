@@ -50,8 +50,8 @@
                 <div class="form-group">
                     <label for="status">Offer Status</label>
                     <select class="form-control" name="status" id="status">
-                        <option value="offered" disabled @if($offer->status==="offered") selected @endif >Offered</option>
-                        <option value="reserved"  @if($offer->status==="reserved") selected @endif>Other Customer already purchased</option>
+                        <option value="offered" disabled @if($offer->status==="offered") selected @endif >Pending</option>
+                        <option value="reserved"  @if($offer->status==="reserved") selected @endif>Reserved</option>
                         <option value="sold"  @if($offer->status==="sold") selected @endif>Sold!</option>
                     </select>
                 </div>

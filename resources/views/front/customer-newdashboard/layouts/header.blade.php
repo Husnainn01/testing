@@ -31,7 +31,7 @@
             <!-- <li class="ms-2 py-1"><a class="{{ Request::routeIs('history')  ? 'active' : '' }} "  href="{{route('history')}}">History</a></li> -->
             <!-- <li class="ms-2 py-1"><a  class="{{ Request::routeIs('deposite')  ? 'active' : '' }} " href="{{route('deposite')}}">Check your deposite</a></li> -->
             <!-- <li class="ms-2 py-1"><a  class="{{ Request::routeIs('language-preference')  ? 'active' : '' }} " href="{{route('language-preference')}}">Language Preferences</a></li> -->
-            <li class="ms-2 py-1"><a  class="{{ Request::routeIs('update_customer_password')  ? 'active' : '' }} " href="{{route('update_customer_password')}}">Update your password1</a></li>
+            <li class="ms-2 py-1"><a  class="{{ Request::routeIs('update_customer_password')  ? 'active' : '' }} " href="{{route('update_customer_password')}}">Update your password</a></li>
             <!-- <li class="ms-2 py-1"><a  class="{{ Request::routeIs('favorites')  ? 'active' : '' }} " href="{{route('favorites')}}">Favorites</li> -->
             {{-- <li class="ms-2 py-1"><a href="#">Notify</a></li>
             <li class="ms-2 py-1"><a>Save Search</a></li> --}}
