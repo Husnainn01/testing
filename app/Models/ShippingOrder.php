@@ -47,6 +47,14 @@ class ShippingOrder extends Model
     {
         return $this->belongsTo(Qoute::class, 'offer_id');
     }
+    public function offers()
+    {
+        return $this->belongsToMany(Qoute::class);
+    }
+    public function attach($offerIds)
+    {
+        $this->offers()->attach($offerIds);
+    }
 
     public function country_selected()
     {
@@ -67,7 +75,7 @@ class ShippingOrder extends Model
     {
         return $this->belongsToMany(OptionService::class, 'shipping_order_option_service');
     }
-    
+
     public function documents()
     {
         return $this->hasMany(Document::class);
@@ -89,5 +97,4 @@ class ShippingOrder extends Model
             $shippingOrder->shipping_id = 'ss-' . $shippingOrder->id;
         });
     }
-
 }

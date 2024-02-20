@@ -28,23 +28,23 @@
                 <div class="row">
                     <div class="col-lg-12 p-4">
                         <div class="card">
-                            <div class="card-body" id="choose-car-offers">
+                            <div class="card-body">
                                 <h5 class="card-title">Choose Offers *</h5>
                                 <a class="btn btn-danger text-decoration-none text-white" type="button"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">Select Offers</a>
                                 <!-- @if (count($qoutes) > 0)
     <ul class="list-group list-group-flush">
-                                                            @foreach ($qoutes as $qoute)
+                                                                                @foreach ($qoutes as $qoute)
     <li class="list-group-item">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
-                                                                        <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
-                                                                            {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
-                                                                        </label>
-                                                                    </div>
-                                                                </li>
+                                                                                        <div class="form-check">
+                                                                                            <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
+                                                                                            <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
+                                                                                                {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </li>
     @endforeach
-                                                        </ul>
+                                                                            </ul>
 @else
     <a class="text-decoration-underline text-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Please send an offer first.</a>
     @endif -->
@@ -101,7 +101,9 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+                            <div id="choose-car-offers"></div>
                         </div>
                     </div>
 
