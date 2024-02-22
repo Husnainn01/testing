@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Front;
+
 use App\Http\Controllers\Controller;
 use App\Models\LanguageMenuText;
 use App\Models\LanguageWebsiteText;
@@ -60,28 +62,29 @@ use App\Models\Service;
 
 class CustomerController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth:web');
     }
 
     public function dashboard()
     {
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $g_setting = GeneralSetting::where('id', 1)->first();
         $total_active_listing =
             Listing::where('listing_status', 'Active')
-                ->where('user_id', Auth::user()->id)
-                ->count();
+            ->where('user_id', Auth::user()->id)
+            ->count();
 
         $total_pending_listing =
             Listing::where('listing_status', 'Pending')
-                ->where('user_id', Auth::user()->id)
-                ->count();
+            ->where('user_id', Auth::user()->id)
+            ->count();
         $total_pending_listing_cars =
             Qoute::where('status', 'offered')
-                ->where('user_id', Auth::user()->id)
-                ->with('car')
-                ->get();
+            ->where('user_id', Auth::user()->id)
+            ->with('car')
+            ->get();
         $total_reserved_listing_cars = Qoute::where('status', 'reserved')
             ->where('user_id', Auth::user()->id)
             ->with('car')
@@ -92,7 +95,7 @@ class CustomerController extends Controller
             ->where('currently_active', 1)
             ->first();
         $user_favourites = Auth::user()->favorites;
-        return view('front.customer-newdashboard.dashboard', compact('total_reserved_listing_cars','total_pending_listing_cars','user_favourites','g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
+        return view('front.customer-newdashboard.dashboard', compact('total_reserved_listing_cars', 'total_pending_listing_cars', 'user_favourites', 'g_setting', 'total_active_listing', 'total_pending_listing', 'detail', 'page_other_item'));
         // return view('front.customerDashboard.customer_dashboard', compact('g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
     }
     public function all_reserved_vehicles()
@@ -101,7 +104,7 @@ class CustomerController extends Controller
             ->where('user_id', Auth::user()->id)
             ->with('car')
             ->get();
-        return view('front.customer-newdashboard.all_vehicles',compact('total_reserved_listing_cars'));
+        return view('front.customer-newdashboard.all_vehicles', compact('total_reserved_listing_cars'));
     }
     public function car_detail($slug)
     {
@@ -114,12 +117,12 @@ class CustomerController extends Controller
         // $listing_social_items = ListingSocialItem::where('listing_id', $detail->id)->get();
         $listing_social_items = ListingSocialItem::where('listing_id', $detail->id)->get();
 
-        $listing_first_photos = ListingPhoto::where('listing_id', $detail->id)->orderBy('order','asc')->get();
+        $listing_first_photos = ListingPhoto::where('listing_id', $detail->id)->orderBy('order', 'asc')->get();
         // $listing_first_photos = ListingPhoto::where('listing_id', $detail->id)->first();
         // $listing_photos = ListingPhoto::where('listing_id',$id)->orderBy('id','asc')->get();
 
         // $listing_photos = ListingPhoto::where('listing_id', $detail->id)->get();
-        $listing_photos = ListingPhoto::where('listing_id', $detail->id)->orderBy('order','asc')->get();
+        $listing_photos = ListingPhoto::where('listing_id', $detail->id)->orderBy('order', 'asc')->get();
         // $listing_photos = ListingPhoto::where('listing_id',$id)->orderBy('id','asc')->get();
 
         $listing_videos = ListingVideo::where('listing_id', $detail->id)->get();
@@ -128,61 +131,53 @@ class CustomerController extends Controller
         $listing_additional_features = ListingAdditionalFeature::where('listing_id', $detail->id)->get();
         $listing_brands = ListingBrand::orderBy('listing_brand_name', 'asc')->get();
         $listing_locations = ListingLocation::orderBy('listing_location_name', 'asc')->get();
-        $listing_locations_car = ListingLocation::where('id',$detail->listing_location_id)->first();
+        $listing_locations_car = ListingLocation::where('id', $detail->listing_location_id)->first();
 
 
-        $reviews = Review::where('listing_id',$detail->id)
+        $reviews = Review::where('listing_id', $detail->id)
             ->orderBy('id', 'asc')
             ->get();
 
         // Getting overall rating
-        if($reviews->isEmpty()) {
+        if ($reviews->isEmpty()) {
             $overall_rating = 0;
         } else {
             $total_number = 0;
             $count = 0;
-            foreach($reviews as $item) {
+            foreach ($reviews as $item) {
                 $count++;
-                $total_number = $total_number+$item->rating;
+                $total_number = $total_number + $item->rating;
             }
-            $overall_rating = $total_number/$count;
-            if($overall_rating>0 && $overall_rating<=1) {
+            $overall_rating = $total_number / $count;
+            if ($overall_rating > 0 && $overall_rating <= 1) {
                 $overall_rating = 1;
-            }
-            elseif($overall_rating>1 && $overall_rating<=1.5) {
+            } elseif ($overall_rating > 1 && $overall_rating <= 1.5) {
                 $overall_rating = 1.5;
-            }
-            elseif($overall_rating>1.5 && $overall_rating<=2) {
+            } elseif ($overall_rating > 1.5 && $overall_rating <= 2) {
                 $overall_rating = 2;
-            }
-            elseif($overall_rating>2 && $overall_rating<=2.5) {
+            } elseif ($overall_rating > 2 && $overall_rating <= 2.5) {
                 $overall_rating = 2.5;
-            }
-            elseif($overall_rating>2.5 && $overall_rating<=3) {
+            } elseif ($overall_rating > 2.5 && $overall_rating <= 3) {
                 $overall_rating = 3;
-            }
-            elseif($overall_rating>3 && $overall_rating<=3.5) {
+            } elseif ($overall_rating > 3 && $overall_rating <= 3.5) {
                 $overall_rating = 3.5;
-            }
-            elseif($overall_rating>3.5 && $overall_rating<=4) {
+            } elseif ($overall_rating > 3.5 && $overall_rating <= 4) {
                 $overall_rating = 4;
-            }
-            elseif($overall_rating>4 && $overall_rating<=4.5) {
+            } elseif ($overall_rating > 4 && $overall_rating <= 4.5) {
                 $overall_rating = 4.5;
-            }
-            elseif($overall_rating>4.5 && $overall_rating<=5) {
+            } elseif ($overall_rating > 4.5 && $overall_rating <= 5) {
                 $overall_rating = 5;
             }
         }
 
-        if($detail->user_id == 0) {
-            $agent_detail = Admin::where('id',$detail->admin_id)->first();
-        } elseif($detail->admin_id == 0) {
-            $agent_detail = User::where('id',$detail->user_id)->first();
+        if ($detail->user_id == 0) {
+            $agent_detail = Admin::where('id', $detail->admin_id)->first();
+        } elseif ($detail->admin_id == 0) {
+            $agent_detail = User::where('id', $detail->user_id)->first();
         }
 
         $current_auth_user_id = 0;
-        if(Auth::user()) {
+        if (Auth::user()) {
             $current_auth_user_id = Auth::user()->id;
         }
 
@@ -197,21 +192,21 @@ class CustomerController extends Controller
         $freights = Freight::all();
         $insurances = Insurance::all();
         $inspection_certificates = Inspection::all();
-        return view('front.customer-newdashboard.car_detail', compact('inspection_certificates','insurances','freights','detail','listing_locations_car','listing_first_photos','g_setting','listing_social_items','listing_photos','listing_videos','listing_amenities','listing_additional_features','listing_brands','listing_locations','agent_detail','reviews','current_auth_user_id', 'already_given', 'overall_rating','all_amenities'));
+        return view('front.customer-newdashboard.car_detail', compact('inspection_certificates', 'insurances', 'freights', 'detail', 'listing_locations_car', 'listing_first_photos', 'g_setting', 'listing_social_items', 'listing_photos', 'listing_videos', 'listing_amenities', 'listing_additional_features', 'listing_brands', 'listing_locations', 'agent_detail', 'reviews', 'current_auth_user_id', 'already_given', 'overall_rating', 'all_amenities'));
     }
 
     public function update_profile()
     {
         $user_data = Auth::user();
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $g_setting = GeneralSetting::where('id', 1)->first();
-        return view('front.customer_update_profile', compact('user_data','g_setting','page_other_item'));
+        return view('front.customer_update_profile', compact('user_data', 'g_setting', 'page_other_item'));
     }
 
     public function update_profile_confirm(Request $request)
     {
 
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -224,7 +219,7 @@ class CustomerController extends Controller
                 'email',
                 Rule::unique('users')->ignore($user_data->id),
             ]
-        ],[
+        ], [
             'email.required' => ERR_EMAIL_REQUIRED,
             'email.email' => ERR_EMAIL_INVALID,
             'email.unique' => ERR_EMAIL_EXIST
@@ -236,13 +231,13 @@ class CustomerController extends Controller
     public function update_password()
     {
         $g_setting = GeneralSetting::where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
-        return view('front.customer_update_password', compact('g_setting','page_other_item'));
+        $page_other_item = PageOtherItem::where('id', 1)->first();
+        return view('front.customer_update_password', compact('g_setting', 'page_other_item'));
     }
 
     public function update_password_confirm(Request $request)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -267,13 +262,13 @@ class CustomerController extends Controller
     {
         $user_data = Auth::user();
         $g_setting = DB::table('general_settings')->where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
-        return view('front.customer_update_photo', compact('user_data','g_setting','page_other_item'));
+        $page_other_item = PageOtherItem::where('id', 1)->first();
+        return view('front.customer_update_photo', compact('user_data', 'g_setting', 'page_other_item'));
     }
 
     public function update_photo_confirm(Request $request)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -288,12 +283,12 @@ class CustomerController extends Controller
             'photo.mimes' => ERR_PHOTO_JPG_PNG_GIF,
             'photo.max' => ERR_PHOTO_MAX
         ]);
-        if($user_data->photo != '') {
-            unlink(public_path('uploads/user_photos/'.$user_data->photo));
+        if ($user_data->photo != '') {
+            unlink(public_path('uploads/user_photos/' . $user_data->photo));
         }
         $ext = $request->file('photo')->extension();
-        $rand_value = md5(mt_rand(11111111,99999999));
-        $final_name = $rand_value.'.'.$ext;
+        $rand_value = md5(mt_rand(11111111, 99999999));
+        $final_name = $rand_value . '.' . $ext;
         $request->file('photo')->move(public_path('uploads/user_photos/'), $final_name);
         $data['photo'] = $final_name;
         $obj->fill($data)->save();
@@ -304,13 +299,13 @@ class CustomerController extends Controller
     {
         $user_data = Auth::user();
         $g_setting = DB::table('general_settings')->where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
-        return view('front.customer_update_banner', compact('user_data','g_setting','page_other_item'));
+        $page_other_item = PageOtherItem::where('id', 1)->first();
+        return view('front.customer_update_banner', compact('user_data', 'g_setting', 'page_other_item'));
     }
 
     public function update_banner_confirm(Request $request)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -319,18 +314,18 @@ class CustomerController extends Controller
         $data = $request->only($obj->getFillable());
         $request->validate([
             'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ],[
+        ], [
             'banner.required' => ERR_PHOTO_REQUIRED,
             'banner.image' => ERR_PHOTO_IMAGE,
             'banner.mimes' => ERR_PHOTO_JPG_PNG_GIF,
             'banner.max' => ERR_PHOTO_MAX
         ]);
-        if($user_data->banner != '') {
-            unlink(public_path('uploads/user_photos/'.$user_data->banner));
+        if ($user_data->banner != '') {
+            unlink(public_path('uploads/user_photos/' . $user_data->banner));
         }
         $ext = $request->file('banner')->extension();
-        $rand_value = md5(mt_rand(11111111,99999999));
-        $final_name = $rand_value.'.'.$ext;
+        $rand_value = md5(mt_rand(11111111, 99999999));
+        $final_name = $rand_value . '.' . $ext;
         $request->file('banner')->move(public_path('uploads/user_photos/'), $final_name);
         $data['banner'] = $final_name;
         $obj->fill($data)->save();
@@ -342,30 +337,30 @@ class CustomerController extends Controller
     {
         $user_data = Auth::user();
 
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
 
         $detail = PackagePurchase::with('rPackage')
             ->where('user_id', $user_data->id)
             ->where('currently_active', 1)
             ->first();
 
-        if($detail == null) {
+        if ($detail == null) {
             return Redirect()->route('customer_package')->with('error', ERR_ENROLL_PACKAGE_FIRST);
         }
 
         // Date Over Check
         $today = date('Y-m-d');
         $expire_date = $detail->package_end_date;
-        if($today > $expire_date) {
+        if ($today > $expire_date) {
             return Redirect()->route('customer_package')->with('error', ERR_LISTING_DATE_EXPIRED);
         }
 
 
         $g_setting = GeneralSetting::where('id', 1)->first();
         $listing = Listing::with('rListingBrand', 'rListingLocation')
-            ->where('user_id',$user_data->id)
+            ->where('user_id', $user_data->id)
             ->get();
-        return view('front.customer_listing_view', compact('g_setting','listing','page_other_item'));
+        return view('front.customer_listing_view', compact('g_setting', 'listing', 'page_other_item'));
     }
 
     public function listing_view_detail($id)
@@ -373,31 +368,31 @@ class CustomerController extends Controller
         $user_data = Auth::user();
         $check_other = Listing::where('id', $id)->first();
 
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
 
-        if( (!$check_other) || ($check_other->user_id != $user_data->id)) {
+        if ((!$check_other) || ($check_other->user_id != $user_data->id)) {
             abort(404);
         }
 
         $g_setting = GeneralSetting::where('id', 1)->first();
 
         $listing = Listing::where('id', $id)->first();
-        $listing_brand = ListingBrand::orderBy('id','asc')->get();
-        $listing_location = ListingLocation::orderBy('id','asc')->get();
-        $amenity = Amenity::orderBy('id','asc')->get();
+        $listing_brand = ListingBrand::orderBy('id', 'asc')->get();
+        $listing_location = ListingLocation::orderBy('id', 'asc')->get();
+        $amenity = Amenity::orderBy('id', 'asc')->get();
 
         $existing_amenities_array = array();
-        $listing_amenities = ListingAmenity::where('listing_id',$id)->orderBy('id','asc')->get();
-        foreach($listing_amenities as $row) {
+        $listing_amenities = ListingAmenity::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        foreach ($listing_amenities as $row) {
             $existing_amenities_array[] = $row->amenity_id;
         }
 
-        $listing_photos = ListingPhoto::where('listing_id',$id)->orderBy('order','asc')->get();
+        $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
         // $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
 
-        $listing_videos = ListingVideo::where('listing_id',$id)->orderBy('id','asc')->get();
-        $listing_additional_features = ListingAdditionalFeature::where('listing_id',$id)->orderBy('id','asc')->get();
-        $listing_social_items = ListingSocialItem::where('listing_id',$id)->orderBy('id','asc')->get();
+        $listing_videos = ListingVideo::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        $listing_additional_features = ListingAdditionalFeature::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        $listing_social_items = ListingSocialItem::where('listing_id', $id)->orderBy('id', 'asc')->get();
 
         $detail = PackagePurchase::with('rPackage')
             ->where('user_id', $user_data->id)
@@ -410,7 +405,7 @@ class CustomerController extends Controller
         $total_social_items = $detail->rPackage->total_social_items;
         $total_additional_features = $detail->rPackage->total_additional_features;
 
-        return view('front.customer_listing_view_detail', compact('g_setting','listing','listing_brand','listing_location','amenity','listing_photos','listing_videos','listing_additional_features','listing_social_items','listing_amenities','existing_amenities_array','total_amenities','total_photos','total_videos','total_social_items','total_additional_features','page_other_item'));
+        return view('front.customer_listing_view_detail', compact('g_setting', 'listing', 'listing_brand', 'listing_location', 'amenity', 'listing_photos', 'listing_videos', 'listing_additional_features', 'listing_social_items', 'listing_amenities', 'existing_amenities_array', 'total_amenities', 'total_photos', 'total_videos', 'total_social_items', 'total_additional_features', 'page_other_item'));
     }
 
 
@@ -418,7 +413,7 @@ class CustomerController extends Controller
     {
         $user_data = Auth::user();
 
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
 
         // Check if he has access to add listing
         $listing_error_message = '';
@@ -429,7 +424,7 @@ class CustomerController extends Controller
 
         $total_listing_added_by_customer =
             Listing::where('user_id', $user_data->id)
-                ->count();
+            ->count();
 
         $total_amenities = 0;
         $total_photos = 0;
@@ -438,19 +433,19 @@ class CustomerController extends Controller
         $total_additional_features = 0;
         $allow_featured = 0;
 
-        if($detail == null) {
+        if ($detail == null) {
             return Redirect()->route('customer_package')->with('error', ERR_ENROLL_PACKAGE_FIRST);
         } else {
             // Date Over Check
             $today = date('Y-m-d');
             $expire_date = $detail->package_end_date;
-            if($today > $expire_date) {
+            if ($today > $expire_date) {
                 return Redirect()->route('customer_package')->with('error', ERR_LISTING_DATE_EXPIRED);
             }
 
             // Maximum Quota Check
-            $remaining_listing = $detail->rPackage->total_listings-$total_listing_added_by_customer;
-            if($remaining_listing == 0) {
+            $remaining_listing = $detail->rPackage->total_listings - $total_listing_added_by_customer;
+            if ($remaining_listing == 0) {
                 return Redirect()->route('customer_package')->with('error', MAXIMUM_LIMIT_REACHED);
             }
 
@@ -464,26 +459,27 @@ class CustomerController extends Controller
 
         $g_setting = GeneralSetting::where('id', 1)->first();
         $listing = Listing::get();
-        $listing_brand = ListingBrand::orderBy('id','asc')->get();
-        $listing_location = ListingLocation::orderBy('id','asc')->get();
-        $amenity = Amenity::orderBy('id','asc')->get();
-        return view('front.customer_listing_add', compact('g_setting','listing','listing_brand','listing_location','amenity', 'listing_error_message','total_amenities','total_photos','total_videos','total_social_items','total_additional_features','allow_featured','page_other_item'));
+        $listing_brand = ListingBrand::orderBy('id', 'asc')->get();
+        $listing_location = ListingLocation::orderBy('id', 'asc')->get();
+        $amenity = Amenity::orderBy('id', 'asc')->get();
+        return view('front.customer_listing_add', compact('g_setting', 'listing', 'listing_brand', 'listing_location', 'amenity', 'listing_error_message', 'total_amenities', 'total_photos', 'total_videos', 'total_social_items', 'total_additional_features', 'allow_featured', 'page_other_item'));
     }
 
     public function listing_add_store(Request $request)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
         $user_data = Auth::user();
-        $request->validate([
-            'listing_name' => 'required|unique:listings',
-            'listing_slug' => 'unique:listings',
-            'listing_description' => 'required',
-            'listing_featured_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'listing_price' => 'required|numeric'
-        ],
+        $request->validate(
+            [
+                'listing_name' => 'required|unique:listings',
+                'listing_slug' => 'unique:listings',
+                'listing_description' => 'required',
+                'listing_featured_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'listing_price' => 'required|numeric'
+            ],
             [
                 'listing_name.required' => ERR_NAME_REQUIRED,
                 'listing_name.unique' => ERR_NAME_EXIST,
@@ -495,30 +491,31 @@ class CustomerController extends Controller
                 'listing_featured_photo.max' => ERR_PHOTO_MAX,
                 'listing_price.required' => ERR_PRICE_REQUIRED,
                 'listing_price.numeric' => ERR_PRICE_NUMERIC
-            ]);
+            ]
+        );
 
         $statement = DB::select("SHOW TABLE STATUS LIKE 'listings'");
         $ai_id = $statement[0]->Auto_increment;
 
-        $rand_value = md5(mt_rand(11111111,99999999));
+        $rand_value = md5(mt_rand(11111111, 99999999));
         $ext = $request->file('listing_featured_photo')->extension();
-        $final_name = $rand_value.'.'.$ext;
+        $final_name = $rand_value . '.' . $ext;
         $request->file('listing_featured_photo')->move(public_path('uploads/listing_featured_photos'), $final_name);
 
         $listing = new Listing();
         $data = $request->only($listing->getFillable());
-        if(empty($data['listing_slug'])) {
+        if (empty($data['listing_slug'])) {
             unset($data['listing_slug']);
             $data['listing_slug'] = Str::slug($request->listing_name);
         }
-        if(preg_match('/\s/',$data['listing_slug'])) {
+        if (preg_match('/\s/', $data['listing_slug'])) {
             return Redirect()->back()->with('error', ERR_SLUG_WHITESPACE);
         }
         $data['listing_featured_photo'] = $final_name;
         $data['user_id'] = $user_data->id;
         $data['admin_id'] = 0;
         $data['listing_status'] = 'Pending';
-        if($request->is_featured == null) {
+        if ($request->is_featured == null) {
             $data['is_featured'] = 'No';
         } else {
             $data['is_featured'] = $request->is_featured;
@@ -526,12 +523,12 @@ class CustomerController extends Controller
         $listing->fill($data)->save();
 
         // Amenity
-        if($request->amenity != '') {
+        if ($request->amenity != '') {
             $arr_amenity = array();
-            foreach($request->amenity as $item) {
+            foreach ($request->amenity as $item) {
                 $arr_amenity[] = $item;
             }
-            for($i=0;$i<count($arr_amenity);$i++) {
+            for ($i = 0; $i < count($arr_amenity); $i++) {
                 $obj = new ListingAmenity;
                 $obj->listing_id = $ai_id;
                 $obj->amenity_id = $arr_amenity[$i];
@@ -540,16 +537,16 @@ class CustomerController extends Controller
         }
 
         // Photo
-        if($request->photo_list == '') {
+        if ($request->photo_list == '') {
             // No photo is selected
         } else {
-            foreach($request->photo_list as $item) {
-                $file_in_mb = $item->getSize()/1024/1024;
+            foreach ($request->photo_list as $item) {
+                $file_in_mb = $item->getSize() / 1024 / 1024;
                 $main_file_ext = $item->extension();
                 $main_mime_type = $item->getMimeType();
-                if( ($main_mime_type == 'image/jpeg' || $main_mime_type == 'image/png' || $main_mime_type == 'image/gif') && $file_in_mb <= 2 ) {
-                    $rand_value = md5(mt_rand(11111111,99999999));
-                    $final_photo_name = $rand_value.'.'.$main_file_ext;
+                if (($main_mime_type == 'image/jpeg' || $main_mime_type == 'image/png' || $main_mime_type == 'image/gif') && $file_in_mb <= 2) {
+                    $rand_value = md5(mt_rand(11111111, 99999999));
+                    $final_photo_name = $rand_value . '.' . $main_file_ext;
                     $item->move(public_path('uploads/listing_photos'), $final_photo_name);
 
                     $obj = new ListingPhoto;
@@ -562,13 +559,13 @@ class CustomerController extends Controller
 
 
         // Video
-        if($request->youtube_video_id[0] != '') {
+        if ($request->youtube_video_id[0] != '') {
             $arr_youtube_video_id = array();
-            foreach($request->youtube_video_id as $item) {
+            foreach ($request->youtube_video_id as $item) {
                 $arr_youtube_video_id[] = $item;
             }
-            for($i=0;$i<count($arr_youtube_video_id);$i++) {
-                if($arr_youtube_video_id[$i] != '') {
+            for ($i = 0; $i < count($arr_youtube_video_id); $i++) {
+                if ($arr_youtube_video_id[$i] != '') {
                     $obj = new ListingVideo;
                     $obj->listing_id = $ai_id;
                     $obj->youtube_video_id = $arr_youtube_video_id[$i];
@@ -579,17 +576,17 @@ class CustomerController extends Controller
 
 
         // Social Icons
-        if($request->social_icon[0] != '') {
+        if ($request->social_icon[0] != '') {
             $arr_social_icon = array();
             $arr_social_url = array();
-            foreach($request->social_icon as $item) {
+            foreach ($request->social_icon as $item) {
                 $arr_social_icon[] = $item;
             }
-            foreach($request->social_url as $item) {
+            foreach ($request->social_url as $item) {
                 $arr_social_url[] = $item;
             }
-            for($i=0;$i<count($arr_social_icon);$i++) {
-                if( ($arr_social_icon[$i] != '') && ($arr_social_url[$i] != '') ) {
+            for ($i = 0; $i < count($arr_social_icon); $i++) {
+                if (($arr_social_icon[$i] != '') && ($arr_social_url[$i] != '')) {
                     $obj = new ListingSocialItem;
                     $obj->listing_id = $ai_id;
                     $obj->social_icon = $arr_social_icon[$i];
@@ -601,17 +598,17 @@ class CustomerController extends Controller
 
 
         // Additional Features
-        if($request->additional_feature_name[0] != '') {
+        if ($request->additional_feature_name[0] != '') {
             $arr_additional_feature_name = array();
             $arr_additional_feature_value = array();
-            foreach($request->additional_feature_name as $item) {
+            foreach ($request->additional_feature_name as $item) {
                 $arr_additional_feature_name[] = $item;
             }
-            foreach($request->additional_feature_value as $item) {
+            foreach ($request->additional_feature_value as $item) {
                 $arr_additional_feature_value[] = $item;
             }
-            for($i=0;$i<count($arr_additional_feature_name);$i++) {
-                if( ($arr_additional_feature_name[$i] != '') && ($arr_additional_feature_value[$i] != '') ) {
+            for ($i = 0; $i < count($arr_additional_feature_name); $i++) {
+                if (($arr_additional_feature_name[$i] != '') && ($arr_additional_feature_value[$i] != '')) {
                     $obj = new ListingAdditionalFeature;
                     $obj->listing_id = $ai_id;
                     $obj->additional_feature_name = $arr_additional_feature_name[$i];
@@ -628,29 +625,29 @@ class CustomerController extends Controller
         $user_data = Auth::user();
         $check_other = Listing::where('id', $id)->first();
 
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
 
-        if( (!$check_other) || ($check_other->user_id != $user_data->id)) {
+        if ((!$check_other) || ($check_other->user_id != $user_data->id)) {
             abort(404);
         }
 
         $g_setting = GeneralSetting::where('id', 1)->first();
 
         $listing = Listing::where('id', $id)->first();
-        $listing_brand = ListingBrand::orderBy('id','asc')->get();
-        $listing_location = ListingLocation::orderBy('id','asc')->get();
-        $amenity = Amenity::orderBy('id','asc')->get();
+        $listing_brand = ListingBrand::orderBy('id', 'asc')->get();
+        $listing_location = ListingLocation::orderBy('id', 'asc')->get();
+        $amenity = Amenity::orderBy('id', 'asc')->get();
 
         $existing_amenities_array = array();
-        $listing_amenities = ListingAmenity::where('listing_id',$id)->orderBy('id','asc')->get();
-        foreach($listing_amenities as $row) {
+        $listing_amenities = ListingAmenity::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        foreach ($listing_amenities as $row) {
             $existing_amenities_array[] = $row->amenity_id;
         }
 
-        $listing_photos = ListingPhoto::where('listing_id',$id)->orderBy('order','asc')->get();
-        $listing_videos = ListingVideo::where('listing_id',$id)->orderBy('id','asc')->get();
-        $listing_additional_features = ListingAdditionalFeature::where('listing_id',$id)->orderBy('id','asc')->get();
-        $listing_social_items = ListingSocialItem::where('listing_id',$id)->orderBy('id','asc')->get();
+        $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
+        $listing_videos = ListingVideo::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        $listing_additional_features = ListingAdditionalFeature::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        $listing_social_items = ListingSocialItem::where('listing_id', $id)->orderBy('id', 'asc')->get();
 
         $detail = PackagePurchase::with('rPackage')
             ->where('user_id', $user_data->id)
@@ -664,7 +661,7 @@ class CustomerController extends Controller
         $total_additional_features = $detail->rPackage->total_additional_features;
         $allow_featured = $detail->rPackage->allow_featured;
 
-        return view('front.customer_listing_edit', compact('g_setting','listing','listing_brand','listing_location','amenity','listing_photos','listing_videos','listing_additional_features','listing_social_items','listing_amenities','existing_amenities_array','total_amenities','total_photos','total_videos','total_social_items','total_additional_features','allow_featured','page_other_item'));
+        return view('front.customer_listing_edit', compact('g_setting', 'listing', 'listing_brand', 'listing_location', 'amenity', 'listing_photos', 'listing_videos', 'listing_additional_features', 'listing_social_items', 'listing_amenities', 'existing_amenities_array', 'total_amenities', 'total_photos', 'total_videos', 'total_social_items', 'total_additional_features', 'allow_featured', 'page_other_item'));
     }
 
     public function listing_update(Request $request, $id)
@@ -677,7 +674,7 @@ class CustomerController extends Controller
 
             $request->validate([
                 'listing_featured_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-            ],[
+            ], [
                 'listing_featured_photo.image' => ERR_PHOTO_IMAGE,
                 'listing_featured_photo.mimes' => ERR_PHOTO_JPG_PNG_GIF,
                 'listing_featured_photo.max' => ERR_PHOTO_MAX
@@ -686,8 +683,8 @@ class CustomerController extends Controller
 
             // Uploading the file
             $ext = $request->file('listing_featured_photo')->extension();
-            $rand_value = md5(mt_rand(11111111,99999999));
-            $final_name = $rand_value.'.'.$ext;
+            $rand_value = md5(mt_rand(11111111, 99999999));
+            $final_name = $rand_value . '.' . $ext;
             $request->file('listing_featured_photo')->move(public_path('uploads/listing_featured_photos/'), $final_name);
 
             unset($data['listing_featured_photo']);
@@ -704,7 +701,7 @@ class CustomerController extends Controller
             ],
             'listing_description' => 'required',
             'listing_price' => 'required|numeric'
-        ],[
+        ], [
             'listing_name.required' => ERR_NAME_REQUIRED,
             'listing_name.unique' => ERR_NAME_EXIST,
             'listing_slug.unique' => ERR_SLUG_UNIQUE,
@@ -712,11 +709,11 @@ class CustomerController extends Controller
             'listing_price.required' => ERR_PRICE_REQUIRED,
             'listing_price.numeric' => ERR_PRICE_NUMERIC
         ]);
-        if(empty($data['listing_slug'])) {
+        if (empty($data['listing_slug'])) {
             unset($data['listing_slug']);
             $data['listing_slug'] = Str::slug($request->listing_name);
         }
-        if(preg_match('/\s/',$data['listing_slug'])) {
+        if (preg_match('/\s/', $data['listing_slug'])) {
             return Redirect()->back()->with('error', ERR_SLUG_WHITESPACE);
         }
         $listing->fill($data)->save();
@@ -728,29 +725,29 @@ class CustomerController extends Controller
         $result1 = array();
         $result2 = array();
 
-        $listing_amenities = ListingAmenity::where('listing_id',$id)->orderBy('id','asc')->get();
-        foreach($listing_amenities as $row) {
+        $listing_amenities = ListingAmenity::where('listing_id', $id)->orderBy('id', 'asc')->get();
+        foreach ($listing_amenities as $row) {
             $existing_amenities_array[] = $row->amenity_id;
         }
 
-        if($request->amenity != '') {
-            foreach($request->amenity as $item) {
+        if ($request->amenity != '') {
+            foreach ($request->amenity as $item) {
                 $arr_amenity[] = $item;
             }
         }
 
         $result1 = array_values(array_diff($existing_amenities_array, $arr_amenity));
-        if(!empty($result1)) {
-            for($i=0;$i<count($result1);$i++) {
+        if (!empty($result1)) {
+            for ($i = 0; $i < count($result1); $i++) {
                 ListingAmenity::where('listing_id', $id)
                     ->where('amenity_id', $result1[$i])
                     ->delete();
             }
         }
 
-        $result2 = array_values(array_diff($arr_amenity,$existing_amenities_array));
-        if(!empty($result2)) {
-            for($i=0;$i<count($result2);$i++) {
+        $result2 = array_values(array_diff($arr_amenity, $existing_amenities_array));
+        if (!empty($result2)) {
+            for ($i = 0; $i < count($result2); $i++) {
                 $obj = new ListingAmenity;
                 $obj->listing_id = $id;
                 $obj->amenity_id = $result2[$i];
@@ -760,17 +757,17 @@ class CustomerController extends Controller
 
 
         // Photo
-        if($request->photo_list == '') {
+        if ($request->photo_list == '') {
             // No photo is selected
         } else {
-            foreach($request->photo_list as $item) {
-                $file_in_mb = $item->getSize()/1024/1024;
+            foreach ($request->photo_list as $item) {
+                $file_in_mb = $item->getSize() / 1024 / 1024;
                 $main_file_ext = $item->extension();
                 $main_mime_type = $item->getMimeType();
 
-                if( ($main_mime_type == 'image/jpeg' || $main_mime_type == 'image/png' || $main_mime_type == 'image/gif') && $file_in_mb <= 2 ) {
-                    $rand_value = md5(mt_rand(11111111,99999999));
-                    $final_photo_name = $rand_value.'.'.$main_file_ext;
+                if (($main_mime_type == 'image/jpeg' || $main_mime_type == 'image/png' || $main_mime_type == 'image/gif') && $file_in_mb <= 2) {
+                    $rand_value = md5(mt_rand(11111111, 99999999));
+                    $final_photo_name = $rand_value . '.' . $main_file_ext;
                     $item->move(public_path('uploads/listing_photos'), $final_photo_name);
 
                     $obj = new ListingPhoto;
@@ -783,13 +780,13 @@ class CustomerController extends Controller
 
 
         // Video
-        if($request->youtube_video_id != '') {
+        if ($request->youtube_video_id != '') {
             $arr_youtube_video_id = array();
-            foreach($request->youtube_video_id as $item) {
+            foreach ($request->youtube_video_id as $item) {
                 $arr_youtube_video_id[] = $item;
             }
-            for($i=0;$i<count($arr_youtube_video_id);$i++) {
-                if($arr_youtube_video_id[$i] != '') {
+            for ($i = 0; $i < count($arr_youtube_video_id); $i++) {
+                if ($arr_youtube_video_id[$i] != '') {
                     $obj = new ListingVideo;
                     $obj->listing_id = $id;
                     $obj->youtube_video_id = $arr_youtube_video_id[$i];
@@ -800,17 +797,17 @@ class CustomerController extends Controller
 
 
         // Social Icons
-        if($request->social_icon != '') {
+        if ($request->social_icon != '') {
             $arr_social_icon = array();
             $arr_social_url = array();
-            foreach($request->social_icon as $item) {
+            foreach ($request->social_icon as $item) {
                 $arr_social_icon[] = $item;
             }
-            foreach($request->social_url as $item) {
+            foreach ($request->social_url as $item) {
                 $arr_social_url[] = $item;
             }
-            for($i=0;$i<count($arr_social_icon);$i++) {
-                if( ($arr_social_icon[$i] != '') && ($arr_social_url[$i] != '') ) {
+            for ($i = 0; $i < count($arr_social_icon); $i++) {
+                if (($arr_social_icon[$i] != '') && ($arr_social_url[$i] != '')) {
                     $obj = new ListingSocialItem;
                     $obj->listing_id = $id;
                     $obj->social_icon = $arr_social_icon[$i];
@@ -822,17 +819,17 @@ class CustomerController extends Controller
 
 
         // Additional Features
-        if($request->additional_feature_name != '') {
+        if ($request->additional_feature_name != '') {
             $arr_additional_feature_name = array();
             $arr_additional_feature_value = array();
-            foreach($request->additional_feature_name as $item) {
+            foreach ($request->additional_feature_name as $item) {
                 $arr_additional_feature_name[] = $item;
             }
-            foreach($request->additional_feature_value as $item) {
+            foreach ($request->additional_feature_value as $item) {
                 $arr_additional_feature_value[] = $item;
             }
-            for($i=0;$i<count($arr_additional_feature_name);$i++) {
-                if( ($arr_additional_feature_name[$i] != '') && ($arr_additional_feature_value[$i] != '') ) {
+            for ($i = 0; $i < count($arr_additional_feature_name); $i++) {
+                if (($arr_additional_feature_name[$i] != '') && ($arr_additional_feature_value[$i] != '')) {
                     $obj = new ListingAdditionalFeature;
                     $obj->listing_id = $id;
                     $obj->additional_feature_name = $arr_additional_feature_name[$i];
@@ -854,7 +851,7 @@ class CustomerController extends Controller
         ListingVideo::where('listing_id', $id)->delete();
         ListingAdditionalFeature::where('listing_id', $id)->delete();
 
-        $all_photos = ListingPhoto::where('listing_id',$id)->orderBy('order', 'asc')->get();
+        $all_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
         // $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
 
         ListingPhoto::where('listing_id', $id)->delete();
@@ -866,7 +863,7 @@ class CustomerController extends Controller
 
     public function listing_delete_social_item($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -877,7 +874,7 @@ class CustomerController extends Controller
 
     public function listing_delete_photo($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -888,7 +885,7 @@ class CustomerController extends Controller
 
     public function listing_delete_video($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -899,7 +896,7 @@ class CustomerController extends Controller
 
     public function listing_delete_additional_feature($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -910,7 +907,7 @@ class CustomerController extends Controller
 
     public function submit_review(Request $request)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -936,14 +933,14 @@ class CustomerController extends Controller
     public function package()
     {
         $g_setting = GeneralSetting::where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $package = Package::orderBy('package_order', 'asc')->get();
-        return view('front.customer_package', compact('g_setting','package','page_other_item'));
+        return view('front.customer_package', compact('g_setting', 'package', 'page_other_item'));
     }
 
     public function free_enroll($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -952,10 +949,10 @@ class CustomerController extends Controller
         // Make all other previous packages status to 0 and this package status 1
         $data['currently_active'] = 0;
 
-        PackagePurchase::where('user_id',$user_data->id)->update($data);
+        PackagePurchase::where('user_id', $user_data->id)->update($data);
 
         // Selected Package Detail
-        $package_detail = Package::where('id',$id)->first();
+        $package_detail = Package::where('id', $id)->first();
         $valid_days = $package_detail->valid_days;
         $start_date = date('Y-m-d');
         $end_date = date('Y-m-d', strtotime("+$valid_days days"));
@@ -979,21 +976,21 @@ class CustomerController extends Controller
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
 
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
 
         $detail = PackagePurchase::with('rPackage')
             ->where('user_id', $user_data->id)
             ->where('currently_active', 1)
             ->first();
 
-        if($detail == null) {
+        if ($detail == null) {
             return Redirect()->route('customer_package')->with('error', ERR_ENROLL_PACKAGE_FIRST);
         }
 
         // Date Over Check
         $today = date('Y-m-d');
         $expire_date = $detail->package_end_date;
-        if($today > $expire_date) {
+        if ($today > $expire_date) {
             return Redirect()->route('customer_package')->with('error', ERR_LISTING_DATE_EXPIRED);
         }
 
@@ -1001,20 +998,21 @@ class CustomerController extends Controller
         $reviews = Review::where('agent_id', $user_data->id)->where('agent_type', 'Customer')
             ->orderBy('id', 'asc')
             ->paginate(10);
-        return view('front.customer_my_reviews', compact('g_setting','reviews','page_other_item'));
+        return view('front.customer_my_reviews', compact('g_setting', 'reviews', 'page_other_item'));
     }
 
     public function review_edit($id)
     {
         $g_setting = GeneralSetting::where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $review_single = Review::findOrFail($id);
-        return view('front.customer_my_review_edit', compact('review_single','page_other_item'));
+        return view('front.customer_my_review_edit', compact('review_single', 'page_other_item'));
     }
 
-    public function review_update(Request $request, $id) {
+    public function review_update(Request $request, $id)
+    {
 
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -1029,7 +1027,7 @@ class CustomerController extends Controller
 
     public function review_delete($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -1043,32 +1041,32 @@ class CustomerController extends Controller
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
 
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
 
         $detail = PackagePurchase::with('rPackage')
             ->where('user_id', $user_data->id)
             ->where('currently_active', 1)
             ->first();
 
-        if($detail == null) {
+        if ($detail == null) {
             return Redirect()->route('customer_package')->with('error', ERR_ENROLL_PACKAGE_FIRST);
         }
 
         // Date Over Check
         $today = date('Y-m-d');
         $expire_date = $detail->package_end_date;
-        if($today > $expire_date) {
+        if ($today > $expire_date) {
             return Redirect()->route('customer_package')->with('error', ERR_LISTING_DATE_EXPIRED);
         }
 
 
         $wishlist = Wishlist::where('user_id', $user_data->id)->orderBy('id', 'asc')->paginate(10);
-        return view('front.customer_wishlist', compact('g_setting','wishlist','page_other_item'));
+        return view('front.customer_wishlist', compact('g_setting', 'wishlist', 'page_other_item'));
     }
 
     public function wishlist_delete($id)
     {
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -1081,67 +1079,67 @@ class CustomerController extends Controller
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $package_purchase = PackagePurchase::with('rPackage')
             ->where('user_id', $user_data->id)
             ->orderBy('id', 'desc')
             ->get();
-        return view('front.customer_package_purchase_history', compact('g_setting','package_purchase','page_other_item'));
+        return view('front.customer_package_purchase_history', compact('g_setting', 'package_purchase', 'page_other_item'));
     }
 
     public function purchase_history_detail($id)
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $detail = PackagePurchase::with('rPackage')
             ->where('id', $id)
             ->first();
-        if(!$detail) {
+        if (!$detail) {
             abort(404);
         }
-        return view('front.customer_package_purchase_history_detail', compact('g_setting','detail','page_other_item'));
+        return view('front.customer_package_purchase_history_detail', compact('g_setting', 'detail', 'page_other_item'));
     }
 
     public function invoice($id)
     {
         $user_data = Auth::user();
         $g_setting = GeneralSetting::where('id', 1)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
         $detail = PackagePurchase::with('rPackage')
             ->where('id', $id)
             ->first();
 
-        if(!$detail) {
+        if (!$detail) {
             abort(404);
         }
-        return view('front.customer_package_purchase_invoice', compact('user_data','g_setting','detail','page_other_item'));
+        return view('front.customer_package_purchase_invoice', compact('user_data', 'g_setting', 'detail', 'page_other_item'));
     }
 
     public function buy_package($id)
     {
-        $g_setting = GeneralSetting::where('id',1)->first();
-        $package_detail = Package::where('id',$id)->first();
-        $page_other_item = PageOtherItem::where('id',1)->first();
-        session()->put('package_id',$id);
-        session()->put('package_name',$package_detail->package_name);
-        session()->put('package_price',$package_detail->package_price);
-        return view('front.customer_package_buy', compact('g_setting','page_other_item'));
+        $g_setting = GeneralSetting::where('id', 1)->first();
+        $package_detail = Package::where('id', $id)->first();
+        $page_other_item = PageOtherItem::where('id', 1)->first();
+        session()->put('package_id', $id);
+        session()->put('package_name', $package_detail->package_name);
+        session()->put('package_price', $package_detail->package_price);
+        return view('front.customer_package_buy', compact('g_setting', 'page_other_item'));
     }
 
     public function paypal()
     {
-        if(!session()->get('package_id')) {
+        if (!session()->get('package_id')) {
             return redirect()->to('/');
         }
 
         $user_data = Auth::user();
-        $g_setting = GeneralSetting::where('id',1)->first();
+        $g_setting = GeneralSetting::where('id', 1)->first();
         $client = $g_setting->paypal_client_id;
         $secret = $g_setting->paypal_secret_key;
 
-        $final_price = session()->get('package_price')*session()->get('currency_value');
-        $final_price = round($final_price,2);
+        $final_price = session()->get('package_price') * session()->get('currency_value');
+        $final_price = round($final_price, 2);
 
         $admin_amount = session()->get('package_price');
 
@@ -1176,9 +1174,8 @@ class CustomerController extends Controller
         $result = $payment->execute($execution, $apiContext);
 
 
-        if($result->state == 'approved')
-        {
-            if(env('PROJECT_MODE') == 0) {
+        if ($result->state == 'approved') {
+            if (env('PROJECT_MODE') == 0) {
                 return Redirect()->route('customer_package_purchase_history')->with('error', env('PROJECT_NOTIFICATION'));
             } else {
 
@@ -1186,10 +1183,10 @@ class CustomerController extends Controller
 
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
-                PackagePurchase::where('user_id',$user_data->id)->update($data);
+                PackagePurchase::where('user_id', $user_data->id)->update($data);
 
                 // Selected Package Detail
-                $package_detail = Package::where('id',session()->get('package_id'))->first();
+                $package_detail = Package::where('id', session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
                 $end_date = date('Y-m-d', strtotime("+$valid_days days"));
@@ -1219,11 +1216,11 @@ class CustomerController extends Controller
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $paymentId, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
-                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol').$paid_amount, $message);
+                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol') . $paid_amount, $message);
                 $message = str_replace('[[payment_status]]', 'Completed', $message);
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
-                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
+                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject, $message));
 
                 session()->forget('package_id');
                 session()->forget('package_name');
@@ -1231,15 +1228,14 @@ class CustomerController extends Controller
 
                 return Redirect()->route('customer_package_purchase_history')->with('success', SUCCESS_PACKAGE_PURCHASE);
             }
-        }
-        else {
+        } else {
             return redirect()->to('/');
         }
     }
 
     public function stripe()
     {
-        if(!session()->get('package_id')) {
+        if (!session()->get('package_id')) {
             return redirect()->to('/');
         }
 
@@ -1248,18 +1244,17 @@ class CustomerController extends Controller
         $stripe_secret_key = $g_setting->stripe_secret_key;
 
         $admin_amount = session()->get('package_price');
-        $final_price = $admin_amount*session()->get('currency_value');
-        $final_price = round($final_price,2);
+        $final_price = $admin_amount * session()->get('currency_value');
+        $final_price = round($final_price, 2);
 
         \Stripe\Stripe::setApiKey($stripe_secret_key);
 
-        if(isset($_POST['stripeToken']))
-        {
+        if (isset($_POST['stripeToken'])) {
             \Stripe\Stripe::setVerifySslCerts(false);
 
             $token = $_POST['stripeToken'];
             $response = \Stripe\Charge::create([
-                'amount' => $final_price*100,
+                'amount' => $final_price * 100,
                 'currency' => session()->get('currency_name'),
                 'description' => 'Stripe Payment',
                 'source' => $token,
@@ -1269,17 +1264,17 @@ class CustomerController extends Controller
             $bal = \Stripe\BalanceTransaction::retrieve($response->balance_transaction);
             $balJson = $bal->jsonSerialize();
 
-            if(env('PROJECT_MODE') == 0) {
+            if (env('PROJECT_MODE') == 0) {
                 return Redirect()->route('customer_package_purchase_history')->with('error', env('PROJECT_NOTIFICATION'));
             } else {
-                $paid_amount = $balJson['amount']/100;
+                $paid_amount = $balJson['amount'] / 100;
 
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
-                PackagePurchase::where('user_id',$user_data->id)->update($data);
+                PackagePurchase::where('user_id', $user_data->id)->update($data);
 
                 // Selected Package Detail
-                $package_detail = Package::where('id',session()->get('package_id'))->first();
+                $package_detail = Package::where('id', session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
                 $end_date = date('Y-m-d', strtotime("+$valid_days days"));
@@ -1309,11 +1304,11 @@ class CustomerController extends Controller
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $response->balance_transaction, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
-                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol').$paid_amount, $message);
+                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol') . $paid_amount, $message);
                 $message = str_replace('[[payment_status]]', 'Completed', $message);
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
-                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
+                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject, $message));
 
                 session()->forget('package_id');
                 session()->forget('package_name');
@@ -1321,15 +1316,13 @@ class CustomerController extends Controller
 
                 return Redirect()->route('customer_package_purchase_history')->with('success', SUCCESS_PACKAGE_PURCHASE);
             }
-
         }
-
     }
 
 
     public function razorpay(Request $request)
     {
-        if(!session()->get('package_id')) {
+        if (!session()->get('package_id')) {
             return redirect()->to('/');
         }
 
@@ -1337,29 +1330,29 @@ class CustomerController extends Controller
         $g_setting = GeneralSetting::where('id', 1)->first();
 
         $admin_amount = session()->get('package_price');
-        $final_price = $admin_amount*session()->get('currency_value');
-        $final_price = round($final_price,2);
+        $final_price = $admin_amount * session()->get('currency_value');
+        $final_price = round($final_price, 2);
 
         $input = $request->all();
-        $api = new Api($g_setting->razorpay_key_id,$g_setting->razorpay_key_secret);
+        $api = new Api($g_setting->razorpay_key_id, $g_setting->razorpay_key_secret);
         $payment = $api->payment->fetch($input['razorpay_payment_id']);
 
-        if(count($input)&&!empty($input['razorpay_payment_id'])) {
+        if (count($input) && !empty($input['razorpay_payment_id'])) {
             try {
-                $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount'=>$payment['amount']));
+                $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount' => $payment['amount']));
 
                 $payId = $response->id;
 
-                if(env('PROJECT_MODE') == 0) {
+                if (env('PROJECT_MODE') == 0) {
                     return Redirect()->route('customer_package_purchase_history')->with('error', env('PROJECT_NOTIFICATION'));
                 } else {
 
                     // Make all other previous packages status to 0 and this package status 1
                     $data['currently_active'] = 0;
-                    PackagePurchase::where('user_id',$user_data->id)->update($data);
+                    PackagePurchase::where('user_id', $user_data->id)->update($data);
 
                     // Selected Package Detail
-                    $package_detail = Package::where('id',session()->get('package_id'))->first();
+                    $package_detail = Package::where('id', session()->get('package_id'))->first();
                     $valid_days = $package_detail->valid_days;
                     $start_date = date('Y-m-d');
                     $end_date = date('Y-m-d', strtotime("+$valid_days days"));
@@ -1389,11 +1382,11 @@ class CustomerController extends Controller
                     $message = str_replace('[[customer_name]]', $user_data->name, $message);
                     $message = str_replace('[[transaction_id]]', $payId, $message);
                     $message = str_replace('[[payment_method]]', $payment_method, $message);
-                    $message = str_replace('[[paid_amount]]', session()->get('currency_symbol').$final_price, $message);
+                    $message = str_replace('[[paid_amount]]', session()->get('currency_symbol') . $final_price, $message);
                     $message = str_replace('[[payment_status]]', 'Completed', $message);
                     $message = str_replace('[[package_start_date]]', $start_date, $message);
                     $message = str_replace('[[package_end_date]]', $end_date, $message);
-                    Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
+                    Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject, $message));
 
                     session()->forget('package_id');
                     session()->forget('package_name');
@@ -1410,7 +1403,7 @@ class CustomerController extends Controller
 
     public function flutterwave(Request $request)
     {
-        if(!session()->get('package_id')) {
+        if (!session()->get('package_id')) {
             return redirect()->to('/');
         }
 
@@ -1418,8 +1411,8 @@ class CustomerController extends Controller
         $g_setting = GeneralSetting::where('id', 1)->first();
 
         $admin_amount = session()->get('package_price');
-        $final_price = $admin_amount*session()->get('currency_value');
-        $final_price = round($final_price,2);
+        $final_price = $admin_amount * session()->get('currency_value');
+        $final_price = round($final_price, 2);
 
         $curl = curl_init();
         $tnx_id = $request->tnx_id;
@@ -1443,16 +1436,16 @@ class CustomerController extends Controller
         curl_close($curl);
         $response = json_decode($response);
 
-        if($response->status == 'success') {
-            if(env('PROJECT_MODE') == 0) {
+        if ($response->status == 'success') {
+            if (env('PROJECT_MODE') == 0) {
                 return Redirect()->route('customer_package_purchase_history')->with('error', env('PROJECT_NOTIFICATION'));
             } else {
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
-                PackagePurchase::where('user_id',$user_data->id)->update($data);
+                PackagePurchase::where('user_id', $user_data->id)->update($data);
 
                 // Selected Package Detail
-                $package_detail = Package::where('id',session()->get('package_id'))->first();
+                $package_detail = Package::where('id', session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
                 $end_date = date('Y-m-d', strtotime("+$valid_days days"));
@@ -1482,11 +1475,11 @@ class CustomerController extends Controller
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $tnx_id, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
-                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol').$final_price, $message);
+                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol') . $final_price, $message);
                 $message = str_replace('[[payment_status]]', 'Completed', $message);
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
-                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
+                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject, $message));
 
                 session()->forget('package_id');
                 session()->forget('package_name');
@@ -1502,7 +1495,7 @@ class CustomerController extends Controller
 
     public function mollie(Request $request)
     {
-        if(!session()->get('package_id')) {
+        if (!session()->get('package_id')) {
             return redirect()->to('/');
         }
 
@@ -1510,22 +1503,22 @@ class CustomerController extends Controller
         $g_setting = GeneralSetting::where('id', 1)->first();
 
         $admin_amount = session()->get('package_price');
-        $final_price = $admin_amount*session()->get('currency_value');
-        $final_price = round($final_price,2);
+        $final_price = $admin_amount * session()->get('currency_value');
+        $final_price = round($final_price, 2);
 
         Mollie::api()->setApiKey($g_setting->mollie_api_key);
 
         $payment = Mollie::api()->payments()->create([
             'amount' => [
                 'currency' => session()->get('currency_name'),
-                'value' => ''.sprintf('%0.2f', $final_price).'',
+                'value' => '' . sprintf('%0.2f', $final_price) . '',
             ],
             'description' => env('APP_NAME'),
             'redirectUrl' => route('customer_payment_mollie_notify'),
         ]);
         $payment = Mollie::api()->payments()->get($payment->id);
 
-        session()->put('payment_id',$payment->id);
+        session()->put('payment_id', $payment->id);
 
         return redirect($payment->getCheckoutUrl(), 303);
     }
@@ -1536,23 +1529,22 @@ class CustomerController extends Controller
         $g_setting = GeneralSetting::where('id', 1)->first();
 
         $admin_amount = session()->get('package_price');
-        $final_price = $admin_amount*session()->get('currency_value');
-        $final_price = round($final_price,2);
+        $final_price = $admin_amount * session()->get('currency_value');
+        $final_price = round($final_price, 2);
 
         Mollie::api()->setApiKey($g_setting->mollie_api_key);
         $payment = Mollie::api()->payments->get(session()->get('payment_id'));
-        if ($payment->isPaid())
-        {
-            if(env('PROJECT_MODE') == 0) {
+        if ($payment->isPaid()) {
+            if (env('PROJECT_MODE') == 0) {
                 return Redirect()->route('customer_package_purchase_history')->with('error', env('PROJECT_NOTIFICATION'));
             } else {
 
                 // Make all other previous packages status to 0 and this package status 1
                 $data['currently_active'] = 0;
-                PackagePurchase::where('user_id',$user_data->id)->update($data);
+                PackagePurchase::where('user_id', $user_data->id)->update($data);
 
                 // Selected Package Detail
-                $package_detail = Package::where('id',session()->get('package_id'))->first();
+                $package_detail = Package::where('id', session()->get('package_id'))->first();
                 $valid_days = $package_detail->valid_days;
                 $start_date = date('Y-m-d');
                 $end_date = date('Y-m-d', strtotime("+$valid_days days"));
@@ -1582,11 +1574,11 @@ class CustomerController extends Controller
                 $message = str_replace('[[customer_name]]', $user_data->name, $message);
                 $message = str_replace('[[transaction_id]]', $payment->id, $message);
                 $message = str_replace('[[payment_method]]', $payment_method, $message);
-                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol').$final_price, $message);
+                $message = str_replace('[[paid_amount]]', session()->get('currency_symbol') . $final_price, $message);
                 $message = str_replace('[[payment_status]]', 'Completed', $message);
                 $message = str_replace('[[package_start_date]]', $start_date, $message);
                 $message = str_replace('[[package_end_date]]', $end_date, $message);
-                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject,$message));
+                Mail::to($user_data->email)->send(new PurchaseCompletedEmailToCustomer($subject, $message));
 
                 session()->forget('package_id');
                 session()->forget('package_name');
@@ -1594,8 +1586,7 @@ class CustomerController extends Controller
 
                 return Redirect()->route('customer_package_purchase_history')->with('success', SUCCESS_PACKAGE_PURCHASE);
             }
-        }
-        else {
+        } else {
             return Redirect()->back()->with('error', ERR_PAYMENT_FAILED);
         }
     }
@@ -1603,7 +1594,7 @@ class CustomerController extends Controller
     public function customer_shipping_documents(Request $request)
     {
         $user = Auth::user();
-        $qoutes = $user->quotes->where('status','offered');
+        $qoutes = $user->quotes->where('status', 'offered');
         if ($request->isMethod('post')) {
             $filterData = $request->all();
             $query = ShippingOrder::where('consignee_id', $user->id);
@@ -1628,7 +1619,7 @@ class CustomerController extends Controller
             $shippingOrders = ShippingOrder::where('consignee_id', $user->id)->get();
         }
 
-        return view('front.customerDashboard.customer_shipping_documents',compact('user','qoutes','shippingOrders'));
+        return view('front.customerDashboard.customer_shipping_documents', compact('user', 'qoutes', 'shippingOrders'));
     }
 
     public function web_ordering_history()
@@ -1636,7 +1627,7 @@ class CustomerController extends Controller
         $user = Auth::user();
         $offers = $user->quotes;
 
-        return view('front.customerDashboard.web_ordering_history',compact('offers'));
+        return view('front.customerDashboard.web_ordering_history', compact('offers'));
     }
 
     public function customer_land_transport()
@@ -1654,13 +1645,13 @@ class CustomerController extends Controller
         $cities = City::get();
         $ports = Port::get();
         $option_services = OptionService::get();
-        $deregistration_service = Service::where('id',1)->first();
-        $english_export_service = Service::where('id',2)->first();
-        $photo_service = Service::where('id',3)->first();
-        $ss_custom_photo_service = Service::where('id',4)->first();
-        $ss_custom_inspection_service = Service::where('id',5)->first();
-        $ss_custom_cleaning_service = Service::where('id',6)->first();
-        return view('front.customer-newdashboard.create_order',compact('ss_custom_inspection_service','ss_custom_cleaning_service','ss_custom_photo_service','photo_service','english_export_service','deregistration_service','user','qoutes','countries','cities','ports', 'option_services'));
+        $deregistration_service = Service::where('id', 1)->first();
+        $english_export_service = Service::where('id', 2)->first();
+        $photo_service = Service::where('id', 3)->first();
+        $ss_custom_photo_service = Service::where('id', 4)->first();
+        $ss_custom_inspection_service = Service::where('id', 5)->first();
+        $ss_custom_cleaning_service = Service::where('id', 6)->first();
+        return view('front.customer-newdashboard.create_order', compact('ss_custom_inspection_service', 'ss_custom_cleaning_service', 'ss_custom_photo_service', 'photo_service', 'english_export_service', 'deregistration_service', 'user', 'qoutes', 'countries', 'cities', 'ports', 'option_services'));
     }
 
     public function request_car()
@@ -1673,7 +1664,7 @@ class CustomerController extends Controller
 
         $user = Auth::user();
         $requestedCars = $user->requestedCar ?? null;
-        return view('front.customer-newdashboard.list_request_car',compact('requestedCars'));
+        return view('front.customer-newdashboard.list_request_car', compact('requestedCars'));
     }
 
     public function requested_car_store(Request $request)
@@ -1688,7 +1679,7 @@ class CustomerController extends Controller
         ]);
 
         $requestData = $request->all() ?? null;
-        $requestData['user_id'] = Auth::id();// Set user_id from the authenticated user
+        $requestData['user_id'] = Auth::id(); // Set user_id from the authenticated user
         RequestedCar::create($requestData);
 
         return redirect()->route('list_request_car')->with('success', 'Requested car created successfully');
@@ -1707,7 +1698,9 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
         $invoices = $user->invoices;
-        return view('front.customer-newdashboard.inovice',compact('invoices'));
+        $ShippingOrder = ShippingOrder::all();
+        // dd($ShippingOrder);
+        return view('front.customer-newdashboard.inovice', compact('invoices', 'ShippingOrder'));
     }
 
     public function car_and_shipping_information(Request $request)
@@ -1748,7 +1741,7 @@ class CustomerController extends Controller
         } else {
             $shippingOrders = ShippingOrder::where('consignee_id', Auth::user()->id)->get();
         }
-        return view('front.customer-newdashboard.shipping_information', compact('request','countries', 'cities', 'ports', 'shippingOrders'));
+        return view('front.customer-newdashboard.shipping_information', compact('request', 'countries', 'cities', 'ports', 'shippingOrders'));
     }
 
     public function account_info()
@@ -1756,7 +1749,7 @@ class CustomerController extends Controller
         $countries = ListingLocation::get();
         $cities = City::get();
         $user = Auth::user();
-        return view('front.customer-newdashboard.account_information',compact('user','countries','cities'));
+        return view('front.customer-newdashboard.account_information', compact('user', 'countries', 'cities'));
     }
 
     public function update_account_info(Request $request)
@@ -1784,7 +1777,7 @@ class CustomerController extends Controller
     public function update_customer_password()
     {
         $user = Auth::user();
-        return view('front.customer-newdashboard.update_password',compact('user'));
+        return view('front.customer-newdashboard.update_password', compact('user'));
     }
 
     public function storeShippingDocument(Request $request)
@@ -1815,7 +1808,13 @@ class CustomerController extends Controller
     public function view_car_and_shipping_information($id)
     {
         $shippingOrder = ShippingOrder::findorFail($id);
-        return view('front.customerDashboard.view_car_and_shipping_information',compact('shippingOrder'));
+
+        $offers = $shippingOrder->offers;
+        $car = $offers[0]->car;
+        $id = $car->id;
+        $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
+
+        return view('front.customerDashboard.view_car_and_shipping_information', compact('shippingOrder', 'listing_photos'));
     }
 
     public function place_order_shipping(Request $request)
@@ -1871,7 +1870,7 @@ class CustomerController extends Controller
             'ss_custom_cleaning_service' => $request->ss_custom_cleaning_service ?? 0,
         ]);
         $shippingOrder->save();
-        $shippingOrder->shipping_id= 'ss-'.$shippingOrder->id;
+        $shippingOrder->shipping_id = 'ss-' . $shippingOrder->id;
         $shippingOrder->save();
         if ($request->has('offer_ids')) {
             $offerIdList = $request->input('offer_ids'); // This should return the array of selected service IDs
@@ -1881,8 +1880,7 @@ class CustomerController extends Controller
             }
             $shippingOrder->offers()->attach($offerIds);
         }
-        if($request->service_name)
-        {
+        if ($request->service_name) {
             $serviceNames = $request->service_name; // This should return the array of selected service IDs
             $serviceIds = [];
             foreach ($serviceNames as $serviceName) {
@@ -1924,9 +1922,7 @@ class CustomerController extends Controller
 
         if (!$request->filled('country') && !$request->filled('city') && !$request->filled('port') && !$request->filled('service_plan') && !$request->filled('shopping_order_id')) {
             $data = $query->get();
-        }
-        else
-        {
+        } else {
             $data = $query->get();
         }
         return response()->json(['data' => $data]);
@@ -1936,7 +1932,7 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
         $offers = $user->quotes;
-        return view('front.customerDashboard.customer_offers',compact('offers'));
+        return view('front.customerDashboard.customer_offers', compact('offers'));
     }
 
     public function download_shipment_document($id)
@@ -1963,5 +1959,33 @@ class CustomerController extends Controller
         $invoice->payment_status = $newPaymentStatus;
         $invoice->save();
         return response()->json(['message' => 'Payment status updated successfully']);
+    }
+    public function customeruploadinvoice(Request $request)
+    {
+        if ($request->hasFile('paidInvoice')) {
+            $directory = 'invoices';
+            if (!Storage::exists($directory)) {
+                Storage::makeDirectory($directory);
+            }
+
+            $file = $request->file('paidInvoice');
+            $originalName =  $request->input('oInvoice'); // Get the original name
+            $nameParts = explode('_', $originalName);
+            $shippmentId = $nameParts[0];
+            $newName =  'paid_' . $originalName;
+            $file->storeAs('public/' . $directory, $newName); // Store with original name
+            $url = ('storage/' . $directory . '/' . $newName);
+
+
+            $shippment = ShippingOrder::findOrFail($shippmentId);
+            $shippment->paid_invoice_path = $url;
+            $shippment->save();
+
+            // Return a JSON response with success and message data
+            return response()->json([
+                'success' => true,
+                'message' => 'Invoice uploaded successfully ',
+            ]);
+        }
     }
 }

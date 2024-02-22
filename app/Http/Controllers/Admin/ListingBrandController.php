@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Listing;
 use App\Models\Document;
@@ -15,14 +17,17 @@ use App\Models\ShippingOrder;
 use App\Models\Invoice;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Service;
+use Illuminate\Support\Facades\Log;
 
 class ListingBrandController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth.admin:admin');
     }
 
-    public function index() {
+    public function index()
+    {
         $listing_brand = ListingBrand::orderBy('id', 'asc')->get();
         return view('admin.listing_brand_view', compact('listing_brand'));
     }
@@ -36,21 +41,22 @@ class ListingBrandController extends Controller
     {
         $shippment_request = ShippingOrder::findorFail(intval($id));
         $offer = Qoute::findorFail($shippment_request->offer_id);
-        return view('admin.shippment_request_show', compact('shippment_request','offer'));
+        return view('admin.shippment_request_show', compact('shippment_request', 'offer'));
     }
 
-    public function create() {
+    public function create()
+    {
         $listing_brand = ListingBrand::get();
         return view('admin.listing_brand_create', compact('listing_brand'));
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $request->validate([
             'listing_brand_name' => 'required|unique:listing_brands',
             'listing_brand_slug' => 'unique:listing_brands',
             'listing_brand_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ],[
+        ], [
             'listing_brand_name.required' => ERR_NAME_REQUIRED,
             'listing_brand_name.unique' => ERR_NAME_EXIST,
             'listing_brand_slug.unique' => ERR_SLUG_UNIQUE,
@@ -64,37 +70,39 @@ class ListingBrandController extends Controller
         $ai_id = $statement[0]->Auto_increment;
 
         $ext = $request->file('listing_brand_photo')->extension();
-        $rand_value = md5(mt_rand(11111111,99999999));
-        $final_name = $rand_value.'.'.$ext;
+        $rand_value = md5(mt_rand(11111111, 99999999));
+        $final_name = $rand_value . '.' . $ext;
         $request->file('listing_brand_photo')->move(public_path('uploads/listing_brand_photos/'), $final_name);
 
         $listing_brand = new ListingBrand();
         $data = $request->only($listing_brand->getFillable());
-        if(empty($data['listing_brand_slug'])) {
+        if (empty($data['listing_brand_slug'])) {
             unset($data['listing_brand_slug']);
             $data['listing_brand_slug'] = Str::slug($request->listing_brand_name);
         }
 
-        if(preg_match('/\s/',$data['listing_brand_slug'])) {
+        if (preg_match('/\s/', $data['listing_brand_slug'])) {
             return Redirect()->back()->with('error', ERR_SLUG_WHITESPACE);
         }
 
         unset($data['listing_brand_photo']);
         $data['listing_brand_photo'] = $final_name;
-        
+
         $listing_brand->fill($data)->save();
 
         return redirect()->route('admin_listing_brand_view')->with('success', SUCCESS_ACTION);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $listing_brand = ListingBrand::findOrFail($id);
         return view('admin.listing_brand_edit', compact('listing_brand'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
 
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -105,7 +113,7 @@ class ListingBrandController extends Controller
 
             $request->validate([
                 'listing_brand_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-            ],[
+            ], [
                 'listing_brand_photo.image' => ERR_PHOTO_IMAGE,
                 'listing_brand_photo.mimes' => ERR_PHOTO_JPG_PNG_GIF,
                 'listing_brand_photo.max' => ERR_PHOTO_MAX
@@ -113,8 +121,8 @@ class ListingBrandController extends Controller
 
             // Uploading the file
             $ext = $request->file('listing_brand_photo')->extension();
-            $rand_value = md5(mt_rand(11111111,99999999));
-            $final_name = $rand_value.'.'.$ext;
+            $rand_value = md5(mt_rand(11111111, 99999999));
+            $final_name = $rand_value . '.' . $ext;
             $request->file('listing_brand_photo')->move(public_path('uploads/listing_brand_photos/'), $final_name);
 
             unset($data['listing_brand_photo']);
@@ -129,20 +137,18 @@ class ListingBrandController extends Controller
             'listing_brand_slug'   =>  [
                 Rule::unique('listing_brands')->ignore($id),
             ]
-        ],[
+        ], [
             'listing_brand_name.required' => ERR_NAME_REQUIRED,
             'listing_brand_name.unique' => ERR_NAME_EXIST,
             'listing_brand_slug.unique' => ERR_SLUG_UNIQUE,
         ]);
 
-        if(empty($data['listing_brand_slug']))
-        {
+        if (empty($data['listing_brand_slug'])) {
             unset($data['listing_brand_slug']);
             $data['listing_brand_slug'] = Str::slug($request->listing_brand_name);
         }
 
-        if(preg_match('/\s/',$data['listing_brand_slug']))
-        {
+        if (preg_match('/\s/', $data['listing_brand_slug'])) {
             return Redirect()->back()->with('error', ERR_SLUG_WHITESPACE);
         }
 
@@ -153,9 +159,9 @@ class ListingBrandController extends Controller
 
     public function destroy($id)
     {
-        $tot = Listing::where('listing_brand_id',$id)->count();
-        if($tot) {
-            return Redirect()->back()->with('error', ERR_ITEM_DELETE);   
+        $tot = Listing::where('listing_brand_id', $id)->count();
+        if ($tot) {
+            return Redirect()->back()->with('error', ERR_ITEM_DELETE);
         }
         $listing_brand = ListingBrand::findOrFail($id);
         $listing_brand->delete();
@@ -183,7 +189,7 @@ class ListingBrandController extends Controller
             $car = Listing::findOrFail($car_id);
             $car->listing_stock_status = $request->offer_agreed_status;
             $car->save();
-        
+
             Invoice::updateOrCreate(
                 [
                     'shipping_order_id' => $shippmentId,
@@ -205,25 +211,83 @@ class ListingBrandController extends Controller
         }
         return redirect()->route('admin_shippment_requests')->withSuccess('Done');
     }
+    // public function admin_modify_shipping_status(Request $request)
+    // {
+    //     $shippmentId = intval($request->shippingId);
+    //     $shippment = ShippingOrder::findOrFail($shippmentId);
+    //     $shippment->status = $request->newStatus;
+    //     $shippment->save();
+
+    //     // Return a JSON response with success and message data
+    //     return response()->json([
+    //         'success' => true,
+    //         'message' => 'Status updated successfully',
+    //     ]);
+    // }
     public function admin_modify_shipping_status(Request $request)
     {
+
+
+        // Get shipping ID and find the shipping order
         $shippmentId = intval($request->shippingId);
         $shippment = ShippingOrder::findOrFail($shippmentId);
-        $shippment->status = $request->newStatus;
-        $shippment->save();
-    
-        // Return a JSON response with success and message data
-        return response()->json([
-            'success' => true,
-            'message' => 'Status updated successfully',
-        ]);
+        $action = $request->input('action');
+
+        if ($action && $action == 'delete') {
+
+            $existingInvoicePath = $shippment->invoice_path;
+            unlink($existingInvoicePath);
+            $shippment->invoice_path = '';
+            $shippment->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Invoice deleted successfully',
+            ]);
+        }
+
+
+
+        // Update shipping status if newStatus field is present
+        if ($request->has('newStatus')) {
+            $shippment->status = $request->newStatus;
+            $shippment->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Status updated successfully',
+            ]);
+        }
+
+        // Handle file upload if invoiceFile field is present
+        if ($request->hasFile('invoiceFile')) {
+
+            // Store the uploaded file in storage/app/invoices directory
+            $directory = 'invoices';
+            if (!Storage::exists($directory)) {
+                Storage::makeDirectory($directory);
+            }
+
+            $file = $request->file('invoiceFile');
+            $originalName = $shippment->id . '_' . $file->getClientOriginalName(); // Get the original name
+            $file->storeAs('public/' . $directory, $originalName); // Store with original name
+            $url = ('storage/' . $directory . '/' . $originalName);
+
+            // Set the invoice path to the correct variable
+            $shippment->invoice_path = $url;
+            $shippment->save();
+
+            // Return a JSON response with success and message data
+            return response()->json([
+                'success' => true,
+                'message' => 'Invoice uploaded successfully ',
+            ]);
+        }
     }
 
     public function view_shipment_document($id)
     {
         $shippment = ShippingOrder::findOrFail($id);
         $documents = $shippment->documents;
-        return view('admin.view_shipment_document', compact('shippment','documents'));
+        return view('admin.view_shipment_document', compact('shippment', 'documents'));
     }
     public function download_shipment_document($id)
     {
@@ -350,5 +414,4 @@ class ListingBrandController extends Controller
 
         return redirect()->route('services.index');
     }
-
 }
