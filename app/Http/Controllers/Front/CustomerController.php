@@ -84,28 +84,59 @@ class CustomerController extends Controller
             Qoute::where('status', 'offered')
             ->where('user_id', Auth::user()->id)
             ->with('car')
-            ->get();
+            ->paginate(3);
+        // $total_reserved_listing_cars = Qoute::where('status', 'reserved')
+        //     ->where('user_id', Auth::user()->id)
+        //     ->with('car')
+        //     ->get();
         $total_reserved_listing_cars = Qoute::where('status', 'reserved')
             ->where('user_id', Auth::user()->id)
-            ->with('car')
+            ->with([
+                'car' => function ($query) {
+                    $query->with('rListingBrand', 'rListingLocation');
+                }
+            ])
             ->get();
+
+
+
+        // Retrieve quotes
 
         $detail = PackagePurchase::with('rPackage')
             ->where('user_id', Auth::user()->id)
             ->where('currently_active', 1)
             ->first();
-        $user_favourites = Auth::user()->favorites;
+        // $user_favourites = Auth::user()->favorites;
+        $user_favourites = Auth::user()->favorites_timestamp()->getQuery()
+            ->paginate(3);
+        // dd($user_favourites);
         return view('front.customer-newdashboard.dashboard', compact('total_reserved_listing_cars', 'total_pending_listing_cars', 'user_favourites', 'g_setting', 'total_active_listing', 'total_pending_listing', 'detail', 'page_other_item'));
         // return view('front.customerDashboard.customer_dashboard', compact('g_setting','total_active_listing','total_pending_listing','detail','page_other_item'));
     }
+    // public function all_reserved_vehicles()
+    // {
+    //     $total_reserved_listing_cars = Qoute::where('status', 'reserved')
+    //         ->where('user_id', Auth::user()->id)
+    //         ->with([
+    //             'car' => function ($query) {
+    //                 $query->with('rListingBrand', 'rListingLocation');
+    //             }
+    //         ])
+    //         ->get();
+    //     return view('front.customer-newdashboard.all_vehicles', compact('total_reserved_listing_cars'));
+    // }
     public function all_reserved_vehicles()
     {
         $total_reserved_listing_cars = Qoute::where('status', 'reserved')
             ->where('user_id', Auth::user()->id)
-            ->with('car')
-            ->get();
+            ->with(['car' => function ($query) {
+                $query->with('rListingBrand', 'rListingLocation');
+            }])
+            ->paginate(3); // Change 10 to the desired number of items per page
+
         return view('front.customer-newdashboard.all_vehicles', compact('total_reserved_listing_cars'));
     }
+
     public function car_detail($slug)
     {
 
