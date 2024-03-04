@@ -62,7 +62,7 @@
             </div> --}}
 
             <div class="row">
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
                             All Invoices
@@ -73,7 +73,6 @@
                                 @foreach ($ShippingOrder as $invoice)
                                     @if ($invoice->invoice_path != '')
                                         <li style="list-style:none">
-                                            {{-- $url = asset('storage/' . $directory . '/' . $originalName); --}}
                                             <a href="{{ asset($invoice->invoice_path) }}"
                                                 download="{{ basename($invoice->invoice_path) }}">
                                                 <i class="fas fa-download"></i> Download
@@ -86,8 +85,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
+                </div> --}}
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             Upload Paid Invoices
@@ -101,23 +100,23 @@
                                         @foreach ($ShippingOrder as $invoice)
                                             @if ($invoice->invoice_path != '')
                                                 <option value="{{ basename($invoice->invoice_path) }}">
-                                                    {{ basename($invoice->invoice_path) }}</option>
+                                                    {{ $invoice->shipping_id }}</option>
                                             @endif
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group">
+                                    {{-- </div>
+                                <div class="form-group"> --}}
                                     <label for="paidInvoice">Upload Paid Invoice</label>
                                     <input type="file" name="paidInvoice" id="paidInvoice" class="m-2" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Upload</button>
+                                    {{-- </div> --}}
+                                    <button type="submit" class="btn btn-primary">Upload</button>
                             </form>
-                            <ul>
+                            {{-- <ul>
 
                                 @foreach ($ShippingOrder as $invoice)
                                     @if ($invoice->paid_invoice_path != '')
                                         <li style="list-style:none">
-                                            {{-- $url = asset('storage/' . $directory . '/' . $originalName); --}}
+
                                             <a href="{{ asset($invoice->paid_invoice_path) }}"
                                                 download="{{ basename($invoice->paid_invoice_path) }}">
                                                 <i class="fas fa-download"></i> Download
@@ -127,7 +126,7 @@
                                         </li>
                                     @endif
                                 @endforeach
-                            </ul>
+                            </ul> --}}
 
 
                         </div>
@@ -138,6 +137,114 @@
         </div>
 
     </section>
+
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped track-table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>SS No</th>
+                        <th>Photo</th>
+                        <th>Car Name/ Chassis No</th>
+                        <th>Country</th>
+                        <th>Port</th>
+                        <th>Vessel Name</th>
+                        <th>ETD / POL</th>
+                        <th>ETA / POD</th>
+                        <th>Consignee Name / Location</th>
+                        <th>Download Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($ShippingOrder as $invoice)
+                        {{-- @php
+                            dd($invoice);
+                        @endphp --}}
+                        @if ($invoice->paid_invoice_path != '')
+                            <tr>
+
+                                <td>
+                                    {{ $invoice->shipping_id }}
+                                </td>
+                                <td>
+                                    @php
+                                        $listingPhoto = \App\Models\ListingPhoto::where(
+                                            'listing_id',
+                                            $invoice->id,
+                                        )->first();
+                                        // dd($listingPhoto);
+                                        $photoUrl = $listingPhoto
+                                            ? asset('uploads/listing_photos/' . $listingPhoto->photo)
+                                            : '';
+                                    @endphp
+
+                                    <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
+                                        style="object-fit: cover; height:40px" alt="">
+                                </td>
+                                <td>
+                                    <ul>
+
+                                        @foreach ($invoice->offers as $offer)
+                                            <li>
+                                                <a class="text-primary text-decoration-underline"
+                                                    href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
+                                                    title="View Shipment">
+                                                    {{ $offer->car_name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    {{ $invoice->country_selected->listing_location_name }}
+
+                                </td>
+                                <td>
+                                    {{ $invoice->port_selected->name }}
+                                </td>
+                                @php
+                                    $documents = $invoice->documents->pluck('status')->toArray();
+
+                                @endphp
+                                <td>
+                                    @if (in_array('vessel', $documents))
+                                        Uploaded
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (in_array('etd_eta', $documents))
+                                        Uploaded
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (in_array('pol_pod', $documents))
+                                        Uploaded
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $invoice->default_name }}
+                                </td>
+                                <td>
+                                    <a href="{{ asset($invoice->paid_invoice_path) }}"
+                                        download="{{ basename($invoice->paid_invoice_path) }}">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection
 <script>
     document.addEventListener("DOMContentLoaded", function() {

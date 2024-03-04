@@ -1729,10 +1729,13 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
         $invoices = $user->invoices;
-        $ShippingOrder = ShippingOrder::all();
+        // $ShippingOrder = ShippingOrder::all();
+        $ShippingOrder = ShippingOrder::where('consignee_id', Auth::user()->id)->get();
         // dd($ShippingOrder);
         return view('front.customer-newdashboard.inovice', compact('invoices', 'ShippingOrder'));
     }
+
+
 
     public function car_and_shipping_information(Request $request)
     {
