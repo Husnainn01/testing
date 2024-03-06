@@ -61,78 +61,6 @@
                 </table>
             </div> --}}
 
-            <div class="row">
-                {{-- <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            All Invoices
-                        </div>
-                        <div class="card-body">
-                            <ul>
-
-                                @foreach ($ShippingOrder as $invoice)
-                                    @if ($invoice->invoice_path != '')
-                                        <li style="list-style:none">
-                                            <a href="{{ asset($invoice->invoice_path) }}"
-                                                download="{{ basename($invoice->invoice_path) }}">
-                                                <i class="fas fa-download"></i> Download
-                                                {{ basename($invoice->invoice_path) }}
-                                            </a>
-
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div> --}}
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            Upload Paid Invoices
-                        </div>
-                        <div class="card-body">
-                            <form id="CuploadForm" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="paidInvoice">Select Invoice</label>
-                                    <select name="oInvoice" id="oInvoice" class="p-1 m-2">
-                                        @foreach ($ShippingOrder as $invoice)
-                                            @if ($invoice->invoice_path != '')
-                                                <option value="{{ basename($invoice->invoice_path) }}">
-                                                    {{ $invoice->shipping_id }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    {{-- </div>
-                                <div class="form-group"> --}}
-                                    <label for="paidInvoice">Upload Paid Invoice</label>
-                                    <input type="file" name="paidInvoice" id="paidInvoice" class="m-2" required>
-                                    {{-- </div> --}}
-                                    <button type="submit" class="btn btn-primary">Upload</button>
-                            </form>
-                            {{-- <ul>
-
-                                @foreach ($ShippingOrder as $invoice)
-                                    @if ($invoice->paid_invoice_path != '')
-                                        <li style="list-style:none">
-
-                                            <a href="{{ asset($invoice->paid_invoice_path) }}"
-                                                download="{{ basename($invoice->paid_invoice_path) }}">
-                                                <i class="fas fa-download"></i> Download
-                                                {{ basename($invoice->paid_invoice_path) }}
-                                            </a>
-
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul> --}}
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
@@ -157,10 +85,7 @@
                 </thead>
                 <tbody>
                     @foreach ($ShippingOrder as $invoice)
-                        {{-- @php
-                            dd($invoice);
-                        @endphp --}}
-                        @if ($invoice->paid_invoice_path != '')
+                        @if ($invoice->invoice_path != '')
                             <tr>
 
                                 <td>
@@ -172,7 +97,6 @@
                                             'listing_id',
                                             $invoice->id,
                                         )->first();
-                                        // dd($listingPhoto);
                                         $photoUrl = $listingPhoto
                                             ? asset('uploads/listing_photos/' . $listingPhoto->photo)
                                             : '';
@@ -231,8 +155,8 @@
                                     {{ $invoice->default_name }}
                                 </td>
                                 <td>
-                                    <a href="{{ asset($invoice->paid_invoice_path) }}"
-                                        download="{{ basename($invoice->paid_invoice_path) }}">
+                                    <a href="{{ asset($invoice->invoice_path) }}"
+                                        download="{{ basename($invoice->invoice_path) }}">
                                         <i class="fas fa-download"></i>
                                     </a>
                                 </td>
@@ -246,29 +170,3 @@
         </div>
     </div>
 @endsection
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-
-        $("#CuploadForm").submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                url: '/customer/upload-invoice',
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    // console.log("File uploaded successfully");
-
-
-                    window.location.reload();
-                },
-                error: function(xhr, status, error) {
-
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-        });
-    });
-</script>

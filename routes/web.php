@@ -1131,6 +1131,8 @@ Route::view('track-shipment', 'front.customer-newdashboard.track')->name('track-
 Route::view('create-order', 'front.customer-newdashboard.create_order')->name('create-order');
 Route::view('shipping-information', 'front.customer-newdashboard.shipping_information')->name('shipping-information');
 Route::view('car-detail', 'front.customer-newdashboard.car_detail')->name('car-detail');
-Route::view('upload-proof', 'front.customer-newdashboard.upload_proof')->name('upload-proof');
+Route::get('upload-proof', [CustomerControllerForFront::class, 'customeruploadpaidinvoice'])->name('upload-proof');
+
+// Route::view('upload-proof', 'front.customer-newdashboard.upload_proof')->name('upload-proof');
 Route::view('history', 'front.customer-newdashboard.history')->name('history');
 Route::view('request-car', 'front.customer-newdashboard.request_car')->name('request-car');

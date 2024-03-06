@@ -2003,23 +2003,53 @@ class CustomerController extends Controller
             }
 
             $file = $request->file('paidInvoice');
-            $originalName =  $request->input('oInvoice'); // Get the original name
-            $nameParts = explode('_', $originalName);
-            $shippmentId = $nameParts[0];
+            $shippmentId =  $request->input('oInvoice'); // Get the original name
+            $originalName =  $request->input('oname'); // Get the original name
+            // $nameParts = explode('_', $originalName);
+            // $shippmentId = $nameParts[0];
             $newName =  'paid_' . $originalName;
             $file->storeAs('public/' . $directory, $newName); // Store with original name
             $url = ('storage/' . $directory . '/' . $newName);
 
-
+            // dd($shippmentId);
             $shippment = ShippingOrder::findOrFail($shippmentId);
             $shippment->paid_invoice_path = $url;
             $shippment->save();
-
+            // dd($shippment->save());
             // Return a JSON response with success and message data
             return response()->json([
                 'success' => true,
                 'message' => 'Invoice uploaded successfully ',
             ]);
         }
+    }
+
+    // public function customeruploadpaidinvoice(Request $request)
+    // {
+    //     // dd($request);
+    //     $user = Auth::user();
+    //     $invoices = $user->invoices;
+    //     $ShippingOrder = ShippingOrder::where('consignee_id', Auth::user()->id)->get();
+    //     return view('front.customer-newdashboard.upload_proof', compact('invoices', 'ShippingOrder'));
+    // }
+    public function customeruploadpaidinvoice(Request $request)
+    {
+        $user = Auth::user();
+        $ShippingOrder = ShippingOrder::where('consignee_id', Auth::user()->id);
+        $invoicesQuery = $ShippingOrder;
+
+        if ($request->has('from_date') && $request->input('from_date') != "") {
+            $fromDate = $request->input('from_date');
+            $invoicesQuery->whereDate('created_at', '>=', $fromDate);
+        }
+
+        if ($request->has('to_date') && $request->input('to_date') != "") {
+            $toDate = $request->input('to_date');
+            $invoicesQuery->whereDate('created_at', '<=', $toDate);
+        }
+
+        $ShippingOrder = $invoicesQuery->get();
+
+        return view('front.customer-newdashboard.upload_proof', compact('ShippingOrder'));
     }
 }
