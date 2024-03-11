@@ -255,7 +255,7 @@
                                     </div>
                                 </div>
                                 <!-- DOCUMENTS -->
-                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                {{-- <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="card shadow mb-4 p-4">
                                         <h3>Shipping Order Documents</h3>
                                         <table class="table">
@@ -355,9 +355,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- TT Documents -->
-                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                {{-- <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="card shadow mb-4 p-4">
                                         <h3>Shipping TT Document</h3>
                                         <table class="table">
@@ -386,8 +386,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+                                </div> --}}
+                                {{-- <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <form action="{{ route('customer_shipping_documents.store') }}" method="post"
                                             enctype="multipart/form-data">
@@ -415,7 +415,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
