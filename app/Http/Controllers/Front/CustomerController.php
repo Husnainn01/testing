@@ -1720,8 +1720,9 @@ class CustomerController extends Controller
     {
         $countryId = $request->input('country_id');
         $country = ListingLocation::find($countryId);
+        // dd($country->port);
         $cities = $country ? $country->cities : [];
-        $ports = $country ? $country->ports : [];
+        $ports = $country ? $country->port : [];
         return response()->json(['cities' => $cities, 'ports' => $ports]);
     }
 
@@ -1994,6 +1995,10 @@ class CustomerController extends Controller
         $invoice->save();
         return response()->json(['message' => 'Payment status updated successfully']);
     }
+
+
+
+
     public function customeruploadinvoice(Request $request)
     {
         if ($request->hasFile('paidInvoice')) {
@@ -2003,20 +2008,18 @@ class CustomerController extends Controller
             }
 
             $file = $request->file('paidInvoice');
-            $shippmentId =  $request->input('oInvoice'); // Get the original name
-            $originalName =  $request->input('oname'); // Get the original name
-            // $nameParts = explode('_', $originalName);
-            // $shippmentId = $nameParts[0];
+            $shippmentId =  $request->input('oInvoice');
+            $originalName =   $file->getClientOriginalName(); // Get the original name
+
             $newName =  'paid_' . $originalName;
             $file->storeAs('public/' . $directory, $newName); // Store with original name
             $url = ('storage/' . $directory . '/' . $newName);
 
-            // dd($shippmentId);
+
             $shippment = ShippingOrder::findOrFail($shippmentId);
             $shippment->paid_invoice_path = $url;
             $shippment->save();
-            // dd($shippment->save());
-            // Return a JSON response with success and message data
+
             return response()->json([
                 'success' => true,
                 'message' => 'Invoice uploaded successfully ',

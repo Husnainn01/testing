@@ -113,7 +113,7 @@
                                         </td>
                                         <td>
                                             @if ($invoice->paid_invoice_path != '')
-                                                Paid
+                                                Pending for verification
                                             @else
                                                 Unpaid
                                             @endif
@@ -143,25 +143,24 @@
                                                 -
                                             @endif
                                         </td>
-                                        {{-- <td>
-                                        {{ $invoice->default_name }}
-                                    </td> --}}
+
                                         <td>
 
                                             <button type="button" class="bg-transparent border-0" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
+                                                data-bs-target="#exampleModal{{ $invoice->id }}">
                                                 <i class="fa-solid fa-upload fs-4" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Upload Images"></i>
                                             </button>
 
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+                                            <div class="modal fade test" id="exampleModal{{ $invoice->id }}"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Upload
-                                                                Images
-                                                            </h1>
+                                                                Images</h1>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
@@ -174,23 +173,24 @@
                                                                         <label class="upload__btn  m-auto d-block w-50">
                                                                             <i class="fa-solid fa-cloud-arrow-up fs-1"></i>
                                                                             <input type="hidden"
-                                                                                value ="{{ $invoice->id }}"
-                                                                                name="oInvoice" id="oInvoice">
+                                                                                value="{{ $invoice->id }}" name="oInvoice"
+                                                                                id="oInvoice">
                                                                             <input type="hidden"
-                                                                                value ="{{ basename($invoice->invoice_path) }}"
+                                                                                value="{{ basename($invoice->invoice_path) }}"
                                                                                 name="oname" id="oname">
                                                                             <input type="file" multiple=""
-                                                                                name="paidInvoice" id="paidInvoice" required
-                                                                                data-max_length="20"
+                                                                                name="paidInvoice"
+                                                                                id="paidInvoice{{ $invoice->id }}"
+                                                                                required data-max_length="20"
                                                                                 class="upload__inputfile">
                                                                         </label>
                                                                     </div>
                                                                     <div class="upload__img-wrap"></div>
                                                                 </div>
-
-
-
-
+                                                                <div class="selected-files">
+                                                                    <h3>Files Selected:</h3>
+                                                                    <ul id="fileList{{ $invoice->id }}"></ul>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -202,6 +202,39 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+
+
+                                                    var pi{{ $invoice->id }} = document.getElementById('paidInvoice{{ $invoice->id }}');
+                                                    if (pi{{ $invoice->id }} !== null) {
+                                                        pi{{ $invoice->id }}.addEventListener('change', function() {
+                                                            var fileList = pi{{ $invoice->id }}.files;
+                                                            var fileDisplayList = document.getElementById('fileList{{ $invoice->id }}');
+
+                                                            fileDisplayList.innerHTML = '';
+
+                                                            for (var i = 0; i < fileList.length; i++) {
+                                                                var fileItem = document.createElement('li');
+                                                                fileItem.textContent = fileList[i].name;
+
+                                                                var deleteBtn = document.createElement('span');
+                                                                deleteBtn.textContent = ' ❌';
+                                                                deleteBtn.style.cursor = 'pointer';
+                                                                deleteBtn.onclick = function() {
+                                                                    fileItem.remove();
+                                                                };
+
+                                                                fileItem.appendChild(deleteBtn);
+                                                                fileDisplayList.appendChild(fileItem);
+                                                            }
+                                                        });
+                                                    }
+
+                                                });
+                                            </script>
+
+
 
                                         </td>
                                     </tr>
@@ -253,7 +286,7 @@
                                         </td>
                                         <td>
                                             @if ($invoice->paid_invoice_path != '')
-                                                Paid
+                                                Pending for verification
                                             @else
                                                 Unpaid
                                             @endif
@@ -289,12 +322,12 @@
                                         <td>
 
                                             <button type="button" class="bg-transparent border-0" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
+                                                data-bs-target="#exampleModal{{ $invoice->id }}">
                                                 <i class="fa-solid fa-upload fs-4" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Upload Images"></i>
                                             </button>
 
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal{{ $invoice->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -320,14 +353,18 @@
                                                                                 value ="{{ basename($invoice->invoice_path) }}"
                                                                                 name="oname" id="oname">
                                                                             <input type="file" multiple=""
-                                                                                name="paidInvoice" id="paidInvoice"
+                                                                                name="paidInvoice"
+                                                                                id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
                                                                                 class="upload__inputfile">
                                                                         </label>
                                                                     </div>
                                                                     <div class="upload__img-wrap"></div>
                                                                 </div>
-
+                                                                <div class="selected-files">
+                                                                    <h3>Files Selected:</h3>
+                                                                    <ul id="fileList{{ $invoice->id }}"></ul>
+                                                                </div>
 
 
 
@@ -342,6 +379,39 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+
+
+                                                    var pi{{ $invoice->id }} = document.getElementById('paidInvoice{{ $invoice->id }}');
+                                                    if (pi{{ $invoice->id }} !== null) {
+                                                        pi{{ $invoice->id }}.addEventListener('change', function() {
+                                                            var fileList = pi{{ $invoice->id }}.files;
+                                                            var fileDisplayList = document.getElementById('fileList{{ $invoice->id }}');
+
+                                                            fileDisplayList.innerHTML = '';
+
+                                                            for (var i = 0; i < fileList.length; i++) {
+                                                                var fileItem = document.createElement('li');
+                                                                fileItem.textContent = fileList[i].name;
+
+                                                                var deleteBtn = document.createElement('span');
+                                                                deleteBtn.textContent = ' ❌';
+                                                                deleteBtn.style.cursor = 'pointer';
+                                                                deleteBtn.onclick = function() {
+                                                                    fileItem.remove();
+                                                                };
+
+                                                                fileItem.appendChild(deleteBtn);
+                                                                fileDisplayList.appendChild(fileItem);
+                                                            }
+                                                        });
+                                                    }
+
+                                                });
+                                            </script>
+
 
                                         </td>
                                     </tr>
@@ -392,7 +462,7 @@
                                         </td>
                                         <td>
                                             @if ($invoice->paid_invoice_path != '')
-                                                Paid
+                                                Pending for verification
                                             @else
                                                 Unpaid
                                             @endif
@@ -428,12 +498,12 @@
                                         <td>
 
                                             <button type="button" class="bg-transparent border-0" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
+                                                data-bs-target="#exampleModal{{ $invoice->id }}">
                                                 <i class="fa-solid fa-upload fs-4" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Upload Images"></i>
                                             </button>
 
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal{{ $invoice->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -459,14 +529,18 @@
                                                                                 value ="{{ basename($invoice->invoice_path) }}"
                                                                                 name="oname" id="oname">
                                                                             <input type="file" multiple=""
-                                                                                name="paidInvoice" id="paidInvoice"
+                                                                                name="paidInvoice"
+                                                                                id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
                                                                                 class="upload__inputfile">
                                                                         </label>
                                                                     </div>
                                                                     <div class="upload__img-wrap"></div>
                                                                 </div>
-
+                                                                <div class="selected-files">
+                                                                    <h3>Files Selected:</h3>
+                                                                    <ul id="fileList{{ $invoice->id }}"></ul>
+                                                                </div>
 
 
 
@@ -481,6 +555,37 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+
+
+                                                    var pi{{ $invoice->id }} = document.getElementById('paidInvoice{{ $invoice->id }}');
+                                                    if (pi{{ $invoice->id }} !== null) {
+                                                        pi{{ $invoice->id }}.addEventListener('change', function() {
+                                                            var fileList = pi{{ $invoice->id }}.files;
+                                                            var fileDisplayList = document.getElementById('fileList{{ $invoice->id }}');
+
+                                                            fileDisplayList.innerHTML = '';
+
+                                                            for (var i = 0; i < fileList.length; i++) {
+                                                                var fileItem = document.createElement('li');
+                                                                fileItem.textContent = fileList[i].name;
+
+                                                                var deleteBtn = document.createElement('span');
+                                                                deleteBtn.textContent = ' ❌';
+                                                                deleteBtn.style.cursor = 'pointer';
+                                                                deleteBtn.onclick = function() {
+                                                                    fileItem.remove();
+                                                                };
+
+                                                                fileItem.appendChild(deleteBtn);
+                                                                fileDisplayList.appendChild(fileItem);
+                                                            }
+                                                        });
+                                                    }
+
+                                                });
+                                            </script>
                                         </td>
                                     </tr>
                                 @endif
@@ -569,7 +674,7 @@
                     // console.log("File uploaded successfully");
 
 
-                    // window.location.reload();
+                    window.location.reload();
                 },
                 error: function(xhr, status, error) {
 

@@ -34,17 +34,17 @@
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">Select Offers</a>
                                 <!-- @if (count($qoutes) > 0)
     <ul class="list-group list-group-flush">
-                                                                                @foreach ($qoutes as $qoute)
+                                                                                            @foreach ($qoutes as $qoute)
     <li class="list-group-item">
-                                                                                        <div class="form-check">
-                                                                                            <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
-                                                                                            <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
-                                                                                                {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </li>
+                                                                                                    <div class="form-check">
+                                                                                                        <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
+                                                                                                        <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
+                                                                                                            {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </li>
     @endforeach
-                                                                            </ul>
+                                                                                        </ul>
 @else
     <a class="text-decoration-underline text-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Please send an offer first.</a>
     @endif -->
@@ -391,13 +391,14 @@
                     },
                     success: function(response) {
                         // Update cities dropdown
+                        console.log(response);
                         var citiesDropdown = $('#city');
                         citiesDropdown.empty().append(
-                            '<option value="" selected>Select City</option>'
+                            '<option value="" selected>Select Port</option>'
                         ); // Always allow selection
                         citiesDropdown.prop('disabled', false); // Keep enabled
-                        if (response.cities && response.cities.length > 0) {
-                            $.each(response.cities, function(index, city) {
+                        if (response.ports && response.ports.length > 0) {
+                            $.each(response.ports, function(index, city) {
                                 citiesDropdown.append('<option value="' + city.id +
                                     '">' + city.name + '</option>');
                             });

@@ -130,13 +130,13 @@
                                     -
                                 @endif
                             </td>
-                            <td>
+                            {{-- <td>
                                 @if (in_array('pol_pod', $documents))
                                     Uploaded
                                 @else
                                     -
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 @if (in_array('tt_copy', $documents))
                                     Uploaded

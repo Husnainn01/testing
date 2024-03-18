@@ -144,15 +144,18 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Country:</th>
-                                                    <td class="text-center">{{ $shippingOrder->country }}</td>
+                                                    {{-- <td class="text-center">{{ $shippingOrder->country }}</td> --}}
+                                                    <td class="text-center">
+                                                        {{ $shippingOrder->country_selected->listing_location_name }}</td>
                                                 </tr>
-                                                <tr>
+                                                {{-- <tr>
                                                     <th>City:</th>
                                                     <td class="text-center">{{ $shippingOrder->city }}</td>
-                                                </tr>
+                                                </tr> --}}
                                                 <tr>
                                                     <th>Container Port:</th>
-                                                    <td class="text-center">{{ $shippingOrder->container_port }}</td>
+                                                    {{-- <td class="text-center">{{ $shippingOrder->container_port }}</td> --}}
+                                                    <td class="text-center">{{ $shippingOrder->port_selected->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Consignee Name:</th>
