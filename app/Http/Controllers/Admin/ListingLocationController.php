@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Listing;
 use App\Models\ListingLocation;
@@ -12,6 +14,7 @@ use Auth;
 use App\Models\City;
 use App\Models\Port;
 use App\Models\OptionService;
+
 class ListingLocationController extends Controller
 {
     public function __construct()
@@ -37,7 +40,7 @@ class ListingLocationController extends Controller
             'listing_location_name' => 'required|unique:listing_locations',
             'listing_location_slug' => 'unique:listing_locations',
             'listing_location_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ],[
+        ], [
             'listing_location_name.required' => ERR_NAME_REQUIRED,
             'listing_location_name.unique' => ERR_NAME_EXIST,
             'listing_location_slug.unique' => ERR_SLUG_UNIQUE,
@@ -51,20 +54,18 @@ class ListingLocationController extends Controller
         $ai_id = $statement[0]->Auto_increment;
 
         $ext = $request->file('listing_location_photo')->extension();
-        $rand_value = md5(mt_rand(11111111,99999999));
-        $final_name = $rand_value.'.'.$ext;
+        $rand_value = md5(mt_rand(11111111, 99999999));
+        $final_name = $rand_value . '.' . $ext;
         $request->file('listing_location_photo')->move(public_path('uploads/listing_location_photos/'), $final_name);
 
         $listing_location = new ListingLocation();
         $data = $request->only($listing_location->getFillable());
-        if(empty($data['listing_location_slug']))
-        {
+        if (empty($data['listing_location_slug'])) {
             unset($data['listing_location_slug']);
             $data['listing_location_slug'] = Str::slug($request->listing_location_name);
         }
 
-        if(preg_match('/\s/',$data['listing_location_slug']))
-        {
+        if (preg_match('/\s/', $data['listing_location_slug'])) {
             return Redirect()->back()->with('error', ERR_SLUG_WHITESPACE);
         }
 
@@ -91,15 +92,15 @@ class ListingLocationController extends Controller
 
             $request->validate([
                 'listing_location_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-            ],[
+            ], [
                 'listing_location_photo.image' => ERR_PHOTO_IMAGE,
                 'listing_location_photo.mimes' => ERR_PHOTO_JPG_PNG_GIF,
                 'listing_location_photo.max' => ERR_PHOTO_MAX
             ]);
             // Uploading the file
             $ext = $request->file('listing_location_photo')->extension();
-            $rand_value = md5(mt_rand(11111111,99999999));
-            $final_name = $rand_value.'.'.$ext;
+            $rand_value = md5(mt_rand(11111111, 99999999));
+            $final_name = $rand_value . '.' . $ext;
             $request->file('listing_location_photo')->move(public_path('uploads/listing_location_photos/'), $final_name);
 
             unset($data['listing_location_photo']);
@@ -114,20 +115,18 @@ class ListingLocationController extends Controller
             'listing_location_slug'   =>  [
                 Rule::unique('listing_locations')->ignore($id),
             ]
-        ],[
+        ], [
             'listing_location_name.required' => ERR_NAME_REQUIRED,
             'listing_location_name.unique' => ERR_NAME_EXIST,
             'listing_location_slug.unique' => ERR_SLUG_UNIQUE,
         ]);
 
-        if(empty($data['listing_location_slug']))
-        {
+        if (empty($data['listing_location_slug'])) {
             unset($data['listing_location_slug']);
             $data['listing_location_slug'] = Str::slug($request->listing_location_name);
         }
 
-        if(preg_match('/\s/',$data['listing_location_slug']))
-        {
+        if (preg_match('/\s/', $data['listing_location_slug'])) {
             return Redirect()->back()->with('error', ERR_SLUG_WHITESPACE);
         }
 
@@ -140,9 +139,8 @@ class ListingLocationController extends Controller
     {
 
 
-        $tot = Listing::where('listing_location_id',$id)->count();
-        if($tot)
-        {
+        $tot = Listing::where('listing_location_id', $id)->count();
+        if ($tot) {
             return Redirect()->back()->with('error', ERR_ITEM_DELETE);
         }
 
@@ -183,7 +181,7 @@ class ListingLocationController extends Controller
     {
         $listing_city = City::findOrFail($id);
         $countries = ListingLocation::get();
-        return view('admin.city.listing_city_edit', compact('listing_city','countries'));
+        return view('admin.city.listing_city_edit', compact('listing_city', 'countries'));
     }
 
     public function city_update(Request $request, $id)
@@ -243,7 +241,7 @@ class ListingLocationController extends Controller
     {
         $listing_port = Port::findOrFail($id);
         $countries = ListingLocation::get();
-        return view('admin.port.listing_port_edit', compact('listing_port','countries'));
+        return view('admin.port.listing_port_edit', compact('listing_port', 'countries'));
     }
 
     public function port_update(Request $request, $id)
@@ -252,7 +250,8 @@ class ListingLocationController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'country_id' => 'required|unique:cities,id,' . $id, // Ensure the uniqueness rule excludes the current city
+            // 'country_id' => 'required|unique:cities,id,' . $id, // Ensure the uniqueness rule excludes the current city
+            'country_id' => 'required', // Ensure the uniqueness rule excludes the current city
         ]);
         $portData = $request->all();
         $listing_port->fill($portData);
@@ -316,5 +315,4 @@ class ListingLocationController extends Controller
         $optionService->delete();
         return Redirect()->back()->with('success', SUCCESS_ACTION);
     }
-
 }

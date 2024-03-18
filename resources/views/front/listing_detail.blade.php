@@ -86,6 +86,9 @@
     <div class="container my-5">
         <div class="row px-3 px-sm-3">
             <div class="col-md-6 print-50">
+                {{-- @php
+                    dd($detail);
+                @endphp --}}
                 <h6>Home {{ $detail->brand_name }} > {{ $detail->listing_name }} > {{ $detail->listing_body }}
                     >{{ $detail->listing_model_year }}</h6>
                 {{--
@@ -275,9 +278,9 @@
                 </div>
                 <div class="row my-4">
                     <table class="table-bordered w-100 text-left specification">
-                        @php
+                        {{-- @php
                             dd($detail);
-                        @endphp
+                        @endphp --}}
                         {{-- <tr>
                         <td style="background: #EBF3FF;" class="text-left pl-2"><small>Price</small></td>
                         <td class="text-left pl-2"><small>{{$detail->listing_price}}</small></td>
@@ -285,8 +288,8 @@
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Ref. No.</small></td>
                             <td class="text-left pl-2">
-                                <small>-
-                                    {{-- {{$detail->listing_type}} --}}
+                                <small>
+                                    {{ $detail->listing_stock_id }}
                                 </small>
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Type</small></td>
@@ -296,8 +299,8 @@
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Chassis No.</small></td>
                             <td class="text-left pl-2">
-                                <small>-
-                                    {{-- {{$detail->listing_type}} --}}
+                                <small>
+                                    {{ $detail->listing_vin }}
                                 </small>
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Extreior Color</small></td>
@@ -306,8 +309,8 @@
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Model Code</small></td>
                             <td class="text-left pl-2">
-                                <small>-
-                                    {{-- {{$detail->listing_type}} --}}
+                                <small>
+                                    {{ $detail->listing_model_year }}
                                 </small>
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Interior Color</small></td>
@@ -319,8 +322,8 @@
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Engine Size</small></td>
                             <td class="text-left pl-2">
-                                <small>-
-                                    {{-- {{$detail->listing_type}} --}}
+                                <small>
+                                    {{ $detail->listing_engine_capacity }}
                                 </small>
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Cylinder</small></td>
@@ -371,8 +374,8 @@
                         <tr>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Transmission</small></td>
                             <td class="text-left pl-2">
-                                <small>-
-                                    {{-- {{$detail->listing_type}} --}}
+                                <small>
+                                    {{ $detail->listing_transmission }}
                                 </small>
                             </td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Body</small></td>
@@ -394,7 +397,9 @@
                             <td style="background: #EBF3FF; color:green;" class="text-left pl-2">
                                 <small>Manufacture<br>year/Month</small>
                             </td>
-                            <td class="text-left pl-2"><small>{{ $detail->listing_wheel }}</small></td>
+                            <td class="text-left pl-2"><small>
+                                    {{-- {{ $detail->listing_wheel }} --}}
+                                </small></td>
                             <td style="background: #EBF3FF;" class="text-left pl-2"><small>Wheel</small></td>
                             <td class="text-left pl-2"><small>{{ $detail->listing_wheel }}</small></td>
                         </tr>
@@ -448,18 +453,18 @@
                     {{--                </a> --}}
                 </div>
                 <!-- <div class="row my-3">
-            <div class="col-md-6 col-sm-12 col-lg-6">
-                {{-- <h5> Stock ID:5057</h5> --}}
-                {{-- <p  class="orange">Auction Grade: 4</p> --}}
-                    </div>
-                    <div class="col-md-6 col-sm-12 col-lg-6">
-                        <div class="text-right orange">
-                            <h5>
-                                <i class="far fa-heart"></i> Add to Favorites
-                            </h5>
-                        </div>
-                    </div>
-                </div> -->
+                                                                            <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                {{-- <h5> Stock ID:5057</h5> --}}
+                                                                                {{-- <p  class="orange">Auction Grade: 4</p> --}}
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                        <div class="text-right orange">
+                                                                                            <h5>
+                                                                                                <i class="far fa-heart"></i> Add to Favorites
+                                                                                            </h5>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> -->
                 <div class="container-fluid border rounded " style="background-color: #F6F6F6;">
                     <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                         @csrf
@@ -1862,7 +1867,7 @@
             const portSelect = document.getElementById('port');
             const selectedPortNameElement = document.getElementById('selected-port-name'); // Port name element
             const selectedPortNameElementFrom = document.getElementById(
-            'selected-port-name-from'); // Port name element
+                'selected-port-name-from'); // Port name element
             const selectedPortPriceElement = document.getElementById('selected-port-price');
             const portNameElement = document.querySelector('.port-name'); // Ensure this element exists
             const portPriceElement = document.querySelector('.port-price'); // Ensure this element exists
