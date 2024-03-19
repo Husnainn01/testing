@@ -24,14 +24,14 @@
                     href="{{ route('customer_car_and_shipping_information') }}">Shipping Information</a></li>
         </ul>
     </div>
-    <div class="head ">
+    {{-- <div class="head ">
         <div class="head bg-secondary text-white w-100 text-start px-2 py-2 fw-bold"><i
                 class="fa-solid fa-circle-check text-primary me-1"></i> Purchased</div>
         <ul class="list-unstyled p-2 mb-0">
             <li class="ms-2"><a class="{{ Request::routeIs('track-shipment') ? 'active' : '' }} "
                     href="{{ route('track-shipment') }}">Track Shipments</a></li>
         </ul>
-    </div>
+    </div> --}}
     <div class="head ">
         <div class="head bg-secondary text-white w-100 text-start px-2 py-2 fw-bold"><i
                 class="fa-solid fa-user text-primary me-1"></i> Account Settings</div>
