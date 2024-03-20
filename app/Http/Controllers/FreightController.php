@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\Freight;
 use App\Models\Insurance;
 use App\Models\Inspection;
@@ -63,13 +64,37 @@ class FreightController extends Controller
         return redirect()->route('admin_freight_view')->with('success', 'Freight updated successfully');
     }
 
+
+
     public function delete($id)
     {
         $id = (int)$id;
-        $Freight = Freight::findOrFail($id);
-        $Freight->delete();
-        return redirect()->route('admin_freight_view')->with('success', 'Freight deleted successfully');
+
+        try {
+            $freight = Freight::findOrFail($id);
+            $freight->delete();
+            return redirect()->route('admin_freight_view')->with('success', 'Freight deleted successfully');
+        } catch (QueryException $e) {
+            // Check if the exception is due to foreign key constraint violation
+            if ($e->errorInfo[1] == 1451) {
+                // return redirect()->back()->with('error', 'Cannot delete freight. It is referenced by other records.');
+                return redirect()->route('admin_freight_view')->with('error', 'Cannot delete freight. It is referenced by other records.');
+            }
+
+            // Handle other database errors
+            // return redirect()->back()->with('error', 'An error occurred while deleting the freight.');
+            return redirect()->route('admin_freight_view')->with('error', 'An error occurred while deleting the freight.');
+        }
     }
+
+
+    // public function delete($id)
+    // {
+    //     $id = (int)$id;
+    //     $Freight = Freight::findOrFail($id);
+    //     $Freight->delete();
+    //     return redirect()->route('admin_freight_view')->with('success', 'Freight deleted successfully');
+    // }
 
     public function show($id)
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Listing;
 use App\Models\ListingLocation;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -259,12 +260,32 @@ class ListingLocationController extends Controller
         return redirect()->route('admin_listing_port_view')->with('success', SUCCESS_ACTION);
     }
 
+
+
     public function port_destroy($id)
     {
-        $listing_port = Port::findOrFail($id);
-        $listing_port->delete();
-        return Redirect()->back()->with('success', SUCCESS_ACTION);
+        try {
+            $listing_port = Port::findOrFail($id);
+            $listing_port->delete();
+            return Redirect()->back()->with('success', 'Port deleted successfully');
+        } catch (QueryException $e) {
+            // Check if the exception is due to foreign key constraint violation
+            if ($e->errorInfo[1] == 1451) {
+                // return Redirect()->back()->with('error', 'Cannot delete port. It is referenced by other records.');
+                return redirect()->route('admin_listing_port_view')->with('error', 'Cannot delete port. It is referenced by other records.');
+            }
+
+            return redirect()->route('admin_listing_port_view')->with('error', 'An error occurred while deleting the port.');
+        }
     }
+
+
+    // public function port_destroy($id)
+    // {
+    //     $listing_port = Port::findOrFail($id);
+    //     $listing_port->delete();
+    //     return Redirect()->back()->with('success', SUCCESS_ACTION);
+    // }
     // option services
     public function option_service_index()
     {

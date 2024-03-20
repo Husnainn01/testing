@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inspection;
+use Illuminate\Database\QueryException;
 
 class InspectionController extends Controller
 {
@@ -65,10 +66,27 @@ class InspectionController extends Controller
     public function delete($id)
     {
         $id = (int)$id;
-        $inspection = Inspection::findOrFail($id);
-        $inspection->delete();
-        return redirect()->route('admin_inspection_view')->with('success', 'inspection deleted successfully');
+
+        try {
+            $inspection = Inspection::findOrFail($id);
+            $inspection->delete();
+            return redirect()->route('admin_inspection_view')->with('success', 'Inspection deleted successfully');
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] == 1451) {
+                return redirect()->route('admin_inspection_view')->with('error', 'Cannot delete inspection. It is referenced by other records.');
+            }
+
+            return redirect()->route('admin_inspection_view')->with('error', 'An error occurred while deleting the inspection.');
+        }
     }
+
+    // public function delete($id)
+    // {
+    //     $id = (int)$id;
+    //     $inspection = Inspection::findOrFail($id);
+    //     $inspection->delete();
+    //     return redirect()->route('admin_inspection_view')->with('success', 'inspection deleted successfully');
+    // }
 
     public function show($id)
     {
