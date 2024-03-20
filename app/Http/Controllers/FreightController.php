@@ -16,44 +16,46 @@ class FreightController extends Controller
     {
         $this->middleware('auth.admin:admin');
     }
-    public function index(){
+    public function index()
+    {
         $freights = Freight::all();
-        return view("admin.freights.index",compact('freights'));
+        return view("admin.freights.index", compact('freights'));
     }
-    public function create(){
+    public function create()
+    {
         return view("admin.freights.create");
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'company' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required',
             'destination' => 'required',
         ]);
         $freight = Freight::create($request->all());
-        if($freight)
-        {
+        if ($freight) {
             return redirect()->route('admin_freight_view')->with('success', SUCCESS_ACTION);
         }
         return redirect()->back()->with('error', "Something Went Wrong");
-
-
     }
-    public function edit($id){
-        $id=(int)$id;
+    public function edit($id)
+    {
+        $id = (int)$id;
         $freight = Freight::findorFail($id);
-        return view("admin.freights.edit",compact('freight'));
+        return view("admin.freights.edit", compact('freight'));
     }
-    
-    public function update(Request $request){
+
+    public function update(Request $request)
+    {
         $id = (int)$request->input('id');
         $freight = Freight::findOrFail($id);
-    
+
         $request->validate([
             'company' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required',
             'destination' => 'required',
         ]);
-    
+
         $freight->company = $request->input('company');
         $freight->price = $request->input('price');
         $freight->destination = $request->input('destination');
@@ -67,27 +69,31 @@ class FreightController extends Controller
         $Freight = Freight::findOrFail($id);
         $Freight->delete();
         return redirect()->route('admin_freight_view')->with('success', 'Freight deleted successfully');
-    }    
+    }
 
-    public function show($id){
+    public function show($id)
+    {
         return view("admin.freights.show");
     }
 
-    public function offer_index(){
+    public function offer_index()
+    {
         $offers = Qoute::all();
-        return view("admin.offerManagment.index",compact('offers'));
+        return view("admin.offerManagment.index", compact('offers'));
     }
 
-    public function offer_edit($id){
-        $id=(int)$id;
+    public function offer_edit($id)
+    {
+        $id = (int)$id;
         $offer = Qoute::findorFail($id);
-        $freights= Freight::all();
-        $insurances= Insurance::all();
-        $inspections= Inspection::all();
-        return view("admin.offerManagment.edit",compact('offer','freights','insurances','inspections'));
+        $freights = Freight::all();
+        $insurances = Insurance::all();
+        $inspections = Inspection::all();
+        return view("admin.offerManagment.edit", compact('offer', 'freights', 'insurances', 'inspections'));
     }
-    
-    public function offer_update(Request $request){
+
+    public function offer_update(Request $request)
+    {
         $id = (int)$request->input('id');
         $offer = Qoute::findOrFail($id);
         $offer->car_name = $request->car_name;
@@ -102,9 +108,8 @@ class FreightController extends Controller
         $offer->agreed_price = $request->agreed_price;
         $offer->save();
         $car = Listing::findorFail($offer->car_id);
-        if($offer->status !== "offered")
-        {
-            $car->listing_stock_status = $offer->status; 
+        if ($offer->status !== "offered") {
+            $car->listing_stock_status = $offer->status;
         }
         $car->save();
         return redirect()->route('admin_offer_managment_view')->with('success', 'offer updated successfully');
@@ -116,11 +121,12 @@ class FreightController extends Controller
         $qoute = Qoute::findOrFail($id);
         $qoute->shippingOrders()->delete();
         $qoute->delete();
-    
+
         return redirect()->route('admin_offer_managment_view')->with('success', 'Offer and related records deleted successfully');
     }
 
-    public function offer_show($id){
+    public function offer_show($id)
+    {
         return view("admin.offerManagment.show");
     }
 }

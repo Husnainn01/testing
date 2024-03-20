@@ -1860,7 +1860,7 @@ class CustomerController extends Controller
             'offer_ids.*' => 'required|numeric',
             'service' => 'required|string',
             'country' => 'required|numeric',
-            'city' => 'required|numeric',
+            // 'city' => 'required|numeric',
             'container_port' => 'required|numeric'
         ];
 
@@ -1879,7 +1879,7 @@ class CustomerController extends Controller
         $shippingOrder = new ShippingOrder([
             'service' => $request->input('service'),
             'country' => $request->input('country'),
-            'city' => $request->input('city'),
+            'city' => "3",
             'container_port' => $request->input('container_port'),
             'consignee_tab' => $request->input('consignee_tab'),
             'receiver_tab' => $request->input('receiver_tab'),
