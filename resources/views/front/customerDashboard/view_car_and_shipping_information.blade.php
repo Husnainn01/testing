@@ -173,7 +173,7 @@
                                                     <th>Consignee Phone Number:</th>
                                                     <td class="text-center">{{ $shippingOrder->default_phone_number }}</td>
                                                 </tr>
-                                                <tr>
+                                                {{-- <tr>
                                                     <th>Receiver Name:</th>
                                                     <td class="text-center">{{ $shippingOrder->receiver_default_name }}
                                                     </td>
@@ -192,7 +192,7 @@
                                                     <th>Receiver Phone Number:</th>
                                                     <td class="text-center">
                                                         {{ $shippingOrder->receiver_default_phone_number }}</td>
-                                                </tr>
+                                                </tr> --}}
                                                 <tr>
                                                     <th>Status:</th>
                                                     <td class="text-center">{{ $shippingOrder->status }}</td>

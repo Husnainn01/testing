@@ -1880,7 +1880,7 @@ class CustomerController extends Controller
             'service' => $request->input('service'),
             'country' => $request->input('country'),
             'city' => "3",
-            'container_port' => $request->input('container_port'),
+            'container_port' => $request->input('city'),
             'consignee_tab' => $request->input('consignee_tab'),
             'receiver_tab' => $request->input('receiver_tab'),
             'consignee_id' => $request->input('consignee_id'),
