@@ -1,6 +1,6 @@
 @extends('front.customer-newdashboard.layouts.template')
 @section('content')
-    <form action="{{ route('place_order_shipping') }}" id="msform" style="height: 600px;">
+    <form action="{{ route('place_order_shipping') }}" id="msform" style="min-height: 600px;">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -31,20 +31,20 @@
                             <div class="card-body">
                                 <h5 class="card-title">Choose Offers *</h5>
                                 <a class="btn btn-danger text-decoration-none text-white" type="button"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal">Select Offers</a>
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal" id="openpop">Select Offers</a>
                                 <!-- @if (count($qoutes) > 0)
     <ul class="list-group list-group-flush">
-                                                                                            @foreach ($qoutes as $qoute)
+                                                                                                                                                                                            @foreach ($qoutes as $qoute)
     <li class="list-group-item">
-                                                                                                    <div class="form-check">
-                                                                                                        <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
-                                                                                                        <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
-                                                                                                            {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </li>
+                                                                                                                                                                                                    <div class="form-check">
+                                                                                                                                                                                                        <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
+                                                                                                                                                                                                        <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
+                                                                                                                                                                                                            {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
+                                                                                                                                                                                                        </label>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </li>
     @endforeach
-                                                                                        </ul>
+                                                                                                                                                                                        </ul>
 @else
     <a class="text-decoration-underline text-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Please send an offer first.</a>
     @endif -->
@@ -376,6 +376,14 @@
     </form>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        document.querySelectorAll('#openpop').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                $('.modal-backdrop').remove();
+            });
+        });
+    </script>
+
 
     <script>
         $(document).ready(function() {
@@ -412,6 +420,45 @@
         });
     </script>
     <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     document.getElementById('order-select-button').addEventListener('click', function() {
+        //         // Get all checked checkboxes
+        //         var checkboxes = document.querySelectorAll('input[name="offer_ids[]"]:checked');
+        //         var selectedOffers = [];
+
+        //         // Iterate over each checked checkbox and extract its row data
+        //         checkboxes.forEach(function(checkbox) {
+        //             // Get the closest row of the checkbox
+        //             var row = checkbox.closest('tr');
+
+        //             // Extract the data from the row
+        //             var rowData = {
+        //                 photos: row.cells[1].querySelector('img').getAttribute('src'),
+        //                 stockId: row.cells[2].textContent.trim(),
+        //                 name: row.cells[3].textContent.trim(),
+        //                 transmission: row.cells[4].textContent.trim(),
+        //                 brand: row.cells[5].textContent.trim()
+        //             };
+
+        //             selectedOffers.push(rowData);
+        //         });
+
+        //         // Display the selected offers in the "choose-car-offers" element
+        //         document.getElementById('choose-car-offers').innerHTML =
+        //             '<h5 class="card-title">Selected Offers *</h5><div class="row">' +
+        //             selectedOffers.map(function(offer) {
+        //                 return '<div class="col-md-3 mb-3" style="margin-right: 30px">' +
+        //                     '<img src="' + offer.photos +
+        //                     '" class="mt-2 rounded-3" height="120px" style="object-fit: cover;" alt="Car Image">' +
+        //                     // '<div>Stock ID: ' + offer.stockId + '</div>' +
+        //                     '<div>' + offer.name + '</div>' +
+        //                     // '<div>Transmission: ' + offer.transmission + '</div>' +
+        //                     // '<div>Brand: ' + offer.brand + '</div>' +
+        //                     '</div>';
+        //             }).join('') + '</div>';
+        //     });
+        // });
+
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('order-select-button').addEventListener('click', function() {
                 // Get all checked checkboxes
@@ -436,18 +483,66 @@
                 });
 
                 // Display the selected offers in the "choose-car-offers" element
-                document.getElementById('choose-car-offers').innerHTML =
-                    '<h5 class="card-title">Selected Offers *</h5><div class="row">' +
-                    selectedOffers.map(function(offer) {
-                        return '<div class="col-md-3 mb-3" style="margin-right: 30px">' +
-                            '<img src="' + offer.photos +
-                            '" class="mt-2 rounded-3" height="120px" style="object-fit: cover;" alt="Car Image">' +
-                            // '<div>Stock ID: ' + offer.stockId + '</div>' +
-                            '<div>' + offer.name + '</div>' +
-                            // '<div>Transmission: ' + offer.transmission + '</div>' +
-                            // '<div>Brand: ' + offer.brand + '</div>' +
-                            '</div>';
-                    }).join('') + '</div>';
+                var chooseCarOffersElement = document.getElementById('choose-car-offers');
+                chooseCarOffersElement.innerHTML =
+                    '<h5 class="card-title">Selected Offers *</h5><div class="row"></div>'; // Create the row div
+
+                var rowDiv = chooseCarOffersElement.querySelector('.row'); // Get the row div
+
+                selectedOffers.forEach(function(offer, index) {
+                    var offerElement = document.createElement('div');
+                    offerElement.className = 'col-md-3 mb-3';
+                    offerElement.style.marginRight = '30px';
+
+                    // Create a container for the image and cross icon
+                    var imageContainer = document.createElement('div');
+                    imageContainer.style.position =
+                        'relative'; // Make the container position relative
+
+                    // Create an image element for the offer
+                    var imgElement = document.createElement('img');
+                    imgElement.src = offer.photos;
+                    imgElement.className = 'mt-2 rounded-3';
+                    imgElement.height = '120';
+                    imgElement.style.objectFit = 'cover';
+                    imgElement.alt = 'Car Image';
+
+                    // Create a span element for the cross icon
+                    var crossIcon = document.createElement('span');
+                    crossIcon.className = 'cross-icon';
+                    crossIcon.textContent = '❌';
+                    crossIcon.style.cursor = 'pointer';
+                    crossIcon.style.position = 'absolute'; // Make the cross icon position absolute
+                    crossIcon.style.top = '0'; // Position at the top
+                    crossIcon.style.right = '-35px'; // Position at the right
+                    // Associate the cross icon with the offer index using a data attribute
+                    crossIcon.setAttribute('data-index', index);
+
+                    // Append the image and cross icon to the container
+                    imageContainer.appendChild(imgElement);
+                    imageContainer.appendChild(crossIcon);
+
+                    var nameElement = document.createElement('div');
+                    nameElement.textContent = offer.name;
+                    nameElement.className = 'offer-name';
+
+                    // Append the container and name element to the offer element
+                    offerElement.appendChild(imageContainer);
+                    offerElement.appendChild(nameElement);
+
+                    // Append the offer element to the "row" div
+                    rowDiv.appendChild(offerElement);
+                });
+
+                chooseCarOffersElement.querySelectorAll('.cross-icon').forEach(function(crossIcon) {
+                    crossIcon.addEventListener('click', function() {
+                        var offerElement = crossIcon.parentNode.parentNode;
+                        var indexToRemove = parseInt(crossIcon.getAttribute('data-index'));
+                        selectedOffers.splice(indexToRemove, 1);
+                        offerElement.parentNode.removeChild(offerElement);
+                        checkboxes[indexToRemove].checked = false;
+                    });
+                });
             });
         });
     </script>

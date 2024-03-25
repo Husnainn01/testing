@@ -1732,6 +1732,13 @@ class CustomerController extends Controller
         $invoices = $user->invoices;
         // $ShippingOrder = ShippingOrder::all();
         $ShippingOrder = ShippingOrder::where('consignee_id', Auth::user()->id)->get();
+
+        // $shippingOrder = ShippingOrder::findorFail($id);
+
+        // $offers = $ShippingOrder->offers;
+        // $car = $offers[0]->car;
+        // $id = $ShippingOrder->id;
+        // $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
         // dd($ShippingOrder);
         return view('front.customer-newdashboard.inovice', compact('invoices', 'ShippingOrder'));
     }

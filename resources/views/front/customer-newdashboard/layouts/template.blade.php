@@ -166,6 +166,179 @@
             $("#receiver_default-tab").addClass('grey-active');
             $("#receiver_add_new-tab").removeClass('grey-active');
         });
+        // document.getElementById('submitForm').addEventListener('click', function() {
+        //     const mandatoryFields = [
+        //         'offer_ids',
+        //         'service',
+        //         'country',
+        //         'city',
+        //         'container_port'
+        //     ];
+        //     //
+        //     var checkedCheckboxes = $('#exampleModal input[name="offer_ids[]"]:checked');
+        //     var checkedValues = checkedCheckboxes.map(function() {
+        //         return $(this).val();
+        //     }).get();
+        //     if (checkedValues.length === 0) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: 'Oops...',
+        //             text: 'Please select at least one offer!',
+        //         });
+        //         return;
+        //     }
+        //     //
+        //     // offer_ids
+        //     const formData = {
+        //         offer_ids: checkedValues,
+        //         service: document.getElementById('service').value,
+        //         country: parseInt(document.getElementById('country').value),
+        //         city: parseInt(document.getElementById('city').value),
+        //         container_port: parseInt(document.getElementById('city').value),
+        //         // container_port: 33,
+        //         consignee_tab: $('#tabs-nav-consignee #tabs-nav .grey-active').attr('id'),
+        //         receiver_tab: $('#tabs-nav-receiver #tabs-nav .grey-active').attr('id'),
+        //     };
+        //     let isValid = true;
+        //     for (const field of mandatoryFields) {
+        //         if (!formData[field]) {
+        //             isValid = false;
+        //             break;
+        //         }
+        //     }
+        //     if (!isValid) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: 'Validation Error',
+        //             text: 'Please fill in all mandatory fields.',
+        //         });
+        //         return;
+        //     }
+        //     if (formData.consignee_tab === 'default-tab') {
+        //         formData.consignee_id = parseInt({{ Auth::user()->id }});
+        //         formData.default_name = document.querySelector('input[name="default_name"]').value;
+        //         formData.default_company_name = document.querySelector('input[name="default_company_name"]').value;
+        //         formData.default_email = document.querySelector('input[name="default_email"]').value;
+        //         formData.default_phone_number = document.querySelector('input[name="default_phone_number"]').value;
+        //         formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
+        //         formData.default_address = document.querySelector('input[name="default_address"]').value;
+        //     } else {
+        //         formData.consignee_id = parseInt({{ Auth::user()->id }});
+        //         formData.default_name = document.querySelector('input[name="consignee_name"]').value;
+        //         formData.default_company_name = document.querySelector('input[name="consignee_company_name"]')
+        //             .value;
+        //         formData.default_email = document.querySelector('input[name="consignee_email"]').value;
+        //         formData.default_phone_2 = document.querySelector('input[name="phone_number"]').value;
+        //         formData.default_phone_2 = document.querySelector('input[name="phone_number_2"]').value;
+        //         formData.default_address = document.querySelector('input[name="address"]').value;
+        //     }
+
+        //     if (formData.receiver_tab ===
+        //         'receiver_default-tab') { // Use 'receiver_default' instead of 'receiver_default-tab'
+        //         formData.receiver_id = parseInt({{ Auth::user()->id }});
+        //         formData.receiver_default_name = document.querySelector('input[name="receiver_default_name"]')
+        //             .value;
+        //         formData.receiver_default_company_name = document.querySelector(
+        //             'input[name="receiver_default_company_name"]').value;
+        //         formData.receiver_default_email = document.querySelector('input[name="receiver_default_email"]')
+        //             .value;
+        //         formData.receiver_default_phone_number = document.querySelector(
+        //             'input[name="receiver_default_phone_number"]').value;
+        //         formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]')
+        //             .value;
+        //         formData.receiver_default_address = document.querySelector('input[name="receiver_default_address"]')
+        //             .value;
+        //     } else {
+        //         formData.receiver_id = parseInt({{ Auth::user()->id }});
+        //         formData.receiver_default_name = document.querySelector('input[name="receiver_add_name"]').value;
+        //         formData.receiver_default_company_name = document.querySelector(
+        //             'input[name="receiver_add_company_name"]').value;
+        //         formData.receiver_default_email = document.querySelector('input[name="receiver_add_email"]').value;
+        //         formData.receiver_default_phone_number = document.querySelector(
+        //             'input[name="receiver_add_phone_number"]').value;
+        //         formData.receiver_default_phone_2 = document.querySelector(
+        //             'input[name="receiver_add_phone_number_2"]').value;
+        //         formData.receiver_default_address = document.querySelector('input[name="receiver_add_address"]')
+        //             .value;
+        //     }
+
+        //     const serviceCheckboxes = document.querySelectorAll('input[name^="service_name"]');
+        //     const selectedServiceIds = [];
+        //     serviceCheckboxes.forEach(checkbox => {
+        //         if (checkbox.checked) {
+        //             const matches = checkbox.name.match(/\[(\d+)\]/);
+        //             if (matches && matches.length > 1) {
+        //                 selectedServiceIds.push(matches[1]);
+        //             }
+        //         }
+        //     });
+
+        //     formData['service_name'] = selectedServiceIds;
+
+        //     formData.deregistration_service = document.getElementById('deregistration_service').checked ? 1 : 0;
+        //     formData.english_export_service = document.getElementById('english_export_service').checked ? 1 : 0;
+        //     formData.photo_service = document.getElementById('photo_service').checked ? 1 : 0;
+        //     formData.ss_custom_photo_service = document.getElementById('ss_custom_photo_service').checked ? 1 : 0;
+        //     formData.ss_custom_inspection_service = document.getElementById('ss_custom_inspection_service')
+        //         .checked ? 1 : 0;
+        //     formData.ss_custom_cleaning_service = document.getElementById('ss_custom_cleaning_service').checked ?
+        //         1 : 0;
+        //     fetch("{{ route('place_order_shipping') }}", {
+        //             method: "POST",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //                 "X-CSRF-TOKEN": "{{ csrf_token() }}",
+        //             },
+        //             body: JSON.stringify(formData),
+        //         })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             if (data && data.message) {
+        //                 if (data.shippingOrder) {
+        //                     const shippingOrder = data.shippingOrder;
+        //                     console.log("Shipping Order:", shippingOrder);
+        //                 }
+
+        //                 if (data.message.toLowerCase().includes("success")) {
+        //                     // Success message
+
+        //                     Swal.fire({
+        //                         icon: 'success',
+        //                         title: 'Success',
+        //                         text: data.message,
+        //                     });
+        //                     location.reload();
+        //                     window.scrollTo(0, 0);
+        //                 } else {
+        //                     // Error message
+        //                     Swal.fire({
+        //                         icon: 'error',
+        //                         title: 'Error',
+        //                         text: data.message,
+        //                     });
+        //                 }
+        //             } else {
+        //                 // Handle cases where the response does not contain the expected data
+        //                 Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'Validation Error',
+        //                     text: data.errors.offer_ids,
+        //                 });
+        //                 return;
+        //                 console.error('Invalid response format:', data);
+        //             }
+        //         })
+        //         .catch(error => {
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 title: 'There was a problem with the fetch operation',
+        //                 text: error,
+        //             });
+        //             return;
+        //             console.error('There was a problem with the fetch operation:', error);
+        //         });
+
+        // });
         document.getElementById('submitForm').addEventListener('click', function() {
             const mandatoryFields = [
                 'offer_ids',
@@ -174,7 +347,7 @@
                 'city',
                 'container_port'
             ];
-            //
+
             var checkedCheckboxes = $('#exampleModal input[name="offer_ids[]"]:checked');
             var checkedValues = checkedCheckboxes.map(function() {
                 return $(this).val();
@@ -187,18 +360,19 @@
                 });
                 return;
             }
-            //
-            // offer_ids
+
             const formData = {
                 offer_ids: checkedValues,
                 service: document.getElementById('service').value,
                 country: parseInt(document.getElementById('country').value),
                 city: parseInt(document.getElementById('city').value),
-                // container_port: parseInt(document.getElementById('city').value),
-                container_port: 33,
+                container_port: parseInt(document.getElementById('city').value),
                 consignee_tab: $('#tabs-nav-consignee #tabs-nav .grey-active').attr('id'),
                 receiver_tab: $('#tabs-nav-receiver #tabs-nav .grey-active').attr('id'),
+                consignee_id: parseInt({{ Auth::user()->id }}),
+                receiver_id: parseInt({{ Auth::user()->id }})
             };
+
             let isValid = true;
             for (const field of mandatoryFields) {
                 if (!formData[field]) {
@@ -214,75 +388,24 @@
                 });
                 return;
             }
-            if (formData.consignee_tab === 'default-tab') {
-                formData.consignee_id = parseInt({{ Auth::user()->id }});
-                formData.default_name = document.querySelector('input[name="default_name"]').value;
-                formData.default_company_name = document.querySelector('input[name="default_company_name"]').value;
-                formData.default_email = document.querySelector('input[name="default_email"]').value;
-                formData.default_phone_number = document.querySelector('input[name="default_phone_number"]').value;
-                formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
-                formData.default_address = document.querySelector('input[name="default_address"]').value;
-            } else {
-                formData.consignee_id = parseInt({{ Auth::user()->id }});
-                formData.default_name = document.querySelector('input[name="consignee_name"]').value;
-                formData.default_company_name = document.querySelector('input[name="consignee_company_name"]')
-                    .value;
-                formData.default_email = document.querySelector('input[name="consignee_email"]').value;
-                formData.default_phone_2 = document.querySelector('input[name="phone_number"]').value;
-                formData.default_phone_2 = document.querySelector('input[name="phone_number_2"]').value;
-                formData.default_address = document.querySelector('input[name="address"]').value;
-            }
 
-            if (formData.receiver_tab ===
-                'receiver_default-tab') { // Use 'receiver_default' instead of 'receiver_default-tab'
-                formData.receiver_id = parseInt({{ Auth::user()->id }});
-                formData.receiver_default_name = document.querySelector('input[name="receiver_default_name"]')
-                    .value;
-                formData.receiver_default_company_name = document.querySelector(
-                    'input[name="receiver_default_company_name"]').value;
-                formData.receiver_default_email = document.querySelector('input[name="receiver_default_email"]')
-                    .value;
-                formData.receiver_default_phone_number = document.querySelector(
-                    'input[name="receiver_default_phone_number"]').value;
-                formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]')
-                    .value;
-                formData.receiver_default_address = document.querySelector('input[name="receiver_default_address"]')
-                    .value;
-            } else {
-                formData.receiver_id = parseInt({{ Auth::user()->id }});
-                formData.receiver_default_name = document.querySelector('input[name="receiver_add_name"]').value;
-                formData.receiver_default_company_name = document.querySelector(
-                    'input[name="receiver_add_company_name"]').value;
-                formData.receiver_default_email = document.querySelector('input[name="receiver_add_email"]').value;
-                formData.receiver_default_phone_number = document.querySelector(
-                    'input[name="receiver_add_phone_number"]').value;
-                formData.receiver_default_phone_2 = document.querySelector(
-                    'input[name="receiver_add_phone_number_2"]').value;
-                formData.receiver_default_address = document.querySelector('input[name="receiver_add_address"]')
-                    .value;
-            }
-
-            const serviceCheckboxes = document.querySelectorAll('input[name^="service_name"]');
-            const selectedServiceIds = [];
-            serviceCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    const matches = checkbox.name.match(/\[(\d+)\]/);
-                    if (matches && matches.length > 1) {
-                        selectedServiceIds.push(matches[1]);
-                    }
+            // Confirmation dialog before sending offer
+            Swal.fire({
+                icon: 'warning',
+                title: 'Confirmation',
+                text: 'Are you sure you want to send this offer?',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Proceed with sending the offer
+                    sendOffer(formData);
                 }
             });
+        });
 
-            formData['service_name'] = selectedServiceIds;
-
-            formData.deregistration_service = document.getElementById('deregistration_service').checked ? 1 : 0;
-            formData.english_export_service = document.getElementById('english_export_service').checked ? 1 : 0;
-            formData.photo_service = document.getElementById('photo_service').checked ? 1 : 0;
-            formData.ss_custom_photo_service = document.getElementById('ss_custom_photo_service').checked ? 1 : 0;
-            formData.ss_custom_inspection_service = document.getElementById('ss_custom_inspection_service')
-                .checked ? 1 : 0;
-            formData.ss_custom_cleaning_service = document.getElementById('ss_custom_cleaning_service').checked ?
-                1 : 0;
+        function sendOffer(formData) {
             fetch("{{ route('place_order_shipping') }}", {
                     method: "POST",
                     headers: {
@@ -323,7 +446,6 @@
                             title: 'Validation Error',
                             text: data.errors.offer_ids,
                         });
-                        return;
                         console.error('Invalid response format:', data);
                     }
                 })
@@ -333,11 +455,13 @@
                         title: 'There was a problem with the fetch operation',
                         text: error,
                     });
-                    return;
                     console.error('There was a problem with the fetch operation:', error);
                 });
+        }
 
-        });
+
+
+
         jQuery(document).ready(function() {
             ImgUpload();
         });

@@ -84,22 +84,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $counter = 1;
+                    @endphp
                     @foreach ($ShippingOrder as $invoice)
                         @if ($invoice->invoice_path != '')
                             <tr>
 
                                 <td>
-                                    {{ $invoice->shipping_id }}
+                                    ss-{{ $counter++ }}
                                 </td>
                                 <td>
                                     @php
-                                        $listingPhoto = \App\Models\ListingPhoto::where(
-                                            'listing_id',
-                                            $invoice->id,
-                                        )->first();
-                                        $photoUrl = $listingPhoto
-                                            ? asset('uploads/listing_photos/' . $listingPhoto->photo)
-                                            : '';
+
+                                        $photoUrl = asset(
+                                            'uploads/listing_featured_photos/' .
+                                                $invoice->offers[0]->car->listing_featured_photo,
+                                        );
                                     @endphp
 
                                     <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
@@ -107,13 +108,12 @@
                                 </td>
                                 <td>
                                     <ul>
-
                                         @foreach ($invoice->offers as $offer)
                                             <li>
                                                 <a class="text-primary text-decoration-underline"
                                                     href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
                                                     title="View Shipment">
-                                                    {{ $offer->car_name }}
+                                                    {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -152,12 +152,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $invoice->default_name }}
+
+                                    {{ $invoice->default_name }} / {{ $invoice->country_selected->listing_location_name }}
                                 </td>
                                 <td>
                                     <a href="{{ asset($invoice->invoice_path) }}"
                                         download="{{ basename($invoice->invoice_path) }}">
-                                        <i class="fas fa-download"></i>
+                                        {{-- <i class="fas fa-download"></i> --}}
+                                        <i class="fa-solid fa-download fs-4"></i>
                                     </a>
                                 </td>
                             </tr>

@@ -64,27 +64,28 @@
                             <th>Vessel Name</th>
                             <th>ETD / POL</th>
                             <th>ETA / POD</th>
+                            <th>Consignee Name / Location</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $counter = 1;
+                        @endphp
                         @foreach ($ShippingOrder as $invoice)
                             @if (request()->input('invoice-status') == 'paid')
                                 @if ($invoice->invoice_path != '' && $invoice->paid_invoice_path != '')
                                     <tr>
 
                                         <td>
-                                            {{ $invoice->shipping_id }}
+                                            ss-{{ $counter++ }}
                                         </td>
                                         <td>
                                             @php
-                                                $listingPhoto = \App\Models\ListingPhoto::where(
-                                                    'listing_id',
-                                                    $invoice->id,
-                                                )->first();
-                                                $photoUrl = $listingPhoto
-                                                    ? asset('uploads/listing_photos/' . $listingPhoto->photo)
-                                                    : '';
+                                                $photoUrl = asset(
+                                                    'uploads/listing_featured_photos/' .
+                                                        $invoice->offers[0]->car->listing_featured_photo,
+                                                );
                                             @endphp
 
                                             <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
@@ -98,7 +99,7 @@
                                                         <a class="text-primary text-decoration-underline"
                                                             href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
                                                             title="View Shipment">
-                                                            {{ $offer->car_name }}
+                                                            {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
                                                         </a>
                                                     </li>
                                                 @endforeach
@@ -143,7 +144,11 @@
                                                 -
                                             @endif
                                         </td>
+                                        <td>
+                                            {{ $invoice->default_name }} /
+                                            {{ $invoice->country_selected->listing_location_name }}
 
+                                        </td>
                                         <td>
 
                                             <button type="button" class="bg-transparent border-0" data-bs-toggle="modal"
@@ -247,17 +252,14 @@
                                     <tr>
 
                                         <td>
-                                            {{ $invoice->shipping_id }}
+                                            ss-{{ $counter++ }}
                                         </td>
                                         <td>
                                             @php
-                                                $listingPhoto = \App\Models\ListingPhoto::where(
-                                                    'listing_id',
-                                                    $invoice->id,
-                                                )->first();
-                                                $photoUrl = $listingPhoto
-                                                    ? asset('uploads/listing_photos/' . $listingPhoto->photo)
-                                                    : '';
+                                                $photoUrl = asset(
+                                                    'uploads/listing_featured_photos/' .
+                                                        $invoice->offers[0]->car->listing_featured_photo,
+                                                );
                                             @endphp
 
                                             <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
@@ -271,7 +273,7 @@
                                                         <a class="text-primary text-decoration-underline"
                                                             href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
                                                             title="View Shipment">
-                                                            {{ $offer->car_name }}
+                                                            {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
                                                         </a>
                                                     </li>
                                                 @endforeach
@@ -316,9 +318,11 @@
                                                 -
                                             @endif
                                         </td>
-                                        {{-- <td>
-                                        {{ $invoice->default_name }}
-                                    </td> --}}
+                                        <td>
+                                            {{ $invoice->default_name }} /
+                                            {{ $invoice->country_selected->listing_location_name }}
+
+                                        </td>
                                         <td>
 
                                             <button type="button" class="bg-transparent border-0" data-bs-toggle="modal"
@@ -423,17 +427,14 @@
                                     <tr>
 
                                         <td>
-                                            {{ $invoice->shipping_id }}
+                                            ss-{{ $counter++ }}
                                         </td>
                                         <td>
                                             @php
-                                                $listingPhoto = \App\Models\ListingPhoto::where(
-                                                    'listing_id',
-                                                    $invoice->id,
-                                                )->first();
-                                                $photoUrl = $listingPhoto
-                                                    ? asset('uploads/listing_photos/' . $listingPhoto->photo)
-                                                    : '';
+                                                $photoUrl = asset(
+                                                    'uploads/listing_featured_photos/' .
+                                                        $invoice->offers[0]->car->listing_featured_photo,
+                                                );
                                             @endphp
 
                                             <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
@@ -447,7 +448,7 @@
                                                         <a class="text-primary text-decoration-underline"
                                                             href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
                                                             title="View Shipment">
-                                                            {{ $offer->car_name }}
+                                                            {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
                                                         </a>
                                                     </li>
                                                 @endforeach
@@ -492,9 +493,11 @@
                                                 -
                                             @endif
                                         </td>
-                                        {{-- <td>
-                                        {{ $invoice->default_name }}
-                                    </td> --}}
+                                        <td>
+                                            {{ $invoice->default_name }} /
+                                            {{ $invoice->country_selected->listing_location_name }}
+
+                                        </td>
                                         <td>
 
                                             <button type="button" class="bg-transparent border-0" data-bs-toggle="modal"
