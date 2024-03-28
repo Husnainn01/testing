@@ -66,6 +66,22 @@
                     <input type="text" id="shipping_id" name="shipping_id" class="form-control"
                         placeholder="Enter Stock Number" value="{{ $request->input('shipping_id') }}">
                 </div>
+                {{-- <div class="col-md-4">
+                    <label for="shipping_id" class="form-label">Chassis Number</label>
+                    <input type="text" id="chassis_no" name="chassis_no" class="form-control"
+                        placeholder="Enter Chassis Number" value="{{ $request->input('chassis_no') }}">
+                </div> --}}
+                <div class="col-md-4">
+                    <label for="order_date" class="form-label">Order Date</label>
+                    <input type="date" id="order_date" name="order_date" class="form-control"
+                        value="{{ $request->input('order_date') }}">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="consignee_name" class="form-label">Consignee Name</label>
+                    <input type="text" id="consignee_name" name="consignee_name" class="form-control"
+                        placeholder="Enter Consignee Name" value="{{ $request->input('consignee_name') }}">
+                </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Search</button>
                     <button type="button" class="btn btn-secondary" id="reset_filter">Reset</button>
@@ -79,22 +95,50 @@
             <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Stock Number</th>
-                        <th>Chassis Number</th>
-                        <th>Order Date</th>
                         <th>Country</th>
+                        <th>Order Date</th>
+                        <th>SS NO.</th>
+                        <th>Photo</th>
+                        <th>Car Name/ Chassis No</th>
+                        <th>VESSEL</th>
+
                         {{-- <th>City</th> --}}
                         <th>Port</th>
-                        <th>VESSEL</th>
+
                         <th>ETD/ETA</th>
                         <th>TT/Copy</th>
+                        <th>Consignee Name</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($shippingOrders as $shippingOrder)
                         <tr>
+                            <td>{{ $shippingOrder->country_selected->listing_location_name }}</td>
+                            <td>{{ $shippingOrder->created_at }}</td>
                             <td>{{ $shippingOrder->shipping_id }}</td>
+                            <td> @php
+                                $photoUrl = '';
+
+                                // if (!empty($shippingOrder->offers[0])) {
+                                //     dd('if');
+                                // } else {
+                                //     // dd('else');
+                                //     dd($shippingOrder->offers);
+                                // }
+
+                                if (!empty($shippingOrder->offers[0])) {
+                                    // dd($shippingOrder->offers[0]->car->listing_featured_photo);
+                                    $photoUrl = asset(
+                                        'uploads/listing_featured_photos/' .
+                                            $shippingOrder->offers[0]->car->listing_featured_photo,
+                                    );
+                                }
+                            @endphp
+
+                                <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
+                                    style="object-fit: cover; height:40px" alt="">
+                            </td>
                             <td>
                                 <ul>
                                     @foreach ($shippingOrder->offers as $offer)
@@ -102,16 +146,16 @@
                                             <a class="text-primary text-decoration-underline"
                                                 href="{{ route('customer.shipment.view', ['id' => $shippingOrder->id]) }}"
                                                 title="View Shipment">
-                                                {{ $offer->car_name }}
+                                                {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
                             </td>
-                            <td>{{ $shippingOrder->created_at }}</td>
-                            <td>{{ $shippingOrder->country_selected->listing_location_name }}</td>
+
+
                             {{-- <td>{{ $shippingOrder->city_selected->name }}</td> --}}
-                            <td>{{ $shippingOrder->port_selected->name }}</td>
+
 
                             @php
                                 $documents = $shippingOrder->documents->pluck('status')->toArray();
@@ -123,6 +167,7 @@
                                     -
                                 @endif
                             </td>
+                            <td>{{ $shippingOrder->port_selected->name }}</td>
                             <td>
                                 @if (in_array('etd_eta', $documents))
                                     Uploaded
@@ -144,6 +189,7 @@
                                     -
                                 @endif
                             </td>
+                            <td>{{ $shippingOrder->default_name }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -158,6 +204,8 @@
             document.getElementById('port').selectedIndex = 0;
             document.getEle + mentById('service_plan').selectedIndex = 0;
             document.getElementById('shipping_id').value = '';
+            document.getElementById('chassis_no').value = '';
+            document.getElementById('consignee_name').value = '';
         });
     </script>
 @endsection

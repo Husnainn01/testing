@@ -187,7 +187,8 @@
                                                                                 name="paidInvoice"
                                                                                 id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
-                                                                                class="upload__inputfile">
+                                                                                class="upload__inputfile"
+                                                                                accept=".pdf,.png,.jpg,.jpeg">
                                                                         </label>
                                                                     </div>
                                                                     <div class="upload__img-wrap"></div>
@@ -221,6 +222,14 @@
 
                                                             for (var i = 0; i < fileList.length; i++) {
                                                                 var fileItem = document.createElement('li');
+                                                                var fileName = fileList[i].name;
+
+                                                                // Check file extension
+                                                                var ext = fileName.split('.').pop().toLowerCase();
+                                                                if (['pdf', 'png', 'jpg', 'jpeg'].indexOf(ext) === -1) {
+                                                                    alert('Error: Please upload only PDF, PNG, JPG, or JPEG files.');
+                                                                    continue; // Skip this file
+                                                                }
                                                                 fileItem.textContent = fileList[i].name;
 
                                                                 var deleteBtn = document.createElement('span');
@@ -360,7 +369,8 @@
                                                                                 name="paidInvoice"
                                                                                 id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
-                                                                                class="upload__inputfile">
+                                                                                class="upload__inputfile"
+                                                                                accept=".pdf,.png,.jpg,.jpeg">
                                                                         </label>
                                                                     </div>
                                                                     <div class="upload__img-wrap"></div>
@@ -398,6 +408,14 @@
 
                                                             for (var i = 0; i < fileList.length; i++) {
                                                                 var fileItem = document.createElement('li');
+                                                                var fileName = fileList[i].name;
+
+                                                                // Check file extension
+                                                                var ext = fileName.split('.').pop().toLowerCase();
+                                                                if (['pdf', 'png', 'jpg', 'jpeg'].indexOf(ext) === -1) {
+                                                                    alert('Error: Please upload only PDF, PNG, JPG, or JPEG files.');
+                                                                    continue; // Skip this file
+                                                                }
                                                                 fileItem.textContent = fileList[i].name;
 
                                                                 var deleteBtn = document.createElement('span');
@@ -535,7 +553,8 @@
                                                                                 name="paidInvoice"
                                                                                 id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
-                                                                                class="upload__inputfile">
+                                                                                class="upload__inputfile"
+                                                                                accept=".pdf,.png,.jpg,.jpeg">
                                                                         </label>
                                                                     </div>
                                                                     <div class="upload__img-wrap"></div>
@@ -572,6 +591,14 @@
 
                                                             for (var i = 0; i < fileList.length; i++) {
                                                                 var fileItem = document.createElement('li');
+                                                                var fileName = fileList[i].name;
+
+                                                                // Check file extension
+                                                                var ext = fileName.split('.').pop().toLowerCase();
+                                                                if (['pdf', 'png', 'jpg', 'jpeg'].indexOf(ext) === -1) {
+                                                                    alert('Error: Please upload only PDF, PNG, JPG, or JPEG files.');
+                                                                    continue; // Skip this file
+                                                                }
                                                                 fileItem.textContent = fileList[i].name;
 
                                                                 var deleteBtn = document.createElement('span');

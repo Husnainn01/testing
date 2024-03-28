@@ -1759,6 +1759,14 @@ class CustomerController extends Controller
             // Customize the logic to filter shipping orders based on form input and the authenticated user
             $query = ShippingOrder::where('consignee_id', Auth::user()->id);
 
+            if (!empty($filterData['order_date'])) {
+                $query->whereDate('created_at', '=', $filterData['order_date']);
+            }
+
+            if (!empty($filterData['consignee_name'])) {
+                $query->where('default_name', $filterData['consignee_name']);
+            }
+
             if (!empty($filterData['country'])) {
                 $query->where('country', $filterData['country']);
             }
@@ -1783,6 +1791,7 @@ class CustomerController extends Controller
         } else {
             $shippingOrders = ShippingOrder::where('consignee_id', Auth::user()->id)->get();
         }
+
         return view('front.customer-newdashboard.shipping_information', compact('request', 'countries', 'cities', 'ports', 'shippingOrders'));
     }
 
