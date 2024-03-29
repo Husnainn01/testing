@@ -1702,7 +1702,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'car_name' => 'required',
-            'model' => 'required',
+            'car_model' => 'required',
             'year' => 'required',
             'mileage' => 'required',
             'engine' => 'required',
@@ -1798,7 +1798,9 @@ class CustomerController extends Controller
     public function account_info()
     {
         $countries = ListingLocation::get();
-        $cities = City::get();
+        // dd($countries);
+        // $cities = City::get();
+        $cities = Port::get();
         $user = Auth::user();
         return view('front.customer-newdashboard.account_information', compact('user', 'countries', 'cities'));
     }
@@ -1807,7 +1809,6 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
         $inputData = $request->all();
-
         foreach ($inputData as $fieldName => $fieldValue) {
             if ($user->isFillable($fieldName)) {
                 if ($fieldName === 'password' && !empty($fieldValue)) {

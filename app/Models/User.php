@@ -34,7 +34,8 @@ class User extends Authenticatable
         'password',
         'token',
         'status',
-        'company_name'
+        'company_name',
+        'address2'
     ];
 
     public function rPurchasePackage()

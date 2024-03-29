@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RequestedCar extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'transmission','engine','mileage','year','model','user_id','car_name'
+    protected $fillable = [
+        'transmission', 'engine', 'mileage', 'year', 'car_model', 'user_id', 'car_name'
     ];
     public function user()
     {

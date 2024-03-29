@@ -34,17 +34,17 @@
                                     data-bs-toggle="modal" data-bs-target="#exampleModal" id="openpop">Select Offers</a>
                                 <!-- @if (count($qoutes) > 0)
     <ul class="list-group list-group-flush">
-                                                                                                                                                                                            @foreach ($qoutes as $qoute)
+                                                                                                                                                                                                                                @foreach ($qoutes as $qoute)
     <li class="list-group-item">
-                                                                                                                                                                                                    <div class="form-check">
-                                                                                                                                                                                                        <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
-                                                                                                                                                                                                        <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
-                                                                                                                                                                                                            {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
-                                                                                                                                                                                                        </label>
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                        <div class="form-check">
+                                                                                                                                                                                                                                            <input class="form-check-input" type="checkbox" name="offer_ids[]" value="{{ $qoute->id }}" id="offer_{{ $qoute->id }}">
+                                                                                                                                                                                                                                            <label class="form-check-label" for="offer_{{ $qoute->id }}" style="display: inline-block; vertical-align: start;">
+                                                                                                                                                                                                                                                {{ $qoute->car_name }}, Offer: ({{ $qoute->offer }})
+                                                                                                                                                                                                                                            </label>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </li>
     @endforeach
-                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                            </ul>
 @else
     <a class="text-decoration-underline text-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" >Please send an offer first.</a>
     @endif -->
@@ -144,6 +144,9 @@
                 </ul>
                 <div id="tabs-content border">
                     <div id="default-tab-content" class="tab-content">
+                        @php
+                            // dd(Auth::user()->phone);
+                        @endphp
                         <input type="number" hidden name="consignee_id" value="{{ Auth::user()->id }}">
                         <div class="row p-3">
                             <div class="col-lg-6 ">
@@ -167,17 +170,23 @@
                             <div class="col-lg-6 ">
                                 <label for="" class="fw-medium d-block text-start mb-1">Phone Number</label>
                                 <input type="number" disabled class="form-control py-2" name="default_phone_number"
-                                    placeholder="Phone Number" value="{{ Auth::user()->phone }}" autofocus>
+                                    placeholder="{{ Auth::user()->phone ? Auth::user()->phone : 'Phone Number' }}"
+                                    value="{{ Auth::user()->phone }}" autofocus="">
                             </div>
-                            <div class="col-lg-6 ">
+                            {{-- <div class="col-lg-6 ">
                                 <label for="" class="fw-medium d-block text-start mb-1">Phone Number 2</label>
                                 <input type="number" disabled class="form-control py-2" name="default_phone_2"
                                     placeholder="Phone number" value="{{ Auth::user()->phone }}" autofocus>
-                            </div>
+                            </div> --}}
                             <div class="col-lg-6 ">
                                 <label for="" class="fw-medium d-block text-start mb-1">Address</label>
                                 <input type="text" disabled class="form-control py-2" name="default_address"
                                     placeholder="address" value="{{ Auth::user()->address }}" autofocus>
+                            </div>
+                            <div class="col-lg-6 ">
+                                <label for="" class="fw-medium d-block text-start mb-1">Address 2</label>
+                                <input type="text" disabled class="form-control py-2" name="address2"
+                                    placeholder="address" value="{{ Auth::user()->address2 }}" autofocus>
                             </div>
                         </div>
                     </div>
@@ -207,14 +216,18 @@
                                 <input type="number" class="form-control py-2" name="phone_number"
                                     placeholder="Phone Number">
                             </div>
-                            <div class="col-lg-6 ">
+                            {{-- <div class="col-lg-6 ">
                                 <label for="" class="fw-medium d-block text-start mb-1">Phone Number 2</label>
                                 <input type="number" class="form-control py-2" name="phone_number_2"
                                     placeholder="Phone number">
-                            </div>
+                            </div> --}}
                             <div class="col-lg-6 ">
                                 <label for="" class="fw-medium d-block text-start mb-1">Address</label>
                                 <input type="text" class="form-control py-2" name="address" placeholder="address">
+                            </div>
+                            <div class="col-lg-6 ">
+                                <label for="" class="fw-medium d-block text-start mb-1">Address 2</label>
+                                <input type="text" class="form-control py-2" name="address2" placeholder="address 2">
                             </div>
                         </div>
                     </div>
