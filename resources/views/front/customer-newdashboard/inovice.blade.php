@@ -95,18 +95,25 @@
                                     ss-{{ $counter++ }}
                                 </td>
                                 <td>
+
                                     @php
-                                        if ($invoice->offers[0]->car->listing_featured_photo) {
+                                        $photoUrl = '';
+                                        // if ($invoice->offers[0]->car->listing_featured_photo) {
+                                        if (
+                                            !empty($invoice->offers) &&
+                                            isset($invoice->offers[0]->car->listing_featured_photo)
+                                        ) {
                                             $photoUrl = asset(
                                                 'uploads/listing_featured_photos/' .
                                                     $invoice->offers[0]->car->listing_featured_photo,
                                             );
                                         }
                                     @endphp
-                                    @if ($photoUrl)
+                                    @if (!empty($photoUrl))
                                         <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
                                             style="object-fit: cover; height:40px" alt="">
                                     @endif
+
                                 </td>
                                 <td>
                                     <ul>
