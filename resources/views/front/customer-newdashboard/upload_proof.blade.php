@@ -265,14 +265,17 @@
                                         </td>
                                         <td>
                                             @php
-                                                $photoUrl = asset(
-                                                    'uploads/listing_featured_photos/' .
-                                                        $invoice->offers[0]->car->listing_featured_photo,
-                                                );
+                                                if ($invoice->offers[0]->car->listing_featured_photo) {
+                                                    $photoUrl = asset(
+                                                        'uploads/listing_featured_photos/' .
+                                                            $invoice->offers[0]->car->listing_featured_photo,
+                                                    );
+                                                }
                                             @endphp
-
-                                            <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
-                                                style="object-fit: cover; height:40px" alt="">
+                                            @if ($photoUrl)
+                                                <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
+                                                    style="object-fit: cover; height:40px" alt="">
+                                            @endif
                                         </td>
                                         <td>
                                             <ul>
