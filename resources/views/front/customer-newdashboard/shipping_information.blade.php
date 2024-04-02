@@ -102,9 +102,9 @@
                         <th>Car Name/ Chassis No</th>
                         <th>VESSEL</th>
 
-                        {{-- <th>City</th> --}}
-                        <th>Port</th>
 
+                        <th>Port</th>
+                        <th>Export Certificate</th>
                         <th>ETD/ETA</th>
                         <th>TT/Copy</th>
                         <th>Consignee Name</th>
@@ -168,6 +168,11 @@
                                 @endif
                             </td>
                             <td>{{ $shippingOrder->port_selected->name }}</td>
+                            <td> <a class="text-primary text-decoration-underline"
+                                    href="{{ route('customer.shipment.view', ['id' => $shippingOrder->id]) }}"
+                                    title="Export Certificate">
+                                    Export Certificate
+                                </a></td>
                             <td>
                                 @if (in_array('etd_eta', $documents))
                                     Uploaded

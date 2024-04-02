@@ -1,5 +1,10 @@
 @extends('front.customer-newdashboard.layouts.template')
 @section('content')
+    <style>
+        .carousel-item.active {
+            display: block !important;
+        }
+    </style>
     <div class="content-body mt-2">
         <div class="container-fluid">
             <div class="row">
@@ -256,6 +261,122 @@
                                         <span class="sr-only">Pause</span>
                                     </a> --}}
                                     </div>
+
+
+
+
+                                    <div id="carousel-thumbs" class="carousel slide" data-ride="carousel">
+                                        @php $chunked_photos = array_chunk($listing_photos->toArray(), 8); @endphp
+
+                                        <!-- Carousel Indicators -->
+                                        {{-- <ol class="carousel-indicators" style="margin-bottom: -15px;">
+                                            @foreach ($chunked_photos as $photo_chunk_index => $photo_chunk)
+                                                <li data-target="#carousel-thumbs" data-slide-to="{{ $photo_chunk_index }}"
+                                                    class="{{ $photo_chunk_index == 0 ? 'active' : '' }}"></li>
+                                            @endforeach
+                                        </ol> --}}
+
+                                        <!-- Carousel Inner -->
+                                        <div class="carousel-inner">
+                                            @foreach ($chunked_photos as $photo_chunk_index => $photo_chunk)
+                                                <div class="carousel-item {{ $photo_chunk_index == 0 ? 'active' : '' }}">
+                                                    @php $row_photos = array_chunk($photo_chunk, 4); @endphp
+                                                    @foreach ($row_photos as $row_index => $row)
+                                                        <div class="row mx-0">
+                                                            @foreach ($row as $photo_index => $photo)
+                                                                <div id="carousel-selector-{{ $photo_chunk_index * 8 + $row_index * 4 + $photo_index }}"
+                                                                    class="thumb col-3 px-1 py-2 {{ $photo_chunk_index == 0 && $row_index == 0 && $photo_index == 0 ? 'selected' : '' }}"
+                                                                    data-target="#carousel"
+                                                                    data-slide-to="{{ $photo_chunk_index * 8 + $row_index * 4 + $photo_index }}">
+                                                                    <img src="{{ asset('/uploads/listing_photos/' . $photo['photo']) }}"
+                                                                        alt='img' class="img-fluid">
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab"
+                                                href="#home-tab-pane" role="tab" aria-controls="home-tab-pane"
+                                                aria-selected="true">Export Certificates</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-tab-pane"
+                                                role="tab" aria-controls="profile-tab-pane"
+                                                aria-selected="false">L/C</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="contact-tab" data-toggle="tab"
+                                                href="#contact-tab-pane" role="tab" aria-controls="contact-tab-pane"
+                                                aria-selected="false">Other</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <!-- First Tab -->
+                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                            aria-labelledby="home-tab" tabindex="0">
+                                            <h2>Export Certificates</h2>
+                                            <!-- Download options for Export Certificates -->
+                                            <ul>
+                                                <li><a href="file1.pdf" download>Download File 1</a></li>
+                                                <li><a href="file2.pdf" download>Download File 2</a></li>
+                                                <li><a href="file3.pdf" download>Download File 3</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Second Tab -->
+                                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                            aria-labelledby="profile-tab" tabindex="0">
+                                            <h2>L/C</h2>
+                                            <!-- Download options for L / C -->
+                                            <ul>
+                                                <li><a href="file4.pdf" download>Download File 4</a></li>
+                                                <li><a href="file5.pdf" download>Download File 5</a></li>
+                                                <li><a href="file6.pdf" download>Download File 6</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Third Tab -->
+                                        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
+                                            aria-labelledby="contact-tab" tabindex="0">
+                                            <h2>Other</h2>
+                                            <!-- Download options for Other -->
+                                            <ul>
+                                                <li><a href="file7.pdf" download>Download File 7</a></li>
+                                                <li><a href="file8.pdf" download>Download File 8</a></li>
+                                                <li><a href="file9.pdf" download>Download File 9</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 </div>
                                 <!-- DOCUMENTS -->
                                 {{-- <div class="col-lg-12 col-md-12 col-sm-12">
@@ -483,4 +604,7 @@
             }
         });
     </script>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection
