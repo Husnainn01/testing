@@ -1,0 +1,8 @@
+/temp2
+/development
+/node_modules
+#/public/storage
+#/storage/*.key
+/vendor
+#.env
+/*.zip
