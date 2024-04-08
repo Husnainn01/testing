@@ -1871,7 +1871,7 @@ class CustomerController extends Controller
 
     public function place_order_shipping(Request $request)
     {
-
+        // dd($request->all());
         $rules = [
             'offer_ids' => 'required|array',
             'offer_ids.*' => 'required|numeric',
@@ -1897,6 +1897,7 @@ class CustomerController extends Controller
             'service' => $request->input('service'),
             'country' => $request->input('country'),
             'city' => "3",
+            'offer_id' => $request->input('offer_ids')[0],
             'container_port' => $request->input('city'),
             'consignee_tab' => $request->input('consignee_tab'),
             'receiver_tab' => $request->input('receiver_tab'),

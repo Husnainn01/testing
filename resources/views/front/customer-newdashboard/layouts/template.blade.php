@@ -166,6 +166,7 @@
             $("#receiver_default-tab").addClass('grey-active');
             $("#receiver_add_new-tab").removeClass('grey-active');
         });
+        //----------------------------------------
         // document.getElementById('submitForm').addEventListener('click', function() {
         //     const mandatoryFields = [
         //         'offer_ids',
@@ -220,17 +221,19 @@
         //         formData.default_company_name = document.querySelector('input[name="default_company_name"]').value;
         //         formData.default_email = document.querySelector('input[name="default_email"]').value;
         //         formData.default_phone_number = document.querySelector('input[name="default_phone_number"]').value;
-        //         formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
+        //         // formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
         //         formData.default_address = document.querySelector('input[name="default_address"]').value;
+        //         formData.address2 = document.querySelector('input[name="address2"]').value;
         //     } else {
         //         formData.consignee_id = parseInt({{ Auth::user()->id }});
         //         formData.default_name = document.querySelector('input[name="consignee_name"]').value;
         //         formData.default_company_name = document.querySelector('input[name="consignee_company_name"]')
         //             .value;
         //         formData.default_email = document.querySelector('input[name="consignee_email"]').value;
-        //         formData.default_phone_2 = document.querySelector('input[name="phone_number"]').value;
-        //         formData.default_phone_2 = document.querySelector('input[name="phone_number_2"]').value;
+        //         formData.default_phone_number = document.querySelector('input[name="phone_number"]').value;
+        //         // formData.default_phone_2 = document.querySelector('input[name="phone_number_2"]').value;
         //         formData.default_address = document.querySelector('input[name="address"]').value;
+        //         formData.address2 = document.querySelector('input[name="address2"]').value;
         //     }
 
         //     if (formData.receiver_tab ===
@@ -244,8 +247,10 @@
         //             .value;
         //         formData.receiver_default_phone_number = document.querySelector(
         //             'input[name="receiver_default_phone_number"]').value;
-        //         formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]')
-        //             .value;
+        //         // formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]')
+        //         //     .value;
+        //         formData.receiver_default_phone_2 = document.querySelector(
+        //             'input[name="address2"]').value;
         //         formData.receiver_default_address = document.querySelector('input[name="receiver_default_address"]')
         //             .value;
         //     } else {
@@ -257,7 +262,7 @@
         //         formData.receiver_default_phone_number = document.querySelector(
         //             'input[name="receiver_add_phone_number"]').value;
         //         formData.receiver_default_phone_2 = document.querySelector(
-        //             'input[name="receiver_add_phone_number_2"]').value;
+        //             'input[name="address2"]').value;
         //         formData.receiver_default_address = document.querySelector('input[name="receiver_add_address"]')
         //             .value;
         //     }
@@ -339,6 +344,9 @@
         //         });
 
         // });
+
+
+
         document.getElementById('submitForm').addEventListener('click', function() {
             const mandatoryFields = [
                 'offer_ids',
@@ -372,8 +380,95 @@
                 consignee_id: parseInt({{ Auth::user()->id }}),
                 receiver_id: parseInt({{ Auth::user()->id }})
             };
-
             let isValid = true;
+            for (const field of mandatoryFields) {
+                if (!formData[field]) {
+                    isValid = false;
+                    break;
+                }
+            }
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Please fill in all mandatory fields.',
+                });
+                return;
+            }
+            if (formData.consignee_tab === 'default-tab') {
+                formData.consignee_id = parseInt({{ Auth::user()->id }});
+                formData.default_name = document.querySelector('input[name="default_name"]').value;
+                formData.default_company_name = document.querySelector('input[name="default_company_name"]').value;
+                formData.default_email = document.querySelector('input[name="default_email"]').value;
+                formData.default_phone_number = document.querySelector('input[name="default_phone_number"]').value;
+                // formData.default_phone_2 = document.querySelector('input[name="default_phone_2"]').value;
+                formData.default_address = document.querySelector('input[name="default_address"]').value;
+                formData.address2 = document.querySelector('input[name="address2"]').value;
+            } else {
+                formData.consignee_id = parseInt({{ Auth::user()->id }});
+                formData.default_name = document.querySelector('input[name="consignee_name"]').value;
+                formData.default_company_name = document.querySelector('input[name="consignee_company_name"]')
+                    .value;
+                formData.default_email = document.querySelector('input[name="consignee_email"]').value;
+                formData.default_phone_number = document.querySelector('input[name="phone_number"]').value;
+                // formData.default_phone_2 = document.querySelector('input[name="phone_number_2"]').value;
+                formData.default_address = document.querySelector('input[name="address"]').value;
+                formData.address2 = document.querySelector('input[name="address2"]').value;
+            }
+
+            if (formData.receiver_tab ===
+                'receiver_default-tab') { // Use 'receiver_default' instead of 'receiver_default-tab'
+                formData.receiver_id = parseInt({{ Auth::user()->id }});
+                formData.receiver_default_name = document.querySelector('input[name="receiver_default_name"]')
+                    .value;
+                formData.receiver_default_company_name = document.querySelector(
+                    'input[name="receiver_default_company_name"]').value;
+                formData.receiver_default_email = document.querySelector('input[name="receiver_default_email"]')
+                    .value;
+                formData.receiver_default_phone_number = document.querySelector(
+                    'input[name="receiver_default_phone_number"]').value;
+                // formData.receiver_default_phone_2 = document.querySelector('input[name="receiver_default_phone_2"]')
+                //     .value;
+                formData.receiver_default_phone_2 = document.querySelector(
+                    'input[name="address2"]').value;
+                formData.receiver_default_address = document.querySelector('input[name="receiver_default_address"]')
+                    .value;
+            } else {
+                formData.receiver_id = parseInt({{ Auth::user()->id }});
+                formData.receiver_default_name = document.querySelector('input[name="receiver_add_name"]').value;
+                formData.receiver_default_company_name = document.querySelector(
+                    'input[name="receiver_add_company_name"]').value;
+                formData.receiver_default_email = document.querySelector('input[name="receiver_add_email"]').value;
+                formData.receiver_default_phone_number = document.querySelector(
+                    'input[name="receiver_add_phone_number"]').value;
+                formData.receiver_default_phone_2 = document.querySelector(
+                    'input[name="address2"]').value;
+                formData.receiver_default_address = document.querySelector('input[name="receiver_add_address"]')
+                    .value;
+            }
+
+            const serviceCheckboxes = document.querySelectorAll('input[name^="service_name"]');
+            const selectedServiceIds = [];
+            serviceCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const matches = checkbox.name.match(/\[(\d+)\]/);
+                    if (matches && matches.length > 1) {
+                        selectedServiceIds.push(matches[1]);
+                    }
+                }
+            });
+
+            formData['service_name'] = selectedServiceIds;
+
+            formData.deregistration_service = document.getElementById('deregistration_service').checked ? 1 : 0;
+            formData.english_export_service = document.getElementById('english_export_service').checked ? 1 : 0;
+            formData.photo_service = document.getElementById('photo_service').checked ? 1 : 0;
+            formData.ss_custom_photo_service = document.getElementById('ss_custom_photo_service').checked ? 1 : 0;
+            formData.ss_custom_inspection_service = document.getElementById('ss_custom_inspection_service')
+                .checked ? 1 : 0;
+            formData.ss_custom_cleaning_service = document.getElementById('ss_custom_cleaning_service').checked ?
+                1 : 0;
+
             for (const field of mandatoryFields) {
                 if (!formData[field]) {
                     isValid = false;
