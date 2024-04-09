@@ -416,25 +416,53 @@
 
 
                     </table>
-                </div>
-                {{-- <div class="row my-3"> --}}
-                {{-- <div class=" mb-3 w-100"> --}}
-                {{-- <h3>Features</h3> --}}
-                {{-- </div> --}}
-                {{-- <div class=" d-flex flex-wrap"> --}}
-                {{-- @foreach ($listing_amenities as $row) --}}
-                {{-- @php --}}
-                {{-- $res = DB::table('amenities')->where('id',$row->amenity_id)->first(); --}}
-                {{-- @endphp --}}
-                {{-- <div class="w-auto py-2 px-2 border mx-1 my-1" style="background:#F7FFF0"> --}}
-                {{-- <small>{{$res->amenity_name}}</small></div> --}}
-                {{-- @endforeach --}}
+                    {{-- </div> --}}
+                    <h2> {{ FEATURES }}</h2>
+                    <div class="features-grid">
+                        @foreach ($listing_amenities as $row)
+                            @php
+                                $res = DB::table('amenities')
+                                    ->where('id', $row->amenity_id)
+                                    ->first();
+                                $highlight = in_array($res->amenity_name, [
+                                    'Power Steering',
+                                    'Airbag',
+                                    'Rear Spoiler',
+                                    'Wheel Spanner',
+                                    'Keyless Entry',
+                                    'Navigation',
+                                    'Power Window',
+                                    'Radio',
+                                    'Fog Lights',
+                                    'Jack',
+                                    'Back Camera',
+                                    'Alloy Wheels',
+                                    'ABS',
+                                ]);
+                            @endphp
+                            <div class="feature-box {{ $highlight ? 'fade' : 'highlight' }}">
+                                {{ $res->amenity_name }}
+                            </div>
+                        @endforeach
+                    </div>
+                    {{-- <div class="row my-3"> --}}
+                    {{-- <div class=" mb-3 w-100"> --}}
+                    {{-- <h3>Features</h3> --}}
+                    {{-- </div> --}}
+                    {{-- <div class=" d-flex flex-wrap"> --}}
+                    {{-- @foreach ($listing_amenities as $row) --}}
+                    {{-- @php --}}
+                    {{-- $res = DB::table('amenities')->where('id',$row->amenity_id)->first(); --}}
+                    {{-- @endphp --}}
+                    {{-- <div class="w-auto py-2 px-2 border mx-1 my-1" style="background:#F7FFF0"> --}}
+                    {{-- <small>{{$res->amenity_name}}</small></div> --}}
+                    {{-- @endforeach --}}
 
-                {{-- </div> --}}
-                {{-- <img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}"
+                    {{-- </div> --}}
+                    {{-- <img src="{{asset('uploads/site_photos/0ea83f18e14ebe3951eeb034aed66a4b.png')}}"
                     style="opacity: 0.5" class="mt-4 hide" width="100" alt=""> --}}
 
-                {{-- </div> --}}
+                </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-12 col-12  print_rit_50">
                 <div class="row p-3 border-md-bottom border-lg-bottom ">
@@ -453,18 +481,18 @@
                     {{--                </a> --}}
                 </div>
                 <!-- <div class="row my-3">
-                                                                            <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                {{-- <h5> Stock ID:5057</h5> --}}
-                                                                                {{-- <p  class="orange">Auction Grade: 4</p> --}}
-                                                                                    </div>
-                                                                                    <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                        <div class="text-right orange">
-                                                                                            <h5>
-                                                                                                <i class="far fa-heart"></i> Add to Favorites
-                                                                                            </h5>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div> -->
+                                                                                        <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                            {{-- <h5> Stock ID:5057</h5> --}}
+                                                                                            {{-- <p  class="orange">Auction Grade: 4</p> --}}
+                                                                                                </div>
+                                                                                                <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                    <div class="text-right orange">
+                                                                                                        <h5>
+                                                                                                            <i class="far fa-heart"></i> Add to Favorites
+                                                                                                        </h5>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div> -->
                 <div class="container-fluid border rounded " style="background-color: #F6F6F6;">
                     <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                         @csrf
@@ -879,7 +907,7 @@
                 {{--                    </div> --}}
 
                 {{--                </div> --}}
-                <h2> {{ FEATURES }}</h2>
+                {{-- <h2> {{ FEATURES }}</h2>
                 <div class="features-grid">
                     @foreach ($listing_amenities as $row)
                         @php
@@ -906,7 +934,7 @@
                             {{ $res->amenity_name }}
                         </div>
                     @endforeach
-                </div>
+                </div> --}}
 
             </div>
 
