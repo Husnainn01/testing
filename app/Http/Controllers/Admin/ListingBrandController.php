@@ -36,6 +36,16 @@ class ListingBrandController extends Controller
         $shippment_requests = ShippingOrder::orderBy('id', 'desc')->get();
         return view('admin.shippment_requests_view', compact('shippment_requests'));
     }
+    public function admin_upload_invoices()
+    {
+        $shippment_requests = ShippingOrder::orderBy('id', 'desc')->get();
+        // dd($shippment_requests);
+        return view('admin.upload_invoice_view', compact('shippment_requests'));
+    }
+
+
+
+
 
     public function admin_shippment_show($id)
     {
