@@ -233,17 +233,39 @@ class ListingBrandController extends Controller
         $shippment = ShippingOrder::findOrFail($shippmentId);
         $action = $request->input('action');
 
-        if ($action && $action == 'delete') {
+        // if ($action && $action == 'delete') {
 
-            $existingInvoicePath = $shippment->invoice_path;
-            unlink($existingInvoicePath);
-            $shippment->invoice_path = '';
-            $shippment->save();
-            return response()->json([
-                'success' => true,
-                'message' => 'Invoice deleted successfully',
-            ]);
-        }
+        //     $existingInvoicePath = $shippment->invoice_path;
+        //     unlink($existingInvoicePath);
+        //     $shippment->invoice_path = '';
+        //     $shippment->save();
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Invoice deleted successfully',
+        //     ]);
+        // }
+
+        // if ($action && $action == 'delete') {
+        //     // Get the existing invoice path
+        //     $existingInvoicePath = $shippment->invoice_path;
+        //     // dd($existingInvoicePath);
+        //     // Check if the invoice path is not empty and the file exists
+        //     if (!empty($existingInvoicePath) && Storage::exists($existingInvoicePath)) {
+        //         // Delete the file using the Storage facade
+        //         dd($existingInvoicePath);
+        //         Storage::delete($existingInvoicePath);
+
+        //         // Update the invoice path in the database
+        //         $shippment->invoice_path = '';
+        //         $shippment->save();
+
+        //         // Return a JSON response indicating success
+        //         return response()->json([
+        //             'success' => true,
+        //             'message' => 'Invoice deleted successfully',
+        //         ]);
+        //     }
+        // }
 
 
 
@@ -258,28 +280,160 @@ class ListingBrandController extends Controller
         }
 
         // Handle file upload if invoiceFile field is present
+        // if ($request->hasFile('invoiceFile')) {
+
+        //     // Store the uploaded file in storage/app/invoices directory
+        //     $directory = 'invoices';
+        //     if (!Storage::exists($directory)) {
+        //         Storage::makeDirectory($directory);
+        //     }
+
+        //     $file = $request->file('invoiceFile');
+        //     $originalName = $shippment->id . '_' . $file->getClientOriginalName(); // Get the original name
+        //     $file->storeAs('public/' . $directory, $originalName); // Store with original name
+        //     $url = ('storage/' . $directory . '/' . $originalName);
+
+        //     // Set the invoice path to the correct variable
+        //     $shippment->invoice_path = $url;
+        //     $shippment->save();
+
+        //     // Return a JSON response with success and message data
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Invoice uploaded successfully ',
+        //     ]);
+        // }
+
+
+        // if ($request->hasFile('invoiceFile')) {
+
+        //     // Define the directory where invoices will be stored
+        //     $directory = 'invoices';
+
+        //     // Define the full path of the directory within the public directory
+        //     $publicDirectory = public_path($directory);
+
+        //     // Check if the directory exists, if not, create it
+        //     if (!file_exists($publicDirectory)) {
+        //         mkdir($publicDirectory, 0755, true); // Recursive directory creation
+        //     }
+
+        //     // Get the uploaded file
+        //     $file = $request->file('invoiceFile');
+
+        //     // Generate a unique name for the file
+        //     $originalName = $shippment->id . '_' . $file->getClientOriginalName();
+
+        //     // Store the file in the specified directory with the original name
+        //     $file->move($publicDirectory, $originalName);
+
+        //     // Get the URL of the stored file
+        //     $url = url("$directory/$originalName");
+
+        //     // Set the invoice path to the correct variable
+        //     $shippment->invoice_path = $url;
+        //     $shippment->save();
+
+        //     // Return a JSON response with success and message data
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'Invoice uploaded successfully ',
+        //     ]);
+        // }
+
+
+
+
+
+        // Adding invoice
         if ($request->hasFile('invoiceFile')) {
 
-            // Store the uploaded file in storage/app/invoices directory
+            // Define the directory where invoices will be stored
             $directory = 'invoices';
-            if (!Storage::exists($directory)) {
-                Storage::makeDirectory($directory);
+
+            // Define the full path of the directory within the public directory
+            $publicDirectory = public_path($directory);
+
+            // Check if the directory exists, if not, create it
+            if (!file_exists($publicDirectory)) {
+                mkdir($publicDirectory, 0755, true); // Recursive directory creation
             }
 
+            // Get the uploaded file
             $file = $request->file('invoiceFile');
-            $originalName = $shippment->id . '_' . $file->getClientOriginalName(); // Get the original name
-            $file->storeAs('public/' . $directory, $originalName); // Store with original name
-            $url = ('storage/' . $directory . '/' . $originalName);
 
-            // Set the invoice path to the correct variable
-            $shippment->invoice_path = $url;
+            // Generate a unique name for the file
+            $originalName = $shippment->id . '_' . $file->getClientOriginalName();
+
+            // Store the file in the specified directory with the original name
+            $file->move($publicDirectory, $originalName);
+
+            // Get the relative path of the stored file
+            $relativePath = "$directory/$originalName";
+
+            // Set the invoice path to the correct variable (relative path)
+            $shippment->invoice_path = $relativePath;
             $shippment->save();
 
             // Return a JSON response with success and message data
             return response()->json([
                 'success' => true,
-                'message' => 'Invoice uploaded successfully ',
+                'message' => 'Invoice uploaded successfully',
             ]);
+        }
+
+        // Deleting invoice
+        // Deleting invoice
+        if ($action && $action == 'delete') {
+            // Get the existing invoice relative path
+            $existingInvoicePath = $shippment->invoice_path;
+
+            // Check if the invoice path is not empty
+            if (!empty($existingInvoicePath)) {
+                // Concatenate base URL with the relative path to form complete URL
+                $completeUrl = url($existingInvoicePath);
+
+                // Check if the file exists using Laravel's Storage facade
+                if (Storage::exists($existingInvoicePath)) {
+                    // Delete the file using the Storage facade
+                    Storage::delete($existingInvoicePath);
+
+                    // Update the invoice path in the database
+                    $shippment->invoice_path = '';
+                    $shippment->save();
+
+                    // Return a JSON response indicating success
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Invoice deleted successfully',
+                    ]);
+                } elseif (file_exists(public_path($existingInvoicePath))) {
+                    // Check if the file exists using PHP's file_exists() function
+                    unlink(public_path($existingInvoicePath));
+
+                    // Update the invoice path in the database
+                    $shippment->invoice_path = '';
+                    $shippment->save();
+
+                    // Return a JSON response indicating success
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Invoice deleted successfully',
+                    ]);
+                } else {
+                    // Return a JSON response indicating failure if the file doesn't exist
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Invoice file not found or already deleted',
+                    ], 404);
+                }
+            } else {
+                // Return a JSON response indicating failure if the invoice path is empty
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invoice file path is empty',
+                ], 404);
+            }
         }
     }
 
