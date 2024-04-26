@@ -148,14 +148,16 @@
                                     <td>{{ $row->default_email }}</td>
                                     <td>{{ $row->default_phone_number }}</td>
                                     <td>
-                                        <select class="form-control status-select-ol"
-                                            data-shipping-id="{{ $row->id }}">
-                                            <option value="pending" {{ $row->status === 'pending' ? 'selected' : '' }}>
+                                        <select class="form-control status-select" data-shipping-id="{{ $row->id }}">
+                                            <option value="pending"
+                                                {{ $row->invoice_status === 'pending' ? 'selected' : '' }}>
                                                 Pending
                                             </option>
-                                            <option value="approved" {{ $row->status === 'approved' ? 'selected' : '' }}>
+                                            <option value="approved"
+                                                {{ $row->invoice_status === 'approved' ? 'selected' : '' }}>
                                                 Approved</option>
-                                            <option value="cancelled" {{ $row->status === 'cancelled' ? 'selected' : '' }}>
+                                            <option value="cancelled"
+                                                {{ $row->invoice_status === 'cancelled' ? 'selected' : '' }}>
                                                 Cancelled</option>
                                         </select>
                                     </td>
@@ -207,10 +209,11 @@
                     url: '{{ route('admin_modify_shipping_status') }}',
                     data: {
                         shippingId: shippingId,
-                        newStatus: newStatus,
+                        invoice_status: newStatus,
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
+                        console.log(response)
                         if (response.success) {
                             Swal.fire({
                                 icon: 'success',

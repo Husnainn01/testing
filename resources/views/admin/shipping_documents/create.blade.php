@@ -25,11 +25,11 @@
                     <label class="form-check-label" for="status_etd_eta">Export Certificate</label>
                 </div> --}}
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="pol_pod">
+                    <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="lc">
                     <label class="form-check-label" for="status_pol_pod">L/C</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="bl_document">
+                    <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="other">
                     <label class="form-check-label" for="status_bl_document">Other</label>
                 </div>
 

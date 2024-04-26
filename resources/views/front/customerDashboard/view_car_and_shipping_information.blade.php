@@ -329,9 +329,19 @@
                                             <h2>Export Certificates</h2>
                                             <!-- Download options for Export Certificates -->
                                             <ul>
-                                                <li><a href="file1.pdf" download>Download File 1</a></li>
-                                                <li><a href="file2.pdf" download>Download File 2</a></li>
-                                                <li><a href="file3.pdf" download>Download File 3</a></li>
+
+
+                                                @foreach ($shippingOrder->documents as $doc)
+                                                    @if ($doc->status == 'export_document')
+                                                        <li>
+                                                            <a
+                                                                href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                <i class="fas fa-file-pdf"></i> click and download
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+
                                             </ul>
                                         </div>
                                         <!-- Second Tab -->
@@ -340,9 +350,16 @@
                                             <h2>L/C</h2>
                                             <!-- Download options for L / C -->
                                             <ul>
-                                                <li><a href="file4.pdf" download>Download File 4</a></li>
-                                                <li><a href="file5.pdf" download>Download File 5</a></li>
-                                                <li><a href="file6.pdf" download>Download File 6</a></li>
+                                                @foreach ($shippingOrder->documents as $doc)
+                                                    @if ($doc->status == 'lc')
+                                                        <li>
+                                                            <a
+                                                                href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                <i class="fas fa-file-pdf"></i> click and download
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
                                             </ul>
                                         </div>
                                         <!-- Third Tab -->
@@ -351,9 +368,16 @@
                                             <h2>Other</h2>
                                             <!-- Download options for Other -->
                                             <ul>
-                                                <li><a href="file7.pdf" download>Download File 7</a></li>
-                                                <li><a href="file8.pdf" download>Download File 8</a></li>
-                                                <li><a href="file9.pdf" download>Download File 9</a></li>
+                                                @foreach ($shippingOrder->documents as $doc)
+                                                    @if ($doc->status == 'other')
+                                                        <li>
+                                                            <a
+                                                                href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                <i class="fas fa-file-pdf"></i> click and download
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>

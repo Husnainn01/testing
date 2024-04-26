@@ -279,6 +279,15 @@ class ListingBrandController extends Controller
 
 
 
+        if ($request->has('invoice_status')) {
+            $shippment->invoice_status = $request->invoice_status;
+            $shippment->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Invoice Status updated successfully',
+            ]);
+        }
+
         // Update shipping status if newStatus field is present
         if ($request->has('newStatus')) {
             $shippment->status = $request->newStatus;

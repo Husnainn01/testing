@@ -121,10 +121,18 @@
                                             {{ $invoice->port_selected->name }}
                                         </td>
                                         <td>
-                                            @if ($invoice->paid_invoice_path != '')
+                                            @if ($invoice->invoice_status == 'pending')
                                                 Pending for verification
-                                            @else
-                                                Unpaid
+                                            @elseif ($invoice->invoice_status == 'approved')
+                                                Approved
+                                            @elseif ($invoice->invoice_status == 'cancelled')
+                                                Cancelled
+                                            @elseif ($invoice->invoice_status == '')
+                                                @if ($invoice->paid_invoice_path != '')
+                                                    Pending for verification
+                                                @else
+                                                    Unpaid
+                                                @endif
                                             @endif
                                         </td>
                                         @php
@@ -312,10 +320,18 @@
                                             {{ $invoice->port_selected->name }}
                                         </td>
                                         <td>
-                                            @if ($invoice->paid_invoice_path != '')
+                                            @if ($invoice->invoice_status == 'pending')
                                                 Pending for verification
-                                            @else
-                                                Unpaid
+                                            @elseif ($invoice->invoice_status == 'approved')
+                                                Approved
+                                            @elseif ($invoice->invoice_status == 'cancelled')
+                                                Cancelled
+                                            @elseif ($invoice->invoice_status == '')
+                                                @if ($invoice->paid_invoice_path != '')
+                                                    Pending for verification
+                                                @else
+                                                    Unpaid
+                                                @endif
                                             @endif
                                         </td>
                                         @php
@@ -504,10 +520,18 @@
                                             {{ $invoice->port_selected->name }}
                                         </td>
                                         <td>
-                                            @if ($invoice->paid_invoice_path != '')
+                                            @if ($invoice->invoice_status == 'pending')
                                                 Pending for verification
-                                            @else
-                                                Unpaid
+                                            @elseif ($invoice->invoice_status == 'approved')
+                                                Approved
+                                            @elseif ($invoice->invoice_status == 'cancelled')
+                                                Cancelled
+                                            @elseif ($invoice->invoice_status == '')
+                                                @if ($invoice->paid_invoice_path != '')
+                                                    Pending for verification
+                                                @else
+                                                    Unpaid
+                                                @endif
                                             @endif
                                         </td>
                                         @php
