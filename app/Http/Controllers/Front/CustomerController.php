@@ -1857,16 +1857,17 @@ class CustomerController extends Controller
     }
 
 
-    public function view_car_and_shipping_information($id)
+    public function view_car_and_shipping_information($id, Request $request)
     {
         $shippingOrder = ShippingOrder::findorFail($id);
-
+        $referer = $request->headers->get('referer');
+        $PageFrom = basename(parse_url($referer, PHP_URL_PATH));
         $offers = $shippingOrder->offers;
         $car = $offers[0]->car;
         $id = $car->id;
         $listing_photos = ListingPhoto::where('listing_id', $id)->orderBy('order', 'asc')->get();
 
-        return view('front.customerDashboard.view_car_and_shipping_information', compact('shippingOrder', 'listing_photos'));
+        return view('front.customerDashboard.view_car_and_shipping_information', compact('shippingOrder', 'listing_photos', 'PageFrom'));
     }
 
     public function place_order_shipping(Request $request)

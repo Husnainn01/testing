@@ -303,85 +303,84 @@
 
 
 
+                                    @if ($PageFrom == 'upload-proof')
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab"
+                                                    href="#home-tab-pane" role="tab" aria-controls="home-tab-pane"
+                                                    aria-selected="true">Export Certificates</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab"
+                                                    href="#profile-tab-pane" role="tab" aria-controls="profile-tab-pane"
+                                                    aria-selected="false">L/C</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="contact-tab" data-toggle="tab"
+                                                    href="#contact-tab-pane" role="tab"
+                                                    aria-controls="contact-tab-pane" aria-selected="false">Other</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent">
+                                            <!-- First Tab -->
+                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                                aria-labelledby="home-tab" tabindex="0">
+                                                <h2>Export Certificates</h2>
+                                                <!-- Download options for Export Certificates -->
+                                                <ul>
 
 
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="home-tab" data-toggle="tab"
-                                                href="#home-tab-pane" role="tab" aria-controls="home-tab-pane"
-                                                aria-selected="true">Export Certificates</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile-tab-pane"
-                                                role="tab" aria-controls="profile-tab-pane"
-                                                aria-selected="false">L/C</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="contact-tab" data-toggle="tab"
-                                                href="#contact-tab-pane" role="tab" aria-controls="contact-tab-pane"
-                                                aria-selected="false">Other</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <!-- First Tab -->
-                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                            aria-labelledby="home-tab" tabindex="0">
-                                            <h2>Export Certificates</h2>
-                                            <!-- Download options for Export Certificates -->
-                                            <ul>
+                                                    @foreach ($shippingOrder->documents as $doc)
+                                                        @if ($doc->status == 'export_document')
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                    <i class="fas fa-file-pdf"></i> click and download
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
 
-
-                                                @foreach ($shippingOrder->documents as $doc)
-                                                    @if ($doc->status == 'export_document')
-                                                        <li>
-                                                            <a
-                                                                href="{{ route('customer_download.shipping_documents', $doc->id) }}">
-                                                                <i class="fas fa-file-pdf"></i> click and download
-                                                            </a>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-
-                                            </ul>
+                                                </ul>
+                                            </div>
+                                            <!-- Second Tab -->
+                                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                                aria-labelledby="profile-tab" tabindex="0">
+                                                <h2>L/C</h2>
+                                                <!-- Download options for L / C -->
+                                                <ul>
+                                                    @foreach ($shippingOrder->documents as $doc)
+                                                        @if ($doc->status == 'lc')
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                    <i class="fas fa-file-pdf"></i> click and download
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <!-- Third Tab -->
+                                            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
+                                                aria-labelledby="contact-tab" tabindex="0">
+                                                <h2>Other</h2>
+                                                <!-- Download options for Other -->
+                                                <ul>
+                                                    @foreach ($shippingOrder->documents as $doc)
+                                                        @if ($doc->status == 'other')
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                    <i class="fas fa-file-pdf"></i> click and download
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <!-- Second Tab -->
-                                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                                            aria-labelledby="profile-tab" tabindex="0">
-                                            <h2>L/C</h2>
-                                            <!-- Download options for L / C -->
-                                            <ul>
-                                                @foreach ($shippingOrder->documents as $doc)
-                                                    @if ($doc->status == 'lc')
-                                                        <li>
-                                                            <a
-                                                                href="{{ route('customer_download.shipping_documents', $doc->id) }}">
-                                                                <i class="fas fa-file-pdf"></i> click and download
-                                                            </a>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <!-- Third Tab -->
-                                        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
-                                            aria-labelledby="contact-tab" tabindex="0">
-                                            <h2>Other</h2>
-                                            <!-- Download options for Other -->
-                                            <ul>
-                                                @foreach ($shippingOrder->documents as $doc)
-                                                    @if ($doc->status == 'other')
-                                                        <li>
-                                                            <a
-                                                                href="{{ route('customer_download.shipping_documents', $doc->id) }}">
-                                                                <i class="fas fa-file-pdf"></i> click and download
-                                                            </a>
-                                                        </li>
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-
+                                    @endif
 
 
 

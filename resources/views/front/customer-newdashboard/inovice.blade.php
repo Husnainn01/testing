@@ -88,91 +88,92 @@
                         $counter = 1;
                     @endphp
                     @foreach ($ShippingOrder as $invoice)
-                        @if ($invoice->invoice_path != '')
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    ss-{{ $counter++ }}
-                                </td>
-                                <td>
+                            <td>
+                                ss-{{ $counter++ }}
+                            </td>
+                            <td>
 
-                                    @php
-                                        $photoUrl = '';
-                                        // if ($invoice->offers[0]->car->listing_featured_photo) {
-                                        if (
-                                            !empty($invoice->offers) &&
-                                            isset($invoice->offers[0]->car->listing_featured_photo)
-                                        ) {
-                                            $photoUrl = asset(
-                                                'uploads/listing_featured_photos/' .
-                                                    $invoice->offers[0]->car->listing_featured_photo,
-                                            );
-                                        }
-                                    @endphp
-                                    @if (!empty($photoUrl))
-                                        <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
-                                            style="object-fit: cover; height:40px" alt="">
-                                    @endif
-
-                                </td>
-                                <td>
-                                    <ul>
-                                        @foreach ($invoice->offers as $offer)
-                                            <li>
-                                                <a class="text-primary text-decoration-underline"
-                                                    href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
-                                                    title="View Shipment">
-                                                    {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                                <td>
-                                    {{ $invoice->country_selected->listing_location_name }}
-
-                                </td>
-                                <td>
-                                    {{ $invoice->port_selected->name }}
-                                </td>
                                 @php
-                                    $documents = $invoice->documents->pluck('status')->toArray();
-
+                                    $photoUrl = '';
+                                    // if ($invoice->offers[0]->car->listing_featured_photo) {
+                                    if (
+                                        !empty($invoice->offers) &&
+                                        isset($invoice->offers[0]->car->listing_featured_photo)
+                                    ) {
+                                        $photoUrl = asset(
+                                            'uploads/listing_featured_photos/' .
+                                                $invoice->offers[0]->car->listing_featured_photo,
+                                        );
+                                    }
                                 @endphp
-                                <td>
-                                    @if (in_array('vessel', $documents))
-                                        Uploaded
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                                <td>
-                                    @if (in_array('etd_eta', $documents))
-                                        Uploaded
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                                <td>
-                                    @if (in_array('pol_pod', $documents))
-                                        Uploaded
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                                <td>
+                                @if (!empty($photoUrl))
+                                    <img src="{{ $photoUrl }}" class="w-100 mt-2" height="40px"
+                                        style="object-fit: cover; height:40px" alt="">
+                                @endif
 
-                                    {{ $invoice->default_name }} / {{ $invoice->country_selected->listing_location_name }}
-                                </td>
-                                <td>
-                                    <a href="{{ asset($invoice->invoice_path) }}"
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach ($invoice->offers as $offer)
+                                        <li>
+                                            <a class="text-primary text-decoration-underline"
+                                                href="{{ route('customer.shipment.view', ['id' => $invoice->id]) }}"
+                                                title="View Shipment">
+                                                {{ $offer->car_name }} / {{ $offer->car->listing_vin }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                            <td>
+                                {{ $invoice->country_selected->listing_location_name }}
+
+                            </td>
+                            <td>
+                                {{ $invoice->port_selected->name }}
+                            </td>
+                            @php
+                                $documents = $invoice->documents->pluck('status')->toArray();
+
+                            @endphp
+                            <td>
+                                @if (in_array('vessel', $documents))
+                                    Uploaded
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+                                @if (in_array('etd_eta', $documents))
+                                    Uploaded
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+                                @if (in_array('pol_pod', $documents))
+                                    Uploaded
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+
+                                {{ $invoice->default_name }} / {{ $invoice->country_selected->listing_location_name }}
+                            </td>
+                            <td>
+                                @if ($invoice->invoice_path != '')
+                                    <a href="{{ asset($invoice->invoice_path) }}" class="download-link"
                                         download="{{ basename($invoice->invoice_path) }}">
-                                        {{-- <i class="fas fa-download"></i> --}}
                                         <i class="fa-solid fa-download fs-4"></i>
                                     </a>
-                                </td>
-                            </tr>
-                        @endif
+                                @else
+                                    Pending
+                                @endif
+                            </td>
+                        </tr>
                     @endforeach
 
 
@@ -180,4 +181,21 @@
             </table>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.download-link').forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                var downloadUrl = this.getAttribute('href');
+                var anchor = document.createElement('a');
+                anchor.setAttribute('href', downloadUrl);
+                anchor.setAttribute('download', '');
+                anchor.style.display = 'none';
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+                alert('Download successful!');
+            });
+        });
+    </script>
 @endsection
