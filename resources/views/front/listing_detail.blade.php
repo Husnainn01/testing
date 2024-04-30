@@ -89,7 +89,8 @@
                 {{-- @php
                     dd($detail);
                 @endphp --}}
-                <h6>Home {{ $detail->brand_name }} > {{ $detail->listing_name }} > {{ $detail->listing_body }}
+                <h6><a href="/">Home</a> {{ $detail->brand_name }} > {{ $detail->listing_name }} >
+                    {{ $detail->listing_body }}
                     >{{ $detail->listing_model_year }}</h6>
                 {{--
             <div class="carousel">
@@ -118,8 +119,8 @@
                         @php $key = 0; @endphp
                         @foreach ($listing_photos as $photos)
                             @php $key++; @endphp
-                            <div class="carousel-item {{ $key == 1 ? 'active' : '' }}" data-slide-number="{{ $key }}"
-                                data-toggle="lightbox" data-gallery="gallery"
+                            <div class="carousel-item {{ $key == 1 ? 'active' : '' }}"
+                                data-slide-number="{{ $key }}" data-toggle="lightbox" data-gallery="gallery"
                                 data-remote="{{ asset('/uploads/listing_photos/' . $photos->photo) }}">
                                 <img height="300" src="{{ asset('/uploads/listing_photos/' . $photos->photo) }}"
                                     class="d-block w-100" alt="...">
@@ -226,18 +227,27 @@
                 </div>
 
                 <div class="row border-bottom my-3 pt-5 d-block">
-                    <div class="col-md-6">
-                        <h5>Share:
-                            @foreach ($social_media_items as $items)
-                                <a style="font-size: .9rem;" href="{{ $items->social_url }}"><i
-                                        class="{{ $items->social_icon }}"
-                                        style="color:white!important;background:#731718;padding:10px;border-radius:5px;"></i></a>
-                            @endforeach
-                        </h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Share:
+                                @foreach ($social_media_items as $items)
+                                    <a style="font-size: .9rem;" href="{{ $items->social_url }}"><i
+                                            class="{{ $items->social_icon }}"
+                                            style="color:white!important;background:#731718;padding:10px;border-radius:5px;"></i></a>
+                                @endforeach
+                            </h5>
+                        </div>
+                        <div class="col-md-6" style="text-align:end">
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <div class="favorite-button" style="position: unset !important" id="addToFavoritesBtn"
+                                data-listing-id="{{ $detail->id }}" onclick="addToFavorites()">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
                     <a style="border: none;
-		background: transparent;
-		cursor: pointer;float: right;"
+                            background: transparent;
+                            cursor: pointer;float: right;"
                         onclick="handleClick()">
                         <span class="text-right" style="font-size:20px;color: #003580;margin-top: -30px;">
                             <i class="fas fa-download"></i> Download
@@ -481,18 +491,18 @@
                     {{--                </a> --}}
                 </div>
                 <!-- <div class="row my-3">
-                                                                                        <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                            {{-- <h5> Stock ID:5057</h5> --}}
-                                                                                            {{-- <p  class="orange">Auction Grade: 4</p> --}}
-                                                                                                </div>
-                                                                                                <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                                    <div class="text-right orange">
-                                                                                                        <h5>
-                                                                                                            <i class="far fa-heart"></i> Add to Favorites
-                                                                                                        </h5>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div> -->
+                                                                                                                                                            <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                                                                                {{-- <h5> Stock ID:5057</h5> --}}
+                                                                                                                                                                {{-- <p  class="orange">Auction Grade: 4</p> --}}
+                                                                                                                                                                    </div>
+                                                                                                                                                                    <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                                                                                        <div class="text-right orange">
+                                                                                                                                                                            <h5>
+                                                                                                                                                                                <i class="far fa-heart"></i> Add to Favorites
+                                                                                                                                                                            </h5>
+                                                                                                                                                                        </div>
+                                                                                                                                                                    </div>
+                                                                                                                                                                </div> -->
                 <div class="container-fluid border rounded " style="background-color: #F6F6F6;">
                     <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                         @csrf
@@ -1888,7 +1898,12 @@
         </div>
     </div>
 </div> --}}
-
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopupBtn">&times;</span>
+            <p>Listing added to favorites successfully</p>
+        </div>
+    </div>
     <script>
         var carBasePrice = {{ $detail->listing_price }};
         document.addEventListener('DOMContentLoaded', function() {
@@ -1978,14 +1993,39 @@
                     }
                     return response.json();
                 })
+                // .then(data => {
+                //     console.log('Listing added to favorites successfully');
+                //     // Update the UI as needed (e.g., change the button color)
+                // })
                 .then(data => {
                     console.log('Listing added to favorites successfully');
+                    popup.style.display = "block";
+
+                    // Hide the popup after 3 seconds
+                    setTimeout(() => {
+                        popup.style.display = "none";
+                    }, 3000);
+
+
+
+
                     // Update the UI as needed (e.g., change the button color)
                 })
                 .catch(error => {
                     console.error('Error adding listing to favorites', error);
                 });
         }
+        // When the user clicks on <span> (x), close the popup
+        closePopupBtn.addEventListener("click", function() {
+            popup.style.display = "none";
+        });
+
+        // When the user clicks anywhere outside of the popup, close it
+        window.addEventListener("click", function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+            }
+        });
     </script>
     <style>
         /* Features Styles */
@@ -2066,6 +2106,40 @@
 
         .fade:not(.show) {
             opacity: .5 !important;
+        }
+
+        /* Popup container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            width: 80%;
+            background: #731718;
+            transform: translate(-50%, -50%);
+            padding: 0px;
+            margin: auto;
+            z-index: 9999;
+        }
+
+        /* Popup content */
+        .popup-content {
+            padding: 20px;
+            text-align: center;
+            margin: auto;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .popup-content p {
+            font-size: 25px;
+        }
+
+        /* Close button */
+        .close {
+            float: right;
+            cursor: pointer;
+            color: white;
         }
     </style>
 @endsection

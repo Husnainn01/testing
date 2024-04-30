@@ -10,10 +10,9 @@
                     <a href="{{ route('admin_shippment_requests') }}" class="btn btn-primary btn-sm"><i
                             class="fa fa-plus"></i> Back Shippment Request</a>
                 </div>
-                {{-- <label for="vessel_name">Vessel Name</label> --}}
-                <input type="text" hidden class="form-control" name="vessel_name" placeholder="Enter the Vessel title"
-                    value="trtry" required>
-                {{-- <br> --}}
+                <label for="vessel_name">Vessel Name</label>
+                <input type="text" class="form-control" name="vessel_name" placeholder="Enter the Vessel title" required>
+                <br>
                 <h4>Choose the type of Document</h4>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="status" id="status_pol_pod"
@@ -31,6 +30,10 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="other">
                     <label class="form-check-label" for="status_bl_document">Other</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="bl_document">
+                    <label class="form-check-label" for="bol">Bol</label>
                 </div>
 
             </div>

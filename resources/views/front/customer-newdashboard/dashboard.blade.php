@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-2" style="background: url('')">
                                     <img src="{{ asset('uploads/listing_featured_photos/' . $reserved_car->listing_featured_photo) }}"
-                                        class="w-100 mt-2" height="40px" style="object-fit: cover; height:40px"
+                                        class="w-100 mt-2" height="40px" style="object-fit: cover; height:100%"
                                         alt="">
                                 </div>
                                 <div class="col-7">
@@ -148,7 +148,7 @@
                             <div class="row">
                                 <div class="col-2" style="background: url('')">
                                     <img src="{{ asset('uploads/listing_featured_photos/' . $pending_car->listing_featured_photo) }}"
-                                        class="w-100 mt-2" height="110px"
+                                        class="w-100 mt-2" height="100%"
                                         style="object-fit: cover; height:-webkit-fill-available;" alt="">
                                 </div>
                                 <div class="col-7">
