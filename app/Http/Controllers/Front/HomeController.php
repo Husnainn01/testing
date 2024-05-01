@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Front;
+
 use App\Http\Controllers\Controller;
 use App\Models\PageHomeItem;
 use Illuminate\Http\Request;
@@ -24,21 +26,24 @@ class HomeController extends Controller
     {
         $listingId = $request->input('listingId');
         $user = auth()->user();
-        $user->favorites()->syncWithoutDetaching([$listingId]);
-
+        if ($user) {
+            $user->favorites()->syncWithoutDetaching([$listingId]);
+        } else {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
         return response()->json(['message' => 'Listing added to favorites successfully']);
     }
     public function homedata()
     {
-        $adv_home_data = HomeAdvertisement::where('id',1)->first();
-        $countcars=Listing::all()->count();
+        $adv_home_data = HomeAdvertisement::where('id', 1)->first();
+        $countcars = Listing::all()->count();
 
-    	$page_home_items = PageHomeItem::where('id',1)->first();
+        $page_home_items = PageHomeItem::where('id', 1)->first();
 
         $testimonials = Testimonial::get();
 
-        $listing_brands = ListingBrand::orderBy('listing_brand_name','asc')->get();
-        $listing_locations = ListingLocation::orderBy('listing_location_name','asc')->get();
+        $listing_brands = ListingBrand::orderBy('listing_brand_name', 'asc')->get();
+        $listing_locations = ListingLocation::orderBy('listing_location_name', 'asc')->get();
 
         $orderwise_listing_brands = DB::select('SELECT *
                         FROM listing_brands as r1
@@ -62,51 +67,52 @@ class HomeController extends Controller
                         ON r1.id = r2.listing_location_id
                         ORDER BY r2.total DESC');
 
-        $listings = Listing::with('rListingBrand','rListingLocation')
-            ->orderBy('created_at','dsc')
-            ->where('listing_status','Active')
-            ->where('is_featured','Yes')
+        $listings = Listing::with('rListingBrand', 'rListingLocation')
+            ->orderBy('created_at', 'dsc')
+            ->where('listing_status', 'Active')
+            ->where('is_featured', 'Yes')
             ->get();
 
-        return view('front.index', compact('adv_home_data','page_home_items','orderwise_listing_brands','orderwise_listing_locations','listings','listing_brands','listing_locations','testimonials'));
-
+        return view('front.index', compact('adv_home_data', 'page_home_items', 'orderwise_listing_brands', 'orderwise_listing_locations', 'listings', 'listing_brands', 'listing_locations', 'testimonials'));
     }
-    function cateogryFind($slug){
-        $slug_data=Category::where('category_slug',$slug)->first();
-        $data=Listing::where('category_id',$slug_data->id)->get();
-        return view('front.listing_result',compact('data'));
+    function cateogryFind($slug)
+    {
+        $slug_data = Category::where('category_slug', $slug)->first();
+        $data = Listing::where('category_id', $slug_data->id)->get();
+        return view('front.listing_result', compact('data'));
     }
 
 
-    function CarData(Request $request){
+    function CarData(Request $request)
+    {
 
         $models = Listing::where('listing_brand_id', $request->brand)
-        ->groupBy('listing_model_year')
-        ->pluck('listing_model_year');
+            ->groupBy('listing_model_year')
+            ->pluck('listing_model_year');
 
 
         return response()->json($models->toArray());
     }
-    function submitReview(Request $request){
+    function submitReview(Request $request)
+    {
         try {
-            return back()->with('success','Your Review has been added');
+            return back()->with('success', 'Your Review has been added');
         } catch (\Throwable $th) {
-            return back()->with('error',$th->getMessage());
+            return back()->with('error', $th->getMessage());
         }
-
     }
-    function index(){
-        $brands=ListingBrand::all();
-        $location=ListingLocation::all();
-        $locations=ListingLocation::all();
-        $carsdata=Listing::latest()->paginate(4);
-        $clientreviews = Review::with('agent','listing')->take(2)->get();
-        $most_popular_cars = Listing::where('is_featured','Yes')->orderBy('created_at','desc')->paginate(8, ['*'], 'mpc_page');
-        $new_arrivals = Listing::where('is_new_arrival',1)->orderBy('created_at','desc')->paginate(8, ['*'], 'na_page');
-        $faqs=Faq::all();
+    function index()
+    {
+        $brands = ListingBrand::all();
+        $location = ListingLocation::all();
+        $locations = ListingLocation::all();
+        $carsdata = Listing::latest()->paginate(4);
+        $clientreviews = Review::with('agent', 'listing')->take(2)->get();
+        $most_popular_cars = Listing::where('is_featured', 'Yes')->orderBy('created_at', 'desc')->paginate(8, ['*'], 'mpc_page');
+        $new_arrivals = Listing::where('is_new_arrival', 1)->orderBy('created_at', 'desc')->paginate(8, ['*'], 'na_page');
+        $faqs = Faq::all();
         // $advertisements = HomeAdvertisement::where('id',1)->first();
-        return view('front.index',compact('new_arrivals','most_popular_cars','brands','locations','carsdata','clientreviews','faqs','location',));
-
+        return view('front.index', compact('new_arrivals', 'most_popular_cars', 'brands', 'locations', 'carsdata', 'clientreviews', 'faqs', 'location',));
     }
     public function findlocation($slug)
     {
@@ -120,34 +126,37 @@ class HomeController extends Controller
             $freights = Freight::all();
             $insurances = Insurance::all();
             $inspection_certificates = Inspection::all();
-            $location= ListingLocation::all();
+            $location = ListingLocation::all();
             $modelYears = Listing::distinct()
                 ->orderBy('listing_model_year', 'asc')
                 ->pluck('listing_model_year');
-            $slider = Slide::where('id',1)->first();
+            $slider = Slide::where('id', 1)->first();
             $brands = ListingBrand::all();
 
-            return view('front.listing_result', compact('brands','slider','modelYears','location', 'data', 'freights', 'insurances', 'inspection_certificates'));
+            return view('front.listing_result', compact('brands', 'slider', 'modelYears', 'location', 'data', 'freights', 'insurances', 'inspection_certificates'));
         } catch (\Exception $e) {
             return view('front.index', ['error_message' => $e->getMessage()]);
         }
     }
 
 
-    function find_model($year){
-        $carsdata=Listing::where('listing_model_year',$year)->get();
-        $brands=ListingBrand::all();
-        $location=ListingLocation::all();
-        $clientreviews=Review::all();
+    function find_model($year)
+    {
+        $carsdata = Listing::where('listing_model_year', $year)->get();
+        $brands = ListingBrand::all();
+        $location = ListingLocation::all();
+        $clientreviews = Review::all();
 
-        return view('front.index',compact('brands','location','carsdata','clientreviews'));
+        return view('front.index', compact('brands', 'location', 'carsdata', 'clientreviews'));
     }
-    public function allreviews(){
-        $clientreviews=Review::all();
-        return view('front.allreviews',compact('clientreviews'));
+    public function allreviews()
+    {
+        $clientreviews = Review::all();
+        return view('front.allreviews', compact('clientreviews'));
     }
-    public function faqs(){
-        $faqs=Faq::all();
-        return view('front.faq',compact('faqs'));
+    public function faqs()
+    {
+        $faqs = Faq::all();
+        return view('front.faq', compact('faqs'));
     }
 }

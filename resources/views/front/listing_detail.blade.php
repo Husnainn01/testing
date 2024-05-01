@@ -491,18 +491,18 @@
                     {{--                </a> --}}
                 </div>
                 <!-- <div class="row my-3">
-                                                                                                                                                            <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                                                                                                {{-- <h5> Stock ID:5057</h5> --}}
-                                                                                                                                                                {{-- <p  class="orange">Auction Grade: 4</p> --}}
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                                                                                                        <div class="text-right orange">
-                                                                                                                                                                            <h5>
-                                                                                                                                                                                <i class="far fa-heart"></i> Add to Favorites
-                                                                                                                                                                            </h5>
-                                                                                                                                                                        </div>
-                                                                                                                                                                    </div>
-                                                                                                                                                                </div> -->
+                                                                                                                                                                                                                        <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                                                                                                                                            {{-- <h5> Stock ID:5057</h5> --}}
+                                                                                                                                                                                                                            {{-- <p  class="orange">Auction Grade: 4</p> --}}
+                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                                                                                                                                                    <div class="text-right orange">
+                                                                                                                                                                                                                                        <h5>
+                                                                                                                                                                                                                                            <i class="far fa-heart"></i> Add to Favorites
+                                                                                                                                                                                                                                        </h5>
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                            </div> -->
                 <div class="container-fluid border rounded " style="background-color: #F6F6F6;">
                     <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                         @csrf
@@ -1973,48 +1973,38 @@
         });
 
         function addToFavorites() {
-            const listingId = document.getElementById('addToFavoritesBtn').getAttribute('data-listing-id');
+            const listingId = $('#addToFavoritesBtn').data('listing-id');
 
-            // Make an AJAX request using fetch
-            fetch('/add-to-favorites', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        // Make sure to include the CSRF token if your application requires CSRF protection
-                    },
-                    body: JSON.stringify({
-                        listingId
-                    })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                // .then(data => {
-                //     console.log('Listing added to favorites successfully');
-                //     // Update the UI as needed (e.g., change the button color)
-                // })
-                .then(data => {
+            $.ajax({
+                url: '/add-to-favorites',
+                type: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: JSON.stringify({
+                    listingId
+                }),
+                success: function(data) {
                     console.log('Listing added to favorites successfully');
-                    popup.style.display = "block";
-
-                    // Hide the popup after 3 seconds
-                    setTimeout(() => {
-                        popup.style.display = "none";
-                    }, 3000);
-
-
-
-
-                    // Update the UI as needed (e.g., change the button color)
-                })
-                .catch(error => {
-                    console.error('Error adding listing to favorites', error);
-                });
+                    if ($('.popup').length) {
+                        $('.popup').css('display', 'block');
+                        setTimeout(() => {
+                            $('.popup').css('display', 'none');
+                        }, 3000);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    if (xhr.status === 401) {
+                        // Redirect to login page
+                        window.location.href = '/customer/login';
+                    } else {
+                        console.error('Error adding listing to favorites', error);
+                    }
+                }
+            });
         }
+
         // When the user clicks on <span> (x), close the popup
         closePopupBtn.addEventListener("click", function() {
             popup.style.display = "none";
@@ -2113,8 +2103,8 @@
             display: none;
             position: fixed;
             top: 10%;
-            left: 50%;
-            width: 80%;
+            left: 85%;
+            width: 350px;
             background: #731718;
             transform: translate(-50%, -50%);
             padding: 0px;
@@ -2132,7 +2122,7 @@
         }
 
         .popup-content p {
-            font-size: 25px;
+            margin: 0px;
         }
 
         /* Close button */

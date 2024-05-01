@@ -1724,7 +1724,7 @@
     });
 
     function addToFavorites(id, e) {
-        e.preventDefault();
+        // e.preventDefault();
         const listingId = id;
 
         // Make an AJAX request using fetch
@@ -1740,10 +1740,10 @@
                 })
             })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
+                // if (!response.ok) {
+                //     throw new Error('Network response was not ok');
+                // }
+                // return response.json();
             })
             .then(data => {
                 console.log('Listing added to favorites successfully');
