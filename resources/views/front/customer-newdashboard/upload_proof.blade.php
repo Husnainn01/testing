@@ -10,7 +10,21 @@
         <h3 class="fw-medium">Upload Proof of Payment</h3>
         <small>It contains all the quotations you have requested.</small>
     </section>
+    <style>
+        .upload__img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 0 -10px;
+            gap: 10px;
+        }
 
+        .delete-file {
+            margin: 10px;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
     <section class="container-fluid">
         <div class="col-12 p-4">
             <form id="search_filter" method="" action="" class="w-100">
@@ -173,10 +187,8 @@
                                                     data-bs-placement="top" data-bs-title="Upload Images"></i>
                                             </button>
 
-
-
-                                            <div class="modal fade test" id="exampleModal{{ $invoice->id }}"
-                                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal{{ $invoice->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -185,34 +197,30 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
-                                                        <form id="CuploadForm" class="CuploadForm"
+                                                        <form id="CuploadForm{{ $invoice->id }}" class="CuploadForm"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <div class="upload__box">
                                                                     <div class="upload__btn-box">
-                                                                        <label class="upload__btn  m-auto d-block w-50">
+                                                                        <label class="upload__btn m-auto d-block w-50">
                                                                             <i class="fa-solid fa-cloud-arrow-up fs-1"></i>
                                                                             <input type="hidden"
                                                                                 value="{{ $invoice->id }}" name="oInvoice"
-                                                                                id="oInvoice">
-                                                                            <input type="hidden"
-                                                                                value="{{ basename($invoice->invoice_path) }}"
-                                                                                name="oname" id="oname">
-                                                                            <input type="file" multiple=""
+                                                                                id="oInvoice{{ $invoice->id }}">
+                                                                            <input type="file" multiple
                                                                                 name="paidInvoice"
                                                                                 id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
                                                                                 class="upload__inputfile"
                                                                                 accept=".pdf,.png,.jpg,.jpeg">
                                                                         </label>
+
                                                                     </div>
+                                                                    <h3>Files Selected:</h3>
                                                                     <div class="upload__img-wrap"></div>
                                                                 </div>
-                                                                <div class="selected-files">
-                                                                    <h3>Files Selected:</h3>
-                                                                    <ul id="fileList{{ $invoice->id }}"></ul>
-                                                                </div>
+
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -224,48 +232,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
-
-
-                                                    var pi{{ $invoice->id }} = document.getElementById('paidInvoice{{ $invoice->id }}');
-                                                    if (pi{{ $invoice->id }} !== null) {
-                                                        pi{{ $invoice->id }}.addEventListener('change', function() {
-                                                            var fileList = pi{{ $invoice->id }}.files;
-                                                            var fileDisplayList = document.getElementById('fileList{{ $invoice->id }}');
-
-                                                            fileDisplayList.innerHTML = '';
-
-                                                            for (var i = 0; i < fileList.length; i++) {
-                                                                var fileItem = document.createElement('li');
-                                                                var fileName = fileList[i].name;
-
-                                                                // Check file extension
-                                                                var ext = fileName.split('.').pop().toLowerCase();
-                                                                if (['pdf', 'png', 'jpg', 'jpeg'].indexOf(ext) === -1) {
-                                                                    alert('Error: Please upload only PDF, PNG, JPG, or JPEG files.');
-                                                                    continue; // Skip this file
-                                                                }
-                                                                fileItem.textContent = fileList[i].name;
-
-                                                                var deleteBtn = document.createElement('span');
-                                                                deleteBtn.textContent = ' ❌';
-                                                                deleteBtn.style.cursor = 'pointer';
-                                                                deleteBtn.onclick = function() {
-                                                                    fileItem.remove();
-                                                                };
-
-                                                                fileItem.appendChild(deleteBtn);
-                                                                fileDisplayList.appendChild(fileItem);
-                                                            }
-                                                        });
-                                                    }
-
-                                                });
-                                            </script>
-
-
-
                                         </td>
                                     </tr>
                                 @endif
@@ -378,41 +344,34 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Upload
-                                                                Images
-                                                            </h1>
+                                                                Images</h1>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <form id="CuploadForm" class="CuploadForm"
+                                                        <form id="CuploadForm{{ $invoice->id }}" class="CuploadForm"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <div class="upload__box">
                                                                     <div class="upload__btn-box">
-                                                                        <label class="upload__btn  m-auto d-block w-50">
+                                                                        <label class="upload__btn m-auto d-block w-50">
                                                                             <i class="fa-solid fa-cloud-arrow-up fs-1"></i>
                                                                             <input type="hidden"
-                                                                                value ="{{ $invoice->id }}"
-                                                                                name="oInvoice" id="oInvoice">
-                                                                            <input type="hidden"
-                                                                                value ="{{ basename($invoice->invoice_path) }}"
-                                                                                name="oname" id="oname">
-                                                                            <input type="file" multiple=""
+                                                                                value="{{ $invoice->id }}"
+                                                                                name="oInvoice"
+                                                                                id="oInvoice{{ $invoice->id }}">
+                                                                            <input type="file" multiple
                                                                                 name="paidInvoice"
                                                                                 id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
                                                                                 class="upload__inputfile"
                                                                                 accept=".pdf,.png,.jpg,.jpeg">
                                                                         </label>
+
                                                                     </div>
+                                                                    <h3>Files Selected:</h3>
                                                                     <div class="upload__img-wrap"></div>
                                                                 </div>
-                                                                <div class="selected-files">
-                                                                    <h3>Files Selected:</h3>
-                                                                    <ul id="fileList{{ $invoice->id }}"></ul>
-                                                                </div>
-
-
 
                                                             </div>
                                                             <div class="modal-footer">
@@ -425,47 +384,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
-
-
-                                                    var pi{{ $invoice->id }} = document.getElementById('paidInvoice{{ $invoice->id }}');
-                                                    if (pi{{ $invoice->id }} !== null) {
-                                                        pi{{ $invoice->id }}.addEventListener('change', function() {
-                                                            var fileList = pi{{ $invoice->id }}.files;
-                                                            var fileDisplayList = document.getElementById('fileList{{ $invoice->id }}');
-
-                                                            fileDisplayList.innerHTML = '';
-
-                                                            for (var i = 0; i < fileList.length; i++) {
-                                                                var fileItem = document.createElement('li');
-                                                                var fileName = fileList[i].name;
-
-                                                                // Check file extension
-                                                                var ext = fileName.split('.').pop().toLowerCase();
-                                                                if (['pdf', 'png', 'jpg', 'jpeg'].indexOf(ext) === -1) {
-                                                                    alert('Error: Please upload only PDF, PNG, JPG, or JPEG files.');
-                                                                    continue; // Skip this file
-                                                                }
-                                                                fileItem.textContent = fileList[i].name;
-
-                                                                var deleteBtn = document.createElement('span');
-                                                                deleteBtn.textContent = ' ❌';
-                                                                deleteBtn.style.cursor = 'pointer';
-                                                                deleteBtn.onclick = function() {
-                                                                    fileItem.remove();
-                                                                };
-
-                                                                fileItem.appendChild(deleteBtn);
-                                                                fileDisplayList.appendChild(fileItem);
-                                                            }
-                                                        });
-                                                    }
-
-                                                });
-                                            </script>
-
 
                                         </td>
                                     </tr>
@@ -572,47 +490,41 @@
                                                     data-bs-placement="top" data-bs-title="Upload Images"></i>
                                             </button>
 
+
                                             <div class="modal fade" id="exampleModal{{ $invoice->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Upload
-                                                                Images
-                                                            </h1>
+                                                                Images</h1>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <form id="CuploadForm" class="CuploadForm"
+                                                        <form id="CuploadForm{{ $invoice->id }}" class="CuploadForm"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <div class="upload__box">
                                                                     <div class="upload__btn-box">
-                                                                        <label class="upload__btn  m-auto d-block w-50">
+                                                                        <label class="upload__btn m-auto d-block w-50">
                                                                             <i class="fa-solid fa-cloud-arrow-up fs-1"></i>
                                                                             <input type="hidden"
-                                                                                value ="{{ $invoice->id }}"
-                                                                                name="oInvoice" id="oInvoice">
-                                                                            <input type="hidden"
-                                                                                value ="{{ basename($invoice->invoice_path) }}"
-                                                                                name="oname" id="oname">
-                                                                            <input type="file" multiple=""
+                                                                                value="{{ $invoice->id }}"
+                                                                                name="oInvoice"
+                                                                                id="oInvoice{{ $invoice->id }}">
+                                                                            <input type="file" multiple
                                                                                 name="paidInvoice"
                                                                                 id="paidInvoice{{ $invoice->id }}"
                                                                                 required data-max_length="20"
                                                                                 class="upload__inputfile"
                                                                                 accept=".pdf,.png,.jpg,.jpeg">
                                                                         </label>
+
                                                                     </div>
+                                                                    <h3>Files Selected:</h3>
                                                                     <div class="upload__img-wrap"></div>
                                                                 </div>
-                                                                <div class="selected-files">
-                                                                    <h3>Files Selected:</h3>
-                                                                    <ul id="fileList{{ $invoice->id }}"></ul>
-                                                                </div>
-
-
 
                                                             </div>
                                                             <div class="modal-footer">
@@ -625,45 +537,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
 
 
-                                                    var pi{{ $invoice->id }} = document.getElementById('paidInvoice{{ $invoice->id }}');
-                                                    if (pi{{ $invoice->id }} !== null) {
-                                                        pi{{ $invoice->id }}.addEventListener('change', function() {
-                                                            var fileList = pi{{ $invoice->id }}.files;
-                                                            var fileDisplayList = document.getElementById('fileList{{ $invoice->id }}');
 
-                                                            fileDisplayList.innerHTML = '';
 
-                                                            for (var i = 0; i < fileList.length; i++) {
-                                                                var fileItem = document.createElement('li');
-                                                                var fileName = fileList[i].name;
-
-                                                                // Check file extension
-                                                                var ext = fileName.split('.').pop().toLowerCase();
-                                                                if (['pdf', 'png', 'jpg', 'jpeg'].indexOf(ext) === -1) {
-                                                                    alert('Error: Please upload only PDF, PNG, JPG, or JPEG files.');
-                                                                    continue; // Skip this file
-                                                                }
-                                                                fileItem.textContent = fileList[i].name;
-
-                                                                var deleteBtn = document.createElement('span');
-                                                                deleteBtn.textContent = ' ❌';
-                                                                deleteBtn.style.cursor = 'pointer';
-                                                                deleteBtn.onclick = function() {
-                                                                    fileItem.remove();
-                                                                };
-
-                                                                fileItem.appendChild(deleteBtn);
-                                                                fileDisplayList.appendChild(fileItem);
-                                                            }
-                                                        });
-                                                    }
-
-                                                });
-                                            </script>
                                         </td>
                                     </tr>
                                 @endif
@@ -738,7 +615,7 @@
 
     </section>
 @endsection
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function() {
 
         $(".CuploadForm").submit(function(e) {
@@ -761,6 +638,50 @@
                 contentType: false,
                 processData: false
             });
+        });
+    });
+</script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var fileList;
+        $(".CuploadForm").submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var invoiceId = $(this).find('input[name="oInvoice"]').val();
+            // var fileList = document.getElementById('paidInvoice' + invoiceId).files;
+            for (var i = 0; i < fileList.length; i++) {
+                formData.append('paidInvoice[]', fileList[i]);
+            }
+            $.ajax({
+                url: '/customer/upload-invoice',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+        $(".upload__inputfile").change(function() {
+            fileList = this.files;
+            var fileListContainer = $(this).closest('.upload__box').find('.upload__img-wrap');
+            fileListContainer.empty();
+            for (var i = 0; i < fileList.length; i++) {
+                var fileName = fileList[i].name;
+                var listItem = $('<span class="file-item">' + fileName +
+                    '<span class="delete-file">&times;</span></span>');
+                fileListContainer.append(listItem);
+            }
+        });
+
+        $(document).on('click', '.delete-file', function() {
+            $(this).closest('.file-item').remove();
         });
     });
 </script>

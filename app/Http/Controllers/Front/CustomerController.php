@@ -2018,65 +2018,68 @@ class CustomerController extends Controller
 
 
 
+    // public function customeruploadinvoice(Request $request)
+    // {
+    //     if ($request->hasFile('paidInvoice')) {
+
+    //         $file = $request->file('paidInvoice');
+    //         $shippmentId =  $request->input('oInvoice');
+    //         $shippment = ShippingOrder::findOrFail($shippmentId);
+    //         $directory = 'invoices';
+    //         $publicDirectory = public_path($directory);
+    //         if (!file_exists($publicDirectory)) {
+    //             mkdir($publicDirectory, 0755, true);
+    //         }
+    //         $originalName = $shippmentId . '_paid_' . $file->getClientOriginalName();
+
+    //         $file->move($publicDirectory, $originalName);
+    //         $relativePath = "$directory/$originalName";
+    //         $shippment->paid_invoice_path = $relativePath;
+    //         $shippment->save();
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Invoice uploaded successfully',
+    //         ]);
+    //     }
+    // }
     public function customeruploadinvoice(Request $request)
     {
         if ($request->hasFile('paidInvoice')) {
-            // $directory = 'invoices';
-            // if (!Storage::exists($directory)) {
-            //     Storage::makeDirectory($directory);
-            // }
-
-            $file = $request->file('paidInvoice');
-            $shippmentId =  $request->input('oInvoice');
-            // $originalName =   $file->getClientOriginalName(); // Get the original name
-
-            // $newName =  'paid_' . $originalName;
-            // $file->storeAs('public/' . $directory, $newName); // Store with original name
-            // $url = ('storage/' . $directory . '/' . $newName);
-
-
+            $shippmentId = $request->input('oInvoice');
             $shippment = ShippingOrder::findOrFail($shippmentId);
-            // $shippment->paid_invoice_path = $url;
-            // $shippment->save();
-
-            // return response()->json([
-            //     'success' => true,
-            //     'message' => 'Invoice uploaded successfully ',
-            // ]);
-            // Define the directory where invoices will be stored
             $directory = 'invoices';
-
-            // Define the full path of the directory within the public directory
             $publicDirectory = public_path($directory);
 
-            // Check if the directory exists, if not, create it
             if (!file_exists($publicDirectory)) {
-                mkdir($publicDirectory, 0755, true); // Recursive directory creation
+                mkdir($publicDirectory, 0755, true);
             }
 
-            // Get the uploaded file
-            // $file = $request->file('invoiceFile');
+            $filePaths = []; // Array to store file paths
 
-            // Generate a unique name for the file
-            $originalName = $shippmentId . '_paid_' . $file->getClientOriginalName();
+            foreach ($request->file('paidInvoice') as $file) {
+                $originalName = $shippmentId . '_paid_' . $file->getClientOriginalName();
+                $file->move($publicDirectory, $originalName);
+                $relativePath = "$directory/$originalName";
+                $filePaths[] = $relativePath; // Append file path to array
+            }
 
-            // Store the file in the specified directory with the original name
-            $file->move($publicDirectory, $originalName);
+            // Convert array to comma-separated string
+            $filePathsString = implode(',', $filePaths);
 
-            // Get the relative path of the stored file
-            $relativePath = "$directory/$originalName";
+            // Append new file paths to existing ones (if any)
+            $shippment->paid_invoice_path = $shippment->paid_invoice_path
+                ? $shippment->paid_invoice_path . ',' . $filePathsString
+                : $filePathsString;
 
-            // Set the invoice path to the correct variable (relative path)
-            $shippment->paid_invoice_path = $relativePath;
             $shippment->save();
 
-            // Return a JSON response with success and message data
             return response()->json([
                 'success' => true,
-                'message' => 'Invoice uploaded successfully',
+                'message' => 'Invoices uploaded successfully',
             ]);
         }
     }
+
 
     // public function customeruploadpaidinvoice(Request $request)
     // {
