@@ -625,7 +625,8 @@ Route::group(['middleware' => ['XSS']], function () {
         ->name('admin_shippment_requests');
     Route::get('admin/upload_invoices', [ListingBrandControllerForAdmin::class, 'admin_upload_invoices'])
         ->name('admin_see_upload_invoices');
-
+    Route::get('admin/upload_invoices/{id}', [ListingBrandControllerForAdmin::class, 'admin_upload_invoices_files'])
+        ->name('admin_see_upload_invoices_files');
     Route::get('admin/admin_shippment_show/{id}', [ListingBrandControllerForAdmin::class, 'admin_shippment_show'])
         ->name('admin_shippment_show');
 

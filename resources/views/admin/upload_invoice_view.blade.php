@@ -162,7 +162,8 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <a href="{{ asset($row->invoice_path) }}" class="btn btn-warning btn-sm">
+                                        <a href="/admin/upload_invoices/{{ $row->id }}"
+                                            class="btn btn-warning btn-sm">
                                             <i class="fas fa-eye"></i> View
                                         </a>
 

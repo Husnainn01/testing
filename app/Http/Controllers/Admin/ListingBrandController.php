@@ -43,7 +43,11 @@ class ListingBrandController extends Controller
         return view('admin.upload_invoice_view', compact('shippment_requests'));
     }
 
-
+    public function admin_upload_invoices_files($id)
+    {
+        $shippment_requests = ShippingOrder::where('id', $id)->get();
+        return view('admin.upload_invoice_files_view', compact('shippment_requests'));
+    }
 
 
 
