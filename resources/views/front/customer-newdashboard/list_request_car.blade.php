@@ -7,7 +7,6 @@
         </ul>
         <h3 class="fw-medium">Requested Cars <i class="fa-solid fa-car-side text-primary"></i></h3>
     </section>
-
     <section class="container mt-3">
         <div class="row">
             <div class="col-12">
