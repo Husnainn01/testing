@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="status" id="status_pol_pod" value="bl_document">
-                    <label class="form-check-label" for="bol">Bol</label>
+                    <label class="form-check-label" for="bl">BL</label>
                 </div>
 
             </div>
