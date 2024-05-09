@@ -495,6 +495,15 @@ class ListingBrandController extends Controller
         $status = $request->input('status'); // Assuming you have added the 'status' field in the form
 
         if ($request->has('documents') && is_array($request->input('documents'))) {
+
+            $shippment = ShippingOrder::findOrFail($shippmentId);
+            $shippment->eta_date = $request->eta;
+            $shippment->etd_date = $request->etd;
+            $shippment->vessel_name = $request->vessel_name;
+            $shippment->save();
+
+
+
             foreach ($request->file('documents') as $file) {
                 if ($file->isValid()) {
                     $extension = $file->getClientOriginalExtension(); // Get the original file extension

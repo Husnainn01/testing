@@ -4,6 +4,11 @@
         .carousel-item.active {
             display: block !important;
         }
+
+        .wimg {
+            max-width: 200px !important;
+            height: 100px !important;
+        }
     </style>
     <div class="content-body mt-2">
         <div class="container-fluid">
@@ -289,7 +294,7 @@
                                                                     data-target="#carousel"
                                                                     data-slide-to="{{ $photo_chunk_index * 8 + $row_index * 4 + $photo_index }}">
                                                                     <img src="{{ asset('/uploads/listing_photos/' . $photo['photo']) }}"
-                                                                        alt='img' class="img-fluid">
+                                                                        alt='img' class="img-fluid wimg">
                                                                 </div>
                                                             @endforeach
                                                         </div>

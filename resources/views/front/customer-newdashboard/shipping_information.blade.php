@@ -105,7 +105,8 @@
 
                         <th>Port</th>
                         <th>Export Certificate</th>
-                        <th>ETD/ETA</th>
+                        <th>ETD</th>
+                        <th>ETA</th>
                         <th>TT/Copy</th>
                         <th>Consignee Name</th>
                     </tr>
@@ -161,26 +162,16 @@
                                 @php
                                     $documents = $shippingOrder->documents->pluck('status')->toArray();
                                 @endphp
-                                <td>
-                                    @if (in_array('vessel', $documents))
-                                        Uploaded
-                                    @else
-                                        -
-                                    @endif
-                                </td>
+                                <td>{{ $shippingOrder->vessel_name }}</td>
                                 <td>{{ $shippingOrder->port_selected->name }}</td>
                                 <td> <a class="text-primary text-decoration-underline"
                                         href="{{ route('customer.shipment.view', ['id' => $shippingOrder->id]) }}"
                                         title="Export Certificate">
                                         Export Certificate
                                     </a></td>
-                                <td>
-                                    @if (in_array('etd_eta', $documents))
-                                        Uploaded
-                                    @else
-                                        -
-                                    @endif
-                                </td>
+                                <td>{{ $shippingOrder->eta_date }}</td>
+                                <td>{{ $shippingOrder->etd_date }}</td>
+
                                 {{-- <td>
                                 @if (in_array('pol_pod', $documents))
                                     Uploaded

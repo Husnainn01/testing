@@ -13,6 +13,17 @@
                 <label for="vessel_name">Vessel Name</label>
                 <input type="text" class="form-control" name="vessel_name" placeholder="Enter the Vessel title" required>
                 <br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="eta">ETA</label>
+                        <input type="datetime-local" class="form-control" name="eta">
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="etd">ETD</label>
+                        <input type="datetime-local" class="form-control" name="etd">
+                    </div>
+                </div>
+                <br>
                 <h4>Choose the type of Document</h4>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="status" id="status_pol_pod"
