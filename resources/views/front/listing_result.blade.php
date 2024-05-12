@@ -138,7 +138,7 @@
                                             <option value="">Doors</option>
                                             @forelse ($door as $item)
                                                 <option value="{{ $item }}"
-                                                    @if ($doors == $item) selected @endif>
+                                                    @if (!empty($doors) && $doors == $item) selected @endif>
                                                     {{ $item }}</option>
                                             @empty
                                                 <option value="">Empty</option>
