@@ -26,6 +26,25 @@
         $listing_stock = App\Models\listing::all()->count();
 
         $userdata = Auth::user();
+        $brand = '';
+        $doors = '';
+        $condition = '';
+        $status = '';
+        $steering = '';
+        $location = '';
+        $seats = '';
+        $body_type = '';
+        $fuel_type = '';
+        $transmission = '';
+        $colorItem = '';
+        $min_year = '';
+        $max_year = '';
+        $min_price = '';
+        $max_price = '';
+        $min_mileage = '';
+        $max_mileage = '';
+        $min_engine_capacity = '';
+        $max_engine_capacity = '';
     @endphp
     <section>
         <div class="container-fluid p-0">
