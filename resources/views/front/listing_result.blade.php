@@ -124,7 +124,7 @@
                                             <option value="">Select Brand</option>
                                             @foreach ($brands as $branditem)
                                                 <option value="{{ $branditem->id }}"
-                                                    @if ($brand == $branditem->id) selected @endif>
+                                                    @if (!empty($brand) && $brand == $branditem->id) selected @endif>
                                                     {{ $branditem->listing_brand_name }}
                                                 </option>
                                             @endforeach
@@ -152,9 +152,9 @@
 
                                         <select name="condition" id="" class="w-100 form-select  mt-xs-3">
                                             <option value="">Condition</option>
-                                            <option value="New car" @if ($condition == 'New car') selected @endif>New
+                                            <option value="New car" @if (!empty($condition) && $condition == 'New car') selected @endif>New
                                                 Cars</option>
-                                            <option value="Used car" @if ($condition == 'Used car') selected @endif>Used
+                                            <option value="Used car" @if (!empty($condition) && $condition == 'Used car') selected @endif>Used
                                                 Cars</option>
 
                                         </select>
@@ -163,11 +163,11 @@
 
                                         <select name="status" id="" class="w-100 form-select">
                                             <option value="">Select Status</option>
-                                            <option value="in_stock" @if ($status == 'in_stock') selected @endif>In
+                                            <option value="in_stock" @if (!empty($status) && $status == 'in_stock') selected @endif>In
                                                 Stock</option>
-                                            <option value="reserved" @if ($status == 'reserved') selected @endif>
+                                            <option value="reserved" @if (!empty($status) && $status == 'reserved') selected @endif>
                                                 Reserved</option>
-                                            <option value="sold" @if ($status == 'sold') selected @endif>Sold
+                                            <option value="sold" @if (!empty($status) && $status == 'sold') selected @endif>Sold
                                             </option>
 
 
@@ -180,9 +180,9 @@
                                         <select name="steering" id="" class="w-100 form-select">
                                             <option value="">Select Steering</option>
                                             <option value="left steering"
-                                                @if ($steering == 'left steering') selected @endif>Left Steering</option>
+                                                @if (!empty($steering) && $steering == 'left steering') selected @endif>Left Steering</option>
                                             <option value="right_steering"
-                                                @if ($steering == 'right_steering') selected @endif>Right Steering</option>
+                                                @if (!empty($steering) && $steering == 'right_steering') selected @endif>Right Steering</option>
 
                                         </select>
 
@@ -194,7 +194,7 @@
                                             <option value="">Seats</option>
                                             @foreach ($seat as $item)
                                                 <option value="{{ $item }}"
-                                                    @if ($seats == $item) selected @endif>{{ $item }}
+                                                    @if (!empty($seats) && $seats == $item) selected @endif>{{ $item }}
                                                 </option>
                                             @endforeach
 
@@ -208,7 +208,7 @@
                                             <option value="">Body Type</option>
                                             @foreach ($body as $item)
                                                 <option value="{{ $item }}"
-                                                    @if ($body_type == $item) selected @endif>{{ $item }}
+                                                    @if (!empty($body_type) && $body_type == $item) selected @endif>{{ $item }}
                                                 </option>
                                             @endforeach
 
@@ -226,7 +226,7 @@
                                                     <option value="">Min Price</option>
                                                     @forelse ($price as $item)
                                                         <option value="{{ $item }}"
-                                                            @if ($min_price == $item) selected @endif>
+                                                            @if (!empty($min_price) && $min_price == $item) selected @endif>
                                                             {{ $item }}</option>
                                                     @empty
                                                         <option value="">Empty</option>
@@ -238,7 +238,7 @@
                                                     <option value="">Max Price</option>
                                                     @forelse ($price as $item)
                                                         <option value="{{ $item }}"
-                                                            @if ($max_price == $item) selected @endif>
+                                                            @if (!empty($max_price) && $max_price == $item) selected @endif>
                                                             {{ $item }}</option>
                                                     @empty
                                                         <option value="">Empty</option>
@@ -259,7 +259,7 @@
                                                     <option value="">From Year</option>
                                                     @foreach ($modelYears as $yearitem)
                                                         <option value="{{ $yearitem }}"
-                                                            @if ($min_year == $yearitem) selected @endif>
+                                                            @if (!empty($min_year) && $min_year == $yearitem) selected @endif>
                                                             {{ $yearitem }}</option>
                                                     @endforeach
 
@@ -274,7 +274,7 @@
                                                     <option value="">To Year</option>
                                                     @foreach ($modelYears as $yearitem)
                                                         <option value="{{ $yearitem }}"
-                                                            @if ($max_year == $yearitem) selected @endif>
+                                                            @if (!empty($max_year) && $max_year == $yearitem) selected @endif>
                                                             {{ $yearitem }}</option>
                                                     @endforeach
 
@@ -295,7 +295,7 @@
                                                     <option value="">Mine.Mileage</option>
                                                     @forelse ($mileage as $item)
                                                         <option value="{{ $item }}"
-                                                            @if ($min_mileage == $item) selected @endif>
+                                                            @if (!empty($min_mileage) && $min_mileage == $item) selected @endif>
                                                             {{ $item }}</option>
 
                                                     @empty
@@ -309,7 +309,7 @@
                                                     <option value="">Max.Mileage</option>
                                                     @forelse ($mileage as $item)
                                                         <option value="{{ $item }}"
-                                                            @if ($max_mileage == $item) selected @endif>
+                                                            @if (!empty($max_mileage) && $max_mileage == $item) selected @endif>
                                                             {{ $item }}</option>
 
                                                     @empty
@@ -328,7 +328,7 @@
                                                     <option value="">Min-Capacity</option>
                                                     @foreach ($enginecapacity as $item)
                                                         <option value="{{ $item }}"
-                                                            @if ($min_engine_capacity == $item) selected @endif>
+                                                            @if (!empty($min_engine_capacity) && $min_engine_capacity == $item) selected @endif>
                                                             {{ $item }}</option>
                                                     @endforeach
 
@@ -339,7 +339,7 @@
                                                     <option value="">Max-Capacity</option>
                                                     @foreach ($enginecapacity as $item)
                                                         <option value="{{ $item }}"
-                                                            @if ($max_engine_capacity == $item) selected @endif>
+                                                            @if (!empty($max_engine_capacity) && $max_engine_capacity == $item) selected @endif>
                                                             {{ $item }}</option>
                                                     @endforeach
                                                 </select></div>
@@ -355,7 +355,7 @@
                                             <option value="">Fuel Any</option>
                                             @foreach ($fueltype as $items)
                                                 <option value="{{ $items }}"
-                                                    @if ($fuel_type == $items) selected @endif>
+                                                    @if (!empty($fuel_type) && $fuel_type == $items) selected @endif>
                                                     {{ $items }}</option>
                                             @endforeach
 
@@ -373,9 +373,9 @@
 
                                         <select name="transmission" id="" class="w-100 form-select">
                                             <option value="">Transmission (any)</option>
-                                            <option value="automatic" @if ($transmission == 'automatic') selected @endif>
+                                            <option value="automatic" @if (!empty($transmission) && $transmission == 'automatic') selected @endif>
                                                 Automatic</option>
-                                            <option value="manual" @if ($transmission == 'manual') selected @endif>
+                                            <option value="manual" @if (!empty($transmission) && $transmission == 'manual') selected @endif>
                                                 Manual</option>
 
 
@@ -394,7 +394,7 @@
                                             <option value="">Color</option>
                                             @forelse ($color as $item)
                                                 <option value="{{ $item }}"
-                                                    @if ($colorItem == $item) selected @endif>{{ $item }}
+                                                    @if (!empty($colorItem) && $colorItem == $item) selected @endif>{{ $item }}
                                                 </option>
                                             @empty
                                                 <option value="">Empty</option>
