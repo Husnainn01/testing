@@ -460,12 +460,14 @@
                                     <ul class="list-inline country_list">
                                         <li class="list-inline-item px-3 py-1 my-1"><a href="{{ route('allcars') }}"
                                                 class="w-100 text-dark"><small>All</small></a></li>
-                                        @foreach ($location as $locationitems)
-                                            <li class="list-inline-item px-3 py-1 my-1"><a
-                                                    class="text-dark text-decoration-none w-100"
-                                                    href="{{ route('location_find', ['slug' => $locationitems->listing_location_slug]) }}"><small>{{ $locationitems->listing_location_name }}</small></a>
-                                            </li>
-                                        @endforeach
+                                        @if (is_array($location))
+                                            @foreach ($location as $locationitems)
+                                                <li class="list-inline-item px-3 py-1 my-1"><a
+                                                        class="text-dark text-decoration-none w-100"
+                                                        href="{{ route('location_find', ['slug' => $locationitems->listing_location_slug]) }}"><small>{{ $locationitems->listing_location_name }}</small></a>
+                                                </li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="col-md-4 col-lg-4 col-sm-12">
