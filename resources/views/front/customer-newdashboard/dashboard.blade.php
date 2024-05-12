@@ -44,7 +44,12 @@
                                         <h6 class="text-primary p-0 fw-bold mb-0">{{ $reserved_car->listing_name }}</h6>
                                         <p>{{ $reserved_car->listing_description }}</p>
                                         <div class="badges p-0 mb-2"><span
-                                                class="badge bg-dark">{{ $reserved_car->listing_stock_status }}</span>
+                                                @php
+$status = $reserved_car->listing_stock_status;
+                                                    if($reserved_car->listing_stock_status == "in_stock"){
+                                                        $status = "In Stock";
+                                                    } @endphp
+                                                class="badge bg-dark">{{ $status }}</span>
 
                                         </div>
                                         <table class="table-bordered w-100 text-left specification"
@@ -157,7 +162,12 @@
                                         <h6 class="text-primary p-0 fw-bold mb-0">{{ $pending_car->listing_name }}</h6>
                                         <p>{{ $pending_car->listing_description }}</p>
                                         <div class="badges p-0 mb-2"><span
-                                                class="badge bg-dark">{{ $pending_car->listing_stock_status }}</span>
+                                                @php
+$status = $reserved_car->listing_stock_status;
+                                                                                                if($reserved_car->listing_stock_status == "in_stock"){
+                                                                                                    $status = "In Stock";
+                                                                                                } @endphp
+                                                class="badge bg-dark">{{ $status }}</span>
 
                                         </div>
                                         <table class="table-bordered w-100 text-left specification"

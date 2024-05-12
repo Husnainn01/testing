@@ -87,9 +87,9 @@ class HomeController extends Controller
     {
 
         $models = Listing::where('listing_brand_id', $request->brand)
+            ->whereNotNull('listing_model_year')
             ->groupBy('listing_model_year')
             ->pluck('listing_model_year');
-
 
         return response()->json($models->toArray());
     }

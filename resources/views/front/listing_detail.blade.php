@@ -491,18 +491,18 @@
                     {{--                </a> --}}
                 </div>
                 <!-- <div class="row my-3">
-                                                                                                                                                                                                                        <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                                                                                                                                                            {{-- <h5> Stock ID:5057</h5> --}}
-                                                                                                                                                                                                                            {{-- <p  class="orange">Auction Grade: 4</p> --}}
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <div class="col-md-6 col-sm-12 col-lg-6">
-                                                                                                                                                                                                                                    <div class="text-right orange">
-                                                                                                                                                                                                                                        <h5>
-                                                                                                                                                                                                                                            <i class="far fa-heart"></i> Add to Favorites
-                                                                                                                                                                                                                                        </h5>
+                                                                                                                                                                                                                            <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                                                                                                                                                {{-- <h5> Stock ID:5057</h5> --}}
+                                                                                                                                                                                                                                {{-- <p  class="orange">Auction Grade: 4</p> --}}
                                                                                                                                                                                                                                     </div>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                    <div class="col-md-6 col-sm-12 col-lg-6">
+                                                                                                                                                                                                                                        <div class="text-right orange">
+                                                                                                                                                                                                                                            <h5>
+                                                                                                                                                                                                                                                <i class="far fa-heart"></i> Add to Favorites
+                                                                                                                                                                                                                                            </h5>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                </div> -->
                 <div class="container-fluid border rounded " style="background-color: #F6F6F6;">
                     <form id="quote-form" action="{{ route('get_qoute') }}" method="POST">
                         @csrf
@@ -696,6 +696,7 @@
                                                 @foreach ($inspection_certificates as $inspection_certificate)
                                                     <option value="{{ $inspection_certificate->id }}"
                                                         data-price="{{ $inspection_certificate->price }}">
+                                                        {{ $inspection_certificate->name }}
                                                         {{ $inspection_certificate->inspection_type }}
                                                         ({{ $inspection_certificate->price }})
                                                     </option>

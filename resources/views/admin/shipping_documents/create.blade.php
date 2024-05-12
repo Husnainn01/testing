@@ -11,16 +11,17 @@
                             class="fa fa-plus"></i> Back Shippment Request</a>
                 </div>
                 <label for="vessel_name">Vessel Name</label>
-                <input type="text" class="form-control" name="vessel_name" placeholder="Enter the Vessel title" required>
+                <input type="text" class="form-control" name="vessel_name" value="{{ $shippment->vessel_name }}"
+                    placeholder="Enter the Vessel title" required>
                 <br>
                 <div class="row">
                     <div class="col-lg-6">
                         <label for="eta">ETA</label>
-                        <input type="datetime-local" class="form-control" name="eta">
+                        <input type="datetime-local" class="form-control" name="eta" value="{{ $shippment->eta_date }}">
                     </div>
                     <div class="col-lg-6">
                         <label for="etd">ETD</label>
-                        <input type="datetime-local" class="form-control" name="etd">
+                        <input type="datetime-local" class="form-control" name="etd" value="{{ $shippment->etd_date }}">
                     </div>
                 </div>
                 <br>

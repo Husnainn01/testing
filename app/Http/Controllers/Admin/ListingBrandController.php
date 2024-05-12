@@ -479,7 +479,8 @@ class ListingBrandController extends Controller
     }
     public function createShippingDocument($id)
     {
-        return view('admin.shipping_documents.create', compact('id'));
+        $shippment = ShippingOrder::findOrFail($id);
+        return view('admin.shipping_documents.create', compact('id', 'shippment'));
     }
 
     public function storeShippingDocument(Request $request)

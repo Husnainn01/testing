@@ -367,16 +367,17 @@
                                                         <span class="update">Updated
                                                             {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                     </div>
-                                                    <div class="favorite-button" style="position: unset !important"
-                                                        id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}"
-                                                        onclick="addToFavorites({{ $carsitems->id }} , event)">
-                                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                                    </div>
+
                                                 </div>
                                                 <button>GET A PRICE QUOTE NOW</button>
                                             </div>
                                         </div>
                                     </a>
+                                    <div class="favorite-button" style="" id="addToFavoritesBtn"
+                                        data-listing-id="{{ $carsitems->id }}"
+                                        onclick="addToFavorites({{ $carsitems->id }} , event)">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </div>
                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                 </div>
                             @endforeach
@@ -610,17 +611,18 @@
                                                             <span class="update">Updated
                                                                 {{ $carsitems->updated_at->diffForHumans() }}</span>
                                                         </div>
-                                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                                        <div class="favorite-button" style="position: unset !important"
-                                                            id="addToFavoritesBtn" data-listing-id="{{ $carsitems->id }}"
-                                                            onclick="addToFavorites({{ $carsitems->id }} , event)">
-                                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                                        </div>
+
                                                     </div>
                                                     <button>GET A PRICE QUOTE NOW</button>
                                                 </div>
                                             </div>
                                         </a>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <div class="favorite-button" style="" id="addToFavoritesBtn"
+                                            data-listing-id="{{ $carsitems->id }}"
+                                            onclick="addToFavorites({{ $carsitems->id }} , event)">
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        </div>
                                     </div>
                                     {{-- <div class="col-md-2 col-sm-12 col-lg-3 mb-5 mob-hide"> --}}
                                     {{-- <a href="{{ route('front_listing_detail', ['slug' => $carsitems->listing_slug]) }}" --}} {{--
@@ -1265,47 +1267,47 @@
                                                     </div>
                                                     <div id="collapse1" class="collapse" aria-labelledby="heading1"
                                                         data-parent="#accordionExample" ">
-                                                                                                    <div class="card-body">
-                                                                                                        Once you have provided us with the
-                                                                                                        necessary
-                                                                                                        information
-                                                                                                        regarding the vehicle you want, and
-                                                                                                        have made the
-                                                                                                        initial
-                                                                                                        auction deposit, we can start
-                                                                                                        searching and send you
-                                                                                                        possible matches daily. Once you
-                                                                                                        give us a go ahead
-                                                                                                        to
-                                                                                                        purchase, we will source your car.
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                                            <div class="card-body">
+                                                                                                                                Once you have provided us with the
+                                                                                                                                necessary
+                                                                                                                                information
+                                                                                                                                regarding the vehicle you want, and
+                                                                                                                                have made the
+                                                                                                                                initial
+                                                                                                                                auction deposit, we can start
+                                                                                                                                searching and send you
+                                                                                                                                possible matches daily. Once you
+                                                                                                                                give us a go ahead
+                                                                                                                                to
+                                                                                                                                purchase, we will source your car.
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
 
-                                                                                            {{-- two --}}
+                                                                                                                    {{-- two --}}
 
-                                                                                            <div class="col-lg-6">
-                                                                                                <div class="row align-items-center border-bottom">
-                                                                                                    <div class="col-10 px-0">
-                                                                                                        <div class="card-header px-0" id="heading2">
-                                                                                                            <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
-                                                                                                               type="button"
-                                                                                                               data-toggle="collapse" data-target="#collapse2"
-                                                                                                               aria-expanded="true"
-                                                                                                               aria-controls="collapse2">
-                                                                                                                Who takes care of getting my
-                                                                                                                car ready for
-                                                                                                                export
-                                                                                                                and shipping it?
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="col-2 text-right">
-                                                                                                        <i class="fa-solid fa-angle-down"></i>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div id="collapse2" class="collapse" aria-labelledby="heading2"
-                                                                                                     data-parent="#accordionExample" ">
+                                                                                                                    <div class="col-lg-6">
+                                                                                                                        <div class="row align-items-center border-bottom">
+                                                                                                                            <div class="col-10 px-0">
+                                                                                                                                <div class="card-header px-0" id="heading2">
+                                                                                                                                    <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
+                                                                                                                                       type="button"
+                                                                                                                                       data-toggle="collapse" data-target="#collapse2"
+                                                                                                                                       aria-expanded="true"
+                                                                                                                                       aria-controls="collapse2">
+                                                                                                                                        Who takes care of getting my
+                                                                                                                                        car ready for
+                                                                                                                                        export
+                                                                                                                                        and shipping it?
+                                                                                                                                    </a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-2 text-right">
+                                                                                                                                <i class="fa-solid fa-angle-down"></i>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div id="collapse2" class="collapse" aria-labelledby="heading2"
+                                                                                                                             data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We will prepare your vehicle for
                                                             export to any port
@@ -1342,47 +1344,47 @@
                                                     </div>
                                                     <div id="collapse7" class="collapse" aria-labelledby="heading2"
                                                         data-parent="#accordionExample" ">
-                                                                                                    <div class="card-body">
-                                                                                                        All vehicles sold at auction are
-                                                                                                        given an overall
-                                                                                                        grade by
-                                                                                                        the independent auction engineers
-                                                                                                        that inspect them.
-                                                                                                        Grades
-                                                                                                        can range from 0 to 9 but most
-                                                                                                        auctions only use 0
-                                                                                                        to 5.
-                                                                                                        This number is shown in either the
-                                                                                                        top left or top
-                                                                                                        right of
-                                                                                                        the auction sheet.
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                                            <div class="card-body">
+                                                                                                                                All vehicles sold at auction are
+                                                                                                                                given an overall
+                                                                                                                                grade by
+                                                                                                                                the independent auction engineers
+                                                                                                                                that inspect them.
+                                                                                                                                Grades
+                                                                                                                                can range from 0 to 9 but most
+                                                                                                                                auctions only use 0
+                                                                                                                                to 5.
+                                                                                                                                This number is shown in either the
+                                                                                                                                top left or top
+                                                                                                                                right of
+                                                                                                                                the auction sheet.
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
 
-                                                                                            {{-- four --}}
+                                                                                                                    {{-- four --}}
 
-                                                                                            <div class="col-lg-6">
-                                                                                                <div class="row align-items-center border-bottom">
-                                                                                                    <div class="col-10 px-0">
-                                                                                                        <div class="card-header px-0" id="heading4">
-                                                                                                            <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
-                                                                                                               type="button"
-                                                                                                               data-toggle="collapse" data-target="#collapse4"
-                                                                                                               aria-expanded="true"
-                                                                                                               aria-controls="collapse4">
-                                                                                                                How can I confirm about the
-                                                                                                                quality of the
-                                                                                                                car?
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="col-2 text-right">
-                                                                                                        <i class="fa-solid fa-angle-down"></i>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div id="collapse4" class="collapse" aria-labelledby="heading4"
-                                                                                                     data-parent="#accordionExample" ">
+                                                                                                                    <div class="col-lg-6">
+                                                                                                                        <div class="row align-items-center border-bottom">
+                                                                                                                            <div class="col-10 px-0">
+                                                                                                                                <div class="card-header px-0" id="heading4">
+                                                                                                                                    <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
+                                                                                                                                       type="button"
+                                                                                                                                       data-toggle="collapse" data-target="#collapse4"
+                                                                                                                                       aria-expanded="true"
+                                                                                                                                       aria-controls="collapse4">
+                                                                                                                                        How can I confirm about the
+                                                                                                                                        quality of the
+                                                                                                                                        car?
+                                                                                                                                    </a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-2 text-right">
+                                                                                                                                <i class="fa-solid fa-angle-down"></i>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div id="collapse4" class="collapse" aria-labelledby="heading4"
+                                                                                                                             data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We thoroughly inspect every vehicle
                                                             to ensure
@@ -1426,43 +1428,43 @@
                                                     {{-- drop --}}
                                                     <div id="collapse5" class="collapse" aria-labelledby="heading5"
                                                         data-parent="#accordionExample" ">
-                                                                                                    <div class="card-body">
-                                                                                                        Yes, we examine the car completely
-                                                                                                        and once
-                                                                                                        satisfied, we
-                                                                                                        bid on your selected vehicles.
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            {{--
+                                                                                                                            <div class="card-body">
+                                                                                                                                Yes, we examine the car completely
+                                                                                                                                and once
+                                                                                                                                satisfied, we
+                                                                                                                                bid on your selected vehicles.
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    {{--
                                             </div> --}}
 
-                                                                                            {{--
+                                                                                                                    {{--
                                             </div> --}}
-                                                                                            {{-- </div> --}}
-                                                                                            {{-- <div class="tab-pane fade" id="pills-profile" --}} {{-- role="tabpanel" --}} {{--
+                                                                                                                    {{-- </div> --}}
+                                                                                                                    {{-- <div class="tab-pane fade" id="pills-profile" --}} {{-- role="tabpanel" --}} {{--
                         aria-labelledby="pills-profile-tab"> --}}
-                                                                                            <div class="col-lg-6">
-                                                                                                <div class="row align-items-center border-bottom">
-                                                                                                    <div class="col-10 px-0">
-                                                                                                        <div class="card-header px-0" id="heading1">
-                                                                                                            <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
-                                                                                                               type="button"
-                                                                                                               data-toggle="collapse" data-target="#collapse6"
-                                                                                                               aria-expanded="true"
-                                                                                                               aria-controls="collapse6">
-                                                                                                                When do I have to make the complete
-                                                                                                                payment?
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="col-2 text-right">
-                                                                                                        <i class="fa-solid fa-angle-down"></i>
-                                                                                                    </div>
-                                                                                                </div>
+                                                                                                                    <div class="col-lg-6">
+                                                                                                                        <div class="row align-items-center border-bottom">
+                                                                                                                            <div class="col-10 px-0">
+                                                                                                                                <div class="card-header px-0" id="heading1">
+                                                                                                                                    <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
+                                                                                                                                       type="button"
+                                                                                                                                       data-toggle="collapse" data-target="#collapse6"
+                                                                                                                                       aria-expanded="true"
+                                                                                                                                       aria-controls="collapse6">
+                                                                                                                                        When do I have to make the complete
+                                                                                                                                        payment?
+                                                                                                                                    </a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-2 text-right">
+                                                                                                                                <i class="fa-solid fa-angle-down"></i>
+                                                                                                                            </div>
+                                                                                                                        </div>
 
-                                                                                                <div id="collapse6" class="collapse" aria-labelledby="heading1"
-                                                                                                     data-parent="#accordionExample" ">
+                                                                                                                        <div id="collapse6" class="collapse" aria-labelledby="heading1"
+                                                                                                                             data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             You are required to make the complete
                                                             payment after the bid
@@ -1502,47 +1504,47 @@
 
                                                     <div id="collapse8" class="collapse" aria-labelledby="heading2"
                                                         data-parent="#accordionExample" ">
-                                                                                                    <div class="card-body">
-                                                                                                        We will ship your vehicle as soon as you
-                                                                                                        complete the
-                                                                                                        minimum
-                                                                                                        deposit for shipment. It is 50%~100% of the
-                                                                                                        Total C&F, which
-                                                                                                        is
-                                                                                                        required for the shipment to be processed.
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                                                            <div class="card-body">
+                                                                                                                                We will ship your vehicle as soon as you
+                                                                                                                                complete the
+                                                                                                                                minimum
+                                                                                                                                deposit for shipment. It is 50%~100% of the
+                                                                                                                                Total C&F, which
+                                                                                                                                is
+                                                                                                                                required for the shipment to be processed.
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
 
 
-                                                                                            {{--
+                                                                                                                    {{--
                                             </div> --}}
-                                                                                            {{-- <div class="tab-pane fade" id="pills-others" role="tabpanel" --}} {{--
+                                                                                                                    {{-- <div class="tab-pane fade" id="pills-others" role="tabpanel" --}} {{--
                         aria-labelledby="pills-others-tab"> --}}
 
-                                                                                            {{-- eight --}}
+                                                                                                                    {{-- eight --}}
 
-                                                                                            <div class="col-lg-6">
-                                                                                                <div class="row align-items-center border-bottom">
-                                                                                                    <div class="col-10 px-0">
-                                                                                                        <div class="card-header px-0" id="heading2">
-                                                                                                            <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
-                                                                                                               type="button"
-                                                                                                               data-toggle="collapse" data-target="#collapse3"
-                                                                                                               aria-expanded="true"
-                                                                                                               aria-controls="collapse3">
-                                                                                                                How long will shipping take?
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="col-2 text-right">
-                                                                                                        <i class="fa-solid fa-angle-down"></i>
-                                                                                                    </div>
-                                                                                                </div>
+                                                                                                                    <div class="col-lg-6">
+                                                                                                                        <div class="row align-items-center border-bottom">
+                                                                                                                            <div class="col-10 px-0">
+                                                                                                                                <div class="card-header px-0" id="heading2">
+                                                                                                                                    <a class="accordo-text px-0 btn-block text-left collapsed font-weight-bold"
+                                                                                                                                       type="button"
+                                                                                                                                       data-toggle="collapse" data-target="#collapse3"
+                                                                                                                                       aria-expanded="true"
+                                                                                                                                       aria-controls="collapse3">
+                                                                                                                                        How long will shipping take?
+                                                                                                                                    </a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-2 text-right">
+                                                                                                                                <i class="fa-solid fa-angle-down"></i>
+                                                                                                                            </div>
+                                                                                                                        </div>
 
 
-                                                                                                <div id="collapse3" class="collapse" aria-labelledby="heading3"
-                                                                                                     data-parent="#accordionExample" ">
+                                                                                                                        <div id="collapse3" class="collapse" aria-labelledby="heading3"
+                                                                                                                             data-parent="#accordionExample" ">
                                                         <div class="card-body">
                                                             We cannot commit an accurate time of
                                                             shipment as it depends
@@ -1582,117 +1584,123 @@
                                                     </div>
                                                     <div id="collapse9" class="collapse" aria-labelledby="heading4"
                                                         data-parent="#accordionExample" ">
-                                                                                                    <div class="card-body">
-                                                                                                        Once shipment has departed, Original BL Scan
-                                                                                                        will be
-                                                                                                        supplied within
-                                                                                                        2-3 business days after the complete CNF
-                                                                                                        payment is made.
+                                                                                                                            <div class="card-body">
+                                                                                                                                Once shipment has departed, Original BL Scan
+                                                                                                                                will be
+                                                                                                                                supplied within
+                                                                                                                                2-3 business days after the complete CNF
+                                                                                                                                payment is made.
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-12 border-end"></div>
+                                                                                                                </div>
+
+                                                                                                                {{-- </div> --}}
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                                {{-- <div class="row my-5 w-100"> --}}
+                                                                                                {{-- <div class="col-md-12 col-lg-12 col-sm-12"> --}}
+                                                                                                {{-- <div class="bg-wrapper text-light p-5 shadow" --}} {{--
+            style="background: url('assets/images/cta-bg.png');"> --}}
+                                                                                                {{-- <h2 class="fw-bold">SS Japan</h2> --}}
+                                                                                                {{-- <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p> --}}
+                                                                                                {{-- <a href="{{ route('contact') }}"> --}}
+                                                                                                {{-- <button class="btn btn-primary">Contact --}}
+                                                                                                {{-- Us --}}
+                                                                                                {{-- </button> --}}
+                                                                                                {{-- </a> --}}
+                                                                                                {{-- </div> --}}
+                                                                                                {{-- </div> --}}
+                                                                                                {{-- </div> --}}
                                                                                             </div>
-                                                                                            <div class="col-12 border-end"></div>
                                                                                         </div>
 
-                                                                                        {{-- </div> --}}
+
+                                                                                        <!-- Right Column -->
+                                                                                        <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark right-sidebar">
+                                                                                            @include('front.layouts.right_sidebar')
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        {{-- <div class="row my-5 w-100"> --}}
-                                                                        {{-- <div class="col-md-12 col-lg-12 col-sm-12"> --}}
-                                                                        {{-- <div class="bg-wrapper text-light p-5 shadow" --}} {{--
-            style="background: url('assets/images/cta-bg.png');"> --}}
-                                                                        {{-- <h2 class="fw-bold">SS Japan</h2> --}}
-                                                                        {{-- <p>For Any Queries, Call Our Support Team at +81-52-387-9772</p> --}}
-                                                                        {{-- <a href="{{ route('contact') }}"> --}}
-                                                                        {{-- <button class="btn btn-primary">Contact --}}
-                                                                        {{-- Us --}}
-                                                                        {{-- </button> --}}
-                                                                        {{-- </a> --}}
-                                                                        {{-- </div> --}}
-                                                                        {{-- </div> --}}
-                                                                        {{-- </div> --}}
-                                                                    </div>
-                                                                </div>
+                                                                                <!-- Button trigger modal -->
 
 
-                                                                <!-- Right Column -->
-                                                                <div class="col-md-2 order-3 order-md-3 order-lg-3 order-sm-3 text-dark right-sidebar">
-                                                                    @include('front.layouts.right_sidebar')
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Button trigger modal -->
+                                                                                <!-- Modal -->
 
 
-                                                        <!-- Modal -->
-
-
-                                                        {{-- <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" --}} {{--
+                                                                                {{-- <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" --}} {{--
     aria-hidden="true"> --}}
-                                                        {{-- <div class="modal-dialog"> --}}
-                                                        {{-- <div class="modal-content"> --}}
-                                                        {{-- <div class="modal-header"> --}}
-                                                        {{-- <h1 class="modal-title fs-5" id="exampleModalLabel1">Customer Review</h1> --}}
+                                                                                {{-- <div class="modal-dialog"> --}}
+                                                                                {{-- <div class="modal-content"> --}}
+                                                                                {{-- <div class="modal-header"> --}}
+                                                                                {{-- <h1 class="modal-title fs-5" id="exampleModalLabel1">Customer Review</h1> --}}
 
-                                                        {{-- </div> --}}
-                                                        {{-- <div class="modal-body"> --}}
-                                                        {{-- <div class="row"> --}}
-                                                        {{-- <div class="col-md-8 col-lg-8"><img class="w-100" alt="" id="review-img"></div> --}}
-                                                        {{-- <div class="col-md-4 col-lg-4 body-inner"> --}}
-                                                        {{-- <div class="row"> --}}
-                                                        {{-- <div class="col-md-12"> --}}
+                                                                                {{-- </div> --}}
+                                                                                {{-- <div class="modal-body"> --}}
+                                                                                {{-- <div class="row"> --}}
+                                                                                {{-- <div class="col-md-8 col-lg-8"><img class="w-100" alt="" id="review-img"></div> --}}
+                                                                                {{-- <div class="col-md-4 col-lg-4 body-inner"> --}}
+                                                                                {{-- <div class="row"> --}}
+                                                                                {{-- <div class="col-md-12"> --}}
 
 
-                                                        {{-- <h6 class="mt-4 font-weight-bold" id="username">
+                                                                                {{-- <h6 class="mt-4 font-weight-bold" id="username">
                 <i --}} {{-- class="fa-solid fa-user"></i> UserName
                                 </h6> --}}
-                                                        {{-- @php --}}
-                                                        {{-- $reviewValue = $reviews->rating; // Your review value from the backend --}}
-                                                        {{-- $maxStars = 5; // Maximum number of stars --}}
+                                                                                {{-- @php --}}
+                                                                                {{-- $reviewValue = $reviews->rating; // Your review value from the backend --}}
+                                                                                {{-- $maxStars = 5; // Maximum number of stars --}}
 
-                                                        {{-- // Calculate the number of filled and empty stars --}}
-                                                        {{-- $filledStars = min($reviewValue, $maxStars); --}}
-                                                        {{-- $emptyStars = $maxStars - $filledStars; --}}
-                                                        {{-- @endphp --}}
+                                                                                {{-- // Calculate the number of filled and empty stars --}}
+                                                                                {{-- $filledStars = min($reviewValue, $maxStars); --}}
+                                                                                {{-- $emptyStars = $maxStars - $filledStars; --}}
+                                                                                {{-- @endphp --}}
 
-                                                        {{--
+                                                                                {{--
             <!-- Display filled stars --> --}}
-                                                        {{-- @for ($i = 0; $i < $filledStars; $i++) --}} {{-- <i class="fas fa-star"
+                                                                                {{-- @for ($i = 0; $i < $filledStars; $i++) --}} {{-- <i class="fas fa-star"
                                     style="color:#F9C303;"></i> --}}
-                                                        {{-- @endfor --}}
+                                                                                {{-- @endfor --}}
 
-                                                        {{--
+                                                                                {{--
             <!-- Display empty stars --> --}}
-                                                        {{-- @for ($i = 0; $i < $emptyStars; $i++) --}} {{-- <i class="far fa-star"
+                                                                                {{-- @for ($i = 0; $i < $emptyStars; $i++) --}} {{-- <i class="far fa-star"
                                         style="color: #F9C303;"></i> --}}
-                                                        {{-- @endfor --}}
+                                                                                {{-- @endfor --}}
 
-                                                        {{--
+                                                                                {{--
 </div> --}}
 
 
-                                                        {{-- </div> --}}
+                                                                                {{-- </div> --}}
 
 
-                                                        {{-- <h4 class="my-3">Reviews</h4> --}}
-                                                        {{-- <h6 id="review-description"> --}}
-                                                        {{-- </h6> --}}
+                                                                                {{-- <h4 class="my-3">Reviews</h4> --}}
+                                                                                {{-- <h6 id="review-description"> --}}
+                                                                                {{-- </h6> --}}
 
-                                                        {{-- </div> --}}
-                                                        {{-- </div> --}}
-                                                        {{-- </div> --}}
-                                                        {{-- <div class="modal-footer border-0"> --}}
-                                                        {{-- <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Close</button> --}}
-                                                        {{-- </div> --}}
-                                                        {{-- </div> --}}
-                                                        {{-- </div> --}}
-                                                        {{-- </div> --}}
-                                                    </section>
-                                                </div>
+                                                                                {{-- </div> --}}
+                                                                                {{-- </div> --}}
+                                                                                {{-- </div> --}}
+                                                                                {{-- <div class="modal-footer border-0"> --}}
+                                                                                {{-- <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Close</button> --}}
+                                                                                {{-- </div> --}}
+                                                                                {{-- </div> --}}
+                                                                                {{-- </div> --}}
+                                                                                {{-- </div> --}}
+                                                                            </section>
+                                                                        </div>
 
 @endsection
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" id="closePopupBtn">&times;</span>
+        <p>Listing added to favorites successfully</p>
+    </div>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Initialize likeCounts as an object with unique review IDs as keys
@@ -1727,31 +1735,35 @@
         // e.preventDefault();
         const listingId = id;
 
-        // Make an AJAX request using fetch
-        fetch('/add-to-favorites', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    // Make sure to include the CSRF token if your application requires CSRF protection
-                },
-                body: JSON.stringify({
-                    listingId
-                })
-            })
-            .then(response => {
-                // if (!response.ok) {
-                //     throw new Error('Network response was not ok');
-                // }
-                // return response.json();
-            })
-            .then(data => {
+        $.ajax({
+            url: '/add-to-favorites',
+            type: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: JSON.stringify({
+                listingId
+            }),
+            success: function(data) {
                 console.log('Listing added to favorites successfully');
-                // Update the UI as needed (e.g., change the button color)
-            })
-            .catch(error => {
-                console.error('Error adding listing to favorites', error);
-            });
+                if ($('.popup').length) {
+                    $('.popup').css('display', 'block');
+                    setTimeout(() => {
+                        $('.popup').css('display', 'none');
+                    }, 3000);
+                }
+            },
+            error: function(xhr, status, error) {
+                if (xhr.status === 401) {
+                    // Redirect to login page
+                    window.location.href = '/customer/login';
+                } else {
+                    console.error('Error adding listing to favorites', error);
+                }
+            }
+        });
+
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -2256,7 +2268,7 @@
         position: absolute;
         top: 320px;
         /* Adjust as needed */
-        right: 10px;
+        right: 25px;
         /* Adjust as needed */
         font-size: 1.5rem;
         /* Adjust as needed */
@@ -2483,6 +2495,40 @@
         margin: 0 auto;
         /* Center the image in its column */
     }
+
+        /* Popup container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 85%;
+            width: 350px;
+            background: #731718;
+            transform: translate(-50%, -50%);
+            padding: 0px;
+            margin: auto;
+            z-index: 9999;
+        }
+
+        /* Popup content */
+        .popup-content {
+            padding: 20px;
+            text-align: center;
+            margin: auto;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .popup-content p {
+            margin: 0px;
+        }
+
+        /* Close button */
+        .close {
+            float: right;
+            cursor: pointer;
+            color: white;
+        }
 
     @media only screen and (max-width: 768px) {
         .custom-icon {

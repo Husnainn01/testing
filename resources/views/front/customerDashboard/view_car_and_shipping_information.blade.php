@@ -307,8 +307,7 @@
                                     </div>
 
 
-
-                                    @if ($PageFrom == 'upload-proof')
+                                    @if ($PageFrom == 'upload-proof' || $PageFrom == 'car_shipping_information')
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="home-tab" data-toggle="tab"
@@ -319,6 +318,10 @@
                                                 <a class="nav-link" id="profile-tab" data-toggle="tab"
                                                     href="#profile-tab-pane" role="tab" aria-controls="profile-tab-pane"
                                                     aria-selected="false">L/C</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="bl-tab" data-toggle="tab" href="#bl-tab-pane"
+                                                    role="tab" aria-controls="bl-tab" aria-selected="false">BL</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="contact-tab" data-toggle="tab"
@@ -356,6 +359,23 @@
                                                 <ul>
                                                     @foreach ($shippingOrder->documents as $doc)
                                                         @if ($doc->status == 'lc')
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('customer_download.shipping_documents', $doc->id) }}">
+                                                                    <i class="fas fa-file-pdf"></i> click and download
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <div class="tab-pane fade" id="bl-tab-pane" role="tabpanel"
+                                                aria-labelledby="bl-tab" tabindex="0">
+                                                <h2>BL</h2>
+                                                <!-- Download options for L / C -->
+                                                <ul>
+                                                    @foreach ($shippingOrder->documents as $doc)
+                                                        @if ($doc->status == 'bl_document')
                                                             <li>
                                                                 <a
                                                                     href="{{ route('customer_download.shipping_documents', $doc->id) }}">
