@@ -41,50 +41,52 @@ class ListingController extends Controller
         // dd($request->all()); // Debugging line, can be removed later
 
         $listings = Listing::query();
-        $brand = "";
-        $model = "";
-        $yearFrom = "";
-        $yearTo = "";
-        $steering = "";
-        $bodytype = "";
-        $price = "";
+
+
+        $fl_brand = "";
+        $fl_min_year = "";
+        $fl_max_year = "";
+        $fl_steering = "";
+        $fl_body_type = "";
+        $fl_min_price = "";
+
+
         // Filter by brand
         if ($request->filled('brand')) {
             $listings->where('listing_brand_id', $request->brand);
-            $brand = $request->brand;
+            $fl_brand = $request->brand;
         }
 
         // Filter by model year
         if ($request->filled('model')) {
             $listings->where('listing_model_year', $request->model);
-            $model = $request->model;
         }
 
         // Filter by year range
         if ($request->filled('year_from') && $request->filled('year_to')) {
             // Assuming you have a 'year' field in your listings table
             $listings->whereBetween('listing_model_year', [$request->year_from, $request->year_to]);
-            $yearFrom = $request->yearFrom;
-            $yearTo = $request->yearTo;
+            $fl_min_year = $request->year_from;
+            $fl_max_year = $request->year_to;
         }
 
         // Filter by steering
         if ($request->filled('steering')) {
             // Assuming you have a 'steering' field in your listings table
             $listings->where('steering', $request->steering);
-            $steering = $request->steering;
+            $fl_steering = $request->steering;
         }
 
         // Filter by body type
         if ($request->filled('bodytype')) {
             $listings->where('listing_type', $request->bodytype);
-            $bodytype = $request->bodytype;
+            $fl_body_type = $request->bodytype;
         }
 
         // Filter by price
         if ($request->filled('price')) {
             $listings->where('listing_price', '<=', $request->price);
-            $price = $request->price;
+            $fl_min_price = $request->price;
         }
 
         // Filter by location
@@ -93,7 +95,7 @@ class ListingController extends Controller
         // Retrieve the listings
         $data = $listings->orderBy('created_at', 'desc')->get();
         // Return the view with the filtered data
-        return view('front.listing_result', compact('data', 'brand', 'model', 'yearFrom', 'yearTo', 'steering', 'bodytype', 'price'));
+        return view('front.listing_result', compact('data', 'fl_brand', 'fl_min_year', 'fl_max_year', 'fl_steering', 'fl_body_type', 'fl_min_price'));
     }
 
     //    public function carfilter(Request $request)
@@ -134,106 +136,101 @@ class ListingController extends Controller
 
     {
         $listings = Listing::query();
-        $brand = "";
-        $doors = "";
-        $condition = "";
-        $status = "";
-        $steering = "";
-        $location = "";
-        $seats = "";
-        $body_type = "";
-        $fuel_type = "";
-        $transmission = "";
-        $colorItem = "";
-        $min_year = "";
-        $max_year = "";
-        $min_price = "";
-        $max_price = "";
-        $min_mileage = "";
-        $max_mileage = "";
-        $min_engine_capacity = "";
-        $max_engine_capacity = "";
+        $fl_brand = "";
+        $fl_doors = "";
+        $fl_condition = "";
+        $fl_status = "";
+        $fl_steering = "";
+        $fl_location = "";
+        $fl_seats = "";
+        $fl_body_type = "";
+        $fl_fuel_type = "";
+        $fl_transmission = "";
+        $fl_colorItem = "";
+        $fl_min_year = "";
+        $fl_max_year = "";
+        $fl_min_price = "";
+        $fl_max_price = "";
+        $fl_min_mileage = "";
+        $fl_max_mileage = "";
+        $fl_min_engine_capacity = "";
+        $fl_max_engine_capacity = "";
 
         if ($request->has('brands') && $request->input('brands') !== null) {
             $listings->where('listing_brand_id', $request->input('brands'));
-            $brand = $request->input('brands');
+            $fl_brand = $request->input('brands');
         }
 
         if ($request->has('doors') && $request->input('doors') !== null) {
             $listings->where('listing_door', $request->input('doors'));
-            $doors = $request->input('doors');
+            $fl_doors = $request->input('doors');
         }
 
         if ($request->has('condition') && $request->input('condition') !== null) {
             $listings->where('listing_type', $request->input('condition'));
-            $condition = $request->input('condition');
+            $fl_condition = $request->input('condition');
         }
         if ($request->has('status') && $request->input('status') !== null) {
             $listings->where('listing_stock_status', $request->input('status'));
-            $status = $request->input('status');
+            $fl_status = $request->input('status');
         }
 
         if ($request->has('steering') && $request->input('steering') !== null) {
             $listings->where('steering', $request->input('location'));
-            $steering = $request->input('steering');
-            $location = $request->input('location');
+            $fl_steering = $request->input('steering');
+            $fl_location = $request->input('location');
         }
         if ($request->has('seats') && $request->input('seats') !== null) {
             $listings->where('listing_seat', $request->input('seats'));
-            $seats = $request->input('seats');
+            $fl_seats = $request->input('seats');
         }
 
         if ($request->has('body_type') && $request->input('body_type') !== null) {
             $listings->where('listing_body', $request->input('body_type'));
-            $body_type = $request->input('body_type');
+            $fl_body_type = $request->input('body_type');
         }
 
 
         if ($request->has('fuel_type') && $request->input('fuel_type') !== null) {
             $listings->where('listing_fuel_type', $request->input('fuel_type'));
-            $fuel_type = $request->input('fuel_type');
+            $fl_fuel_type = $request->input('fuel_type');
         }
 
         if ($request->has('transmission') && $request->input('transmission') !== null) {
             $listings->where('listing_transmission', $request->input('transmission'));
-            $transmission = $request->input('transmission');
+            $fl_transmission = $request->input('transmission');
         }
 
         if ($request->has('color') && $request->input('color') !== null) {
             $listings->where('listing_exterior_color', $request->input('color'));
-            $colorItem = $request->input('color');
+            $fl_colorItem = $request->input('color');
         }
 
-        if ($request->has('min_price') && $request->has('max_price')) {
+        if ($request->has('min_price') && $request->input('min_price') !== null && $request->has('max_price') && $request->input('max_price') !== null) {
             $listings = $listings->whereBetween('listing_price', [$request->input('min_price'), $request->input('max_price')]);
-            $min_price = $request->input('min_price');
-            $max_price = $request->input('max_price');
+            $fl_min_price = $request->input('min_price');
+            $fl_max_price = $request->input('max_price');
         }
-        if ($request->has('from_year') && $request->has('to_year')) {
+        if ($request->has('from_year') && $request->input('from_year') !== null && $request->has('to_year') && $request->input('to_year') !== null) {
             $listings = $listings->whereBetween('listing_model_year', [$request->input('min_year'), $request->input('max_year')]);
             $min_year = $request->input('from_year');
             $max_year = $request->input('to_year');
         }
 
-
-        // if ($request->has('from_year') && $request->has('to_year')) {
-        //     $listings = $listings->whereBetween('listing_model_year', [$request->input('from_year'), $request->input('to_year')]);
-        // }
-
-        if ($request->has('min_mileage') && $request->has('max_mileage')) {
+        if ($request->has('min_mileage') && $request->input('min_mileage') !== null && $request->has('max_mileage' && $request->input('max_mileage') !== null)) {
             $listings = $listings->whereBetween('listing_mileage', [$request->input('min_mileage'), $request->input('max_mileage')]);
             $min_mileage = $request->input('min_mileage');
             $max_mileage = $request->input('max_mileage');
         }
 
 
-        if ($request->has('min_engine_capacity') && $request->has('max_engine_capacity')) {
+        if ($request->has('min_engine_capacity') && $request->input('min_engine_capacity') !== null && $request->has('max_engine_capacity') && $request->input('max_engine_capacity') !== null) {
             $listings = $listings->whereBetween('listing_mileage', [$request->input('min_engine_capacity'), $request->input('max_engine_capacity')]);
             $min_engine_capacity = $request->input('min_engine_capacity');
             $max_engine_capacity = $request->input('max_engine_capacity');
         }
         $data = $listings->orderBy('created_at', 'desc')->get();
-        return view('front.listing_result', compact('data', 'brand', 'doors', 'condition', 'status', 'steering', 'location', 'seats', 'body_type', 'fuel_type', 'transmission', 'min_year', 'max_year', 'min_price', 'max_price', 'min_mileage', 'max_mileage', 'min_engine_capacity', 'max_engine_capacity', 'colorItem'));
+        return view('front.listing_result', compact('data', 'fl_brand', 'fl_doors', 'fl_condition', 'fl_status', 'fl_steering', 'fl_location', 'fl_seats', 'fl_body_type', 'fl_fuel_type', 'fl_transmission', 'fl_min_year', 'fl_max_year', 'fl_min_price', 'fl_max_price', 'fl_min_mileage', 'fl_max_mileage', 'fl_min_engine_capacity', 'fl_max_engine_capacity', 'fl_colorItem'));
     }
     function allCars()
     {

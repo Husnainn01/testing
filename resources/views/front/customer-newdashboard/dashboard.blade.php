@@ -33,12 +33,11 @@
                         @endphp
                         <section class="container border-bottom pb-1">
                             <div class="row">
-                                <div class="col-2" style="background: url('')">
+                                <div class="col-3" style="background: url('')">
                                     <img src="{{ asset('uploads/listing_featured_photos/' . $reserved_car->listing_featured_photo) }}"
-                                        class="w-100 mt-2" height="40px" style="object-fit: cover; height:100%"
-                                        alt="">
+                                        class="mt-2" style="width:300px; height:95%" alt="">
                                 </div>
-                                <div class="col-7">
+                                <div class="col-6">
                                     <div class="container"></div>
                                     <div class="row mt-2">
                                         <h6 class="text-primary p-0 fw-bold mb-0">{{ $reserved_car->listing_name }}</h6>
@@ -151,12 +150,11 @@ $status = $reserved_car->listing_stock_status;
                         @endphp
                         <section class="container border-bottom pb-1">
                             <div class="row">
-                                <div class="col-2" style="background: url('')">
+                                <div class="col-3" style="background: url('')">
                                     <img src="{{ asset('uploads/listing_featured_photos/' . $pending_car->listing_featured_photo) }}"
-                                        class="w-100 mt-2" height="100%"
-                                        style="object-fit: cover; height:-webkit-fill-available;" alt="">
+                                        class="mt-2" height="95%" style="width:300px;" alt="">
                                 </div>
-                                <div class="col-7">
+                                <div class="col-6">
                                     <div class="container"></div>
                                     <div class="row mt-2">
                                         <h6 class="text-primary p-0 fw-bold mb-0">{{ $pending_car->listing_name }}</h6>
