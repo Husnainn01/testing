@@ -10,7 +10,7 @@
             <div class="row ">
 
                 <!-- left Column -->
-                <input class="hidden" id="appurl" value="{{ env('APP_URL') }}"/>
+                <input class="hidden" id="appurl" value="{{ env('APP_URL') }}" />
 
                 <div class="col-md-2 order-2 order-sm-2  order-md-1 first-side">
                     @include('front.layouts.left_sidebar')
@@ -132,7 +132,7 @@
                                                                 <i class="far fa-star" style="color: #F9C303;"></i>
                                                             @endfor
                                                             <h6 class="fw-bold" style="color:#731718;">
-                                                                {{ $reviews->name}}</h6>
+                                                                {{ $reviews->name }}</h6>
                                                             <small class="d-block">{{ $reviews->review }}</small>
                                                         </div>
 

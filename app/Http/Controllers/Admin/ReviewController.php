@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\ClientReview;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,14 +17,18 @@ class ReviewController extends Controller
     }
 
     public function view_admin_review() {
-        $user_detail = Auth::user();
-        $all_listing_items = Listing::orderBy('id', 'asc')->where('listing_status', 'Active')->get();
-        $his_own_items = Listing::orderBy('id', 'asc')->where('user_id', 0)->where('admin_id',$user_detail->id)->get();
-        $arr_own_item_ids = [];
-        foreach($his_own_items as $row) {
-            $arr_own_item_ids[] = $row->id;
-        }
-        return view('admin.review_view_admin', compact('user_detail','all_listing_items','arr_own_item_ids'));
+
+        $clientreviews = ClientReview::all();
+        return view('admin.reviews.allreviews', compact('clientreviews'));
+
+        // $user_detail = Auth::user();
+        // $all_listing_items = Listing::orderBy('id', 'asc')->where('listing_status', 'Active')->get();
+        // $his_own_items = Listing::orderBy('id', 'asc')->where('user_id', 0)->where('admin_id',$user_detail->id)->get();
+        // $arr_own_item_ids = [];
+        // foreach($his_own_items as $row) {
+        //     $arr_own_item_ids[] = $row->id;
+        // }
+        // return view('admin.review_view_admin', compact('user_detail','all_listing_items','arr_own_item_ids'));
     }
 
     public function store_admin_review(Request $request) {
@@ -91,7 +96,7 @@ class ReviewController extends Controller
         if(env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
-        
+
         $obj = Review::findOrFail($id);
         $obj->delete();
         return Redirect()->back()->with('success', SUCCESS_ACTION);

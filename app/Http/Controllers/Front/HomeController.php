@@ -17,6 +17,7 @@ use App\Models\Insurance;
 use App\Models\Inspection;
 use App\Models\Slide;
 use App\Models\Category;
+use App\Models\ClientReview;
 use DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,14 +94,33 @@ class HomeController extends Controller
 
         return response()->json($models->toArray());
     }
+
     function submitReview(Request $request)
     {
         try {
+            $validatedData = $request->validate([
+                'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description' => 'required|string',
+                'rating' => 'required|integer|min:1|max:5',
+            ]);
+            $review = new ClientReview();
+            $review->description = $validatedData['description'];
+            $review->rating = $validatedData['rating'];
+            if ($request->hasFile('img')) {
+                $image = $request->file('img');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('reviews'), $imageName);
+                $review->img = 'reviews/' . $imageName;
+            }
+            $review->save();
             return back()->with('success', 'Your Review has been added');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
     }
+
+
+
     function index()
     {
         $brands = ListingBrand::all();

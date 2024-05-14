@@ -214,19 +214,19 @@
                 <!-- admin_inspection_view -->
                 <!-- Language Settings -->
                 <!-- <li class="nav-item {{ $route == 'admin_language_menu_text' || $route == 'admin_language_website_text' || $route == 'admin_language_notification_text' || $route == 'admin_language_admin_panel_text' ? 'active' : '' }}">
-                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLanguage" aria-expanded="true" aria-controls="collapseLanguage">
-                                                <i class="fas fa-folder"></i>
-                                                <span>{{ LANGUAGE_SETTINGS }}</span>
-                                            </a>
-                                            <div id="collapseLanguage" class="collapse {{ $route == 'admin_language_menu_text' || $route == 'admin_language_website_text' || $route == 'admin_language_notification_text' || $route == 'admin_language_admin_panel_text' ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                                                <div class="bg-white py-2 collapse-inner rounded">
-                                                    <a class="collapse-item " href="{{ route('admin_language_menu_text') }}">{{ MENU_TEXT }}</a>
-                                                    <a class="collapse-item " href="{{ route('admin_language_website_text') }}">{{ WEBSITE_TEXT }}</a>
-                                                    <a class="collapse-item " href="{{ route('admin_language_notification_text') }}">{{ NOTIFICATION_TEXT }}</a>
-                                                    <a class="collapse-item " href="{{ route('admin_language_admin_panel_text') }}">{{ ADMIN_PANEL_TEXT }}</a>
-                                                </div>
-                                            </div>
-                                        </li> -->
+                                                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLanguage" aria-expanded="true" aria-controls="collapseLanguage">
+                                                                            <i class="fas fa-folder"></i>
+                                                                            <span>{{ LANGUAGE_SETTINGS }}</span>
+                                                                        </a>
+                                                                        <div id="collapseLanguage" class="collapse {{ $route == 'admin_language_menu_text' || $route == 'admin_language_website_text' || $route == 'admin_language_notification_text' || $route == 'admin_language_admin_panel_text' ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                                                            <div class="bg-white py-2 collapse-inner rounded">
+                                                                                <a class="collapse-item " href="{{ route('admin_language_menu_text') }}">{{ MENU_TEXT }}</a>
+                                                                                <a class="collapse-item " href="{{ route('admin_language_website_text') }}">{{ WEBSITE_TEXT }}</a>
+                                                                                <a class="collapse-item " href="{{ route('admin_language_notification_text') }}">{{ NOTIFICATION_TEXT }}</a>
+                                                                                <a class="collapse-item " href="{{ route('admin_language_admin_panel_text') }}">{{ ADMIN_PANEL_TEXT }}</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li> -->
 
 
                 <!-- Page Settings -->
@@ -295,20 +295,20 @@
 
                 <!-- Blog Settings -->
                 <!-- <li class="nav-item {{ $route == 'admin_category_view' || $route == 'admin_category_create' || $route == 'admin_category_edit' || $route == 'admin_blog_view' || $route == 'admin_blog_create' || $route == 'admin_blog_edit' || $route == 'admin_comment_approved' || $route == 'admin_comment_pending' ? 'active' : '' }}">
-                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog" aria-expanded="true" aria-controls="collapseBlog">
-                                                <i class="fas fa-folder"></i>
-                                                <span>{{ BLOG_SECTION }}</span>
-                                            </a>
-                                            <div id="collapseBlog" class="collapse {{ $route == 'admin_category_view' || $route == 'admin_category_create' || $route == 'admin_category_edit' || $route == 'admin_blog_view' || $route == 'admin_blog_create' || $route == 'admin_blog_edit' || $route == 'admin_comment_approved' || $route == 'admin_comment_pending' ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog" aria-expanded="true" aria-controls="collapseBlog">
+                                                                            <i class="fas fa-folder"></i>
+                                                                            <span>{{ BLOG_SECTION }}</span>
+                                                                        </a>
+                                                                        <div id="collapseBlog" class="collapse {{ $route == 'admin_category_view' || $route == 'admin_category_create' || $route == 'admin_category_edit' || $route == 'admin_blog_view' || $route == 'admin_blog_create' || $route == 'admin_blog_edit' || $route == 'admin_comment_approved' || $route == 'admin_comment_pending' ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                                                            <div class="bg-white py-2 collapse-inner rounded">
 
-                                                    <a class="collapse-item" href="{{ route('admin_blog_view') }}">{{ BLOGS }}</a>
-                                                    <a class="collapse-item" href="{{ route('admin_comment_approved') }}">{{ APPROVED_COMMENTS }}</a>
-                                                    <a class="collapse-item" href="{{ route('admin_comment_pending') }}">{{ PENDING_COMMENTS }}</a>
+                                                                                <a class="collapse-item" href="{{ route('admin_blog_view') }}">{{ BLOGS }}</a>
+                                                                                <a class="collapse-item" href="{{ route('admin_comment_approved') }}">{{ APPROVED_COMMENTS }}</a>
+                                                                                <a class="collapse-item" href="{{ route('admin_comment_pending') }}">{{ PENDING_COMMENTS }}</a>
 
-                                                </div>
-                                            </div>
-                                        </li> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </li> -->
 
 
                 <li class="nav-item">
@@ -444,67 +444,72 @@
                         </div>
                     </li>
                 @endcan
+
                 <!-- services.index -->
                 <!-- Review Section -->
-                <!-- <li class="nav-item {{ $route == 'admin_view_admin_review' || $route == 'admin_view_customer_review' ? 'active' : '' }}">
-                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview" aria-expanded="true" aria-controls="collapseReview">
-                                                <i class="fas fa-folder"></i>
-                                                <span>{{ REVIEW_SECTION }}</span>
-                                            </a>
-                                            <div id="collapseReview" class="collapse {{ $route == 'admin_view_admin_review' || $route == 'admin_view_customer_review' ? 'show' : '' }}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                                                <div class="bg-white py-2 collapse-inner rounded">
 
-                                                    <a class="collapse-item" href="{{ route('admin_view_admin_review') }}">{{ ADMIN_REVIEW }}</a>
-                                                    <a class="collapse-item" href="{{ route('admin_view_customer_review') }}">{{ CUSTOMER_REVIEW }}</a>
+                <li class="nav-item {{ $route == 'admin_view_admin_review' ? 'active' : '' }}">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
+                        aria-expanded="true" aria-controls="collapseReview">
+                        <i class="fas fa-folder"></i>
+                        <span>{{ REVIEW_SECTION }}</span>
+                    </a>
+                    <div id="collapseReview" class="collapse {{ $route == 'admin_view_admin_review' ? 'show' : '' }}"
+                        aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
 
-                                                </div>
-                                            </div>
-                                        </li> -->
+                            <a class="collapse-item" href="{{ route('admin_view_admin_review') }}">Reviews</a>
+                            {{-- <a class="collapse-item"
+                                href="{{ route('admin_view_customer_review') }}">{{ CUSTOMER_REVIEW }}</a> --}}
+
+                        </div>
+                    </div>
+                </li>
 
 
                 <!-- Package Section -->
                 <!-- <li class="nav-item {{ $route == 'admin_package_view' || $route == 'admin_package_create' || $route == 'admin_package_edit' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('admin_package_view') }}">
-                                                <i class="far fa-caret-square-right"></i>
-                                                <span>{{ PACKAGE_SECTION }}</span>
-                                            </a>
-                                        </li> -->
+                                                                        <a class="nav-link" href="{{ route('admin_package_view') }}">
+                                                                            <i class="far fa-caret-square-right"></i>
+                                                                            <span>{{ PACKAGE_SECTION }}</span>
+                                                                        </a>
+                                                                    </li> -->
 
 
                 <!-- Dynamic Pages -->
                 <!-- <li class="nav-item {{ $route == 'admin_dynamic_page_view' || $route == 'admin_dynamic_page_create' || $route == 'admin_dynamic_page_edit' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('admin_dynamic_page_view') }}">
-                                                <i class="far fa-caret-square-right"></i>
-                                                <span>{{ DYNAMIC_PAGES }}</span>
-                                            </a>
-                                        </li> -->
+                                                                        <a class="nav-link" href="{{ route('admin_dynamic_page_view') }}">
+                                                                            <i class="far fa-caret-square-right"></i>
+                                                                            <span>{{ DYNAMIC_PAGES }}</span>
+                                                                        </a>
+                                                                    </li> -->
 
 
                 <!-- Purchase History -->
                 <!-- <li class="nav-item {{ $route == 'admin_purchase_history_view' || $route == 'admin_purchase_history_detail' || $route == 'admin_purchase_history_invoice' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('admin_purchase_history_view') }}">
-                                                <i class="far fa-caret-square-right"></i>
-                                                <span>{{ PURCHASE_HISTORY }}</span>
-                                            </a>
-                                        </li> -->
+                                                                        <a class="nav-link" href="{{ route('admin_purchase_history_view') }}">
+                                                                            <i class="far fa-caret-square-right"></i>
+                                                                            <span>{{ PURCHASE_HISTORY }}</span>
+                                                                        </a>
+                                                                    </li> -->
 
 
                 <!-- Customer -->
                 <!-- <li class="nav-item {{ $route == 'admin_customer_view' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('admin_customer_view') }}">
-                                                <i class="far fa-caret-square-right"></i>
-                                                <span>{{ CUSTOMER }}</span>
-                                            </a>
-                                        </li> -->
+                                                                        <a class="nav-link" href="{{ route('admin_customer_view') }}">
+                                                                            <i class="far fa-caret-square-right"></i>
+                                                                            <span>{{ CUSTOMER }}</span>
+                                                                        </a>
+                                                                    </li> -->
 
 
                 <!-- Email Template -->
                 <!-- <li class="nav-item {{ $route == 'admin_email_template_view' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('admin_email_template_view') }}">
-                                                <i class="far fa-caret-square-right"></i>
-                                                <span>{{ EMAIL_TEMPLATE }}</span>
-                                            </a>
-                                        </li> -->
+                                                                        <a class="nav-link" href="{{ route('admin_email_template_view') }}">
+                                                                            <i class="far fa-caret-square-right"></i>
+                                                                            <span>{{ EMAIL_TEMPLATE }}</span>
+                                                                        </a>
+                                                                    </li> -->
 
 
 

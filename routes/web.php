@@ -476,6 +476,9 @@ Route::group(['middleware' => ['XSS']], function () {
     Route::get('admin/category/view', [CategoryControllerForAdmin::class, 'index'])
         ->name('admin_category_view');
 
+    Route::get('admin/reviews', [HomeController::class, 'reviewsAdmin'])
+        ->name('admin_reviews');
+
     Route::get('admin/category/create', [CategoryControllerForAdmin::class, 'create'])
         ->name('admin_category_create');
 
