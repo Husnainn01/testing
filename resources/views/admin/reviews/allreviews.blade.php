@@ -54,4 +54,41 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.status-select').change(function() {
+                var shippingId = $(this).data('shipping-id');
+                var newStatus = $(this).val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('admin_modify_review_status') }}',
+                    data: {
+                        shippingId: shippingId,
+                        invoice_status: newStatus,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        console.log(response)
+                        if (response.success) {
+
+                            toastr.success('Review Updated');
+
+                        } else {
+                            // Display an error alert
+                            toastr.error('Review Update Fail');
+                        }
+                    },
+                    error: function(xhr) {
+                        // Display an error alert
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Error updating status: ' + xhr.statusText
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

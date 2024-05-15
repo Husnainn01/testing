@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\ClientReview;
@@ -12,11 +14,13 @@ use Auth;
 
 class ReviewController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth.admin:admin');
     }
 
-    public function view_admin_review() {
+    public function view_admin_review()
+    {
 
         $clientreviews = ClientReview::all();
         return view('admin.reviews.allreviews', compact('clientreviews'));
@@ -30,17 +34,33 @@ class ReviewController extends Controller
         // }
         // return view('admin.review_view_admin', compact('user_detail','all_listing_items','arr_own_item_ids'));
     }
+    public function admin_modify_review_status(Request $request)
+    {
+        // dd($request->all());
+        $shippmentId = intval($request->shippingId);
+        $shippment = ClientReview::findOrFail($shippmentId);
 
-    public function store_admin_review(Request $request) {
+        if ($request->has('invoice_status')) {
+            $shippment->status = $request->invoice_status;
+            $shippment->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Review Status updated successfully',
+            ]);
+        }
+    }
 
-        if(env('PROJECT_MODE') == 0) {
+    public function store_admin_review(Request $request)
+    {
+
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
         $user_detail = Auth::user();
         $request->validate([
             'review' => 'required'
-        ],[
+        ], [
             'review.required' => ERR_REVIEW_REQUIRED
         ]);
 
@@ -56,15 +76,16 @@ class ReviewController extends Controller
     }
 
 
-    public function update_admin_review(Request $request, $id) {
+    public function update_admin_review(Request $request, $id)
+    {
 
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
         $request->validate([
             'review' => 'required'
-        ],[
+        ], [
             'review.required' => ERR_REVIEW_REQUIRED
         ]);
         Review::where('id', $id)
@@ -75,9 +96,10 @@ class ReviewController extends Controller
         return redirect()->back()->with('success', SUCCESS_ACTION);
     }
 
-    public function delete_admin_review($id){
+    public function delete_admin_review($id)
+    {
 
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -86,14 +108,16 @@ class ReviewController extends Controller
         return Redirect()->back()->with('success', SUCCESS_ACTION);
     }
 
-    public function view_customer_review() {
+    public function view_customer_review()
+    {
         $reviews = Review::orderBy('id', 'asc')->where('agent_type', 'Customer')->get();
         return view('admin.review_view_customer', compact('reviews'));
     }
 
-    public function delete_customer_review($id){
+    public function delete_customer_review($id)
+    {
 
-        if(env('PROJECT_MODE') == 0) {
+        if (env('PROJECT_MODE') == 0) {
             return redirect()->back()->with('error', env('PROJECT_NOTIFICATION'));
         }
 
@@ -101,5 +125,4 @@ class ReviewController extends Controller
         $obj->delete();
         return Redirect()->back()->with('success', SUCCESS_ACTION);
     }
-
 }

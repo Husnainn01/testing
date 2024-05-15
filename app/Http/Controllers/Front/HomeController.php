@@ -171,7 +171,7 @@ class HomeController extends Controller
     }
     public function allreviews()
     {
-        $clientreviews = Review::all();
+        $clientreviews = ClientReview::where('status', 'approved')->orderBy('created_at', 'desc')->get();
         return view('front.allreviews', compact('clientreviews'));
     }
     public function faqs()

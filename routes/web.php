@@ -824,6 +824,8 @@ Route::group(['middleware' => ['XSS']], function () {
     Route::get('admin/customer-review/delete/{id}', [ReviewController::class, 'delete_customer_review'])
         ->name('admin_delete_customer_review');
 
+    Route::post('admin_modify_review_status', [ReviewController::class, 'admin_modify_review_status'])->name('admin_modify_review_status');
+
     /* --------------------------------------- */
     /* General Settings */
     /* --------------------------------------- */
